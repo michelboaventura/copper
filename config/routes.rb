@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  get 'datasources' => 'datasources#index'
-  resource :datasource
+  get 'databases' => 'databases#index'
+  resource :database
 end
