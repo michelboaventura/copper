@@ -1,5 +1,6 @@
 class Part
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   belongs_to :database
   belongs_to :parent, class_name: 'Part'
