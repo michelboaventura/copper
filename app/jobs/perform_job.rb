@@ -25,14 +25,30 @@ class PerformJob < ApplicationJob
     comments_path = File.join(path, 'comments.json')
     File.open(comments_path, 'w') do |f|
       comments.each do |comment|
-        f << comment.to_json << "\n"
+        c = comment.attributes
+        c[:article] = comment.part.article
+        c[:id] = comment.id.to_s
+        f << c.to_json << "\n"
       end
     end
 
     run_sentimento(path)
+    run_correlacao(path)
 
     job.status = "done"
     job.save
+  end
+
+  def run_correlacao(path)
+    IO.popen([
+      Rails.root.join('algorithms', 'correlacoes', 'run_correlacao.sh').to_s,
+      path.join('comments.json').to_s
+    ]) do |io|
+      File.open(File.join(path, 'correlacao'), 'w') do |f|
+        f << io.read
+      end
+    end
+    build_correlacao_json(path)
   end
 
   def run_sentimento(path)
@@ -45,6 +61,9 @@ class PerformJob < ApplicationJob
       end
     end
     build_sentimento_json(path)
+  end
+
+  def build_correlacao_json(path)
   end
 
   def build_sentimento_json(path)
