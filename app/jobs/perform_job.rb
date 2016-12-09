@@ -64,6 +64,50 @@ class PerformJob < ApplicationJob
   end
 
   def build_correlacao_json(path)
+    out = []
+    File.open(File.join(path, 'correlacao')).each_line do |line|
+      author_ids, article_ids = line.chomp.split(' ').map{|l| l.split(',')}
+      author_ids.map!(&:to_i)
+
+      part_ids = Part.in(article: article_ids).pluck(:id)
+      comments = Comment.in(author_id: author_ids, part_id: part_ids)
+
+      rows = Set.new
+      columns = Set.new
+      result = {row: [], column: [], links: []}
+
+      comments.each do |comment|
+        part = comment.part
+
+        if !rows.find_index(comment.author_name)
+          rows << comment.author_name
+          result[:row] << {name: comment.author_name}
+        end
+
+        if !columns.find_index(part.name)
+          columns << part.name
+          #TODO descobrir o que é esse group
+          result[:column] << {name: part.name, group: 0}
+        end
+
+        result[:links] << {
+          source: rows.find_index(comment.author_name),
+          target: columns.find_index(part.name),
+          #TODO descobrir o que é esse value
+          value: 1
+        }
+      end
+      out << result
+    end
+    hash = {}
+
+    out.each_with_index do |el, i|
+      hash[i] = el
+    end
+
+    File.open(File.join(path, 'correlacao.json'), 'w') do |f|
+      f << hash.to_json
+    end
   end
 
   def build_sentimento_json(path)
