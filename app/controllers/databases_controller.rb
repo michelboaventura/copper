@@ -1,22 +1,51 @@
 class DatabasesController < ApplicationController
+  before_action :set_database, only: [:show, :update, :destroy]
+
+  # GET /databases
   def index
-    render json: Database.all.as_json
+    @databases = Database.all
+
+    render json: @databases
   end
-  def create
-    @database = Database.new(params[:datasource])
-    @database.save
-    render json: @database.as_json
-  end
+
+  # GET /databases/1
   def show
-    render json: Database.find(params[:id])
+    render json: @database
   end
+
+  # POST /databases
+  def create
+    @database = Database.new(database_params)
+
+    if @database.save
+      render json: @database, status: :created
+    else
+      render json: @database.errors, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT /databases/1
   def update
-    @database = Database.find(params[:id])
-    @database.update(params[:datasource])
-    render json: @database.as_json
+    if @database.update(database_params)
+      render json: @database
+    else
+      render json: @database.errors, status: :unprocessable_entity
+    end
   end
+
+  # DELETE /databases/1
   def destroy
-    @database = Database.find(params[:id])
     @database.destroy
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_database
+    @database = Database.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def database_params
+    params.fetch(:datasource, {})
   end
 end
