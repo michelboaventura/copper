@@ -13,5 +13,13 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore algorithms
+*.o
+algorithms/correlacoes/tools/d-peeler/d-peeler
+algorithms/correlacoes/tools/multidupehack/multidupehack
+algorithms/sentimento/tools/lac/lazy
+
 # Ignore Byebug command history file.
 .byebug_history
+
+public/json/*
