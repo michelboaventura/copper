@@ -6,21 +6,15 @@ class PerformJob < ApplicationJob
   def perform(job_id)
     job = Job.find(job_id)
     filter = /#{job.filter}/i
+    types = /#{job.types}/i
     database = job.database
 
-    #parts = database.parts.
-    #  where(commentable_type: {in: job.types}).
-    #  any_of(commentable_text: filter, commentable_name: filter)
-
-    comments = database.comments.any_of(text: filter)
+    part_ids = database.parts.where(type: types).pluck(:id)
+    comments = database.comments.in(part_id: part_ids).any_of(text: filter)
 
     path = Rails.root.join('public', 'json', job.id.to_s)
 
     Dir.mkdir(path) rescue nil
-
-    #File.open(File.join(path, "parts.json"), 'w') do |f|
-    #  f << parts
-    #end
 
     comments_path = File.join(path, 'comments.json')
     File.open(comments_path, 'w') do |f|
