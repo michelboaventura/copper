@@ -44,7 +44,7 @@ const ID_COMENTAVEL = "commentable_id:";
 const TAMANHO_FONTE = 12;
 
 var id  = location.search.split("=")[1];
-var url = location.origin + "/public/json/" + id + "/sentiment.json";
+var url = "http://" + location.hostname + ":4000/json/" + id + "/sentimento.json";
 
 ////////////////////////////////////////////
 // Região de Pré-processamento dos Dados //

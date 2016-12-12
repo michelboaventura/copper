@@ -5,7 +5,7 @@ class PerformJob < ApplicationJob
 
   def perform(job_id)
     job = Job.find(job_id)
-    filter = /.*#{job.filter}.*/
+    filter = /.*#{job.filter}.*/i
     database = job.database
 
     #parts = database.parts.
@@ -74,6 +74,7 @@ class PerformJob < ApplicationJob
 
       rows = Set.new
       columns = Set.new
+      links = Set.new
       result = {row: [], column: [], links: []}
 
       comments.each do |comment|
@@ -84,25 +85,29 @@ class PerformJob < ApplicationJob
           result[:row] << {name: comment.author_name}
         end
 
-        if !columns.find_index(part.name)
-          columns << part.name
-          #TODO descobrir o que é esse group
-          result[:column] << {name: part.name, group: 0}
+        if !columns.find_index(part.article)
+          name = Part.where(article: part.article).pluck(:name).sort{|a,b| a.size <=> b.size}.first
+          columns << part.article
+          result[:column] << {name: name, group: part.axis}
         end
 
-        result[:links] << {
-          source: rows.find_index(comment.author_name),
-          target: columns.find_index(part.name),
-          #TODO descobrir o que é esse value
-          value: 1
-        }
+        source = rows.find_index(comment.author_name)
+        target = columns.find_index(part.article)
+        key = "#{source}|#{target}"
+        if !links.find_index(key)
+          links << key
+          result[:links] << { source: source, target: target, value: 1}
+        else
+          r = result[:links].find_index {|l| l[:source] == source && l[:target] == target}
+          result[:links][r][:value] += 1
+        end
       end
       out << result
     end
     hash = {}
 
     out.each_with_index do |el, i|
-      hash[i] = el
+      hash[i + 1] = el
     end
 
     File.open(File.join(path, 'correlacao.json'), 'w') do |f|
@@ -121,7 +126,7 @@ class PerformJob < ApplicationJob
       value = array.last.to_f
 
       comment = Comment.find(comment_id)
-      part = comment.part
+      part = Part.where(article: comment.part.article).sort{|a,b| a.name.size <=> b.name.size}.first
 
       part_key   = [part.id, part.name].join('|')
       author_key = [comment.author_id, comment.author_name].join('|')
