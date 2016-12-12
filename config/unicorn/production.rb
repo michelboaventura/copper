@@ -1,4 +1,4 @@
-app_path = File.expand_path(File.dirname(__FILE__) + '/../..')
+app_path = "/home/ubuntu/ai_social_rails"
 working_directory "#{app_path}/current"
 worker_processes 4
 listen "/tmp/ai_social_rails.sock", backlog: 64
