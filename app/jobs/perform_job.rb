@@ -5,7 +5,7 @@ class PerformJob < ApplicationJob
 
   def perform(job_id)
     job = Job.find(job_id)
-    filter = /.*#{job.filter}.*/i
+    filter = /#{job.filter}/i
     database = job.database
 
     #parts = database.parts.
