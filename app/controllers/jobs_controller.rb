@@ -19,7 +19,8 @@ class JobsController < ApplicationController
     @job = Job.new(job_params_clear)
 
     if @job.save
-      PerformJob.perform_latter(@job.id.to_s)
+
+      PerformJob.perform_later(@job.id.to_s)
       render json: @job, status: :created, location: @job
     else
       render json: @job.errors, status: :unprocessable_entity
@@ -59,10 +60,13 @@ class JobsController < ApplicationController
     job_params[:tasks].each do |k,v|
       if job_params[:tasks][k]['forms']['filter'] != nil
         job_params_clear[:filter] = job_params[:tasks][k]['forms']['filter']
-        job_params_clear[:types] = job_params[:tasks][k]['forms']['types']
+        job_params_clear[:types] = parseTypes(job_params[:tasks][k]['forms']['types'])
       end
     end
     job_params_clear[:status] = "WAITING"
     return job_params_clear
+  end
+  def parseTypes types
+    return types.join(" || ")
   end
 end

@@ -5,6 +5,8 @@ class PerformJob < ApplicationJob
 
   def perform(job_id)
     job = Job.find(job_id)
+    job.update_attribute(:status, 'RUNNING')
+
     filter = /#{job.filter}/i
     types = /#{job.types}/i
     database = job.database
@@ -29,7 +31,7 @@ class PerformJob < ApplicationJob
     run_sentimento(path)
     run_correlacao(path)
 
-    job.status = "done"
+    job.status = "DONE"
     job.save
   end
 
