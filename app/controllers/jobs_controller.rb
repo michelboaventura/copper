@@ -3,7 +3,7 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
-    @jobs = Job.all
+    @jobs = Job.where(user_id: params[:user_id])
 
     render json: @jobs
   end
