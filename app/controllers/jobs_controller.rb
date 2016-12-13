@@ -61,6 +61,7 @@ class JobsController < ApplicationController
         job_params_clear[:types] = parseTypes(value[:forms][:types])
       end
     end
+    job_params_clear[:workflow_id] = job_params[:workflow_id].to_i
     job_params_clear[:status] = "WAITING"
     return job_params_clear
   end
