@@ -12,7 +12,10 @@ class PerformJob < ApplicationJob
     database = job.database
 
     part_ids = database.parts.where(type: types).pluck(:id)
-    comments = database.comments.in(part_id: part_ids).any_of(text: filter)
+    unless comments = database.comments.in(part_id: part_ids).any_of(text: filter)
+      job.update_attribute(:status, "EMPTY")
+      return
+    end
 
     path = Rails.root.join('public', 'json', job.id.to_s)
 
