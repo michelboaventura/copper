@@ -5,7 +5,7 @@ class PerformJob < ApplicationJob
 
   def perform(job_id)
     job = Job.find(job_id)
-    job.update_attributes(status: 'RUNNING', started_at: Time.now)
+    job.update_attributes(status: 'RUNNING', started: Time.now)
 
     filter = /#{job.filter}/i
     types = /#{job.types}/i
@@ -36,7 +36,7 @@ class PerformJob < ApplicationJob
     run_sentimento(path)
     run_correlacao(path)
 
-    job.update_attributes(status: 'COMPLETED', finished_at: Time.now)
+    job.update_attributes(status: 'COMPLETED', finished: Time.now)
   end
 
   def run_correlacao(path)

@@ -10,6 +10,6 @@ class Job
   field :types, type: String
   field :status, type: String
   field :workflow_id, type: Integer
-  field :started_at, type: Date
-  field :finished_at, type: Date
+  field :started, type: DateTime
+  field :finished, type: DateTime
 end
