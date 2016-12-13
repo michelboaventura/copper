@@ -45,6 +45,8 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bond (0.5.1)
+    brstring (3.3.0)
+      activesupport (>= 3.0.0)
     bson (4.2.0)
     builder (3.2.2)
     capistrano (3.6.1)
@@ -218,6 +220,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  brstring
   capistrano-bundler
   capistrano-rails
   capistrano-rbenv

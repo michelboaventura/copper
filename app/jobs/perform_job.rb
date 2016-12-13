@@ -6,9 +6,8 @@ class PerformJob < ApplicationJob
   def perform(job_id)
     job = Job.find(job_id)
     job.update_attributes(status: 'RUNNING', started: Time.now)
-
     filter = /#{job.filter}/i
-    types = /#{job.types}/i
+    types = /#{job.types.remover_acentos}/i
     database = job.database
 
     part_ids = database.parts.where(type: types).pluck(:id)
