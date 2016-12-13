@@ -67,6 +67,6 @@ class JobsController < ApplicationController
     return job_params_clear
   end
   def parseTypes types
-    return types.join(" || ")
+    return types.join(" | ")
   end
 end
