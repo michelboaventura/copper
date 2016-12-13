@@ -44,7 +44,7 @@ const ID_EIXO = "axis_id:";
 const TAMANHO_FONTE = 12;
 
 var id  = location.search.split("=")[1];
-var url = "http://" + location.hostname + ":4000/json/" + id + "/correlacao.json";
+var url = "http://" + location.hostname + ":8000/json/" + id + "/correlacao.json";
 
 ////////////////////////////////////////////
 // Região de Pré-processamento dos Dados //
