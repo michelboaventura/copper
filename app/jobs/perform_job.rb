@@ -12,7 +12,9 @@ class PerformJob < ApplicationJob
     database = job.database
 
     part_ids = database.parts.where(type: types).pluck(:id)
-    unless comments = database.comments.in(part_id: part_ids).any_of(text: filter)
+    comments = database.comments.in(part_id: part_ids).any_of(text: filter)
+
+    if comments.empty?
       job.update_attribute(:status, "EMPTY")
       return
     end
