@@ -48,7 +48,7 @@ class JobsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def job_params
-    params.fetch(:job, {})
+    JSON.parse(params.fetch(:job, {})).with_indifferent_access
   end
 
   def job_params_clear
@@ -56,19 +56,20 @@ class JobsController < ApplicationController
     job_params_clear[:database] = Database.last
     job_params_clear[:name] = job_params[:name]
     job_params_clear[:user_id] = job_params[:user][:id]
-    job_params_clear[:mongoQuery] = job_params['tasks']['2']['mongoQuery']
-    job_params[:tasks].each_pair do |key, value|
+    job_params_clear[:mongo_query] = job_params[:tasks].map{|a| a[:forms][:mongo_query]}.compact.last
+    job_params[:tasks].each do |value|
       if my_filter = value.dig(:forms, :filter)
         job_params_clear[:filter] = my_filter
-        job_params_clear[:types] = parseTypes(value[:forms][:types])
-        job_params_clear[:mongoQuery] = value[:forms][:mongoQuery]
+        job_params_clear[:types] = parse_types(value[:forms][:types])
+        job_params_clear[:mongo_query] = value[:forms][:mongo_query]
       end
     end
     job_params_clear[:workflow_id] = job_params[:workflow_id].to_i
     job_params_clear[:status] = "WAITING"
-    return job_params_clear
+    job_params_clear
   end
-  def parseTypes types
+
+  def parse_types types
     types.join("|")
   end
 end

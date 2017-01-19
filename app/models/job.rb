@@ -12,4 +12,5 @@ class Job
   field :workflow_id, type: Integer
   field :started, type: DateTime
   field :finished, type: DateTime
+  field :mongo_query, type: String
 end
