@@ -56,8 +56,8 @@ class JobsController < ApplicationController
     job_params_clear[:database] = Database.last
     job_params_clear[:name] = job_params[:name]
     job_params_clear[:user_id] = job_params[:user][:id]
-    my_filter = job_params[:tasks].first { |value| value.dig(:forms, :filter) }
-    my_filter = my_filter[:forms]
+    my_filter = job_params[:tasks].select { |value| value.dig(:forms, :filter) }
+    my_filter = my_filter.first[:forms]
     job_params_clear[:filter] = my_filter[:filter]
     job_params_clear[:mongo_query] = my_filter[:mongo_query].to_json
     job_params_clear[:types] = parse_types(my_filter[:types])
