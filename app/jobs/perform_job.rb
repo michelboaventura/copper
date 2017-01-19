@@ -28,14 +28,20 @@ class PerformJob < ApplicationJob
         c = comment.attributes
         c[:article] = comment.part.article
         c[:id] = comment.id.to_s
+        c[:part_name] = comment.part.name
         f << c.to_json << "\n"
       end
     end
 
+    run_search(path)
     run_sentimento(path)
     run_correlacao(path)
 
     job.update_attributes(status: 'COMPLETED', finished: Time.now)
+  end
+
+  def run_search(path)
+    build_search_json(path)
   end
 
   def run_correlacao(path)
@@ -60,6 +66,18 @@ class PerformJob < ApplicationJob
       end
     end
     build_sentimento_json(path)
+  end
+
+  def build_search_json(path)
+    out = []
+    File.open(File.join(path, 'comments.json')).each_line do |line|
+      json = JSON.parse(line)
+      out << json.slice(*%w{author_name text part_name})
+    end
+
+    File.open(File.join(path, 'search.json'), 'w') do |f|
+      f << out.to_json
+    end
   end
 
   def build_correlacao_json(path)
