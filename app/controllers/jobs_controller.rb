@@ -56,14 +56,11 @@ class JobsController < ApplicationController
     job_params_clear[:database] = Database.last
     job_params_clear[:name] = job_params[:name]
     job_params_clear[:user_id] = job_params[:user][:id]
-    job_params_clear[:mongo_query] = job_params[:tasks].map{|a| a[:forms][:mongo_query]}.compact.last
-    job_params[:tasks].each do |value|
-      if my_filter = value.dig(:forms, :filter)
-        job_params_clear[:filter] = my_filter
-        job_params_clear[:types] = parse_types(value[:forms][:types])
-        job_params_clear[:mongo_query] = value[:forms][:mongo_query]
-      end
-    end
+    my_filter = job_params[:tasks].first { |value| value.dig(:forms, :filter) }
+    my_filter = my_filter[:forms]
+    job_params_clear[:filter] = my_filter[:filter]
+    job_params_clear[:mongo_query] = my_filter[:mongo_query].to_json
+    job_params_clear[:types] = parse_types(my_filter[:types])
     job_params_clear[:workflow_id] = job_params[:workflow_id].to_i
     job_params_clear[:status] = "WAITING"
     job_params_clear

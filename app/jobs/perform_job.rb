@@ -6,12 +6,12 @@ class PerformJob < ApplicationJob
   def perform(job_id)
     job = Job.find(job_id)
     job.update_attributes(status: 'RUNNING', started: Time.now)
-    filter = /#{job.filter}/i
+    filter = JSON.parse(job.mongo_query)
     types = /#{job.types.remover_acentos}/i
     database = job.database
 
     part_ids = database.parts.where(type: types).pluck(:id)
-    comments = database.comments.in(part_id: part_ids).any_of(text: filter)
+    comments = database.comments.in(part_id: part_ids).where(filter)
 
     if comments.empty?
       job.update_attribute(:status, "EMPTY")
