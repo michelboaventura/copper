@@ -82,6 +82,7 @@ class PerformJob < ApplicationJob
 
   def build_correlacao_json(path)
     out = []
+
     File.open(File.join(path, 'correlacao')).each_line do |line|
       author_ids, article_ids = line.chomp.split(' ').map{|l| l.split(',')}
       author_ids.map!(&:to_i)
@@ -89,46 +90,37 @@ class PerformJob < ApplicationJob
       part_ids = Part.in(article: article_ids).pluck(:id)
       comments = Comment.in(author_id: author_ids, part_id: part_ids)
 
-      rows = Set.new
-      columns = Set.new
-      links = Set.new
-      result = {row: [], column: [], links: []}
+      result = {row: Set.new, column: Set.new, links: []}
 
       comments.each do |comment|
         part = comment.part
 
-        if !rows.find_index(comment.author_name)
-          rows << comment.author_name
-          result[:row] << {name: comment.author_name}
+        #TODO group?
+        result[:row] << {id: comment.author_id, name: comment.author_name}
+
+        names = Part.where(article: part.article).pluck(:name)
+        name = names.sort{|a,b| a.size <=> b.size}.first
+
+        #TODO group?
+        result[:column] << {id: part.id.to_s, name: name, group: part.axis}
+
+        link = {row: comment.author_id , column: part.id.to_s, value: 1}
+
+        index = result[:links].find_index do |el|
+          el[:row] == link[:row] && el[:column] == link[:column]
         end
 
-        if !columns.find_index(part.article)
-          name = Part.where(article: part.article).pluck(:name).sort{|a,b| a.size <=> b.size}.first
-          columns << part.article
-          result[:column] << {name: name, group: part.axis}
-        end
-
-        source = rows.find_index(comment.author_name)
-        target = columns.find_index(part.article)
-        key = "#{source}|#{target}"
-        if !links.find_index(key)
-          links << key
-          result[:links] << { source: source, target: target, value: 1}
+        if index
+          result[:links][index][:value] += 1
         else
-          r = result[:links].find_index {|l| l[:source] == source && l[:target] == target}
-          result[:links][r][:value] += 1
+          result[:links] << link
         end
       end
       out << result
     end
-    hash = {}
-
-    out.each_with_index do |el, i|
-      hash[i + 1] = el
-    end
 
     File.open(File.join(path, 'correlacao.json'), 'w') do |f|
-      f << hash.to_json
+      f << out.to_json
     end
   end
 
