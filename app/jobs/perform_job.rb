@@ -90,19 +90,19 @@ class PerformJob < ApplicationJob
       part_ids = Part.in(article: article_ids).pluck(:id)
       comments = Comment.in(author_id: author_ids, part_id: part_ids)
 
-      result = {row: Set.new, column: Set.new, links: []}
+      result = {rows: Set.new, columns: Set.new, links: []}
 
       comments.each do |comment|
         part = comment.part
 
         #TODO group?
-        result[:row] << {id: comment.author_id, name: comment.author_name}
+        result[:rows] << {id: comment.author_id, name: comment.author_name}
 
         names = Part.where(article: part.article).pluck(:name)
         name = names.sort{|a,b| a.size <=> b.size}.first
 
         #TODO group?
-        result[:column] << {id: part.id.to_s, name: name, group: part.axis}
+        result[:columns] << {id: part.id.to_s, name: name, group: part.axis}
 
         link = {row: comment.author_id , column: part.id.to_s, value: 1}
 
