@@ -1,0 +1,5 @@
+Calculates the frequency of all itemsets of size 2, filtering by ARGV[1]
+
+Requires ruby
+
+Run './run_coocorrencia DATABASE SUPPORT'

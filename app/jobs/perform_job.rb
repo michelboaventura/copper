@@ -36,12 +36,27 @@ class PerformJob < ApplicationJob
     run_search(path)
     run_sentimento(path)
     run_correlacao(path)
+    run_coocorrencia(path)
 
     job.update_attributes(status: 'COMPLETED', finished: Time.now)
   end
 
   def run_search(path)
     build_search_json(path)
+  end
+
+  def run_coocorrencia(path)
+    min_support = 50
+    IO.popen([
+      Rails.root.join('algorithms', 'coocorrencia', 'run_coocorrencia.sh').to_s,
+      path.join('comments.json').to_s,
+      min_support.to_s
+    ]) do |io|
+      File.open(File.join(path, 'coocorrencia'), 'w') do |f|
+        f << io.read
+      end
+    end
+    build_coocorrencia_json(path)
   end
 
   def run_correlacao(path)
@@ -66,6 +81,23 @@ class PerformJob < ApplicationJob
       end
     end
     build_sentimento_json(path)
+  end
+
+  def build_coocorrencia_json(path)
+    out = {
+      nodes: Set.new,
+      links: []
+    }
+    File.open(File.join(path, 'coocorrencia'), 'r').each_line do |line|
+      src, target, value = line.strip.split(" ")
+      out[:nodes] << helper_json_coocorrencia(src)
+      out[:nodes] << helper_json_coocorrencia(target)
+      out[:links] << {source: src, target: target, value: value, weight: value}
+    end
+
+    File.open(File.join(path, 'coocorrencia.json'), 'w') do |f|
+      f << out.to_json
+    end
   end
 
   def build_search_json(path)
@@ -183,5 +215,19 @@ class PerformJob < ApplicationJob
     File.open(File.join(path, 'sentimento.json'), 'w') do |f|
       f << hash.to_json
     end
+  end
+
+  private
+
+  def helper_json_coocorrencia(el)
+    {
+      id: el,
+      name: el,
+      attrs: {},
+      metric: 0,
+      group: "",
+      community: 0,
+      neighbours: {}
+    }
   end
 end
