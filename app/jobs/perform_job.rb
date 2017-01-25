@@ -157,63 +157,29 @@ class PerformJob < ApplicationJob
   end
 
   def build_sentimento_json(path)
-    hash = {media_item: [], media_participante: [], media_matriz: {column: [], row: [], links: []}}
-    avg = {commentable: {}, author: {}}
+    result = {rows: Set.new, columns: Set.new, links: []}
+    links = Hash.new {|h,k| h[k] = []}
 
-    i = j = -1
     File.open(File.join(path, 'sentimento')).each_line do |line|
-      array = line.split(' ')
-      comment_id = array.first
-      value = array.last.to_f
+      comment_id, value = line.split(' ')
 
       comment = Comment.find(comment_id)
-      part = Part.where(article: comment.part.article).sort{|a,b| a.name.size <=> b.name.size}.first
+      parts = Part.where(article: comment.part.article)
+      part = parts.sort{|a,b| a.name.size <=> b.name.size}.first
 
-      part_key   = [part.id, part.name].join('|')
-      author_key = [comment.author_id, comment.author_name].join('|')
-
-      if avg[:commentable][part_key].nil?
-        i += 1
-        avg[:commentable][part_key] = []
-      end
-
-      avg[:commentable][part_key] << value
-
-      if avg[:author][author_key].nil?
-        j += 1
-        avg[:author][author_key] = []
-      end
-      avg[:author][author_key] << value
-
-      hash[:media_matriz][:links] << {
-        source: j,
-        target: i,
-        value: value.to_s
-      }
+      result[:rows]    << {id: comment.author_id, name: comment.author_name}
+      result[:columns] << {id: part.id.to_s, name: part.name}
+      key = [comment.author_id, part.id.to_s]
+      links[key] << value.to_f
     end
 
-    avg[:commentable].each_pair do |key, array|
-      commentable_id, commentable_name = key.split('|')
-      hash[:media_item] << {
-        commentable_id: commentable_id,
-        commentable_name: commentable_name,
-        sentiment_avg: (array.sum / array.count.to_f).to_s
-      }
-      hash[:media_matriz][:column] << {name: commentable_name}
-    end
-
-    avg[:author].each_pair do |key, array|
-      author_id, author_name = key.split('|')
-      hash[:media_participante] << {
-        author_id: author_id,
-        author_name: author_name,
-        sentiment_avg: (array.sum / array.count.to_f).to_s
-      }
-      hash[:media_matriz][:row] << {name: author_name}
+    links.each_pair do |key, value|
+      value = value.inject(:+) / value.count
+      result[:links] << {value: value, row: key.first, column: key.last}
     end
 
     File.open(File.join(path, 'sentimento.json'), 'w') do |f|
-      f << hash.to_json
+      f << result.to_json
     end
   end
 
