@@ -37,12 +37,17 @@ class PerformJob < ApplicationJob
     run_sentimento(path)
     run_correlacao(path)
     run_coocorrencia(path)
+    run_wordtree(path)
 
     job.update_attributes(status: 'COMPLETED', finished: Time.now)
   end
 
   def run_search(path)
     build_search_json(path)
+  end
+
+  def run_wordtree(path)
+    build_wordtree(path)
   end
 
   def run_coocorrencia(path)
@@ -81,6 +86,17 @@ class PerformJob < ApplicationJob
       end
     end
     build_sentimento_json(path)
+  end
+
+  def build_wordtree(path)
+    IO.popen([
+      Rails.root.join('algorithms', 'wordtree', 'run_wordtree.sh').to_s,
+      path.join('comments.json').to_s
+    ]) do |io|
+      File.open(File.join(path, 'wordtree-diagram.json'), 'w') do |f|
+        f << io.read
+      end
+    end
   end
 
   def build_coocorrencia_json(path)
