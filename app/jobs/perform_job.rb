@@ -111,7 +111,7 @@ class PerformJob < ApplicationJob
       out[:links] << {source: src, target: target, value: value, weight: value}
     end
 
-    File.open(File.join(path, 'coocorrencia.json'), 'w') do |f|
+    File.open(File.join(path, 'graph-canvas.json'), 'w') do |f|
       f << out.to_json
     end
   end
