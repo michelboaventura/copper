@@ -151,7 +151,7 @@ class PerformJob < ApplicationJob
       out << result
     end
 
-    File.open(File.join(path, 'correlacao.json'), 'w') do |f|
+    File.open(File.join(path, 'correlation-matrix.json'), 'w') do |f|
       f << out.to_json
     end
   end
@@ -178,8 +178,8 @@ class PerformJob < ApplicationJob
       result[:links] << {value: value, row: key.first, column: key.last}
     end
 
-    File.open(File.join(path, 'sentimento.json'), 'w') do |f|
-      f << result.to_json
+    File.open(File.join(path, 'sentiment-analysis.json'), 'w') do |f|
+      f << hash.to_json
     end
   end
 
