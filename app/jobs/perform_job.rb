@@ -142,17 +142,17 @@ class PerformJob < ApplicationJob
 
       comments.each do |comment|
         part = comment.part
+        parts = Part.where(article: part.article)
+        part = parts.sort{|a,b| a.name.size <=> b.name.size}.first
+        part_id = part.id.to_s
 
         #TODO group?
         result[:rows] << {id: comment.author_id, name: comment.author_name}
 
-        names = Part.where(article: part.article).pluck(:name)
-        name = names.sort{|a,b| a.size <=> b.size}.first
-
         #TODO group?
-        result[:columns] << {id: part.id.to_s, name: name, group: part.axis}
+        result[:columns] << {id: part_id, name: part.name, group: part.axis}
 
-        link = {row: comment.author_id , column: part.id.to_s, value: 1}
+        link = {row: comment.author_id , column: part_id, value: 1}
 
         index = result[:links].find_index do |el|
           el[:row] == link[:row] && el[:column] == link[:column]
@@ -180,12 +180,14 @@ class PerformJob < ApplicationJob
       comment_id, value = line.split(' ')
 
       comment = Comment.find(comment_id)
+      part = comment.part
       parts = Part.where(article: comment.part.article)
       part = parts.sort{|a,b| a.name.size <=> b.name.size}.first
+      part_id = part.id.to_s
 
       result[:rows]    << {id: comment.author_id, name: comment.author_name}
-      result[:columns] << {id: part.id.to_s, name: part.name}
-      key = [comment.author_id, part.id.to_s]
+      result[:columns] << {id: part_id, name: part.name}
+      key = [comment.author_id, part_id]
       links[key] << value.to_f
     end
 
@@ -195,7 +197,7 @@ class PerformJob < ApplicationJob
     end
 
     File.open(File.join(path, 'sentiment-analysis.json'), 'w') do |f|
-      f << hash.to_json
+      f << [result].to_json
     end
   end
 
