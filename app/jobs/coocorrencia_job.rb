@@ -22,11 +22,35 @@ class CoocorrenciaJob < ApplicationJob
       nodes: Set.new,
       links: []
     }
-    File.open(File.join(path, 'coocorrencia'), 'r').each_line do |line|
+    nodes = {}
+
+    file = File.open(File.join(path, 'coocorrencia'), 'r')
+
+    file.each_line do |line|
+      break if line == "FREQ\n"
+
       src, target, value = line.strip.split(" ")
-      out[:nodes] << json_coocorrencia(src)
-      out[:nodes] << json_coocorrencia(target)
       out[:links] << {source: src, target: target, value: value, weight: value}
+    end
+
+    file.each_line do |line|
+      break if line == "NEIG\n"
+
+      el, acc = line.strip.split(" ")
+
+      nodes[el] = {}
+      nodes[el][:acc] = acc
+    end
+
+    file.each_line do |line|
+      els = line.chomp.split(" ")
+      el = els.delete_at(0)
+
+      nodes[el][:neigh] = els.inject({}) {|acc, el| acc[el] = true; acc}
+    end
+
+    nodes.each_pair do |el, value|
+      out[:nodes] << json_coocorrencia(el, value[:acc], value[:neigh])
     end
 
     File.open(File.join(path, 'graph-canvas.json'), 'w') do |f|
@@ -34,15 +58,15 @@ class CoocorrenciaJob < ApplicationJob
     end
   end
 
-  def json_coocorrencia(el)
+  def json_coocorrencia(el, count, neigh)
     {
       id: el,
       name: el,
       attrs: {},
-      metric: 0,
+      metric: count,
       group: "",
       community: 0,
-      neighbours: {}
+      neighbours: neigh
     }
   end
 end

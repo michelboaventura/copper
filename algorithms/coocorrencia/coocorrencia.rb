@@ -34,9 +34,33 @@ words.each do |line|
   end
 end
 
+freq = Hash.new {|h,k| h[k] = 0}
+neig = Hash.new {|h,k| h[k] = Set.new}
+
 0.upto(count - 2) do |i|
   (i + 1).upto(count - 1) do |j|
     next if out[i][j] < min_sup
-    puts [inverse_hash[i], inverse_hash[j], out[i][j]].join(" ")
+
+    el1 = inverse_hash[i]
+    el2 = inverse_hash[j]
+    puts [el1, el2, out[i][j]].join(" ")
+
+    freq[el1] += 1
+    freq[el2] += 1
+
+    neig[el1] << el2
+    neig[el2] << el1
   end
+end
+
+puts "FREQ"
+
+freq.each_pair do |el, acc|
+  puts [el, acc].join(" ")
+end
+
+puts "NEIG"
+
+neig.each_pair do |el, neighs|
+  puts ([el] + neighs.to_a).join(" ")
 end
