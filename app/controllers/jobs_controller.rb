@@ -15,11 +15,10 @@ class JobsController < ApplicationController
 
   # POST /jobs
   def create
-
     @job = Job.new(job_params_clear)
 
     if @job.save
-      PerformJob.perform_later(@job.id.to_s)
+      PerformJob.perform_later(@job)
       render json: @job, status: :created, location: @job
     else
       render json: @job.errors, status: :unprocessable_entity
