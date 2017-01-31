@@ -17,6 +17,9 @@ class PerformJob < ApplicationJob
       return
     end
 
+    path = Rails.root.join('public', 'json')
+    Dir.mkdir(path) rescue nil
+
     path = Rails.root.join('public', 'json', job.id.to_s)
     Dir.mkdir(path) rescue nil
 
