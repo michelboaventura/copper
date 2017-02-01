@@ -55,7 +55,7 @@ class PartItemJob < ApplicationJob
       out[:nodes] << json_part_item(el, value)
     end
 
-    File.open(File.join(path, 'graph-canvas.json'), 'w') do |f|
+    File.open(File.join(path, 'part-item.json'), 'w') do |f|
       f << out.to_json
     end
   end

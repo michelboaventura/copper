@@ -18,7 +18,7 @@ class JobsController < ApplicationController
     @job = Job.new(job_params_clear)
 
     if @job.save
-      PerformJob.perform_later(@job)
+      PerformJob.perform_later(@job.id.to_s)
       render json: @job, status: :created, location: @job
     else
       render json: @job.errors, status: :unprocessable_entity

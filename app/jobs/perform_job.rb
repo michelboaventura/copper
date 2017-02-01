@@ -1,7 +1,8 @@
 class PerformJob < ApplicationJob
   queue_as :default
 
-  def perform(job)
+  def perform(job_id)
+    job = Job.find(job_id)
     job.update_attributes(status: 'RUNNING', started: Time.now)
     filter = JSON.parse(job.mongo_query)
     types = /#{job.types.remover_acentos}/i
