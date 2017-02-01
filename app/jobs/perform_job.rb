@@ -1,5 +1,3 @@
-require 'tempfile'
-
 class PerformJob < ApplicationJob
   queue_as :default
 
@@ -29,6 +27,7 @@ class PerformJob < ApplicationJob
     CorrelacaoJob.new(path).perform_now
     CoocorrenciaJob.new(path).perform_now
     WordtreeJob.new(path).perform_now
+    PartItemJob.new(path).perform_now
 
     job.update_attributes(status: 'COMPLETED', finished: Time.now)
   end
