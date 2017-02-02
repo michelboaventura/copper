@@ -29,6 +29,7 @@ class PerformJob < ApplicationJob
     CoocorrenciaJob.new(path).perform_now
     WordtreeJob.new(path).perform_now
     PartItemJob.new(path).perform_now
+    TopicoJob.new(path).perform_now
 
     job.update_attributes(status: 'COMPLETED', finished: Time.now)
   end
