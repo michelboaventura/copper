@@ -22,6 +22,8 @@ main(void) {
     dendro_finish_incremental(dendro);
   }
 
+  dendro_compact(dendro);
+
   json_print_dendro(dendro);
 
   free(line);
