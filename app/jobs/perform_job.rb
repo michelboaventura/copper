@@ -4,7 +4,11 @@ class PerformJob < ApplicationJob
   def perform(job_id)
     job = Job.find(job_id)
     job.update_attributes(status: 'RUNNING', started: Time.now)
-    filter = JSON.parse(job.mongo_query)
+
+    # We need to add a /i option to allow insensitive query
+    query = job.mongo_query.gsub(/({"\$regex":".*")}/, '\1, "$options": "i"}')
+
+    filter = JSON.parse(query)
     types = /#{job.types.remover_acentos}/i
     database = job.database
 
