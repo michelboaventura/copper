@@ -2,29 +2,50 @@ class CoocorrenciaJob < ApplicationJob
   queue_as :default
 
   def perform(path)
-    min_support = 50
-    IO.popen([
-      Rails.root.join('algorithms', 'coocorrencia', 'run_coocorrencia.sh').to_s,
+
+    #Full data
+    run_algorithm(
+      path.join('full_comments.json').to_s,
+      path.join('coocorrencia_full').to_s,
+      path.join('terms').to_s,
+      path.join('graph-canvas-full.json').to_s
+    )
+
+    #Filtered data
+    run_algorithm(
       path.join('comments.json').to_s,
-      min_support.to_s
-    ]) do |io|
-      File.open(File.join(path, 'coocorrencia'), 'w') do |f|
-        f << io.read
-      end
-    end
-    build_coocorrencia_json(path)
+      path.join('coocorrencia').to_s,
+      path.join('terms').to_s,
+      path.join('graph-canvas.json').to_s
+    )
   end
 
   private
 
-  def build_coocorrencia_json(path)
+  def run_algorithm(input, output, terms, final_result)
+    min_support = 50
+    IO.popen([
+      Rails.root.join('algorithms', 'coocorrencia', 'run_coocorrencia.sh').to_s,
+      input,
+      min_support.to_s
+    ]) do |io|
+      File.open(output, 'w') do |f|
+        f << io.read
+      end
+    end
+    build_coocorrencia_json(output, terms, final_result)
+  end
+
+  def build_coocorrencia_json(input, terms, output)
     out = {
       nodes: Set.new,
       links: []
     }
     nodes = {}
 
-    file = File.open(File.join(path, 'coocorrencia'), 'r')
+    terms = File.read(terms).strip.split("|")
+
+    file = File.open(input, 'r')
 
     file.each_line do |line|
       break if line == "FREQ\n"
@@ -46,20 +67,20 @@ class CoocorrenciaJob < ApplicationJob
       els = line.chomp.split(" ")
       el = els.delete_at(0)
 
-      nodes[el][:neigh] = els.inject({}) {|acc, el| acc[el] = true; acc}
+      nodes[el][:neigh] = els.inject({}) {|acc, e| acc[e] = true; acc}
     end
 
     nodes.each_pair do |el, value|
-      out[:nodes] << json_coocorrencia(el, value[:acc], value[:neigh])
+      out[:nodes] << json_coocorrencia(el, value[:acc], value[:neigh], terms)
     end
 
-    File.open(File.join(path, 'graph-canvas.json'), 'w') do |f|
+    File.open(output, 'w') do |f|
       f << out.to_json
     end
   end
 
-  def json_coocorrencia(el, count, neigh)
-    {
+  def json_coocorrencia(el, count, neigh, terms)
+    json = {
       id: el,
       name: el,
       attrs: {},
@@ -68,5 +89,8 @@ class CoocorrenciaJob < ApplicationJob
       community: 0,
       neighbours: neigh
     }
+    json[:centered] = true if terms.any?{|term| el[term]}
+
+    json
   end
 end
