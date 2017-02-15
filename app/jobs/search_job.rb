@@ -14,7 +14,7 @@ class SearchJob < ApplicationJob
       out << json.slice(*%w{author_name text part_name})
     end
 
-    File.open(File.join(path, 'search.json'), 'w') do |f|
+    File.open(File.join(path, 'search-tool.json'), 'w') do |f|
       f << out.to_json
     end
   end
