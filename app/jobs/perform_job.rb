@@ -14,6 +14,8 @@ class PerformJob < ApplicationJob
 
     part_ids = database.parts.where(type: types).pluck(:id)
     comments = database.comments.in(part_id: part_ids).where(filter)
+    full_comments = database.comments.in(part_id: part_ids)
+    terms = query.scan(/\$regex":"([^"]*)"/).flatten
 
     if comments.empty?
       job.update_attribute(:status, "EMPTY")
@@ -26,6 +28,8 @@ class PerformJob < ApplicationJob
     path = Rails.root.join('public', 'json', job.id.to_s)
     Dir.mkdir(path) rescue nil
 
+    SaveTermsJob.new(terms, path).perform_now
+    ExtractFullCommentsJob.new(full_comments, path).perform_now
     ExtractCommentsJob.new(comments, path).perform_now
     SearchJob.new(path).perform_now
     SentimentoJob.new(path).perform_now
