@@ -1,0 +1,3 @@
+{{#each parsedValues as |pair|}}
+  <div {{action 'valueUpdated' pair.background}} class="color-item {{if (eq value pair.background) 'active'}}" style={{backgroundColor pair.background}}></div>
+{{/each}}

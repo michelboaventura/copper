@@ -5,6 +5,7 @@ gem 'unicorn'
 gem 'mongoid', '~> 6.0.0'
 gem 'rack-cors', require: 'rack/cors'
 gem 'brstring'
+gem 'ember-cli-rails'
 
 group :development do
   gem 'pry'

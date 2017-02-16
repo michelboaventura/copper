@@ -19,7 +19,7 @@ Bundler.require(*Rails.groups)
 module AiSocialRails
   class Application < Rails::Application
     config.action_controller.permit_all_parameters = true
-		config.middleware.insert_before 0, Rack::Cors do
+    config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
         resource '*', :headers => :any, :methods => [:get, :post, :options, :delete, :put, :patch], credentials: true
