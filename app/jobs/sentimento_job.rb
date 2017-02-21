@@ -24,7 +24,7 @@ class SentimentoJob < ApplicationJob
 
       comment = Comment.find(comment_id)
       part = comment.part
-      parts = Part.where(article: comment.part.article)
+      parts = Part.where(member: comment.part.member)
       part = parts.sort{|a,b| a.name.size <=> b.name.size}.first
       part_id = part.id.to_s
 

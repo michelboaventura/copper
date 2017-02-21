@@ -16,7 +16,7 @@ gem 'redis', '~> 3.3'
 group :development do
   gem 'pry'
   gem 'listen', '~> 3.1.0'
-  gem 'irbtools-more', require: 'irbtools/binding'
+  gem 'irbtools', require: 'irbtools/binding'
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-rbenv'

@@ -6,7 +6,7 @@ class ExtractCommentsJob < ApplicationJob
     File.open(comments_path, 'w') do |f|
       comments.each do |comment|
         c = comment.attributes
-        c[:article] = comment.part.article
+        c[:member] = comment.part.member
         c[:id] = comment.id.to_s
         c[:part_name] = comment.part.name
         f << c.to_json << "\n"
