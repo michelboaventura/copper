@@ -11,8 +11,8 @@ export default Ember.Component.extend({
   offsetTop: null,
   resultsOffsetTop: null,
   hSize: 100,
-  cHeight: Ember.computed('offsetTop','hSize', function(){ return this.get('hSize') - this.get('offsetTop') - 40; }),
-  cResultsHeight: Ember.computed('resultsOffsetTop','hSize', function(){ return this.get('hSize') - this.get('resultsOffsetTop') - 50; }),
+  cHeight: Ember.computed('offsetTop','hSize', function(){ return this.get('hSize') - this.get('offsetTop') - 80; }),
+  cResultsHeight: Ember.computed('resultsOffsetTop','hSize', function(){ return this.get('hSize') - this.get('resultsOffsetTop') - 90; }),
 
   // Sort Attrs
   cSortOrder: Ember.computed('sortOrder', function() { return this.get('sortOrder') == null ? 'ascending' : this.get('sortOrder'); }),
