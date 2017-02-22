@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   Rails.application.routes.draw do
     mount_ember_app :frontend, to: "/"
+
+    get '/workflows/:id' => 'workflows#show'
   end
 end
