@@ -7,10 +7,17 @@ export default Ember.Component.extend({
 
   // Attributes bingins
   dataUrl: function(){ return this.get('dataUrl'); }.property('dataUrl'),
-  width:    function(){ return this.get('width'); }.property('width'),
-  height:   function(){ return this.get('height'); }.property('height'),
   _id:      function(){ return this.get('_id'); }.property('_id'),
-  style:    function(){ return "width:"+this.get('width')+"; height:"+this.get('height')+"; overflow-x: auto; overflow-y: hidden;"; }.property('style'),
+
+  cWidth: Ember.computed("width", function() {
+    return `${this.$(".wordtree-diagram").parent().outerWidth() - 50}px`;
+  }),
+  cHeight: Ember.computed("height", function() {
+    var offsetTop = this.$(".wordtree-diagram").length > 0 ? this.$(".wordtree-diagram").offset().top : 0;
+    var footer = $(".footer").length > 0 ? $(".footer").outerHeight() : 0;
+    var wHeight = $(window).outerHeight();
+    return `${wHeight - offsetTop - footer - 10}px`;
+  }),
 
   // Chart var
   _var: null,
@@ -46,6 +53,10 @@ export default Ember.Component.extend({
       complete() { gViz.helpers.loading.hide(); }
     });
 
+  },
+
+  didRender: function(){
+    this.$(".wordtree-diagram").css("height", this.get('cHeight')).css("width", this.get('cWidth'));
   },
 
   didInsertElement: function(){

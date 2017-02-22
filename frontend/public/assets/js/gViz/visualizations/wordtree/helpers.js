@@ -136,7 +136,7 @@ gViz.vis.wordtree.helpers = function () {
             _var.wrap.attr("width", _var.width + _var.margin.left + _var.margin.right).attr("height", _var.height + _var.margin.top + _var.margin.bottom);
 
             // Set wrappers height
-            _var.container.jq.css("height", parseInt(_var.height + _var.margin.top + _var.margin.bottom) + 'px');
+            //_var.container.jq.css("height", parseInt(_var.height + _var.margin.top + _var.margin.bottom) + 'px');
           };
 
           break;
