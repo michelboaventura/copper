@@ -32,6 +32,6 @@ fi
 # Seleciona campos que serão utilizados para a correlação
 # Encontra padrões de correlação
 
-jq -r '.author_id + " " + .article + " 1"' $DATASET_INPUT | \
+jq -r '.author_id + " " + .member + " 1"' $DATASET_INPUT | \
     $BIN_MULTIDUPEHACK --ha 1 /dev/stdin -o /dev/stdout | \
     $BIN_DPEELER -m /dev/stdin -o /dev/stdout

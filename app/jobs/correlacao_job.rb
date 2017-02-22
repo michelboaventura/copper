@@ -19,17 +19,16 @@ class CorrelacaoJob < ApplicationJob
     out = []
 
     File.open(File.join(path, 'correlacao')).each_line do |line|
-      author_ids, article_ids = line.chomp.split(' ').map{|l| l.split(',')}
-      author_ids.map!(&:to_i)
+      author_ids, members = line.chomp.split(' ').map{|l| l.split(',')}
 
-      part_ids = Part.in(article: article_ids).pluck(:id)
+      part_ids = Part.in(member: members).pluck(:id)
       comments = Comment.in(author_id: author_ids, part_id: part_ids)
 
       result = {rows: Set.new, columns: Set.new, links: []}
 
       comments.each do |comment|
         part = comment.part
-        parts = Part.where(article: part.article)
+        parts = Part.where(member: part.member)
         part = parts.sort{|a,b| a.name.size <=> b.name.size}.first
         part_id = part.id.to_s
 
@@ -37,7 +36,7 @@ class CorrelacaoJob < ApplicationJob
         result[:rows] << {id: comment.author_id, name: comment.author_name}
 
         #TODO group?
-        result[:columns] << {id: part_id, name: part.name, group: part.axis}
+        result[:columns] << {id: part_id, name: part.name, group: part.category}
 
         link = {row: comment.author_id , column: part_id, value: 1}
 

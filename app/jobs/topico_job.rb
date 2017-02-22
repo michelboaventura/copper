@@ -37,7 +37,7 @@ class TopicoJob < ApplicationJob
       fields = line.strip.split(" ")
       fields.delete_at(0) #doc
       comment_id = fields.delete_at(0)
-      axis = Comment.find(comment_id).part.axis
+      category = Comment.find(comment_id).part.category
       max = -1
       topico_id = 0
 
@@ -51,10 +51,10 @@ class TopicoJob < ApplicationJob
       topico = topicos.find{|t| t[:topico_id] == topico_id.to_s}
       topico[:contagem_comentarios] += 1
 
-      if freq_eixo = topico[:frequencia_eixos].find{|t| t[0] == axis}
+      if freq_eixo = topico[:frequencia_eixos].find{|t| t[0] == category}
         freq_eixo[1] += 1
       else
-        topico[:frequencia_eixos] << [axis, 1]
+        topico[:frequencia_eixos] << [category, 1]
       end
     end
 

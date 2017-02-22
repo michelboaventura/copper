@@ -1,15 +1,13 @@
 class Part
   include Mongoid::Document
-  include Mongoid::Timestamps
 
   belongs_to :database
-  belongs_to :parent, class_name: 'Part'
+  belongs_to :parent, class_name: 'Part', optional: true
   has_many :comments
 
-  field :chapter, type: String
-  field :axis, type: String
+  field :category, type: String
   field :text, type: String
+  field :member, type: String
   field :name, type: String
-  field :article, type: String
   field :type, type: String
 end
