@@ -56,6 +56,11 @@ gViz.vis.graph.tooltip = function () {
                   });
                 }
 
+                // If its centered, warn user
+                if(node.centered != null && node.centered) {
+                  _var.tooltip.content += "<hr><span class='info'>This node was <b>filtered</b> or is <b>part of the query</b>.</span>";
+                }
+
                 d3.select('.tooltipster-visualization .tooltipster-content').html(_var.tooltip.content);
                 offset = {
                   top: bbox.top + bbox.height - $('.tooltipster-visualization').outerHeight() / 2,

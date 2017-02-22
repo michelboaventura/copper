@@ -148,7 +148,7 @@ gViz.vis.graph.setup = function () {
                   .force("link", d3.forceLink().id(function (d) { return d.id; }))
                   .force("charge", d3.forceManyBody().distanceMax(_var.width * 0.3).strength(function (d) {return -20; }))
                   .force("center", d3.forceCenter(_var.width / 2, _var.height / 2))
-                  .force("collision", d3.forceCollide(function(d) { return d.radius + 10; }));
+                  .force("collision", d3.forceCollide(function(d) { return d.radius*1.1 ; }));
 
                 // Force actions
                 _var.simulation.nodes(_var.data.nodes).on("tick", _var.ticked);
