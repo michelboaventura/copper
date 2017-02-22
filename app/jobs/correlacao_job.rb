@@ -24,6 +24,8 @@ class CorrelacaoJob < ApplicationJob
       part_ids = Part.in(member: members).pluck(:id)
       comments = Comment.in(author_id: author_ids, part_id: part_ids)
 
+      next if comments.empty?
+
       result = {rows: Set.new, columns: Set.new, links: []}
 
       comments.each do |comment|
