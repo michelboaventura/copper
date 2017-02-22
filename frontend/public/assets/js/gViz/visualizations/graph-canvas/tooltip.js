@@ -36,10 +36,12 @@ gViz.vis.graph.tooltip = function () {
               break;
             case 'show':
               if (!_var.selection.dragging) {
+                console.log(node.radius / _var.transform.k);
                 bbox = {
                   left: _var.container.jq.offset().left + node.x * _var.transform.k + _var.transform.x,
-                  top: _var.container.jq.offset().top + node.y * _var.transform.k + _var.transform.y,
-                  width: node.group === 'documents' ? 15 : 15
+                  top: _var.container.jq.offset().top + (node.y * _var.transform.k) + _var.transform.y,
+                  width: 15,
+                  height: (node.centered != null && node.centered ? (15 - node.radius ) : (15 - (node.radius / _var.transform.k))) - 2 - (node.radius * .2)
                 };
 
                 // Set tooltip content title and subtitle
@@ -56,7 +58,7 @@ gViz.vis.graph.tooltip = function () {
 
                 d3.select('.tooltipster-visualization .tooltipster-content').html(_var.tooltip.content);
                 offset = {
-                  top: bbox.top - 2 * node.radius / _var.transform.k - $('.tooltipster-visualization').outerHeight() / 2,
+                  top: bbox.top + bbox.height - $('.tooltipster-visualization').outerHeight() / 2,
                   left: bbox.left + bbox.width - $('.tooltipster-visualization').outerWidth() / 2,
                   arrow: void 0
                 };

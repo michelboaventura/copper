@@ -27,7 +27,8 @@ gViz.vis.graph.drag = function () {
                 var origin;
                 e = this;
                 origin = d3.mouse(e);
-                return _var.simulation.find((origin[0] - _var.transform.x) / _var.transform.k, (origin[1] - _var.transform.y) / _var.transform.k, 10);
+                var sb = _var.simulation.find((origin[0] - _var.transform.x) / _var.transform.k, (origin[1] - _var.transform.y) / _var.transform.k, 25);
+                return sb.centered != null && sb.centered ? null : sb;
               };
               _var.dragstarted = function () {
                 if (!d3.event.active) {

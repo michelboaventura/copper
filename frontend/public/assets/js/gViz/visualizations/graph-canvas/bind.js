@@ -53,7 +53,7 @@ gViz.vis.graph.bind = function () {
                 m = d3.mouse(e);
                 m[0] = (Math.max(0, Math.min(_var.width, m[0])) - _var.transform.x) / _var.transform.k;
                 m[1] = (Math.max(0, Math.min(_var.height, m[1])) - _var.transform.y) / _var.transform.k;
-                node = _var.simulation.find(m[0], m[1], 10);
+                node = _var.simulation.find(m[0], m[1], 25);
                 if (node != null && !_var.selection.dragging) {
                   _var.simulation.stop();
                   _var.selection.globalAlpha = .1;
@@ -85,7 +85,7 @@ gViz.vis.graph.bind = function () {
                 m = d3.mouse(e);
                 m[0] = (Math.max(0, Math.min(_var.width, m[0])) - _var.transform.x) / _var.transform.k;
                 m[1] = (Math.max(0, Math.min(_var.height, m[1])) - _var.transform.y) / _var.transform.k;
-                node = _var.simulation.find(m[0], m[1], 10);
+                node = _var.simulation.find(m[0], m[1], 25);
                 if (node != null) {
                   if (_var.selection.clicked[node.id] != null) {
                     delete _var.selection.clicked[node.id];

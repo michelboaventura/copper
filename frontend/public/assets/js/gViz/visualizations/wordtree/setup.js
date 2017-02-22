@@ -80,7 +80,7 @@ gViz.vis.wordtree.setup = function () {
             })
             //.style("display", "none")
             .text(function (d) {
-              return d.data.name;
+              return d.depth === 0 ? "" : d.data.name;
             });
 
             // UPDATE

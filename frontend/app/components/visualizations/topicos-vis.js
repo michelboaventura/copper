@@ -38,7 +38,7 @@ export default Ember.Component.extend({
         let legends = {};
 
         // Parse data
-        data.forEach( d => {
+        data.filter(function(d) { return d.contagem_comentarios; }).forEach( d => {
 
           // Set scales
           let scaleTopPalavras = d3.scaleLinear().domain(d3.extent(d.top_palavras, t => t[1])).range([12,25]);

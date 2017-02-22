@@ -109,23 +109,32 @@ gViz.vis.graph.setup = function () {
 
                 // Map groups
                 var groups = {};
+                var domains = {};
                 _var.data.nodes.forEach(function (d) {
+
+                  // Get and set groups
                   d.group = d.group == null ? "No group" : d.group;
                   groups[d.group] = true;
+
+                  // Set domains for group scales
+                  if(domains[d.group] == null) { domains[d.group] = [+d.metric, +d.metric]; }
+                  if(domains[d.group][0] > +d.metric) { domains[d.group][0] = +d.metric; }
+                  if(domains[d.group][1] < +d.metric) { domains[d.group][1] = +d.metric; }
+
+                  // Initialize group scale
+                  if(_var.scales.size[d.group] == null) { _var.scales.size[d.group] = d3.scaleLinear().range([4,10]); }
+
                 });
 
-                // Set groups scales
-                Object.keys(groups).forEach(function (key) {
-                  return _var.scales.size[key] = d3.scaleLinear().domain(d3.extent(_var.data.nodes.filter(function (d) {
-                    return d.group === key;
-                  }), function (d) {
-                    return d.metric;
-                  })).range([4, 10]);
+                // Set scales domains
+                Object.keys(_var.scales.size).forEach(function(k) {
+                  _var.scales.size[k].domain(domains[k]);
                 });
 
+                // Filtered nodes
                 _var.centered = { radius: 0, count: 0 };
                 _var.data.nodes.forEach(function (d, i) {
-                  d.radius = d.centered ? 20 : _var.scales.size[d.group](d.metric);
+                  d.radius = d.centered ? 20 : _var.scales.size[d.group](+d.metric);
                   d.color = d.color == null ? _var.colors.scale(d.group) : d.color;
                   if(d.centered) {
                     d.center_index = _var.centered.count;
@@ -139,7 +148,7 @@ gViz.vis.graph.setup = function () {
                   .force("link", d3.forceLink().id(function (d) { return d.id; }))
                   .force("charge", d3.forceManyBody().distanceMax(_var.width * 0.3).strength(function (d) {return -20; }))
                   .force("center", d3.forceCenter(_var.width / 2, _var.height / 2))
-                  .force("collision", d3.forceCollide(function(d) { return d.radius * 1.5; }));
+                  .force("collision", d3.forceCollide(function(d) { return d.radius + 10; }));
 
                 // Force actions
                 _var.simulation.nodes(_var.data.nodes).on("tick", _var.ticked);
