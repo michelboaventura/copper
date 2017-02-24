@@ -36,7 +36,6 @@ gViz.vis.graph.tooltip = function () {
               break;
             case 'show':
               if (!_var.selection.dragging) {
-                console.log(node.radius / _var.transform.k);
                 bbox = {
                   left: _var.container.jq.offset().left + node.x * _var.transform.k + _var.transform.x,
                   top: _var.container.jq.offset().top + (node.y * _var.transform.k) + _var.transform.y,
