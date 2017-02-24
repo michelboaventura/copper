@@ -48,8 +48,25 @@ export default Ember.Component.extend({
     // Get data from API
     gViz.helpers.loading.show();
     $.get(dataUrl, function(data) {
-      component.set("data", data[0]);
-      component.draw(data[0]);
+      if (data.length > 0) component.draw(data[0]);
+
+      else {
+        $(".gViz-wrapper[data-id='"+component.get('_id')+"']")
+          .append(`
+            <div class="row">
+              <div class="col-md-12 empty-vis">
+                  <br>
+                  <br>
+                  <i class="icon-emo-displeased"></i>
+                  <br>
+                  <br>
+                  <p>
+                    Esta consulta não possui correlações
+                  </p>
+              </div>
+            </div>
+          `);
+      }
     }, "json")
     // Hide loading div and render error
     .fail(function() {
@@ -60,11 +77,5 @@ export default Ember.Component.extend({
       gViz.helpers.loading.hide();
       //console.log("complete");
     });
-  },
-
-  didDestroyElement: function() {
-
-    console.log("Deleting component");
-
   },
 });

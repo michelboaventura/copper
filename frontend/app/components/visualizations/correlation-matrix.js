@@ -54,14 +54,31 @@ export default Ember.Component.extend({
           .appendTo("#data-buttons")
           .on("click", function() {
             $("#order").val("name");
-            component.set("data", d);
-            component.draw(d);
+              component.draw(d);
           });
         });
       }
 
-      component.set("data", data[0]);
-      component.draw(data[0]);
+      if(data.length > 0) component.draw(data[0]);
+
+      // If there is no data
+      else {
+        $(".gViz-wrapper[data-id='"+component.get('_id')+"']")
+          .append(`
+            <div class="row">
+              <div class="col-md-12 empty-vis">
+                  <br>
+                  <br>
+                  <i class="icon-emo-displeased"></i>
+                  <br>
+                  <br>
+                  <p>
+                    Esta consulta não possui correlações
+                  </p>
+              </div>
+            </div>
+          `);
+      }
     }, "json")
     // Hide loading div and render error
     .fail(function() {
