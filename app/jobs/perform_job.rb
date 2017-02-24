@@ -40,9 +40,9 @@ class PerformJob < ApplicationJob
       PartItemJob.new(path).perform_now
       TopicoJob.new(path).perform_now
     rescue
-      job.update_attributes(status: 'COMPLETED', finished: Time.now)
-    else
       job.update_attributes(status: 'ERROR', finished: Time.now)
+    else
+      job.update_attributes(status: 'COMPLETED', finished: Time.now)
     end
   end
 end
