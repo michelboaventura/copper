@@ -26,3 +26,5 @@ public/json/*
 
 **/.deps/
 **/*.cache/
+
+**/.travis
