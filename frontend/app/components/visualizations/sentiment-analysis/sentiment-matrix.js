@@ -20,7 +20,6 @@ export default Ember.Component.extend({
   // Draw Chart
   draw: function(data){
 
-    console.log(data);
     // Initialize variables
     let component = this;
 

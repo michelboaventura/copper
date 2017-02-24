@@ -1,10 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  init() {
-    this._super(...arguments);
-    console.log(this.get("jobId"));
-  },
 
   visualizations: [
     {
@@ -32,7 +28,7 @@ export default Ember.Component.extend({
       name:   "Word Tree",
       icon:   "icon-flow-tree",
       image:  "icon-flow-split",
-      vis:    "visualizations.wordtree-diagram",
+      vis:    "wordtree-diagram",
       tooltip: "Wordtree Analysis visualization of all of the filtered comments.",
     },
     {
