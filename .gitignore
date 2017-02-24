@@ -23,3 +23,7 @@ algorithms/sentimento/tools/lac/lazy
 .byebug_history
 
 public/json/*
+
+**/.deps/
+**/*.cache/
+**/.travis
