@@ -27,3 +27,17 @@ public/json/*
 **/.deps/
 **/*.cache/
 **/.travis
+
+algorithms/topicos/tools/GibbsLDA++-0.2/src/lda
+algorithms/wordtree/Makefile
+algorithms/wordtree/Makefile.in
+algorithms/wordtree/aclocal.m4
+algorithms/wordtree/compile
+algorithms/wordtree/config.status
+algorithms/wordtree/configure
+algorithms/wordtree/dendro
+algorithms/wordtree/depcomp
+algorithms/wordtree/install-sh
+algorithms/wordtree/missing
+algorithms/wordtree/src/.dirstamp
+algorithms/wordtree/test-driver

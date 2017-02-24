@@ -28,17 +28,21 @@ class PerformJob < ApplicationJob
     path = Rails.root.join('public', 'json', job.id.to_s)
     Dir.mkdir(path) rescue nil
 
-    SaveTermsJob.new(terms, path).perform_now
-    ExtractFullCommentsJob.new(full_comments, path).perform_now
-    ExtractCommentsJob.new(comments, path).perform_now
-    SearchJob.new(path).perform_now
-    SentimentoJob.new(path).perform_now
-    CorrelacaoJob.new(path).perform_now
-    CoocorrenciaJob.new(path).perform_now
-    WordtreeJob.new(path).perform_now
-    PartItemJob.new(path).perform_now
-    TopicoJob.new(path).perform_now
-
-    job.update_attributes(status: 'COMPLETED', finished: Time.now)
+    begin
+      SaveTermsJob.new(terms, path).perform_now
+      ExtractFullCommentsJob.new(full_comments, path).perform_now
+      ExtractCommentsJob.new(comments, path).perform_now
+      SearchJob.new(path).perform_now
+      SentimentoJob.new(path).perform_now
+      CorrelacaoJob.new(path).perform_now
+      CoocorrenciaJob.new(path).perform_now
+      WordtreeJob.new(path).perform_now
+      PartItemJob.new(path).perform_now
+      TopicoJob.new(path).perform_now
+    rescue
+      job.update_attributes(status: 'ERROR', finished: Time.now)
+    else
+      job.update_attributes(status: 'COMPLETED', finished: Time.now)
+    end
   end
 end

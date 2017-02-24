@@ -12,6 +12,8 @@ export default Ember.Component.extend({
   _id:      function(){ return this.get('_id'); }.property('_id'),
   style:    function(){ return "width:"+this.get('width')+"; height:"+this.get('height')+";"; }.property('style'),
 
+  count: 0,
+
   // Chart var
   _var: null,
 
@@ -21,17 +23,20 @@ export default Ember.Component.extend({
     // Initialize variables
     let component = this;
 
-    let margin = {top: 100, left: 150, right: 100, bottom: 10};
+    let margin = {top: 100, left: 200, right: 50, bottom: 10};
 
-    let colors = { scale: gViz.helpers.colors.linear(data.links, ["orange", "green"], "value") };
+    let colors = { scale: gViz.helpers.colors.linear([0, 1], ["red", "lightgray", "blue"]) };
 
     component._var = gViz.vis.matrix_chart()
       ._var(component._var)
-      ._class("correlation-matrix-chart")
+      ._class("sentiment-analysis-chart")
       .container(".gViz-wrapper[data-id='"+component.get('_id')+"']")
       .margin(margin)
-      .colors(colors)
       .data(data)
+      .colors(colors)
+      .legend_units("continuous")
+      .legend_title("Sentiment Score")
+      .legend_domain([0,1])
       .build();
   },
 
@@ -44,24 +49,8 @@ export default Ember.Component.extend({
     gViz.helpers.loading.show();
     $.get(dataUrl, function(data) {
 
-      if (data.length > 1) {
-        data.forEach((d, i) => {
-          $("<button>")
-          .attr("value", i + 1)
-          .attr("class", "btn btn-primary btn-xs")
-          .text(i + 1)
-          .css("margin-left", "0.5em")
-          .appendTo("#data-buttons")
-          .on("click", function() {
-            $("#order").val("name");
-              component.draw(d);
-          });
-        });
-      }
+      if (data.length > 0) { component.draw(data[0]); }
 
-      if(data.length > 0) { component.draw(data[0]); }
-
-      // If there is no data
       else {
         $(".gViz-wrapper[data-id='"+component.get('_id')+"']")
           .append(`
