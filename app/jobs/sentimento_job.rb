@@ -4,7 +4,7 @@ class SentimentoJob < ApplicationJob
   def perform(path)
     IO.popen([
       Rails.root.join('algorithms', 'sentimento', 'run_sentiment.sh').to_s,
-      path.join('comments.json').to_s
+      path.join('comments_filtered.json').to_s
     ]) do |io|
       File.open(File.join(path, 'sentimento'), 'w') do |f|
         f << io.read

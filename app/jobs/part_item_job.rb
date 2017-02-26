@@ -2,10 +2,10 @@ class PartItemJob < ApplicationJob
   queue_as :default
 
   def perform(path)
-    min_support = 50
+    min_support = 20
     IO.popen([
       Rails.root.join('algorithms', 'part_item', 'run_part_item.sh').to_s,
-      path.join('comments.json').to_s,
+      path.join('comments_filtered.json').to_s,
       min_support.to_s
     ]) do |io|
       File.open(File.join(path, 'part_item'), 'w') do |f|

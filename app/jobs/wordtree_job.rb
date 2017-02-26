@@ -10,7 +10,7 @@ class WordtreeJob < ApplicationJob
   def build_wordtree(path)
     IO.popen([
       Rails.root.join('algorithms', 'wordtree', 'run_wordtree.sh').to_s,
-      path.join('comments.json').to_s
+      path.join('comments_filtered.json').to_s
     ]) do |io|
       File.open(File.join(path, 'wordtree-diagram.json'), 'w') do |f|
         f << io.read

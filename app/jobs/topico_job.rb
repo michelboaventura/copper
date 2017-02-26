@@ -4,7 +4,7 @@ class TopicoJob < ApplicationJob
   def perform(path)
     IO.popen([
       Rails.root.join('algorithms', 'topicos', 'run_topicos.sh').to_s,
-      path.join('comments.json').to_s
+      path.join('comments_filtered.json').to_s
     ]) do |io|
       File.open(File.join(path, 'topicos'), 'w') do |f|
         f << io.read

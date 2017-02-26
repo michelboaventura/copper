@@ -4,7 +4,7 @@ class CorrelacaoJob < ApplicationJob
   def perform(path)
     IO.popen([
       Rails.root.join('algorithms', 'correlacoes', 'run_correlacao.sh').to_s,
-      path.join('comments.json').to_s
+      path.join('comments_filtered.json').to_s
     ]) do |io|
       File.open(File.join(path, 'correlacao'), 'w') do |f|
         f << io.read

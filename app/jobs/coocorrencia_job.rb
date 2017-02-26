@@ -5,7 +5,7 @@ class CoocorrenciaJob < ApplicationJob
 
     #Full data
     run_algorithm(
-      path.join('full_comments.json').to_s,
+      path.join('full_comments_filtered.json').to_s,
       path.join('coocorrencia_full').to_s,
       path.join('terms').to_s,
       path.join('graph-canvas-full.json').to_s
@@ -13,7 +13,7 @@ class CoocorrenciaJob < ApplicationJob
 
     #Filtered data
     run_algorithm(
-      path.join('comments.json').to_s,
+      path.join('comments_filtered.json').to_s,
       path.join('coocorrencia').to_s,
       path.join('terms').to_s,
       path.join('graph-canvas.json').to_s
@@ -23,7 +23,7 @@ class CoocorrenciaJob < ApplicationJob
   private
 
   def run_algorithm(input, output, terms, final_result)
-    min_support = 50
+    min_support = 20
     IO.popen([
       Rails.root.join('algorithms', 'coocorrencia', 'run_coocorrencia.sh').to_s,
       input,

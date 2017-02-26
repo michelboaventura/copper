@@ -33,6 +33,7 @@ algorithms/wordtree/Makefile
 algorithms/wordtree/Makefile.in
 algorithms/wordtree/aclocal.m4
 algorithms/wordtree/compile
+algorithms/wordtree/config.log
 algorithms/wordtree/config.status
 algorithms/wordtree/configure
 algorithms/wordtree/dendro
