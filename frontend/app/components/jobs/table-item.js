@@ -5,6 +5,7 @@ export default Ember.Component.extend({
   poller: Ember.inject.service(),
   store: Ember.inject.service(),
   currentUser: Ember.inject.service('current-user'),
+  isChecked: false,
 
   init() {
     this._super(...arguments);
@@ -25,6 +26,7 @@ export default Ember.Component.extend({
   },
 
   actions: {
+    checked(jobId){ this.get('wasChecked')(jobId, event.currentTarget.checked); },
     hasCompleted() {
       this.get('poller').stopPolling();
     },

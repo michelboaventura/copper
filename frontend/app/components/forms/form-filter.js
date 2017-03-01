@@ -88,6 +88,7 @@ var jstreeJson = {
 export default Ember.Component.extend({
   classNames: ['filter', 'queryBuilder'],
   routing: Ember.inject.service('-routing'),
+  currentUser: Ember.inject.service('current-user'),
 
   makeExpression(jsonQuery){
     var expression = "";
@@ -195,6 +196,7 @@ export default Ember.Component.extend({
       workflow.tasks[filterIndex].forms.types = this.getTypes(Ember.$(`#${this.elementId} .categories`).jstree());
       workflow.workflow_id = this.get('workflow').id;
       workflow.name = Ember.$('#jobName').val();
+      workflow.user = this.get('currentUser');
       ajax({
         url:`${config.ai_social_rails}/jobs`,
         type: 'POST',

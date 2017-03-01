@@ -1,6 +1,6 @@
 <td>
   <label class="item-check" id="select-all-items">
-    <input type="checkbox" class="checkbox">
+    <input id="checkbox-{{job.id}}" type="checkbox" class="checkbox" onchange={{action "checked" job.id}} >
     <span></span>
   </label>
 </td>
