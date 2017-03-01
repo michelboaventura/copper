@@ -7,7 +7,8 @@ export default Ember.Route.extend({
 
     return {
       component: `visualizations/${params.which}`,
-      url: `${config.ai_social_rails}/json/${params.id}/${params.which}.json`
+      url: `${config.ai_social_rails}/json/${params.id}/${params.which}.json`,
+      search: decodeURI(window.location.href.split("?search=")[1])
     };
   }
 });
