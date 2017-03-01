@@ -23,7 +23,7 @@ module.exports = function(environment) {
     },
     'ember-simple-auth': {
       authorizer: 'authorizer:devise',
-      routeAfterAuthentication: '/home/workflows'
+      routeAfterAuthentication: '/home'
     },
   };
 
