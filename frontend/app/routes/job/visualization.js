@@ -7,7 +7,7 @@ export default Ember.Route.extend({
 
     var search = window.location.href.split("?search=")[1];
 
-    search = search == undefined ? "" : decodeURI(search);
+    search = search === undefined ? "" : decodeURI(search);
 
     return {
       component: `visualizations/${params.which}`,
