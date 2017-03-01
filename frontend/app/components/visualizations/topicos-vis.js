@@ -30,41 +30,38 @@ export default Ember.Component.extend({
       contentType: "application/json",
       success(data) {
 
-        // Set json
-        component.set('json', data);
+        if(data.length > 0) {
+          // Set json
+          component.set('json', data);
 
-        // Initialize variables
-        let topicos = [];
-        let legends = {};
+          // Initialize variables
+          let topicos = [];
+          let legends = {};
 
-        // Parse data
-        data.filter(function(d) { return d.contagem_comentarios; }).forEach( d => {
+          // Parse data
+          data.filter(function(d) { return d.contagem_comentarios; }).forEach( d => {
 
-          // Set scales
-          let scaleTopPalavras = d3.scaleLinear().domain(d3.extent(d.top_palavras, t => t[1])).range([12,25]);
-          let scaleFrequenciaEixos = d3.scaleLinear().domain(d3.extent(d.frequencia_eixos, t => t[1])).range([12,30]);
+            // Set scales
+            let scaleTopPalavras = d3.scaleLinear().domain(d3.extent(d.top_palavras, t => t[1])).range([12,25]);
+            let scaleFrequenciaEixos = d3.scaleLinear().domain(d3.extent(d.frequencia_eixos, t => t[1])).range([12,30]);
 
-          // Store legends
-          d.frequencia_eixos.forEach( e => legends[e[0]] = component.get('colorsEixos')(e[0]) );
+            // Store legends
+            d.frequencia_eixos.forEach( e => legends[e[0]] = component.get('colorsEixos')(e[0]) );
 
-          // Add topics
-          topicos.push({
-            element: d,
-            eixos: d.frequencia_eixos.map(function(f) { return { id: f[0], height: scaleFrequenciaEixos(f[1]), mTop: scaleFrequenciaEixos.domain()[1] - scaleFrequenciaEixos(f[1]), bg_color: component.get('colorsEixos')(f[0]) }; }),
-            top_palavras: d.top_palavras.map(function(p) { return { id: d.topico_id, name: p[0], value: scaleTopPalavras(p[1]) }; })
+            // Add topics
+            topicos.push({
+              element: d,
+              eixos: d.frequencia_eixos.map(function(f) { return { id: f[0], height: scaleFrequenciaEixos(f[1]), mTop: scaleFrequenciaEixos.domain()[1] - scaleFrequenciaEixos(f[1]), bg_color: component.get('colorsEixos')(f[0]) }; }),
+              top_palavras: d.top_palavras.map(function(p) { return { id: d.topico_id, name: p[0], value: scaleTopPalavras(p[1]) }; })
+            });
           });
-        });
 
-        // Set data
-        component.set('tableData', topicos);
-        component.set('legends', legends);
+          // Set data
+          component.set('tableData', topicos);
+          component.set('legends', legends);
+        }
 
-        //// Draw visualization
-        //component._var = gViz.vis.topicos()
-        //  ._var(component._var)
-        //  .container(".gViz-wrapper[data-id='"+component.get('_id')+"']")
-        //  .data(data)
-        //  .build();
+        else{ component.set("empty", true); }
 
       },
 

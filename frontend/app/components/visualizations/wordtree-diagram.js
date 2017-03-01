@@ -37,12 +37,17 @@ export default Ember.Component.extend({
       contentType: "application/json",
       success(data) {
 
-        // Draw visualization
-        component._var = gViz.vis.wordtree()
-          ._var(component._var)
-          .container(".gViz-wrapper[data-id='"+component.get('_id')+"']")
-          .data(data)
-          .build();
+        if(data.children.length > 0) {
+
+          // Draw visualization
+          component._var = gViz.vis.wordtree()
+            ._var(component._var)
+            .container(".gViz-wrapper[data-id='"+component.get('_id')+"']")
+            .data(data)
+            .build();
+        }
+
+        else { component.set("empty", true); }
 
       },
 

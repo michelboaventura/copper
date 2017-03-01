@@ -93,68 +93,72 @@ export default Ember.Component.extend({
       //data: JSON.stringify({}),
       success(data) {
 
-        data = data[0];
+        if (data.length > 0) {
+          data = data[0];
 
-        // color scale
-        let colors = { scale: gViz.helpers.colors.linear([0, 1], ["red", "lightgray", "blue"]) };
+          // color scale
+          let colors = { scale: gViz.helpers.colors.linear([0, 1], ["red", "lightgray", "blue"]) };
 
-        let parse = function(attr) {
+          let parse = function(attr) {
 
-          data[attr].forEach(function(d) {
-            d["sum"] = 0;
-            d["total_num"] = 0;
-          });
-
-          // Calculates avg sentiment score for each paper and user
-          data.links.forEach(function(link){
-
-            var element = $.grep(data[attr], function(d) {
-              return d.id === link[attr.slice(0, -1)];
+            data[attr].forEach(function(d) {
+              d["sum"] = 0;
+              d["total_num"] = 0;
             });
 
-            element = element[0];
+            // Calculates avg sentiment score for each paper and user
+            data.links.forEach(function(link){
 
-            element["sum"] += link["value"];
-            element["total_num"] += 1;
-          });
+              var element = $.grep(data[attr], function(d) {
+                return d.id === link[attr.slice(0, -1)];
+              });
 
-          data[attr].forEach(function(d) {
+              element = element[0];
 
-            d["avg"] = ((d["sum"]/d["total_num"]) * 100).toFixed(2);
+              element["sum"] += link["value"];
+              element["total_num"] += 1;
+            });
 
-            // Gets only numerical values of RGB colours
-            var colours = colors.scale(d["avg"]/100);
-            var coloursOnly = colours.substring(colours.indexOf('(') + 1, colours.lastIndexOf(')')).split(",");
+            data[attr].forEach(function(d) {
 
-            // Adds opacity to RGB colour
-            var colourString = `rgba(${coloursOnly[0]},${coloursOnly[1]},${coloursOnly[2]}, 0.6)`;
+              d["avg"] = ((d["sum"]/d["total_num"]) * 100).toFixed(2);
 
-            // Sets width and colour of progress bar
-            d["style"] = `
+              // Gets only numerical values of RGB colours
+              var colours = colors.scale(d["avg"]/100);
+              var coloursOnly = colours.substring(colours.indexOf('(') + 1, colours.lastIndexOf(')')).split(",");
+
+              // Adds opacity to RGB colour
+              var colourString = `rgba(${coloursOnly[0]},${coloursOnly[1]},${coloursOnly[2]}, 0.6)`;
+
+              // Sets width and colour of progress bar
+              d["style"] = `
               width:${d["avg"]}%;
               background-color:${colourString};
-            `;
-          });
+              `;
+            });
 
-          // First ordenation is by alphabetically order
-          data[attr].sort(function(a, b) { return d3.ascending(a.name, b.name); });
-        };
+            // First ordenation is by alphabetically order
+            data[attr].sort(function(a, b) { return d3.ascending(a.name, b.name); });
+          };
 
-        switch(type.toLowerCase()) {
+          switch(type.toLowerCase()) {
 
-          case "users":
-            parse("rows");
+            case "users":
+              parse("rows");
             component.set('_data', data.rows);
             break;
-          case "papers":
-            parse("columns");
+            case "papers":
+              parse("columns");
             component.set('_data', data.columns);
             break;
 
-          default: console.log("Unkown Data Type");
+            default: console.log("Unkown Data Type");
+          }
+
+          component.set('_columns', columns);
         }
 
-        component.set('_columns', columns);
+        else { component.set("empty", true); }
       },
 
       // Hide loading div and render error
