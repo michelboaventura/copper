@@ -46,6 +46,6 @@ class DatabasesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def database_params
-    params.fetch(:datasource, {})
+    params.require(:datasource).permit(:user_id, :name, :description)
   end
 end
