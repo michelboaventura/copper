@@ -16,7 +16,7 @@ class ExtractCommentsJob < ApplicationJob
         c[:member] = part.member
         c[:id] = comment.id.to_s
         c[:part_name] = part.name
-        c[:category] = part.category
+        c[:category] = "Eixo #{part.category}"
         f << c.to_json << "\n"
       end
     end

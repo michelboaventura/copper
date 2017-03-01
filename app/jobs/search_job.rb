@@ -11,7 +11,7 @@ class SearchJob < ApplicationJob
     out = []
     File.open(File.join(path, 'comments.json')).each_line do |line|
       json = JSON.parse(line)
-      out << json.slice(*%w{author_name text part_name})
+      out << json.slice(*%w{author_name text part_name category})
     end
 
     File.open(File.join(path, 'search-tool.json'), 'w') do |f|
