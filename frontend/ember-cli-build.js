@@ -43,6 +43,10 @@ module.exports = function(defaults) {
   app.import('bower_components/jstree-bootstrap-theme/dist/themes/proton/style.css');
   app.import('bower_components/jstree/dist/jstree.js');
 
+  app.import('bower_components/jstree-bootstrap-theme/src/themes/proton/fonts/titillium/titilliumweb-regular-webfont.svg',  {destDir: 'assets/fonts/titillium/'});
+  app.import('bower_components/jstree-bootstrap-theme/src/themes/proton/fonts/titillium/titilliumweb-regular-webfont.woff', {destDir: 'assets/fonts/titillium/'});
+  app.import('bower_components/jstree-bootstrap-theme/src/themes/proton/fonts/titillium/titilliumweb-regular-webfont.ttf',  {destDir: 'assets/fonts/titillium/'});
+  app.import('bower_components/jstree-bootstrap-theme/src/themes/proton/fonts/titillium/titilliumweb-regular-webfont.eot',  {destDir: 'assets/fonts/titillium/'});
   // Custom Font Icons
 
   app.import('vendor/fontello/css/animation.css');
