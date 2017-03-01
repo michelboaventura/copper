@@ -5,6 +5,7 @@ class ExtractCommentsJob < ApplicationJob
     File.open(comments_path, 'w') do |f|
       comments.each do |comment|
         c = comment.attributes
+        part = comment.part
 
         unless stopwords.empty?
           c[:text] = c[:text].split(" ").reject do |w|
@@ -12,9 +13,10 @@ class ExtractCommentsJob < ApplicationJob
           end.join(" ")
         end
 
-        c[:member] = comment.part.member
+        c[:member] = part.member
         c[:id] = comment.id.to_s
-        c[:part_name] = comment.part.name
+        c[:part_name] = part.name
+        c[:category] = part.category
         f << c.to_json << "\n"
       end
     end
