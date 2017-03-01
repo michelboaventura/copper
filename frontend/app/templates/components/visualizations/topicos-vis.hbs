@@ -23,16 +23,16 @@
         <tbody>
           {{#each tableData as |tr|}}
             <tr>
-              <td><a href="http://200.131.6.30/projeto/dadosparciais/dataset/130/calaca/topico_id:{{tr.element.topico_id}}" target='_blank'>{{tr.element.nome}}</a></td>
+              <td>{{tr.element.nome}}</td>
               <td>
                 {{#each tr.eixos as |e|}}
-                  <a class='bar' href='http://200.131.6.30/projeto/dadosparciais/dataset/130/calaca/commentable_axis:{{e.id}}' target='_blank' style='height: {{e.height}}px; margin-top: {{e.mTop}}px; background-color: {{e.bg_color}};' title='Eixo: {{e.id}}'></a>
+                  <a class='bar' href='/job/{{jobId}}/visualization/search-tool?search=Eixo {{e.id}}' target='_blank' style='height: {{e.height}}px; margin-top: {{e.mTop}}px; background-color: {{e.bg_color}};' title='Eixo: {{e.id}}'></a>
                 {{/each}}
               </td>
               <td>{{tr.element.contagem_comentarios}}</td>
               <td>
                 {{#each tr.top_palavras as |p|}}
-                  <a href='http://200.131.6.30/projeto/dadosparciais/dataset/130/calaca/comment_text.acento:imediata AND topico_id:{{tr.element.topico_id}}' target='_blank' class='word' style='font-size:{{p.value}}px;'>{{p.name}}</a>
+                  <a href='/job/{{jobId}}/visualization/search-tool?search={{p.name}}' target='_blank' class='word' style='font-size:{{p.value}}px;'>{{p.name}}</a>
                 {{/each}}
               </td>
             </tr>
