@@ -9,17 +9,25 @@
   <!-- <span class='subtitle'>{{subtitle}}</span> -->
 </div>
 
-<div class='gViz-wrapper sentiment-analysis-chart' data-id={{_id}} style={{style}} >
+{{#unless empty}}
 
-  <br>
-  <div class="controls col-md-12">
-    <div class="col-md-2">
-      <select id="order" class="form-control">
-        <option value="name">by Name</option>
-        <option value="count">by Frequency</option>
-      </select>
+  <div class='gViz-wrapper sentiment-analysis-chart' data-id={{_id}} style={{style}} >
+
+    <br>
+    <div class="controls col-md-12">
+      <div class="col-md-2">
+        <select id="order" class="form-control">
+          <option value="name">by Name</option>
+          <option value="count">by Frequency</option>
+        </select>
+      </div>
+      <div class="col-md-10" id="data-buttons"></div>
     </div>
-    <div class="col-md-10" id="data-buttons"></div>
+
   </div>
 
-</div>
+{{else}}
+
+  {{visualizations/empty-vis}}
+
+{{/unless}}

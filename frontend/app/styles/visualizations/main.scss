@@ -56,3 +56,12 @@
     line-height: 13px;
   }
 }
+
+.empty-vis {
+  font-size: 4em;
+  text-align: center;
+  position: fixed;
+
+  top: 50%;
+  transform: translate(-5%, -50%);
+}

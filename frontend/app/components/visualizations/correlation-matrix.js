@@ -44,7 +44,11 @@ export default Ember.Component.extend({
     gViz.helpers.loading.show();
     $.get(dataUrl, function(data) {
 
-      if (data.length > 1) {
+      if (data.length === 0) {
+        component.set("empty", true);
+      }
+
+      else if (data.length > 1) {
         data.forEach((d, i) => {
           $("<button>")
           .attr("value", i + 1)
@@ -57,28 +61,11 @@ export default Ember.Component.extend({
               component.draw(d);
           });
         });
+        component.draw(data[0]);
       }
 
-      if(data.length > 0) { component.draw(data[0]); }
+      else { component.draw(data[0]); }
 
-      // If there is no data
-      else {
-        $(".gViz-wrapper[data-id='"+component.get('_id')+"']")
-          .append(`
-            <div class="row">
-              <div class="col-md-12 empty-vis">
-                  <br>
-                  <br>
-                  <i class="icon-emo-displeased"></i>
-                  <br>
-                  <br>
-                  <p>
-                    Esta consulta não possui correlações
-                  </p>
-              </div>
-            </div>
-          `);
-      }
     }, "json")
     // Hide loading div and render error
     .fail(function() {
