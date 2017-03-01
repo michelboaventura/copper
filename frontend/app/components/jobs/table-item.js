@@ -1,8 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames:['item'],
-  tagName: 'li',
+  tagName: 'tr',
   poller: Ember.inject.service(),
   store: Ember.inject.service(),
   currentUser: Ember.inject.service('current-user'),

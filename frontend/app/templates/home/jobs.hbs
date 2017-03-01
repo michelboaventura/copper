@@ -2,12 +2,15 @@
 <article class="content items-list-page">
   {{jobs.button-bar}}
   <div class="card items">
-    <ul class="item-list striped">
-      {{jobs.table-header}}
-      {{#each model as |job|}}
-        {{jobs.table-item job=job}}
-      {{/each}}
-    </ul>
+    <table class="table table-stripped">
+      <thead>
+        {{jobs.table-header}}
+      </thead>
+      <tbody>
+        {{#each model as |job|}}
+          {{jobs.table-item job=job}}
+        {{/each}}
+      </tbody>
+    </table>
   </div>
 </article>
-{{outlet}}
