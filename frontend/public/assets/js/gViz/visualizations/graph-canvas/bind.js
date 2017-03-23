@@ -64,7 +64,7 @@ gViz.vis.graph.bind = function () {
                   if (!_var.selection.dragging) {
                     _var.simulation.restart();
                   }
-                  _var.selection.globalAlpha = Object.keys(_var.selection.clicked).length === 0 ? 1 : .1;
+                  _var.selection.globalAlpha = Object.keys(_var.selection.clicked).length === 0 && Object.keys(_var.selection.searched).length === 0 ? 1 : .1;
                   _var.selection.hover = void 0;
                   _var.ticked();
                   return _var = gViz.vis.graph.tooltip()._var(_var).action('hide').run();
@@ -72,7 +72,7 @@ gViz.vis.graph.bind = function () {
               };
               _var.container.d3.selectAll('canvas').on("mousemove", _var.mousemove);
               _var.mouseout = function (d) {
-                _var.selection.globalAlpha = Object.keys(_var.selection.clicked).length === 0 ? 1 : .1;
+                _var.selection.globalAlpha = Object.keys(_var.selection.clicked).length === 0 && Object.keys(_var.selection.searched).length === 0 ? 1 : .1;
                 _var.selection.hover = void 0;
                 _var.ticked();
                 return _var = gViz.vis.graph.tooltip()._var(_var).action('hide').run();
@@ -95,7 +95,7 @@ gViz.vis.graph.bind = function () {
                         return _var.selection.neighbours[nbours] = _var.selection.clicked[key].neighbours[nbours];
                       });
                     });
-                    _var.selection.globalAlpha = Object.keys(_var.selection.clicked).length === 0 ? 1 : .1;
+                    _var.selection.globalAlpha = Object.keys(_var.selection.clicked).length === 0 || Object.keys(_var.selection.searched).length === 0 ? 1 : .1;
                   } else {
                     _var.selection.clicked[node.id] = node;
                     Object.keys(node.neighbours).forEach(function (nbours) {
@@ -127,7 +127,7 @@ gViz.vis.graph.bind = function () {
                 _var.simulation.restart();
                 return _var = gViz.vis.graph.tooltip()._var(_var).action('hide').run();
               });
-              _var.selection.globalAlpha = Object.keys(_var.selection.clicked).length === 0 ? 1 : .1;
+              _var.selection.globalAlpha = Object.keys(_var.selection.clicked).length === 0 && Object.keys(_var.selection.searched).length === 0 ? 1 : .1;
               _var.selection.hover = void 0;
               _var.ticked();
               break;

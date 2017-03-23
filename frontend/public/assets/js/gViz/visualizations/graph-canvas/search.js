@@ -34,10 +34,14 @@ gViz.vis.graph.search = function () {
 
             // Cleaen selection
             _var.selection.searched = {};
+            _var.selection.neighbours = {};
 
             // Filter nodes
-            if(search.length > 1) {
-              _var.data.nodes.filter(function(d) { return d.name.latinize().toLowerCase().indexOf(search) !== -1; }).forEach(function(node) {
+            _var.data.nodes
+              .filter(function(d) {
+                return _var.selection.clicked[d.id] != null || (search.length > 1 && d.name.latinize().toLowerCase().indexOf(search) !== -1);
+              })
+              .forEach(function(node) {
 
                 // Set node
                 _var.selection.searched[node.id] = node;
@@ -46,10 +50,9 @@ gViz.vis.graph.search = function () {
                 Object.keys(node.neighbours).forEach(function (nbours) { _var.selection.neighbours[nbours] = node.neighbours[nbours]; });
 
               });
-            }
 
             // Set globalAlpha
-            if(Object.keys(_var.selection.searched).length !== 0) { _var.selection.globalAlpha = .1; }
+            _var.selection.globalAlpha = Object.keys(_var.selection.clicked).length === 0 && Object.keys(_var.selection.searched).length === 0 ? 1 : .1;
           }
 
           _var.search.d3.on('keyup', function() {
