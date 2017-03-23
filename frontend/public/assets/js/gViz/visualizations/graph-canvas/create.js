@@ -35,6 +35,7 @@ gViz.vis.graph.create = function () {
             _var.selection = {
               hover: void 0,
               clicked: {},
+              searched: {},
               neighbours: {},
               globalAlpha: 1,
               dragging: false

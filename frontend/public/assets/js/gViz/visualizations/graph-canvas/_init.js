@@ -41,6 +41,8 @@ gViz.vis.graph = function () {
         return true;
       case 'tooltip':
         return true;
+      case 'search':
+        return true;
       default:
         return false;
     }
@@ -57,6 +59,7 @@ gViz.vis.graph = function () {
           _main('brush');
           _main('tooltip');
           _main('bind');
+          _main('search');
           break;
         case 'initialize':
           _var || (_var = {});
@@ -86,6 +89,9 @@ gViz.vis.graph = function () {
           _var = gViz.vis.graph.bind()._var(_var).action('buttons').run();
           _var = gViz.vis.graph.bind()._var(_var).action('list-items').run();
           _var = gViz.vis.graph.bind()._var(_var).action('resize').run();
+        case 'search':
+          _var = gViz.vis.graph.search()._var(_var).run();
+          break;
       }
     }
     return _var;
@@ -132,6 +138,9 @@ gViz.vis.graph = function () {
   };
   _main.tooltip = function (_) {
     return _main("tooltip");
+  };
+  _main.search = function (_) {
+    return _main("search");
   };
   _main.run = function (_) {
     return _main(_);

@@ -68,8 +68,6 @@ export default Ember.Component.extend({
     .done(function() { gViz.helpers.loading.hide(); });
 
 
-
-
   },
 
   actions: {
