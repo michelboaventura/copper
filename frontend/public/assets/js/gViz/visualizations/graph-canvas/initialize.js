@@ -57,6 +57,7 @@ gViz.vis.graph.initialize = function () {
           _var.height = (height != null ? height : _var.container.jq.outerHeight()) - (_var.margin.top + _var.margin.bottom);
           _var.width = (width != null ? width : _var.container.jq.outerWidth()) - (_var.margin.left + _var.margin.right);
           _var.container.jq.attr('data-vis-id', _var._id);
+          _var.search = { jq: $("#search-graph"), d3: d3.select('#search-graph'), value: '' };
           _var.buttons = {
             reset: d3.select('#zoom-reset'),
             in_out: d3.selectAll('#zoom-in, #zoom-out'),

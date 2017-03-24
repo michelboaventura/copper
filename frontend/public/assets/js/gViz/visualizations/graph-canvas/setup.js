@@ -26,7 +26,7 @@ gViz.vis.graph.setup = function () {
                   _var.context.beginPath();
                   _var.context.moveTo(d.source.x, d.source.y);
                   _var.context.lineTo(d.target.x, d.target.y);
-                  _var.context.globalAlpha = _var.selection.hover != null && (d.source.id === _var.selection.hover.id || d.target.id === _var.selection.hover.id) || _var.selection.clicked[d.source.id] != null || _var.selection.clicked[d.target.id] != null ? 1 : _var.selection.globalAlpha;
+                  _var.context.globalAlpha = _var.selection.hover != null && (d.source.id === _var.selection.hover.id || d.target.id === _var.selection.hover.id) || _var.selection.clicked[d.source.id] != null || _var.selection.searched[d.source.id] != null || _var.selection.searched[d.target.id] != null || _var.selection.clicked[d.target.id] != null ? 1 : _var.selection.globalAlpha;
                   _var.context.lineWidth = d.width / _var.transform.k;
                   _var.context.strokeStyle = d.color;
                   return _var.context.stroke();
@@ -73,11 +73,11 @@ gViz.vis.graph.setup = function () {
 
                   _var.context.beginPath();
                   _var.drawSymbol(d);
-                  _var.context.globalAlpha = _var.selection.hover != null && (d.id === _var.selection.hover.id || _var.selection.hover.neighbours[d.id] != null) || _var.selection.clicked[d.id] != null || _var.selection.neighbours[d.id] != null ? 1 : _var.selection.globalAlpha + .1;
+                  _var.context.globalAlpha = _var.selection.hover != null && (d.id === _var.selection.hover.id || _var.selection.hover.neighbours[d.id] != null) || _var.selection.clicked[d.id] != null || _var.selection.searched[d.id] != null || _var.selection.neighbours[d.id] != null ? 1 : _var.selection.globalAlpha + .1;
 
                   _var.context.fillStyle = d.centered ? '#FFF' : d.color;
                   _var.context.fill();
-                  _var.context.strokeStyle = d.centered ? d.color : (_var.selection.clicked[d.id] != null || _var.selection.hover != null && d.id === _var.selection.hover.id ? "#333" : "#fff");
+                  _var.context.strokeStyle = d.centered ? d.color : (_var.selection.clicked[d.id] != null || _var.selection.searched[d.id] != null || _var.selection.hover != null && d.id === _var.selection.hover.id ? "#333" : "#fff");
                   _var.context.lineWidth = (d.centered ? 3 : 1) / _var.transform.k;
                   _var.context.stroke();
                 };

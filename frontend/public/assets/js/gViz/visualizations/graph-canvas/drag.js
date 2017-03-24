@@ -28,7 +28,7 @@ gViz.vis.graph.drag = function () {
                 e = this;
                 origin = d3.mouse(e);
                 var sb = _var.simulation.find((origin[0] - _var.transform.x) / _var.transform.k, (origin[1] - _var.transform.y) / _var.transform.k, 25);
-                return sb.centered != null && sb.centered ? null : sb;
+                return sb != null && sb.centered != null && sb.centered ? null : sb;
               };
               _var.dragstarted = function () {
                 if (!d3.event.active) {

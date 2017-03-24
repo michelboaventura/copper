@@ -1,15 +1,8 @@
-@mixin placeholder {
-  ::-webkit-input-placeholder {@content}
-  :-moz-placeholder           {@content}
-  ::-moz-placeholder          {@content}
-  :-ms-input-placeholder      {@content}
-}
-
 @include placeholder {
-    font-style:italic;
-    color: $light-white;
-    font-weight:100;
-    font-size: 14px;
+  font-style:italic;
+  color: $light-white;
+  font-weight:100;
+  font-size: 14px;
 }
 
 .gViz-search-tool {
