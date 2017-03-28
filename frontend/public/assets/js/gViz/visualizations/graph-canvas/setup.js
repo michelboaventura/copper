@@ -124,6 +124,17 @@ gViz.vis.graph.setup = function () {
                   // Initialize group scale
                   if(_var.scales.size[d.group] == null) { _var.scales.size[d.group] = d3.scaleLinear().range([4,10]); }
 
+                  // Set colors
+                  if(d.color == null) {
+                    _var.label.values[d.group] = _var.colors.scale(d.group);
+                    d.color = _var.label.values[d.group];
+                  }
+
+                  // Has centereds
+                  if(d.centered != null && d.centered) {
+                    _var.label.centered[d.name] = d.color;
+                  }
+
                 });
 
                 // Set scales domains
@@ -135,7 +146,6 @@ gViz.vis.graph.setup = function () {
                 _var.centered = { radius: 0, count: 0 };
                 _var.data.nodes.forEach(function (d, i) {
                   d.radius = d.centered ? 20 : _var.scales.size[d.group](+d.metric);
-                  d.color = d.color == null ? _var.colors.scale(d.group) : d.color;
                   if(d.centered) {
                     d.center_index = _var.centered.count;
                     _var.centered.radius += d.radius;

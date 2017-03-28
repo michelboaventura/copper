@@ -9,6 +9,62 @@
   min-height: 400px;
   position: relative;
 
+  .label-wrapper {
+    width: 200px;
+    position: absolute;
+    top: 51px;
+    right: 0px;
+    max-height: 400px;
+    background-color: $full-white;
+    border: 1px solid $border-light-gray;
+    z-index: 10;
+    padding-bottom: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .label-title {
+      height: 30px;
+      margin: 0px 0px 5px;
+      background-color: $light-white;
+      &:not(:first-child) { border-top: 1px solid $border-light-gray; }
+      border-bottom: 1px solid $border-light-gray;
+      width: 100%;
+      display: block;
+      color: $dark-gray;
+      line-height: 30px;
+      font-weight: bold;
+      padding: 0px 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .label-group {
+      width: 100%;
+      height: 24px;
+      padding: 10px 10px 0px;
+
+      .label-color {
+        width:  12px;
+        height: 12px;
+        display: block;
+        float: left;
+        margin-right: 10px;
+        background-color: $full-white;
+      }
+      .label-name {
+        display: block;
+        float: left;
+        text-overflow: ellipsis;
+        width: calc(100% - 22px);
+        height: 14px;
+        line-height: 14px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+  }
+
   .controls {
     position: absolute;
     top: 3px;
@@ -16,7 +72,7 @@
     width: 100%;
 
     .input-group {
-      width: calc(100% - 590px);
+      width: calc(100% - 650px);
       float: right;
       margin-right: 10px;
       input {
@@ -45,6 +101,7 @@
 
     #zoom-reset { display: none; float: left; margin-right: 10px;  }
     #highlight-reset { margin-right: 10px; float: right; }
+    #label-graph { margin-left: 5px; float: right; }
 
     .btn-dark {
       margin-right: 5px;
@@ -55,6 +112,8 @@
       font-weight: bold;
       cursor: pointer;
       box-shadow: none !important;
+
+      &.active { background-color: $dark-gray; color: $full-white; }
 
       &:hover {
         color: $full-white;
