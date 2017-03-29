@@ -1,0 +1,31 @@
+.app {
+  padding-left: 25px !important;
+}
+
+h3.vis-title {
+  display: inline;
+}
+
+.vis-help {
+  color: #969696;
+  font-size: 15px;
+  margin-right: 15px;
+  cursor: pointer;
+
+  .fa-label {
+    margin-left: 2px;
+    margin-top: -2px;
+  }
+
+  &:hover {
+    .question-mark {
+      color: green;
+    }
+  }
+}
+
+.about-vis-modal {
+  .modal-title {
+    text-transform: capitalize;
+  }
+}

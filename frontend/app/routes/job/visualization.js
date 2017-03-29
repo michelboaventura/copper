@@ -15,5 +15,12 @@ export default Ember.Route.extend({
       jobId: `${params.id}`,
       search: search
     };
-  }
+  },
+
+  actions: {
+    showModal: function() {
+      $("#about-vis-modal").modal("toggle");
+    },
+  },
+
 });
