@@ -6,6 +6,8 @@ export default Ember.Component.extend({
   },
 
   didInsertElement: function() {
-    $("[data-toggle=tooltip]").tooltip();
+    $("[data-toggle=tooltip]").tooltip().click(function() {
+      $("[data-toggle=tooltip]").tooltip("close"); // closes tooltip on click
+    });
   },
 });
