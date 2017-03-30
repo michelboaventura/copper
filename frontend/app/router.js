@@ -51,6 +51,11 @@ Router.map(function() {
     this.route('search-tool');
     this.route('sentiment-analysis');
   });
+  this.route('results');
+
+  this.route('public', function() {
+    this.route('results');
+  });
 });
 
 export default Router;

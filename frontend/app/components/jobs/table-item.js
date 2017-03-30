@@ -21,11 +21,18 @@ export default Ember.Component.extend({
     });
   },
 
+  didUpdateAttrs(){
+  },
+
   didDestroyElement() {
     this.get('poller').stopPolling();
   },
 
   actions: {
+    togglePublic(){
+      this.toggleProperty('job.public')
+      this.get('job').save();
+    },
     checked(jobId){ this.get('wasChecked')(jobId, event.currentTarget.checked); },
     hasCompleted() {
       this.get('poller').stopPolling();

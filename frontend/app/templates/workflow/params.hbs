@@ -1,52 +1,43 @@
 {{main-sidebar workflowsActive='active'}}
-<article class="content dashboard-page">
-  <div class="title-block">
-    <h3 class="title"> Create job to workflow: {{model.workflow.name}}
-      <span class="sparkline bar" data-type="bar"></span>
-    </h3>
-  </div>
-  <section>
-    <div class="row sameheight-container">
-      <div class="col-xs-12">
-        <div class="card sameheight-item items" data-exclude="xs,sm,lg">
-          <div class="card-header bordered">
-            <div class="header-block" style="width:100%">
-              <div class="row">
-                <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2 col-xl-1">
-                  <h4 class="title"> Job name: </h4>
-                </div>
-                <div class="col-xs-7 col-sm-9 col-md-10 col-lg-10 col-xl-11">
-                  <h4 class="title" style="width:95%">
-                    <input id="jobName" focus-out="toggleEdit" class="form-control underlined">
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </div>
+<div class="page-content-wrapper container-fluid">
+  <div class="row">
+    <div class="col-xs-12" id="job-name">
+      <div class="form-group job-name">
+        <label for="jobName">Nome da Busca</label>
+        {{input type="text" class="form-control underlined" id="jobName" value=searchName placeholder="Dê um nome para sua busca."}}
+      </div>
+    </div><!-- #job-name -->
+    <div class="col-xs-12">
+      <div>
+        <div class="form-group">
+          <label for="sel1">Selecione a Base</label>
+          <select class="form-control" id="sel1" onchange={{action (mut datasource) value="target.value"}}>
+            <option>Selecione aqui</option>
+            {{#each model.datasources as |datasource| }}
+              <option value="{{datasource.id}}">{{datasource.name}}</option>
+            {{/each}}
+          </select>
         </div>
       </div>
-    </div>
-  </section>
-  {{!--
-  <section>
-    {{forms.form-terms-frequency terms=model.terms}}
-  </section>
-  --}}
-  <section>
-    <div class="row sameheight-container">
-      <div class="col-xs-12">
-        <div class="card sameheight-item" data-exclude="xs,sm">
-          <div class="card-header">
-            <div class="header-block">
-              <h3 class="title">
-                Filter
-              </h3>
-            </div>
-          </div>
-          {{forms.form-filter workflow=model.workflow}}
-        </div>
+      <div class="">
+        <label class="item-check" id="select-all-items"> Public:
+          {{input type="checkbox" name="publicSearch" checked=publicSearch class="checkbox"}}
+          <span></span>
+        </label>
       </div>
     </div>
-  </section>
-</article>
+    <div class="col-xs-12" id="job-filter">
+      <div class="job-filter">
+        <span class="title"> Filter </span>
+        {{forms.form-filter workflow=model.workflow datasource=datasource
+        publicSearch=publicSearch searchName=searchName}}
+      </div>
+    </div><!-- #job-filter -->
+  </div><!--row -->
+</div><!-- container-fluid -->
+{{!--
+<section>
+  {{forms.form-terms-frequency terms=model.terms}}
+</section>
+--}}
 {{outlet}}
