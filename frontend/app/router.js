@@ -55,6 +55,19 @@ Router.map(function() {
 
   this.route('public', function() {
     this.route('results');
+    this.route('result', {path: ':id/result'});
+    this.route('visualization', {path: ':id/visualization/:which'});
+  this.route('visualizations', function() {
+    this.route('correlation-matrix');
+    this.route('graph-canvas');
+    this.route('bar-chart');
+    this.route('wordtree-diagram');
+    this.route('topicos-vis');
+    this.route('line-chart');
+    this.route('pie-chart');
+    this.route('search-tool');
+    this.route('sentiment-analysis');
+  });
   });
 });
 

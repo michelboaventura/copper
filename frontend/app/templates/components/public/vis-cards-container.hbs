@@ -1,0 +1,8 @@
+<div class="cards-container" id="vis-row">
+  {{#each visualizations as |vis|}}
+    {{public/card-vis
+      vis = vis
+      jobId = jobId
+    }}
+  {{/each}}
+</div>
