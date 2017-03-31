@@ -15,4 +15,4 @@ if [ ! -x $BIN_DENDRO ]; then
   popd &> /dev/null
 fi
 
-jq -r '.text' $DATASET_INPUT | "$SCRIPT_DIR/dendro"
+cat $DATASET_INPUT | "$SCRIPT_DIR/dendro"

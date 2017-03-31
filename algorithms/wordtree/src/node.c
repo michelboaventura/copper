@@ -155,7 +155,7 @@ void
 node_internal_compact(const char *word, node_t *node, void *data) {
   (void) word;
   node_foreach_child(node, node_internal_compact, data);
-  node_compact_itself(node);
+  if(word) node_compact_itself(node);
 }
 
 void

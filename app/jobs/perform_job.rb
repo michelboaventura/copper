@@ -47,12 +47,14 @@ class PerformJob < ApplicationJob
     Dir.mkdir(path) rescue nil
 
     comfile = File.join(path, 'comments.json')
+    comwt = File.join(path, 'wt_comments.csv')
     comfilef = File.join(path, 'comments_filtered.json')
     fullcomfile = File.join(path, 'full_comments.json')
     fullcomfilef = File.join(path, 'full_comments_filtered.json')
 
     begin
       SaveTermsJob.new(terms, path).perform_now
+      ExtractWtCommentsJob.new(comments, comwt, terms).perform_now
       ExtractCommentsJob.new(comments, comfile).perform_now
       ExtractCommentsJob.new(comments, comfilef, STOPWORDS).perform_now
       ExtractCommentsJob.new(full_comments, fullcomfile).perform_now
