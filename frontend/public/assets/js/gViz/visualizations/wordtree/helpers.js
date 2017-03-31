@@ -89,7 +89,7 @@ gViz.vis.wordtree.helpers = function () {
 
             // Set font size and bbox
             if (d.fonSize == null) {
-              d.fontSize = _var.fontScale(d._value);
+              d.fontSize = d.parent == null ? _var.fontScale.range()[1] + 5 : _var.fontScale(d._value);
             }
             if (d.bbox == null) {
               d.bbox = gViz.helpers.text.getBBox(_var.g, d.data.name, d.fontSize, d.children != null || d._children != null ? "bold" : "normal");
