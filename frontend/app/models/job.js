@@ -15,6 +15,8 @@ export default DS.Model.extend({
   workflow_id: DS.belongsTo('workflow'),
   steps: attr(),
   cluster_id: attr(),
+  user_name: attr(),
+  public: attr(),
 
   hasCompleted: Ember.computed('status', function() {
     return this.get('status').message === 'COMPLETED';

@@ -18,7 +18,15 @@ export default Ember.Route.extend({
     this._super(...arguments);
     return RSVP.hash({
       terms: { frequent: freq , preDefined: preDef},
-      workflow: this.get('store').findRecord('workflow', params.id)
+      workflow: this.get('store').findRecord('workflow', params.id),
+      datasources: this.store.findAll('datasource'),
     });
+  },
+
+  setupController(controller, model) {
+    this._super(controller, model);
+    this.controller.set('datasource', null);
+    this.controller.set('publicSearch', false);
+    this.controller.set('searchName', null);
   },
 });

@@ -183,8 +183,8 @@ export default Ember.Component.extend({
       var json = Ember.$(`#${this.elementId} .filter`).queryBuilder('getRules');
       var expression = this.makeExpression(json);
 
-      if(Ember.$("#jobName").val() === "") {
-        alert("JobName is missing");
+      if(!this.get('searchName')) {
+        alert("Por favor preencha um nome para a Busca");
         return;
       }
 
@@ -195,8 +195,11 @@ export default Ember.Component.extend({
       workflow.tasks[filterIndex].forms.mongo_query = mongo_query;
       workflow.tasks[filterIndex].forms.types = this.getTypes(Ember.$(`#${this.elementId} .categories`).jstree());
       workflow.workflow_id = this.get('workflow').id;
-      workflow.name = Ember.$('#jobName').val();
+      workflow.name = this.get('searchName');
+      workflow.public = this.get('publicSearch');
+      workflow.datasource = this.get('datasource');
       workflow.user = this.get('currentUser');
+
       ajax({
         url:`${config.ai_social_rails}/jobs`,
         type: 'POST',
