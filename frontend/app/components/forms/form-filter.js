@@ -62,7 +62,7 @@ var qbJson = {
     id: 'text',
     label: 'Term',
     type: 'string',
-    operators: ['contains']
+    operators: ['contains', 'equal', 'not_equal']
   }],
   default_filter: 'text',
   lang_code: 'en',
