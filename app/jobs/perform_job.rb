@@ -23,17 +23,22 @@ class PerformJob < ApplicationJob
     job = Job.find(job_id)
     job.update_attributes(status: 'RUNNING', started: Time.now)
 
-    # We need to add a /i option to allow insensitive query
-    query = job.mongo_query.gsub(/({"\$regex":".*")}/, '\1, "$options": "i"}')
+    # We need to add a /i option to allow insensitive query and also need to
+    # avoid any letter before the term on 'equal' search and on 'not equal'
+    # search
+    query = job.mongo_query.
+      gsub(/{"text":"([^\"]*)"}/, '{"text":/[^a-zA-Z]\1/i}').
+      gsub(/{"text":{"\$regex":"([^\"]*)"}}/, '{"text":/\1/i}').
+      gsub(/{"\$ne":"([^\"]*)"}/, '{"$not": /\1/i}')
 
-    filter = JSON.parse(query)
+    filter = eval(query)
     types = /#{job.types.remover_acentos}/i
     database = job.database
 
     part_ids = database.parts.where(type: types).pluck(:id)
     comments = database.comments.in(part_id: part_ids).where(filter)
     full_comments = database.comments.in(part_id: part_ids)
-    terms = query.scan(/\$regex":"([^"]*)"/).flatten
+    terms = query.scan(/\/([^\/]*)\//).flatten.map{|s| s.gsub(/\[[^\]\[]*\]/, '')}
 
     if comments.empty?
       job.update_attribute(:status, "EMPTY")
