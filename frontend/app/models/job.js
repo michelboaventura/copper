@@ -5,6 +5,7 @@ const { attr } = DS;
 
 export default DS.Model.extend({
   name: attr('string'),
+  filter: attr('string'),
   created_at: attr('dates'),
   updated_at: attr('dates'),
 //  created: attr('dates'),
