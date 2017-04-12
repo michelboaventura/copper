@@ -1,16 +1,15 @@
 require 'set'
 
 class ImportDatabaseJob < ActiveJob::Base
-  def perform(file, db_name: "foo")
-    import(file, db_name: db_name)
+  def perform(file, db_id)
+    import(file, db: Database.find(db_id))
   end
 
   private
 
-  def import(file, db_name: "foo")
+  def import(file, db:)
     author_names = Set.new
-    json = JSON.parse(File.read(file))
-    db = Database.create(name: db_name)
+    json = JSON.parse(file)
 
     json['parts'].each do |part_json|
       part = Part.new(part_json)
