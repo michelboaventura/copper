@@ -93,7 +93,7 @@ export default Ember.Component.extend({
   makeExpression(jsonQuery){
     var expression = "";
     var groupElems = [];
-    var operationsHash = {not_equal: "!", equal: "", contains: "CONTAINS ", AND: "&", OR: "|"};
+    var operationsHash = {not_equal: " NOT EQUAL ", equal: " EQUAL ", contains: " CONTAINS ", AND: " AND ", OR: " OR "};
 
     jsonQuery.rules.forEach((elem) => {
       if(elem.condition){  groupElems.push(`( ${this.makeExpression(elem)} )`); }
