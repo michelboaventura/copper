@@ -5,14 +5,14 @@ set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rben
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all # default value
 
-set :application, 'ai_social_rails'
-set :repo_url, 'git@github.com:michelboaventura/ai_social_rails.git'
+set :application, 'mj_data_explorer'
+set :repo_url, 'git@github.com:michelboaventura/mj_data_explorer.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/home/ubuntu/ai_social_rails'
+set :deploy_to, '/home/ceweb/mj_data_explorer'
 
 # Default value for :format is :pretty
 set :format, :pretty

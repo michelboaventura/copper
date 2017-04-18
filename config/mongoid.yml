@@ -24,3 +24,11 @@ production:
         - localhost:27017
       options:
   options:
+staging:
+  clients:
+    default:
+      database: ai_social_rails_staging
+      hosts:
+        - localhost:27017
+      options:
+  options:
