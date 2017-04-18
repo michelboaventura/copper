@@ -15,9 +15,14 @@ class DatabasesController < ApplicationController
 
   # POST /databases
   def create
-    @database = Database.new(database_params)
+    my_params = database_params
+    file = my_params.delete("file") rescue nil
+
+    @database = Database.new(my_params)
+    @database.user_id = 1 #TODO
 
     if @database.save
+      ImportDatabaseJob.new(file.read, @database.id).perform_now
       render json: @database, status: :created
     else
       render json: @database.errors, status: :unprocessable_entity
@@ -46,6 +51,6 @@ class DatabasesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def database_params
-    params.require(:datasource).permit(:user_id, :name, :description)
+    params.require(:database).permit(:name, :description, :file, :data_format, :data_type)
   end
 end
