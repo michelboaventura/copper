@@ -52,7 +52,12 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.thorn = 'http://ceweb.ctweb.inweb.org.br:3000';
-    ENV.ai_social_rails = 'http://ceweb.ctweb.inweb.org.br';
+    ENV.ai_social_rails = 'http://ceweb.speed.dcc.ufmg.br';
+  }
+
+  if (environment === 'staging') {
+    ENV.thorn = 'http://ceweb.ctweb.inweb.org.br:3000';
+    ENV.ai_social_rails = 'http://staging-ceweb.speed.dcc.ufmg.br';
   }
 
   return ENV;
