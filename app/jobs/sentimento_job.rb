@@ -39,8 +39,14 @@ class SentimentoJob < ApplicationJob
       result[:links] << {value: value, row: key.first, column: key.last}
     end
 
+    if result[:rows].empty? || result[:columns].empty? || result[:links].empty?
+      result = []
+    else
+      result = [result]
+    end
+
     File.open(File.join(path, 'sentiment-analysis.json'), 'w') do |f|
-      f << [result].to_json
+      f << result.to_json
     end
   end
 end
