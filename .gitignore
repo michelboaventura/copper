@@ -23,6 +23,7 @@ algorithms/sentimento/tools/lac/lazy
 .byebug_history
 
 public/json/*
+frontend/public/assets/data
 
 **/.deps/
 **/*.cache/
