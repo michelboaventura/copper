@@ -18,7 +18,7 @@ export default Ember.Route.extend({
       ajax({
         url: `${config.ai_social_rails}/datasources/${datasource.id}`,
         type: 'PATCH',
-        data: {datasource: datasource}
+        data: {database: datasource}
       });
     },
   }
