@@ -45,10 +45,10 @@ class PerformJob < ApplicationJob
       return
     end
 
-    path = Rails.root.join('public', 'json')
+    path = Rails.root.join('data')
     Dir.mkdir(path) rescue nil
 
-    path = Rails.root.join('public', 'json', job.id.to_s)
+    path = Rails.root.join('data', job.id.to_s)
     Dir.mkdir(path) rescue nil
 
     comfile = File.join(path, 'comments.json')
