@@ -94,25 +94,35 @@ gViz.vis.wordtree.helpers = function () {
             if (d.bbox == null) {
               d.bbox = gViz.helpers.text.getBBox(_var.g, d.data.name, d.fontSize, d.children != null || d._children != null ? "bold" : "normal");
             }
+
+            // Reset acc
             d.acc = 0;
 
             // Recursive iteration
             if (d.children != null) {
 
-              var bbox_array = d.children.map(function (c) {
-                return _var.getFontSizes(c);
-              });
-              var width = d3.max(bbox_array.map(function (a) {
-                return a._width;
-              }));
-              var height = d3.sum(bbox_array.map(function (a) {
-                return a._height;
-              }));
+              var bbox_array = d.children.map(function (c) { return _var.getFontSizes(c); });
+              var width = d.bbox.width + d3.max(bbox_array.map(function (a) { return a._width; }));
+              var height = d3.sum(bbox_array.map(function (a) { return a._height; }));
 
+              // Set sizes
               d.bbox._width = d.bbox.width > width ? d.bbox.width + 6 * _var.offset.y : width;
               d.bbox._height = d.bbox.height > height ? d.bbox.height + _var.offset.x : height;
+
+            // Recursive iteration
+            } else if (d._children != null) {
+
+              var bbox_array = d._children.map(function (c) { return _var.getFontSizes(c); });
+              var width = d.bbox.width + d3.max(bbox_array.map(function (a) { return a._width; }));
+              var height = d3.sum(bbox_array.map(function (a) { return a._height; }));
+
+              // Set sizes
+              d.bbox._width = d.bbox.width > width ? d.bbox.width + 6 * _var.offset.y : width;
+              d.bbox._height = d.bbox.height > height ? d.bbox.height + _var.offset.x : height;
+
             } else {
 
+              // Set sizes
               d.bbox._width = d.bbox.width + 6 * _var.offset.y;
               d.bbox._height = d.bbox.height + _var.offset.x;
             }
@@ -133,7 +143,9 @@ gViz.vis.wordtree.helpers = function () {
             _var.treemap = d3.tree().size([_var.height, _var.width]);
 
             // Update outer dimensions
-            _var.wrap.attr("width", _var.width + _var.margin.left + _var.margin.right).attr("height", _var.height + _var.margin.top + _var.margin.bottom);
+            _var.wrap
+              .attr("width", _var.width + _var.margin.left + _var.margin.right)
+              .attr("height", _var.height + _var.margin.top + _var.margin.bottom);
 
             // Set wrappers height
             //_var.container.jq.css("height", parseInt(_var.height + _var.margin.top + _var.margin.bottom) + 'px');
