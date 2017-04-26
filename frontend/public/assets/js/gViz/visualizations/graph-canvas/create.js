@@ -37,6 +37,7 @@ gViz.vis.graph.create = function () {
               clicked: {},
               searched: {},
               neighbours: {},
+              searched: {},
               globalAlpha: 1,
               dragging: false
             };

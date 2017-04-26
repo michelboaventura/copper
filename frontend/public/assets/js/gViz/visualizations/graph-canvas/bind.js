@@ -136,6 +136,8 @@ gViz.vis.graph.bind = function () {
                 _var.selection = {
                   hover: void 0,
                   clicked: {},
+                  searched: {},
+                  searched: {},
                   neighbours: {},
                   globalAlpha: 1,
                   dragging: false
