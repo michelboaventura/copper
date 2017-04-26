@@ -13,6 +13,7 @@ gViz.helpers.text.getBBox = function (container) {
 
   var o = container.append("text").style("font-weight", weight).style("font-size", fontSize + "px").style("visibility", "hidden !important").text(text);
   var bbox = o.node().getBBox();
+  var bbox = o.node().getBBox();
   o.remove();
   return bbox;
 };
