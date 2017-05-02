@@ -55,6 +55,7 @@ gViz.vis.graph.search = function () {
             _var.selection.globalAlpha = Object.keys(_var.selection.clicked).length === 0 && Object.keys(_var.selection.searched).length === 0 ? 1 : .1;
           }
 
+          // Bind key input
           _var.search.d3.on('keyup', function() {
             var event = d3.event || window.event;
             if (event.keyCode === 13) {
@@ -64,6 +65,8 @@ gViz.vis.graph.search = function () {
             }
           });
 
+          // Apply autocomplete
+          _var.search.jq.autocomplete({ source: _var.data.nodes.map(function(d) { return d.name; }) });
 
           break;
       }
