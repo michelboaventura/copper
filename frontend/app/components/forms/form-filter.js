@@ -1,8 +1,7 @@
 import Ember from 'ember';
-import config from '../../config/environment';
+import RSVP from 'rsvp';
 
-const { $:{ajax} } = Ember;
-
+/*make a api to respond this*/
 var leiStructure = {
   text: 'Tudo',
   li_attr: {class: 'category'},
@@ -88,7 +87,8 @@ var jstreeJson = {
 export default Ember.Component.extend({
   classNames: ['filter', 'queryBuilder'],
   routing: Ember.inject.service('-routing'),
-  currentUser: Ember.inject.service('current-user'),
+  sessionAccount: Ember.inject.service(),
+  store: Ember.inject.service(),
 
   makeExpression(jsonQuery){
     var expression = "";
@@ -170,9 +170,7 @@ export default Ember.Component.extend({
     Ember.$(`#${this.elementId} .filter`).queryBuilder(qbJson);
     Ember.$(`#${this.elementId} .categories`).jstree(jstreeJson);
   },
-  isFilter(element){
-    return element.operation.name.match(/^Filter/) !== null;
-  },
+
   actions: {
     makeQueryBuilder(){
       var expression = Ember.$(".query.text").val();
@@ -180,33 +178,37 @@ export default Ember.Component.extend({
       Ember.$(`#${this.elementId} .filter`).queryBuilder('setRules', json);
     },
     onSearch() {
-      var json = Ember.$(`#${this.elementId} .filter`).queryBuilder('getRules');
-      var expression = this.makeExpression(json);
 
-      if(!this.get('searchName')) {
+      if(!this.get('job.name')) {
         alert("Por favor preencha um nome para a Busca");
+        return;
+      } else if(!this.get('datasource')){
+        alert("Por favor selecione uma base de dados");
         return;
       }
 
-      var mongo_query = Ember.$(`#${this.elementId} .filter`).queryBuilder('getMongo');
-      let workflow = JSON.parse(JSON.stringify(this.get('workflow')));
-      var filterIndex = workflow.tasks.findIndex(this.isFilter);
-      workflow.tasks[filterIndex].forms.filter = expression;
-      workflow.tasks[filterIndex].forms.mongo_query = mongo_query;
-      workflow.tasks[filterIndex].forms.types = this.getTypes(Ember.$(`#${this.elementId} .categories`).jstree());
-      workflow.workflow_id = this.get('workflow').id;
-      workflow.name = this.get('searchName');
-      workflow.public = this.get('publicSearch');
-      workflow.datasource = this.get('datasource');
-      workflow.user = this.get('currentUser');
+      var component = this;
 
-      ajax({
-        url:`${config.ai_social_rails}/jobs`,
-        type: 'POST',
-        async: false,
-        data: { job: JSON.stringify(workflow) }
+      var json = Ember.$(`#${this.elementId} .filter`).queryBuilder('getRules');
+      var expression = this.makeExpression(json);
+
+      var mongo_query = Ember.$(`#${this.elementId} .filter`).queryBuilder('getMongo');
+      var types = this.getTypes(Ember.$(`#${this.elementId} .categories`).jstree()).join('|');
+      let job = this.get('job');
+
+      job.filter = expression;
+      job.mongo_query = mongo_query;
+      job.types = types;
+      var db = component.get('store').findRecord('datasource', component.get('datasource'));
+      var user = component.get('store').findRecord('user', component.get('sessionAccount.id'));
+
+      RSVP.all([db, user]).then(function() {
+        job.datasource = db;
+        job.user = user;
+        component.get('store').createRecord('job', job).save().then(function(){
+          component.get("routing").transitionTo('consults');
+        });
       });
-      this.get("routing").transitionTo('home.jobs');
     }
   }
 });

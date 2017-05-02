@@ -6,17 +6,13 @@ const {$: { ajax }} = Ember;
 export default Ember.Route.extend({
   model(params) {
     this._super(...arguments);
-    var requestOptions = {
-      url: `${config.ai_social_rails}/datasources/${params.id}`,
-      type: 'GET'
-    };
-    return ajax(requestOptions);
+    return this.get('store').findRecord('datasource', params.id);
   },
   actions:{
     save(){
       var datasource = this.currentModel;
       ajax({
-        url: `${config.ai_social_rails}/datasources/${datasource.id}`,
+        url: `${config.mj_data_explorer}/datasources/${datasource.id}`,
         type: 'PATCH',
         data: {database: datasource}
       });

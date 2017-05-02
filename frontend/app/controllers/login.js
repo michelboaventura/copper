@@ -4,6 +4,7 @@ const { service } = Ember.inject;
 
 export default Ember.Controller.extend({
   session: service('session'),
+  sessionAccount: Ember.inject.service(),
 
   emailFormGroup: 'form-group',
   invalidEmailErrorMessage: null,
@@ -20,8 +21,9 @@ export default Ember.Controller.extend({
       });
 
       let { email, password } = this.getProperties('email','password');
-      this.get('session').authenticate('authenticator:devise', email, password)
-        .catch((reason)=>{
+      this.get('session').authenticate('authenticator:oauth2', email, password).then(() => {
+          this.get('sessionAccount').loadCurrentUser();
+        }).catch((reason)=>{
           if(reason.errors){
             this.set('invalidPasswordErrorMessage', reason.errors[0] || reason);
             this.set('passwordFormGroup', 'form-group has-error');

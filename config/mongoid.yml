@@ -1,7 +1,7 @@
 development:
   clients:
     default:
-      database: ai_social_rails_development
+      database: mj_data_explorer_development
       hosts:
         - localhost:27017
       options:
@@ -9,7 +9,7 @@ development:
 test:
   clients:
     default:
-      database: ai_social_rails_test
+      database: mj_data_explorer_test
       hosts:
         - localhost:27017
       options:
@@ -19,7 +19,7 @@ test:
 production:
   clients:
     default:
-      database: ai_social_rails_production
+      database: mj_data_explorer_production
       hosts:
         - localhost:27017
       options:

@@ -6,21 +6,6 @@
         <span></span>
       </label>
     </div>
-    <div class="item-col fixed item-col-img md">
-      {{#link-to 'datasource.edit' datasource.id class='datasource'}}
-        <div class="item-img rounded" style="background-image: url(http://www.clker.com/cliparts/3/a/e/b/1346440375869169067LemonandLime.svg.med.png)"></div>
-      {{/link-to}}
-    </div>
-    <!--
-      <div class="item-col item-col-id no-overflow">
-      <div class="item-heading">ID</div>
-      <div class="no-overflow">
-      {{#link-to 'datasource.edit' datasource.id class='datasource text-center'}}
-        {{datasource.id}}
-      {{/link-to}}
-      </div>
-      </div>
-    -->
     <div class="item-col fixed pull-left item-col-title">
       <div class="item-heading">Name</div>
       <div>
@@ -47,17 +32,11 @@
         {{/link-to}}
       </div>
     </div>
-    <div class="item-col item-col-category no-overflow">
-      <div class="item-heading">Category</div>
-      <div class="no-overflow">
-        {{#link-to 'group' 0}} UFMG {{/link-to}}
-      </div>
-    </div>
     <div class="item-col item-col-author">
       <div class="item-heading">Author</div>
       <div class="no-overflow">
         {{#link-to 'user' datasource.user.id}}
-          <h4 class="item-title"> {{datasource.user_id.firstname}} </h4>
+          <h4 class="item-title"> {{datasource.user.fullname}} </h4>
         {{/link-to}}
       </div>
     </div>

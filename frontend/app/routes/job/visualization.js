@@ -12,7 +12,7 @@ export default Ember.Route.extend({
     return this.store.findRecord('job', params.id).then((job) => {
       return {
         component: `visualizations/${params.which}`,
-        url: `${config.ai_social_rails}/json/${params.id}/${params.which}.json`,
+        url: `${config.mj_data_explorer}/json/${params.id}/${params.which}.json`,
         jobId: `${params.id}`,
         search: search,
         filter: job.get('filter')

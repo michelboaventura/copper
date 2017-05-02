@@ -12,21 +12,21 @@
       {{/link-to}}
     </li>
     <li class={{workflowsActive}}>
-      {{#link-to 'workflow.params' 1 }}
+      {{#link-to 'job.new' }}
         <i class="fa fa-flask"></i>
         <span class="nav-text">Filters</span>
       {{/link-to}}
     </li>
     <li class={{jobsActive}}>
-      {{#link-to 'home.jobs' }}
+      {{#link-to 'consults' }}
         <i class="fa fa-tasks" ></i>
         <span class="nav-text">Jobs</span>
       {{/link-to}}
     </li>
-    <li class={{datasourcesActive}}>
-      {{#link-to 'home.datasources' }}
+    <li class={{databasesActive}}>
+      {{#link-to 'databases' }}
         <i class="fa fa-database"></i>
-        <span class="nav-text">Datasources</span>
+        <span class="nav-text">Databases</span>
       {{/link-to}}
     </li>
     <li class={{publicResultsActive}}>

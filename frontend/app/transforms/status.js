@@ -13,7 +13,7 @@ export default DS.Transform.extend({
     PENDING:'fa fa-hourglass-half fa-2x fa-fw pending',
     RUNNING:'fa fa-circle-o-notch fa-spin fa-3x fa-fw running',
     WAITING:'fa fa-clock-o fa-3x fa-fw waiting',
-    EMPTY: 'fa fa-ban fa-3x fa-fw empty'
+    EMPTY: 'fa fa-ban fa-3x fa-fw empty',
   },
 
   deserialize(serialized) {

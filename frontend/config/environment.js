@@ -21,8 +21,9 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
+
     'ember-simple-auth': {
-      authorizer: 'authorizer:devise',
+      authorizer: 'authorizer:oauth2',
       authenticationRoute: '/landing-page',
       routeAfterAuthentication: '/home'
     },
@@ -36,7 +37,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     // ENV.thorn = 'http://localhost:3000';
     ENV.thorn = 'http://citron.ctweb.inweb.org.br:3000';
-    ENV.ai_social_rails = 'http://localhost:8000'
+    ENV.mj_data_explorer = 'http://localhost:8000'
   }
 
   if (environment === 'test') {
@@ -52,12 +53,12 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.thorn = 'http://ceweb.ctweb.inweb.org.br:3000';
-    ENV.ai_social_rails = 'http://ceweb.speed.dcc.ufmg.br';
+    ENV.mj_data_explorer = 'http://ceweb.speed.dcc.ufmg.br';
   }
 
   if (environment === 'staging') {
     ENV.thorn = 'http://ceweb.ctweb.inweb.org.br:3000';
-    ENV.ai_social_rails = 'http://staging-ceweb.speed.dcc.ufmg.br';
+    ENV.mj_data_explorer = 'http://staging-ceweb.speed.dcc.ufmg.br';
   }
 
   return ENV;

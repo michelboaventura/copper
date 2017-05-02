@@ -5,18 +5,20 @@
     </h3>
   </div>
   <form name="item" id="newDb" enctype="multipart/form-data" {{action 'create' on='submit'}}>
+    <!-- TO DO -->
+    <input id='user' type="hidden" name="datasource[user_id]" value={{sessionAccount.id}}>
     <div class="card card-block">
       <div class="form-group row">
         <label class="col-sm-2 form-control-label text-xs-right"> Name: </label>
         <div class="col-sm-10">
-          {{input type="text" class="form-control boxed" name="database[name]"}}
+          {{input type="text" class="form-control boxed" name="datasource[name]"}}
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 form-control-label text-xs-right"> Description: </label>
         <div class="col-sm-10">
           <div class="form-group">
-            {{textarea class="form-control" id="description" rows="5" name="database[description]" maxlength="1600" height="30vh"}}
+            {{textarea class="form-control" id="description" rows="5" name="datasource[description]" maxlength="1600" height="30vh"}}
           </div>
         </div>
       </div>
@@ -24,14 +26,14 @@
         <label class="col-sm-2 form-control-label text-xs-right"> File: </label>
         <div class="col-sm-10">
           <div class="input-group">
-            <input type="file" name="database[file]" />
+            <input type="file" name="datasource[file]" />
           </div>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 form-control-label text-xs-right"> Type: </label>
         <div class="col-sm-10">
-          <select class="c-select form-control boxed" name="database[data_type]">
+          <select class="c-select form-control boxed" name="datasource[data_type]">
             <option value="database">Database</option>
           </select>
         </div>
@@ -39,7 +41,7 @@
       <div class="form-group row">
         <label class="col-sm-2 form-control-label text-xs-right"> Format: </label>
         <div class="col-sm-10">
-          <select class="c-select form-control boxed" name="database[data_format]">
+          <select class="c-select form-control boxed" name="datasource[data_format]">
             <option value="json">json</option>
           </select> </div>
       </div>
