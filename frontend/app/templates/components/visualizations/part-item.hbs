@@ -12,10 +12,13 @@
         <span class='btn btn-dark btn-md' id='pan' title='Click to select pan mode.'><i  class='fa fa-arrows'></i></span>
       </div>
       <span class='btn btn-dark btn-md' id='highlight-reset' title='Click to reset highlight mode to initial state.'>RESET Highlight</span>
+      <div class="input-group">
+        <input class='input-search' id='search-graph' placeholder="Type to search nodes..." />
+        <span class="input-group-addon" {{action 'submitSearch'}}><i class='fa fa-search'></i></span>
+      </div>
     </div>
     <div class='gViz-wrapper' data-id={{_id}} style={{style}} data-canvas='graph-canvas' data-action='drag'></div>
   </div>
-
 {{else}}
   {{visualizations/empty-vis}}
 {{/unless}}
