@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  require './lib/json_web_token.rb'
 
   private
 
