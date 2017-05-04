@@ -27,7 +27,7 @@ production:
 staging:
   clients:
     default:
-      database: ai_social_rails_staging
+      database: mj_data_explorer_staging
       hosts:
         - localhost:27017
       options:
