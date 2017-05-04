@@ -1,7 +1,7 @@
 class Comment
   include Mongoid::Document
 
-  belongs_to :database
+  belongs_to :datasource
   belongs_to :part
   belongs_to :parent, class_name: 'Comment', optional: true
 

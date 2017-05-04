@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0.1'
+gem 'rails', '~> 5.0.2'
+gem 'active_model_serializers', '~> 0.10.2'
 gem 'unicorn'
 gem 'mongoid', '~> 6.1.0'
 gem 'rack-cors', require: 'rack/cors'
@@ -12,6 +13,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'redis', '~> 3.3'
+
+gem 'devise'
+gem 'jwt'
+gem 'devise-i18n'
 
 group :development do
   gem 'pry'

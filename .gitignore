@@ -44,3 +44,5 @@ algorithms/wordtree/install-sh
 algorithms/wordtree/missing
 algorithms/wordtree/src/.dirstamp
 algorithms/wordtree/test-driver
+
+lib/ecdsa_key

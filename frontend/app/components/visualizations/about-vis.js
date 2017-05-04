@@ -213,7 +213,7 @@ export default Ember.Component.extend({
 
     let capitalizeFirstLetter = function(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
-    }
+    };
 
     var descriptions = this.get("descriptions");
     var vis = this.get("vis");

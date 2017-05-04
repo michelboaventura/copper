@@ -9,7 +9,7 @@ export default Ember.Component.extend({
     play(){
       let workflow = this.get('workflow');
       ajax({
-        url:`${config.ai_social_rails}/jobs`,
+        url:`${config.mj_data_explorer}/jobs`,
         type: 'POST',
         data: { job: JSON.stringify(workflow) }
       });

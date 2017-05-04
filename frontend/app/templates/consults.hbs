@@ -1,0 +1,44 @@
+<div class="main-wrapper">
+  <div class="app sidebar-fixed header-fixed footer-fixed" id="app">
+    {{app-header}}
+    {{main-sidebar jobsActive='active'}}
+    <article class="content items-list-page">
+      {{jobs.button-bar deleteCheckeds=(route-action "deleteCheckeds")}}
+      <div class="card items">
+        <table class="table table-stripped">
+          <thead>
+            {{jobs.table-header selectAll=(route-action "selectAll")}}
+          </thead>
+          <tbody>
+            {{#each model as |job|}}
+              {{jobs.table-item job=job wasChecked=(route-action "wasChecked")}}
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </article>
+    {{app-footer}}
+  </div>
+</div>
+
+<!-- Tooltipster markup -->
+<div class='tooltipster-visualization tooltipster-base tooltipster-sidetip tooltipster-top tooltipster-fade tooltipster-show'>
+  <div class='tooltipster-box'>
+    <div class='tooltipster-content'></div>
+  </div>
+  <div class='tooltipster-arrow'>
+    <div class='tooltipster-arrow-uncropped'>
+      <div class='tooltipster-arrow-border'></div>
+      <div class='tooltipster-arrow-background'></div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading markup -->
+<div class="loading-div">
+  <div class="loading-div-inner">
+    <div class="loader">
+      <i class='fa fa-spinner fa-pulse fa-3x'></i>
+    </div>
+  </div>
+</div>

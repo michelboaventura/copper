@@ -4,14 +4,16 @@ import config from '../../config/environment';
 const {$: { ajax }, inject: { service } } = Ember;
 
 export default Ember.Route.extend({
-  currentUser: service('current-user'),
+  sessionAccount: service(),
+
   actions: {
     create(){
+      $('input#user').val(this.get('sessionAccount.id'));
       var form = $('#newDb')[0];
       var formData = new FormData(form);
       var me = this;
       ajax({
-        url: `${config.ai_social_rails}/datasources`,
+        url: `${config.mj_data_explorer}/datasources`,
         type: 'POST',
         data: formData,
         contentType: false,

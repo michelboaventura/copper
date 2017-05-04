@@ -1,19 +1,29 @@
 import Ember from 'ember';
+import config from '../config/environment';
 
-const { inject: { service }, Component } = Ember;
+const { inject: { service }, $: { ajax } } = Ember;
 
-export default Component.extend({
+export default Ember.Component.extend({
   classNames: ['profile', 'dropdown'],
   tagName: 'li',
+  serverTokenEndpoint: `${config.mj_data_explorer}/users/sign_out`,
 
-  session: service('session'),
-  currentUser: service('current-user'),
+  session: service(),
+  sessionAccount: service(),
 
   actions: {
     getSession(){
     },
     invalidateSession(){
-      this.get('session').invalidate();
+      var serverEndpoint = this.get('serverTokenEndpoint');
+      var access_token = this.get('session.data.authenticated.access_token');
+      this.get('session').invalidate().then(
+        ajax({
+          url: serverEndpoint,
+          type: "DELETE",
+          headers: { "Authorization": `Bearer ${access_token}` },
+        })
+      );
     }
   }
 });

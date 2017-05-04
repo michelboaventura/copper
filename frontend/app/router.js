@@ -22,6 +22,7 @@ Router.map(function() {
     this.route('show', {path: ':id/show'});
     this.route('result', {path: ':id/result'});
     this.route('visualization', {path: ':id/visualization/:which'});
+    this.route('new');
   });
   this.route('login');
   this.route('signup');
@@ -69,6 +70,9 @@ Router.map(function() {
     this.route('sentiment-analysis');
   });
   });
+  this.route('datasources');
+  this.route('databases');
+  this.route('consults');
 });
 
 export default Router;

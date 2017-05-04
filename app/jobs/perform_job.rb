@@ -33,11 +33,11 @@ class PerformJob < ApplicationJob
 
     filter = eval(query)
     types = /#{job.types.remover_acentos}/i
-    database = job.database
+    datasource = job.datasource
 
-    part_ids = database.parts.where(type: types).pluck(:id)
-    comments = database.comments.in(part_id: part_ids).where(filter)
-    full_comments = database.comments.in(part_id: part_ids)
+    part_ids = datasource.parts.where(type: types).pluck(:id)
+    comments = datasource.comments.in(part_id: part_ids).where(filter)
+    full_comments = datasource.comments.in(part_id: part_ids)
     terms = query.scan(/\/([^\/]*)\//).flatten.map{|s| s.gsub(/\[[^\]\[]*\]/, '')}
 
     if comments.empty?

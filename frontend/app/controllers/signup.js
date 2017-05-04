@@ -5,7 +5,8 @@ const { RSVP: { Promise }, $: { ajax }, run } = Ember;
 const { service } = Ember.inject;
 
 export default Ember.Controller.extend({
-  session: service('session'),
+  session: service(),
+  sessionAccount: service(),
 
   emailFormGroup: 'form-group',
   invalidEmailErrorMessage: null,
@@ -13,10 +14,11 @@ export default Ember.Controller.extend({
   invalidPasswordErrorMessage: null,
 
   createAccount: function(userData){
+
     var requestOptions = {
-      url: `${config.thorn}/users`,
+      url: `${config.mj_data_explorer}/users`,
       type: 'POST',
-      data: userData,
+      data: {user: userData}
     };
     return new Promise((resolve, reject) => {
       ajax(requestOptions).then(
@@ -49,11 +51,14 @@ export default Ember.Controller.extend({
 
   actions:{
     signup(){
-      this.resetAlerts();
-      let userData = this.getProperties('email', 'password','firstname', 'lastname', 'password_confirmation');
-      this.createAccount(userData)
-        .catch((reason) => { if(reason.errors){ this.alertErrors(reason.errors); }})
-        .then(()=>{this.get('session').authenticate('authenticator:devise', userData.email, userData.password); });
+      var me = this;
+      me.resetAlerts();
+      let userData = me.getProperties('email', 'password','firstname', 'lastname', 'password_confirmation');
+      me.createAccount(userData)
+        .catch(function(reason){ if(reason.errors){ me.alertErrors(reason.errors); }})
+        .then( function() {
+          me.get('session').authenticate('authenticator:oauth2', userData.email, userData.password);
+        });
     },
   },
 });
