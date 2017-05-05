@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
+import config from '../config/environment';
 
-const { inject: { service }, isEmpty} = Ember;
+const { inject: { service }, isEmpty, $: {ajax} } = Ember;
 
 export default Ember.Service.extend({
   session: service(),
@@ -29,6 +30,16 @@ export default Ember.Service.extend({
         Object.keys(obj).forEach(function (key) {
           if(!isEmpty(key)){ sessionAccount.set(key, user.get(key)); }
         });
+      }).catch(function() {
+        var access_token = sessionAccount.get('session.data.authenticated.access_token');
+        var serverEndpoint = `${config.mj_data_explorer}/users/sign_out`;
+        sessionAccount.get('session').invalidate().then(
+          ajax({
+            url: serverEndpoint,
+            type: "DELETE",
+            headers: { "Authorization": `Bearer ${access_token}` },
+          })
+        );
       });
     }
   }
