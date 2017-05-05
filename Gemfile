@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0.2'
 gem 'active_model_serializers', '~> 0.10.2'
-gem 'unicorn'
+gem 'puma'
 gem 'mongoid', '~> 6.1.0'
 gem 'rack-cors', require: 'rack/cors'
 gem 'brstring'
