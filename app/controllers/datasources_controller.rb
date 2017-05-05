@@ -1,5 +1,6 @@
 class DatasourcesController < ApplicationController
-  before_action :validates_current_user, except: [:create]
+  before_action :validates_current_user
+  before_action :authenticate_request
   before_action :set_datasource, only: [:show, :update, :destroy]
 
   # GET /datasources

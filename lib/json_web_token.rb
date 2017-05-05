@@ -1,5 +1,5 @@
 class JsonWebToken
-  ecdsa_key_pem = File.open('lib/ecdsa_key','r').read
+  ecdsa_key_pem = ENV['mj_ecdsa_key'] || File.open('lib/ecdsa_key','r').read rescue nil
   ecdsa_key = OpenSSL::PKey::EC.new ecdsa_key_pem
   class_variable_set(:@@ecdsa_key, ecdsa_key)
   ecdsa_public = OpenSSL::PKey::EC.new ecdsa_key

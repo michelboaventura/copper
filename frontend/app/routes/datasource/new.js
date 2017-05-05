@@ -5,6 +5,7 @@ const {$: { ajax }, inject: { service } } = Ember;
 
 export default Ember.Route.extend({
   sessionAccount: service(),
+  session: service(),
 
   actions: {
     create(){
@@ -13,6 +14,9 @@ export default Ember.Route.extend({
       var formData = new FormData(form);
       var me = this;
       ajax({
+        beforeSend: function(request) {
+          request.setRequestHeader("Authorization", "Bearer " + me.get('session.data.authenticated.access_token'));
+        },
         url: `${config.mj_data_explorer}/datasources`,
         type: 'POST',
         data: formData,
