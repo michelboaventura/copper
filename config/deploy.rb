@@ -1,3 +1,6 @@
+# config valid only for current version of Capistrano
+lock "3.8.1"
+
 set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip
 
@@ -14,17 +17,18 @@ set :repo_url, 'git@github.com:michelboaventura/mj_data_explorer.git'
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/ceweb/mj_data_explorer'
 
-# Default value for :format is :pretty
-set :format, :pretty
+# Default value for :format is :airbrussh.
+set :format, :airbrussh
 
-# Default value for :log_level is :debug
-set :log_level, :info
+# You can configure the Airbrussh format using :format_options.
+# These are the defaults.
+# set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
 
 # Default value for :pty is false
 # set :pty, true
 
 # Default value for :linked_files is []
-# set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
+# append :linked_files, "config/database.yml", "config/secrets.yml"
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'data', 'public/json', 'frontend/node_modules', 'frontend/bower_components')
@@ -34,10 +38,3 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 
 # Default value for keep_releases is 5
 set :keep_releases, 3
-
-after 'deploy:publishing', 'deploy:restart'
-namespace :deploy do
-  task :restart do
-    invoke 'unicorn:reload'
-  end
-end

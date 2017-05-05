@@ -7,23 +7,19 @@ gem 'mongoid', '~> 6.1.0'
 gem 'rack-cors', require: 'rack/cors'
 gem 'brstring'
 gem 'ember-cli-rails'
-
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
-gem 'jquery-rails'
 gem 'redis', '~> 3.3'
-
 gem 'devise'
 gem 'jwt'
 gem 'devise-i18n'
 
 group :development do
+  gem 'listen', '~> 3.1', '>= 3.1.5'
+  gem 'capistrano', '~> 3.7', require: false
+  gem 'capistrano-rails', '~> 1.2', require: false
+  gem 'capistrano-rbenv', '~> 2.0', require: false
+  gem 'capistrano3-puma', '~> 3.1', require: false
+  gem 'capistrano-bundler', '~> 1.2', require: false
   gem 'pry'
-  gem 'listen', '~> 3.1.0'
+  gem 'web-console', '>= 3.3.0'
   gem 'irbtools', require: 'irbtools/binding'
-  gem 'capistrano-rails'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rbenv'
-  gem 'capistrano3-unicorn'
 end
