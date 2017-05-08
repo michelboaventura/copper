@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   resources :datasources
   resources :jobs
-  devise_for :users, controllers: { sessions: 'sessions', registrations: 'registrations' }
   resources :users
+
+  devise_for :users, controllers: {
+    sessions: 'sessions',
+    registrations: 'registrations',
+    passwords: 'passwords'
+  }
 
   get '/json/:job_id/:visualization', to: 'json#index'
 
