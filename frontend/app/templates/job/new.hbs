@@ -11,8 +11,8 @@
       <div>
         <div class="form-group">
           <label for="sel1">Selecione a Base</label>
-          <select class="form-control" id="sel1" onchange={{action (mut datasource) value="target.value"}}>
-            <option>Selecione aqui</option>
+          <select class="form-control" id="sel1" onchange={{action 'selectDatasource' value="target.value"}}>
+            <option value="">Selecione aqui</option>
             {{#each model.datasources as |datasource| }}
               <option value="{{datasource.id}}">{{datasource.name}}</option>
             {{/each}}
