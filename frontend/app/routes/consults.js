@@ -29,7 +29,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,{
     },
 
     deleteCheckeds(){
-      debugger;
       var jobs = this.get('toDelete');
       var store = this.get('store');
       jobs.forEach( function(id){
