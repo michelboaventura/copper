@@ -6,16 +6,20 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,{
   store: Ember.inject.service(),
   toDelete: [],
 
+  beforeModel(){
+    this.store.unloadAll('job');
+  },
+
   model(){
     this._super(...arguments);
-    return this.store.findAll('job');
+    return this.store.findAll('job',  { reload: true });
   },
 
   setupController(controller, model) {
     this._super(controller, model);
     var me = this;
     this.get('poller').startPolling(function() {
-      me.get('store').findAll('job');
+      me.get('store').findAll('job',  { reload: true });
     });
   },
 
@@ -25,6 +29,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin,{
     },
 
     deleteCheckeds(){
+      debugger;
       var jobs = this.get('toDelete');
       var store = this.get('store');
       jobs.forEach( function(id){

@@ -5,16 +5,7 @@
     <article class="content items-list-page">
       {{jobs.button-bar deleteCheckeds=(route-action "deleteCheckeds")}}
       <div class="card items">
-        <table class="table table-stripped">
-          <thead>
-            {{jobs.table-header selectAll=(route-action "selectAll")}}
-          </thead>
-          <tbody>
-            {{#each model as |job|}}
-              {{jobs.table-item job=job wasChecked=(route-action "wasChecked")}}
-            {{/each}}
-          </tbody>
-        </table>
+          {{jobs.large-table model=model}}
       </div>
     </article>
     {{app-footer}}
