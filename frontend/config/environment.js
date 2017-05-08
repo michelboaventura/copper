@@ -35,8 +35,6 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    // ENV.thorn = 'http://localhost:3000';
-    ENV.thorn = 'http://citron.ctweb.inweb.org.br:3000';
     ENV.mj_data_explorer = 'http://localhost:8000'
   }
 
@@ -52,12 +50,10 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.thorn = 'http://ceweb.ctweb.inweb.org.br:3000';
     ENV.mj_data_explorer = 'http://ceweb.speed.dcc.ufmg.br';
   }
 
   if (environment === 'staging') {
-    ENV.thorn = 'http://ceweb.ctweb.inweb.org.br:3000';
     ENV.mj_data_explorer = 'http://staging-ceweb.speed.dcc.ufmg.br';
   }
 

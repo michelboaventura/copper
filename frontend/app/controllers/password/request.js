@@ -21,12 +21,11 @@ export default Ember.Controller.extend({
   actions:{
     request(){
       this.resetAlerts();
-      this.set('processingRequest', true);
       var cred =  this.getProperties('email');
       var requestOptions = {
-        url: `${config.thorn}/users/password`,
+        url: `${config.mj_data_explorer}/users/password`,
         type: 'POST',
-        data: { email: cred.email, redirect_url:`${config.citron}` }
+        data: { user: { email: cred.email } }
       };
       return new Promise((resolve, reject) => {
         ajax(requestOptions).then(
@@ -34,9 +33,8 @@ export default Ember.Controller.extend({
           (error) => { run(() => { reject(error.responseJSON); }); }
         );
       })
-        .then(() =>{ run.later(() => { this.transitionToRoute('/'); }, 7000); })
+        .then(() =>{ this.transitionToRoute('/');  })
         .catch((reason) => {
-          this.set('processingRequest', false);
           this.set('emailFormGroup', 'form-group has-error');
           this.set('invalidEmailErrorMessage', reason.errors);
         });

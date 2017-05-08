@@ -46,7 +46,7 @@ export default Ember.Controller.extend({
       this.set('processingRequest', true);
       let { email, password, password_confirmation, reset_password_token } = this.getProperties('email', 'password', 'password_confirmation', 'reset_password_token');
       var requestOptions = {
-        url: `${config.thorn}/users/password`,
+        url: `${config.mj_data_explorer}/users/password`,
         data: {
           email: email,
           password: password,
