@@ -24,11 +24,11 @@ end
 puts "FREQ"
 
 part_graph.each_pair do |part, count|
-  puts [part, "black", "diamond", count].join("|")
+  puts [part, "Participante", "diamond", count].join("|")
 end
 
 item_graph.each_pair do |item, count|
-  puts [item, "green", "circle", count].join("|")
+  puts [item, "Item", "circle", count].join("|")
 end
 
 puts "NEIG"
