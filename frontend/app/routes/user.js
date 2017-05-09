@@ -7,7 +7,7 @@ export default Ember.Route.extend({
   },
   actions: {
     goToJobs(){
-      this.transitionTo('home.jobs');
+      this.transitionTo('consults');
     }
   }
 });

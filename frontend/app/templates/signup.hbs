@@ -12,22 +12,22 @@
             <div class="form-group"> <label for="firstname">Name</label>
               <div class="row">
                 <div class="col-sm-6">
-                  {{input type="text" class="form-control underlined" name="firstname" id="firstname" placeholder="Enter firstname" value=firstname}} </div>
+                  {{input type="text" class="form-control underlined" name="firstname" id="firstname" placeholder="Enter firstname" value=model.firstname}} </div>
                 <div class="col-sm-6">
-                  {{input type="text" class="form-control underlined" name="lastname" id="lastname" placeholder="Enter lastname"  value=lastname}} </div>
+                  {{input type="text" class="form-control underlined" name="lastname" id="lastname" placeholder="Enter lastname"  value=model.lastname}} </div>
               </div>
             </div>
             <div class={{emailFormGroup}}> <label for="email">Email</label>
-              {{input type="email" class="form-control underlined" name="email" id="email" placeholder="Enter email address"  value=email}}
+              {{input type="email" class="form-control underlined" name="email" id="email" placeholder="Enter email address"  value=model.email}}
               {{#if invalidEmailErrorMessage}} <span id="email-error" class="has-error">{{invalidEmailErrorMessage}}</span>{{/if}}
             </div>
             <div class={{passwordFormGroup}}> <label for="password">Password</label>
               <div class="row">
                 <div class="col-sm-6">
-                  {{input type="password" class="form-control underlined" name="password" id="password" placeholder="Enter password"  value=password}}
+                  {{input type="password" class="form-control underlined" name="password" id="password" placeholder="Enter password"  value=model.password}}
                 </div>
                 <div class="col-sm-6">
-                  {{input type="password" class="form-control underlined" name="password_confirmation" id="password_confirmation" placeholder="Re-type password" value=password_confirmation}}
+                  {{input type="password" class="form-control underlined" name="password_confirmation" id="password_confirmation" placeholder="Re-type password" value=model.passwordConfirmation}}
                 </div>
               </div>
               {{#if invalidPasswordErrorMessage}} <span id="password-error" class="has-error">{{invalidPasswordErrorMessage}}</span>{{/if}}

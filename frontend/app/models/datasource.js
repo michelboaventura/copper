@@ -10,7 +10,6 @@ export default DS.Model.extend({
   description: attr('string'),
   data_type: attr('string'),
   data_format: attr('string'),
-  size: attr('string'),
 
   created_at: attr('dates'),
   updated_at: attr('dates')

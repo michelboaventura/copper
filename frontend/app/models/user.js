@@ -7,5 +7,11 @@ export default DS.Model.extend({
   firstname: DS.attr(),
   lastname: DS.attr(),
   email: DS.attr(),
-  fullname: DS.attr(),
+  fullname: Ember.computed('firstname', 'lastname', function() {
+    return `${this.get('firstname')} ${this.get('lastname')}`;
+  }),
+
+  password: DS.attr(),
+  passwordConfirmation: DS.attr()
+
 });

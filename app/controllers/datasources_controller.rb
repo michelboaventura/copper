@@ -32,7 +32,7 @@ class DatasourcesController < ApplicationController
 
   # PATCH/PUT /datasources/1
   def update
-    if @datasource.update(datasource_params)
+    if @datasource.update(datasource_params_serialized)
       render json: @datasource
     else
       render json: @datasource.errors, status: :unprocessable_entity
@@ -53,5 +53,10 @@ class DatasourcesController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def datasource_params
     params.require(:datasource).permit(:name, :description, :file, :data_format, :data_type, :user_id)
+  end
+
+  def datasource_params_serialized
+    res = ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+    res
   end
 end
