@@ -10,12 +10,7 @@ export default Ember.Route.extend({
   },
   actions:{
     save(){
-      var datasource = this.currentModel;
-      ajax({
-        url: `${config.mj_data_explorer}/datasources/${datasource.id}`,
-        type: 'PATCH',
-        data: {database: datasource}
-      });
+      this.get('currentModel').save()
     },
   }
 });

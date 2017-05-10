@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import config from '../config/environment';
 
-const { RSVP: { Promise }, $: { ajax }, run } = Ember;
+const { RSVP, $: { ajax }, run } = Ember;
 const { service } = Ember.inject;
 
 export default Ember.Controller.extend({
@@ -53,12 +53,9 @@ export default Ember.Controller.extend({
     signup(){
       var me = this;
       me.resetAlerts();
-      let userData = me.getProperties('email', 'password','firstname', 'lastname', 'password_confirmation');
-      me.createAccount(userData)
-        .catch(function(reason){ if(reason.errors){ me.alertErrors(reason.errors); }})
-        .then( function() {
-          me.get('session').authenticate('authenticator:oauth2', userData.email, userData.password);
-        });
+      RSVP.all([this.get('model').save()]).then( function() {
+        me.get('session').authenticate('authenticator:oauth2', me.get('model.email'), me.get('model.password'));
+      });
     },
   },
 });
