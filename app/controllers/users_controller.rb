@@ -21,8 +21,9 @@ class UsersController < ApplicationController
 
     if @user.save
       render json: @user, status: :created, location: @user
+      return
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: ErrorSerializer.serialize(@user.errors),  status: :unprocessable_entity
     end
   end
 
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
     if @user.update(user_params_serialized)
       render json: @user
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: ErrorSerializer.serialize(@user.errors), status: :unprocessable_entity
     end
   end
 

@@ -8,6 +8,7 @@ class User
   has_many :datasources
   has_many :jobs
 
+  validates_presence_of :firstname, :lastname, :password_confirmation
   ## Database authenticatable
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
