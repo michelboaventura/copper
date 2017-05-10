@@ -66,7 +66,14 @@ gViz.vis.graph.search = function () {
           });
 
           // Apply autocomplete
-          _var.search.jq.autocomplete({ source: _var.data.nodes.map(function(d) { return d.name; }) });
+          _var.search.jq.autocomplete({
+            source: _var.data.nodes.map(function(d) { return d.name; }),
+            select: function() {
+              _var.search.value = _var.search.jq.val().latinize().toLowerCase();
+              updateNodes(_var.search.value);
+              _var.ticked();
+            }
+          });
 
           break;
       }
