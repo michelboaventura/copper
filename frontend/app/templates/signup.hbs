@@ -9,29 +9,46 @@
         <div class="auth-content">
           <p class="text-xs-center">SIGNUP TO GET INSTANT ACCESS</p>
           <form id="signup-form" {{action 'signup' on='submit'}}>
-            <div class="form-group"> <label for="firstname">Name</label>
+            <div class="form-group">
+              <label for="firstname">Name</label>
               <div class="row">
-                <div class="col-sm-6">
-                  {{input type="text" class="form-control underlined" name="firstname" id="firstname" placeholder="Enter firstname" value=model.firstname}} </div>
-                <div class="col-sm-6">
-                  {{input type="text" class="form-control underlined" name="lastname" id="lastname" placeholder="Enter lastname"  value=model.lastname}} </div>
+                <div class="col-sm-6" id="firstname">
+                  {{input type="text" class="form-control underlined" name="firstname" id="firstname" placeholder="Enter firstname" value=model.firstname}}
+                  {{#each model.errors.firstname as |error|}}
+                    <span class="has-error">{{error.message}}</span>
+                  {{/each}}
+                </div>
+                <div class="col-sm-6" id="lastname">
+                  {{input type="text" class="form-control underlined" name="lastname" id="lastname" placeholder="Enter lastname"  value=model.lastname}}
+                  {{#each model.errors.lastname as |error|}}
+                    <span class="has-error">{{error.message}}</span>
+                  {{/each}}
+                </div>
               </div>
             </div>
-            <div class={{emailFormGroup}}> <label for="email">Email</label>
+            <div class="form-group" id="email">
+              <label for="email">Email</label>
               {{input type="email" class="form-control underlined" name="email" id="email" placeholder="Enter email address"  value=model.email}}
-              {{#if invalidEmailErrorMessage}} <span id="email-error" class="has-error">{{invalidEmailErrorMessage}}</span>{{/if}}
+                  {{#each model.errors.email as |error|}}
+                    <span id="email" class="has-error">{{error.message}}</span>
+                  {{/each}}
             </div>
-            <div class={{passwordFormGroup}}> <label for="password">Password</label>
+            <div class="form-group">
+              <label for="password">Password</label>
               <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-6" id="password">
                   {{input type="password" class="form-control underlined" name="password" id="password" placeholder="Enter password"  value=model.password}}
+                  {{#each model.errors.password as |error|}}
+                    <span class="has-error">{{error.message}}</span>
+                  {{/each}}
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6" id="password_confirmation">
                   {{input type="password" class="form-control underlined" name="password_confirmation" id="password_confirmation" placeholder="Re-type password" value=model.passwordConfirmation}}
+                  {{#each model.errors.password_confirmation as |error|}}
+                    <span class="has-error">{{error.message}}</span>
+                  {{/each}}
                 </div>
               </div>
-              {{#if invalidPasswordErrorMessage}} <span id="password-error" class="has-error">{{invalidPasswordErrorMessage}}</span>{{/if}}
-
             </div>
             <!-- TO DO -->
             <div class="form-group">
