@@ -39,7 +39,7 @@ gViz.vis.graph.search = function () {
             // Filter nodes
             _var.data.nodes
               .filter(function(d) {
-                return _var.selection.clicked[d.id] != null || (search.length > 1 && d.name.latinize().toLowerCase().indexOf(search) !== -1);
+                return _var.selection.clicked[d.id] != null || (search.length > 1 && d.name.latinize().toLowerCase().trim() == search);
               })
               .forEach(function(node) {
 
@@ -59,14 +59,21 @@ gViz.vis.graph.search = function () {
           _var.search.d3.on('keyup', function() {
             var event = d3.event || window.event;
             if (event.keyCode === 13) {
-              _var.search.value = _var.search.jq.val().latinize().toLowerCase();
+              _var.search.value = _var.search.jq.val().latinize().toLowerCase().trim();
               updateNodes(_var.search.value);
               _var.ticked();
             }
           });
 
           // Apply autocomplete
-          _var.search.jq.autocomplete({ source: _var.data.nodes.map(function(d) { return d.name; }) });
+          _var.search.jq.autocomplete({
+            source: _var.data.nodes.map(function(d) { return d.name; }),
+            select: function(event, ui) {
+              _var.search.value = ui.item.value.latinize().toLowerCase().trim();
+              updateNodes(_var.search.value);
+              _var.ticked();
+            }
+          });
 
           break;
       }
