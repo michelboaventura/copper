@@ -1,0 +1,72 @@
+///*------------------------------------*\
+//    #TOOL PAGE
+//\*------------------------------------*/
+
+/* VARIABLES
+========================================================================== */
+
+/* NAVIGATION
+========================================================================== */
+.config-menu {
+	position: relative;
+	margin-left: auto; @include rem(margin-right, spaces(3));
+}
+
+.config-menu__thumb {
+	width: 31px; height: 31px;
+	@include rem(margin-right, spaces(1));
+	border-radius: 15px;
+	border: 1px solid $color-gray-silver;
+}
+
+.config-menu__title {
+	@include rem(font-size, 13px); color: $color-gray-mine-shaft; text-transform: uppercase;
+}
+
+/* CONTAINERS
+========================================================================== */
+.tool-wrapper {
+	display: flex; flex-direction: column;
+	overflow: hidden;
+	height: 100%;
+}
+
+.tool-container {
+	display: flex; flex: 1 0 auto; flex-direction: row;
+}
+
+.tool-content {
+	flex: 1;
+}
+
+.tool-footer {
+	flex: none;
+	display: block;
+}
+
+.tool-content-wrapper {
+	@include rem(padding, spaces(5) spaces(3));
+	height: 100%;
+	background-color: $color-gray-gallery;
+}
+
+/* CONTAINERS
+========================================================================== */
+.profile-wrapper {
+	display: flex;
+}
+
+.profile__media-container {
+	flex: 0 0 auto;
+	@include rem(margin-right, spaces(4));
+	text-align: center;
+}
+
+.profile__data-container {
+	flex: 1 0 auto;
+}
+
+.profile__file-text {
+	display: block;
+	@include rem(margin-top, spaces(3));
+}

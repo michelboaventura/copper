@@ -1,0 +1,27 @@
+///*------------------------------------*\
+//    #FOOTER
+//\*------------------------------------*/
+
+/* VARIABLES
+========================================================================== */
+
+/* FOOTER WRAPPER
+========================================================================== */
+.wrapper-footer {
+	position: relative;
+	@include rem(padding, spaces(14) 0 spaces(8));
+	background-color: $color-gray-cod;
+}
+
+/* LOGO
+========================================================================== */
+.footer-logo {
+	position: absolute; top: 0;
+}
+
+/* SPONSORS
+========================================================================== */
+.sponsors-list__item {
+	display: inline-block;
+	@include rem(margin-right, spaces(3));
+}

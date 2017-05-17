@@ -42,6 +42,7 @@ Router.map(function() {
     this.route('cadastro');
     this.route('sobre');
     this.route('login');
+    this.route('filtros');
   });
   this.route('user', {path: 'user/:id'});
   this.route('group', {path: 'group/:id'});
@@ -59,7 +60,6 @@ Router.map(function() {
   this.route('results');
 
   this.route('public', function() {
-    this.route('results');
     this.route('result', {path: ':id/result'});
     this.route('visualization', {path: ':id/visualization/:which'});
     this.route('visualizations', function() {

@@ -1,0 +1,17 @@
+<li class="cards-list__item col-3-12">
+  <article class="card">
+    <header class="card__header">
+      <h2 class="card__title">
+        <a href="../../home/filtros/aberto">{{job.name}}</a>
+      </h2>
+      <div class="card__thumb media-thumb">
+        <img class="media-thumb__thumb" src="../../img/examples/card-example.jpg" alt="" />
+      </div>
+    </header>
+    <div class="card__content">
+      <time class="card__time">{{format-date job.finished}}</time>
+      <p class="card__info">em: <a href="../../home/bases/aberta">Anteprojeto de Lei para a Proteção de Dados Pessoais</a></p>
+      <p class="card__info">por: <a href="#">{{job.user_name}}</a></p>
+    </div>
+  </article>
+</li>
