@@ -24,8 +24,6 @@ Router.map(function() {
     this.route('visualization', {path: ':id/visualization/:which'});
     this.route('new');
   });
-  this.route('login');
-  this.route('signup');
   this.route('policy');
   this.route('password', {path:'users/password'}, function() {
     this.route('request');
@@ -43,6 +41,7 @@ Router.map(function() {
     this.route('contato');
     this.route('cadastro');
     this.route('sobre');
+    this.route('login');
   });
   this.route('user', {path: 'user/:id'});
   this.route('group', {path: 'group/:id'});
