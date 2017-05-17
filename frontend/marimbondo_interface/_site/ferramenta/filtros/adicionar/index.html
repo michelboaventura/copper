@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]>    <html class="ie ie9 ie-lt10" lang="pt-BR"> <![endif]-->
+<!--[if gt IE 9]><!--><html lang="pt-BR"><!--<![endif]-->
+
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="noindex, nofollow">
+
+	<title>Adicionar Filtro</title>
+	<meta name="description" content="Site sds.
+">
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+
+	<link rel="stylesheet" href="../../../css/main.css">
+	<link rel="canonical" href="/ferramenta/filtros/adicionar/">
+	<link rel="alternate" type="application/rss+xml" title="OPA" href="/feed.xml">
+</head>
+
+
+    <body>
+        <div class="tool-wrapper">
+            <div class="tool-container">
+                <div class="tool-menu">
+                    <!-- MENU -->
+<div class="menu-wrapper">
+	<div class="u-center-elements">
+		<img class="menu__logo" src="../../../img/logo/logo.jpg" alt="Lemonade" />
+	</div>
+	<ul class="menu-list">
+		<li class="menu-list__item">
+			<a href="../../../home" class="menu-list__anchor"><img class="menu-list__icon" src="../../../img/icons/icon-home.svg" alt=""/><span class="menu-list__icon-text">Home</span></a>
+		</li>
+		<li class="menu-list__item is-selected">
+			<a href="../../../ferramenta/bases" class="menu-list__anchor"><img class="menu-list__icon" src="../../../img/icons/icon-database.svg" alt=""/><span class="menu-list__icon-text">Base de dados</span></a>
+		</li>
+		<li class="menu-list__item">
+			<a href="../../../ferramenta/filtros/adicionar" class="menu-list__anchor"><img class="menu-list__icon" src="../../../img/icons/icon-filter.svg" alt=""/><span class="menu-list__icon-text">Filtrar</span></a>
+		</li>
+		<li class="menu-list__item">
+			<a href="../../../ferramenta/filtros" class="menu-list__anchor"><img class="menu-list__icon" src="../../../img/icons/icon-results.svg" alt=""/><span class="menu-list__icon-text">Resultado dos filtros</span></a>
+		</li>
+		<li class="menu-list__item">
+			<a href="../../../ferramenta/sobre" class="menu-list__anchor"><img class="menu-list__icon" src="../../../img/icons/icon-question.svg" alt=""/><span class="menu-list__icon-text">Sobre a ferramenta</span></a>
+		</li>
+	</ul>
+</div>
+<!-- END MENU -->
+                </div>
+                <div class="tool-content">
+                    <!-- HEADER -->
+<header class="navigation-wrapper row">
+	<div class="navigation-content">
+		<div class="config-menu link-list-wrapper">
+			<button class="config-menu__action link-list__action">
+				<img class="config-menu__thumb" src="../../../img/examples/user-thumb-example.jpg" alt="" />
+				<span class="config-menu__title">NIC CEWEB</span>
+				<img class="" src="../../../img/icons/icon-arrow.svg" alt="" />
+			</button>
+			<ul class="link-list link-list--menu col-2-12">
+				<li class="link-list__item">
+					<a href="../../../ferramenta/perfil" class="link-list__anchor">
+						<img class="link-list__icon" src="../../../img/icons/icon-profile.svg" alt="" />
+						Profile
+					</a>
+				</li>
+				<li class="link-list__item">
+					<a href="#" class="link-list__anchor">
+						<img class="link-list__icon" src="../../../img/icons/icon-logout.svg" alt="" />
+						Logout
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</header>
+
+<script type="text/javascript">
+	var linkListContainer = document.querySelector('.link-list-wrapper'),
+		linkListActionButton = document.querySelector('.link-list__action');
+
+    linkListActionButton.addEventListener('click', function () {
+
+		if (linkListContainer.classList.contains('is-open')) {
+
+			linkListContainer.classList.remove('is-open');
+
+		} else {
+
+			linkListContainer.classList.add('is-open');
+
+		}
+
+    });
+</script>
+
+<!-- END HEADER -->
+                    <main class="tool-content-wrapper" id="main">
+                        <!-- ADD FILTERS CONTENT -->
+<main id="main">
+	<div class="col-8-12">
+		<h2 class="title">Escolha a base de dados a ser filtrada</h2>
+		<p class="description">A base de dados é o compilado de comentários a respeito de um anteprojeto de lei</p>
+	</div>
+	<div class="u-flow-opposite">
+		<a href="../../../ferramenta/bases/adicionar/" class="anchor-button anchor-button--color-3 anchor-button--type-2"><img class="anchor-button__icon" src="../../../img/icons/icon-plus.svg" alt="">adicionar nova base</a>
+	</div>
+	<div class="input-wrapper row">
+		<div class="custom-select" id="type">
+			<select>
+				<option value="">Selecione a base</option>
+				<option value="">Valor B</option>
+				<option value="">Valor C</option>
+			</select>
+		</div>
+	</div>
+	<div class="input-wrapper">
+		<label for="name" class="title">Nome da busca</label>
+		<p class="description">Dê um nome para a sua busca</p>
+		<input type="text" id="name" class="input" />
+	</div>
+	<div class="input-wrapper">
+		<label class="title" for="description">Descrição</label>
+		<p class="description">Lorem ipsum dolor sit amet</p>
+		<textarea class="input input--textarea" id="description" placeholder="Descrição do projeto"></textarea>
+	</div>
+	<div class="input-wrapper">
+		<label class="title" for="description">Filtrar</label>
+		<p class="description">Lorem ipsum dolor sit amet</p>
+		<div class="inner-wrapper inner-wrapper--type-3">
+			<div class="filter-wrapper">
+				<div class="filter-container__group">
+					<div class="u-margin-2">
+						<button class="anchor-button anchor-button--color-3 anchor-button--type-2">
+							<img class="anchor-button__icon" src="../../../img/icons/icon-plus.svg" alt="" />
+							Adicionar regra
+						</button>
+						<button class="anchor-button anchor-button--color-3 anchor-button--type-2">
+							<img class="anchor-button__icon" src="../../../img/icons/icon-plus.svg" alt="" />
+							Adicionar grupo
+						</button>
+					</div>
+					<div class="filter-container">
+						<div class="filter-group">
+							<div class="buttons-list">
+								<button class="buttons-list__item">and</button>
+								<button class="buttons-list__item is">or</button>
+							</div>
+							<ul class="filter-list">
+								<li class="filter-value">
+									<div class="custom-select custom-select--size-3" id="type">
+										<select>
+											<option value="">contains</option>
+											<option value="">equals</option>
+											<option value="">not</option>
+										</select>
+									</div>
+									<input type="text" class="input input--size-3">
+									<div class="u-flow-opposite">
+										<button class="anchor-button anchor-button--size-3 anchor-button--color-4 anchor-button--type-2">
+											<img class="anchor-button__icon" src="../../../img/icons/icon-delete.svg" alt="" />
+											Deletar
+										</button>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="filter-container__group">
+					<div class="u-margin-2">
+						<button class="anchor-button anchor-button--color-3 anchor-button--type-2">
+							<img class="anchor-button__icon" src="../../../img/icons/icon-plus.svg" alt="" />
+							Adicionar regra
+						</button>
+						<button class="anchor-button anchor-button--color-3 anchor-button--type-2">
+							<img class="anchor-button__icon" src="../../../img/icons/icon-plus.svg" alt="" />
+							Adicionar grupo
+						</button>
+						<div class="u-flow-opposite">
+							<button class="anchor-button anchor-button--type-2 anchor-button--color-4">
+								<img class="anchor-button__icon" src="../../../img/icons/icon-delete.svg" alt=""/>Deletar esse grupo
+							</button>
+						</div>
+					</div>
+					<div class="filter-container">
+						<div class="filter-group">
+							<div class="buttons-list">
+								<button class="buttons-list__item">and</button>
+								<button class="buttons-list__item is">or</button>
+							</div>
+							<ul class="filter-list">
+								<li class="filter-value">
+									<div class="custom-select custom-select--size-3" id="type">
+										<select>
+											<option value="">contains</option>
+											<option value="">equals</option>
+											<option value="">not</option>
+										</select>
+									</div>
+									<input type="text" class="input input--size-3">
+									<div class="u-flow-opposite">
+										<button class="anchor-button anchor-button--size-3 anchor-button--color-4 anchor-button--type-2">
+											<img class="anchor-button__icon" src="../../../img/icons/icon-delete.svg" alt="" />
+											Deletar
+										</button>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="u-center-elements">
+		<button class="anchor-button anchor-button--size-2" type="submit">filtrar</button>
+	</div>
+</main>
+<!-- END ADD FILTERS CONTENT -->
+                    </main>
+                </div>
+            </div>
+            <div class="tool-footer">
+                <!-- FOOTER -->
+<footer class="wrapper-footer">
+	<div class="content">
+		<img class="footer-logo" src="../../../img/logo/logo--reverso.jpg" alt="Lemonade" />
+		<p class="paragraph u-color--white col-6-12">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+		<ul class="sponsors-list u-flow-opposite">
+			<li class="sponsors-list__item"><a class="sponsors-list__anchor" href="#"><img class="sponsors-list__image" src="../../../img/logo/logo-ufmg.jpg" alt="UFMG"></a></li>
+			<li class="sponsors-list__item"><a class="sponsors-list__anchor" href="#"><img class="sponsors-list__image" src="../../../img/logo/logo-ceweb.svg" alt="CEWEB"></a></li>
+			<li class="sponsors-list__item"><a class="sponsors-list__anchor" href="#"><img class="sponsors-list__image" src="../../../img/logo/logo-nic.svg" alt="NIC"></a></li>
+			<li class="sponsors-list__item"><a class="sponsors-list__anchor" href="#"><img class="sponsors-list__image" src="../../../img/logo/logo-cgi.svg" alt="CGI"></a></li>
+		</ul>
+	</div>
+</footer>
+<!-- END FOOTER -->
+            </div>
+        </div>
+    </body>
+
+</html>

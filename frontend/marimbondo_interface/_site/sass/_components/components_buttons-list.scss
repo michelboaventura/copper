@@ -1,0 +1,64 @@
+///*------------------------------------*\
+//    #BUTTONS LIST
+//\*------------------------------------*/
+
+/* VARIABLES
+========================================================================== */
+
+/* LIST WRAPPER
+========================================================================== */
+.buttons-list {
+	display: block;
+	@include rem(margin-bottom, spaces(.5));
+}
+
+/* BUTTONS
+========================================================================== */
+.buttons-list__item {
+	position: relative;
+	float: left;
+	@include rem(width, 42px);
+	@include rem(padding, spaces(.5) 0);
+	@include rem(font-size, 13px); font-weight: 600; color: $color-blue-stone;
+	background-color: $color-white;
+	border: 1px solid $color-blue-stone;
+	border-right: none;
+	cursor: pointer;
+	transition: opacity ease $basic-transition;
+
+	&:hover, &:focus {
+		opacity: .7;
+		transition: opacity ease $basic-transition;
+	}
+
+	&.is-active {
+		color: $color-white;
+		background-color: $color-blue-stone;
+
+		&:after {
+			content: '';
+			position: absolute; right: -100%; top: 100%; left: -100%;
+			margin: auto;
+			width: 0; height: 0;
+			border-style: solid; border-width: 4px 4px 0 4px; border-color: $color-blue-stone transparent transparent transparent;
+		}
+
+	}
+
+	&:first-of-type {
+		border-top-left-radius: 2px;
+		border-bottom-left-radius: 2px;
+	}
+
+	&:last-of-type {
+		border-top-right-radius: 2px;
+		border-bottom-right-radius: 2px;
+		border-right: 1px solid $color-blue-stone;
+	}
+
+	&[disabled] {
+		color: $color-gray-silver;
+		border-color: $color-gray-silver;
+	}
+
+}

@@ -1,0 +1,45 @@
+///*------------------------------------*\
+//    #HIGHLIGHT
+//\*------------------------------------*/
+
+/* VARIABLES
+========================================================================== */
+$highlight-width--tablet: 538px;
+$highlight-width--desktop: 700px;
+$highlight-width--desktop--large: 849px;
+
+/* HIGHLIGHT
+========================================================================== */
+.highlight {
+	position: relative;
+
+	@include breakpoint(tablet-and-up) {
+		@include rem(width, $highlight-width--tablet);
+	}
+
+	@include breakpoint(desktop-and-up) {
+		@include rem(width, $highlight-width--desktop);
+	}
+
+	@include breakpoint(desktop-large) {
+		@include rem(width, $highlight-width--desktop--large);
+	}
+
+}
+
+.highlight__info {
+	position: relative;
+	@include rem(margin, spaces(-4) 0 0 0);
+
+	@include breakpoint(tablet-and-up) {
+		position: absolute; top: 0; left: 100%;
+		@include rem(margin-left, spaces(-14)); @include rem(margin-top, spaces(6));
+		@include rem(width, 290px);
+	}
+
+	@include breakpoint(desktop-and-up) {
+		@include rem(margin-top, spaces(8)); @include rem(margin-left, spaces(-20));
+		@include rem(width, 455px);
+	}
+
+}

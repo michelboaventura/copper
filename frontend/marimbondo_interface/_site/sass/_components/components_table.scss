@@ -1,0 +1,56 @@
+///*------------------------------------*\
+//    #TABLE
+//\*------------------------------------*/
+
+/* VARIABLES
+========================================================================== */
+
+/* TABLE
+========================================================================== */
+.table {
+	@include rem(margin-bottom, spaces(5));
+	border-collapse: collapse;
+	width: 100%;
+	@include rem(font-size, 13px); line-height: 110%;
+}
+
+/* HEAD
+========================================================================== */
+.table__head {
+	color: $color-white;
+	background-color: $color-gray-mine-shaft;
+
+	th {
+		@include rem(padding, spaces(1.75) spaces(2) spaces(1.5));
+		text-align: left;
+		font-weight: normal;
+	}
+
+	tr {
+		border-bottom: 3px solid $color-gray-gallery;
+	}
+
+	.u-row-width--5 { width: 5%; }
+	.u-row-width--10 { width: 10%; }
+	.u-row-width--20 { width: 20%; }
+	.u-row-width--30 { width: 30%; }
+	.u-row-width--40 { width: 40%; }
+	.u-row-width--50 { width: 50%; }
+
+}
+
+
+/* BODY
+========================================================================== */
+.table__body {
+	background-color: $color-white;
+
+	td {
+		@include rem(padding, spaces(2.5) spaces(2) spaces(2));
+	}
+
+	tr {
+		border-bottom: 2px solid $color-gray-gallery;
+	}
+
+}

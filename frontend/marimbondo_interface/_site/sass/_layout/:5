@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Teste modal</title>
+</head>
+<body>
+<a href="#modal">Abre a modal</a>
+</body>
+</html>
