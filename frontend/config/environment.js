@@ -24,8 +24,9 @@ module.exports = function(environment) {
 
     'ember-simple-auth': {
       authorizer: 'authorizer:oauth2',
-      authenticationRoute: '/landing-page',
-      routeAfterAuthentication: '/home'
+      authenticationRoute: '/landing-page/index',
+      routeAfterAuthentication: '/ferramenta/index',
+      routeIfAlreadyAuthenticated: '/ferramenta/index'
     },
   };
 

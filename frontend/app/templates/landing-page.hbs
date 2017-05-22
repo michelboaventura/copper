@@ -22,12 +22,18 @@
           <li class="navigation-list__item">
             {{link-to "contato" "landing-page.contato" class="navigation-list__anchor"}}
           </li>
-          <li class="navigation-list__item">
-            {{link-to "inscreva-se" "landing-page.cadastro" class="navigation-list__anchor"}}
-          </li>
+          {{#unless isAuthenticated }}
+            <li class="navigation-list__item">
+              {{link-to "inscreva-se" "landing-page.cadastro" class="navigation-list__anchor"}}
+            </li>
+          {{/unless}}
         </ul>
       </nav>
-      {{link-to "Entrar" "landing-page.login" class="anchor-button"}}
+      {{#if isAuthenticated }}
+        {{link-to "Ferramenta" "ferramenta.index" class="anchor-button"}}
+      {{else}}
+        {{link-to "Entrar" "landing-page.login" class="anchor-button"}}
+      {{/if}}
     </div>
   </div>
 </header>
