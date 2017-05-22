@@ -1119,6 +1119,12 @@ a {
     background-color: white;
     -webkit-transition: background-color ease 0.3s, color ease 0.3s;
     transition: background-color ease 0.3s, color ease 0.3s; }
+  .anchor-button:hover, .anchor-button:focus, .anchor-button.active {
+    opacity: 1;
+    color: #b5303c;
+    background-color: white;
+    -webkit-transition: background-color ease 0.3s, color ease 0.3s;
+    transition: background-color ease 0.3s, color ease 0.3s; }
   .anchor-button + .anchor-button {
     margin-right: 8px;
     margin-right: 0.5rem; }
@@ -1795,9 +1801,15 @@ input[readonly] {
   font-weight: 600;
   color: #bbbbbb;
   text-transform: uppercase; }
+  .menu-list__anchor.active{
+    background-color: black;
+    color: white; }
   .menu-list__anchor:hover, .menu-list__anchor:focus {
     opacity: 1;
     background-color: black; }
+  .active .menu-list__anchor {
+    background-color: black;
+    color: white; }
   .is-selected .menu-list__anchor {
     background-color: black;
     color: white; }
