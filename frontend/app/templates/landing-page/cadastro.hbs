@@ -1,28 +1,52 @@
 <div class="section-wrapper">
   <div class="content">
     <div class="inner-wrapper">
-      <form class="form-wrapper" action="">
+      <form class="form-wrapper" {{action 'signup' on='submit'}}>
         <div class="u-center-elements u-margin-2">
           <h2 class="title title--type-2">Inscreva-se para ganhar acesso instantâneo</h2>
         </div>
         <div class="input-wrapper">
-          <label class="label" for="name">Nome</label>
-          <input class="input" type="text" id="name" />
+          <label class="label" for="name">Primeiro Nome</label>
+          {{input type="text" class="input" name="firstname" id="firstname" placeholder="Primeiro Nome" value=model.firstname}}
+          {{#each model.errors.firstname as |error|}}
+            <span class="label has-error">{{error.message}}</span>
+          {{/each}}
+        </div>
+        <div class="input-wrapper">
+          <label class="label" for="name">Último Nome</label>
+          {{input type="text" class="input" name="lastname" id="lastname" placeholder="Último Nome"  value=model.lastname}}
+          {{#each model.errors.lastname as |error|}}
+            <span class="label has-error">{{error.message}}</span>
+          {{/each}}
         </div>
         <div class="input-wrapper">
           <label class="label" for="email">E-mail</label>
-          <input class="input" type="email" id="email" />
+          {{input type="email" class="input" name="email" id="email" placeholder="Endereço de email"  value=model.email}}
+          {{#each model.errors.email as |error|}}
+            <span id="email" class="label has-error">{{error.message}}</span>
+          {{/each}}
         </div>
         <div class="input-wrapper">
           <label class="label" for="password">Senha</label>
-          <input class="input" type="password" id="password" />
+          {{input type="password" class="input" name="password" id="password" placeholder="Minimo 6 digítos"  value=model.password}}
+          {{#each model.errors.password as |error|}}
+            <span class="label has-error">{{error.message}}</span>
+          {{/each}}
         </div>
         <div class="input-wrapper">
           <label class="label" for="repassword">Repetir Senha</label>
-          <input class="input" type="password" id="repassword" />
+          {{input type="password" class="input" name="password_confirmation" id="password_confirmation" placeholder="Confirme sua senha" value=model.passwordConfirmation}}
+          {{#each model.errors.password_confirmation as |error|}}
+            <span class="label has-error">{{error.message}}</span>
+          {{/each}}
         </div>
         <div class="input-wrapper u-margin-4">
-          <label class="label label--checkbox" for="remember"><input class="input--checkbox" type="checkbox" id="remember"/>Eu concordo com os <a href="#" class="u-color--red-well">termos e políticas</a></label>
+          <label class="label label--checkbox" for="remember">
+            {{input class='input--checkbox' name='agree' id='agree' type='checkbox' checked=agreed}} Eu concordo com os <a href="#" class="u-color--red-well">termos e políticas</a>
+          </label>
+          <span class="label has-error">{{notAgreed}}</span>
+
+
         </div>
         <div class="input-wrapper">
           <div class="u-center-elements">

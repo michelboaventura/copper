@@ -24,5 +24,7 @@ module MjDataExplorer
     config.middleware.use Rack::ContentLength
     config.autoload_paths << Rails.root.join('lib')
     config.api_only = true
+    config.i18n.default_locale = :'pt-BR'
+    config.i18n.available_locales = :'pt-BR'
   end
 end
