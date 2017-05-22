@@ -37,7 +37,6 @@ Router.map(function() {
     this.route('visualizations');
   });
   this.route('landing-page', function() {
-    this.route('index');
     this.route('contato');
     this.route('cadastro');
     this.route('sobre');
@@ -77,6 +76,20 @@ Router.map(function() {
   this.route('datasources');
   this.route('databases');
   this.route('consults');
+
+  this.route('ferramenta', function() {
+    this.route('index');
+    this.route('perfil', function() {
+      this.route('senha');
+    });
+    this.route('bases');
+
+    this.route('filtros', function() {
+      this.route('index');
+      this.route('adicionar');
+    });
+    this.route('sobre');
+  });
 });
 
 export default Router;
