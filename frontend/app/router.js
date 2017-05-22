@@ -81,6 +81,12 @@ Router.map(function() {
   this.route('ferramenta', function() {
     this.route('index');
     this.route('perfil');
+    this.route('bases');
+
+    this.route('filtros', function() {
+      this.route('adicionar');
+    });
+    this.route('sobre');
   });
 });
 

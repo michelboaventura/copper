@@ -1,0 +1,40 @@
+<div class="tool-menu">
+  <!-- MENU -->
+  <div class="menu-wrapper">
+    <div class="u-center-elements">
+      {{#link-to 'landing-page.index'}}
+        <img class="menu__logo" src="/assets/img/logo/logo.jpg" alt="Lemonade" />
+      {{/link-to}}
+    </div>
+    <ul class="menu-list">
+      <li class="menu-list__item">
+        {{#link-to 'ferramenta.index' class="menu-list__anchor"}}
+          <img class="menu-list__icon" src="/assets/img/icons/icon-home.svg" alt=""/><span class="menu-list__icon-text">Home</span>
+        {{/link-to}}
+
+      </li>
+      <li class="menu-list__item">
+        {{#link-to 'ferramenta.bases' class="menu-list__anchor"}}
+          <img class="menu-list__icon" src="/assets/img/icons/icon-database.svg" alt=""/><span class="menu-list__icon-text">Base de dados</span>
+        {{/link-to}}
+      </li>
+      <li class="menu-list__item">
+        {{#link-to 'ferramenta.filtros.adicionar' class="menu-list__anchor"}}
+          <img class="menu-list__icon" src="/assets/img/icons/icon-filter.svg" alt=""/><span class="menu-list__icon-text">Filtrar</span>
+        {{/link-to}}
+      </li>
+      <li class="menu-list__item">
+        {{#link-to 'ferramenta.filtros' class="menu-list__anchor"}}
+          <img class="menu-list__icon" src="/assets/img/icons/icon-results.svg" alt=""/><span class="menu-list__icon-text">Resultado dos filtros</span>
+        {{/link-to}}
+      </li>
+      <li class="menu-list__item">
+        {{#link-to 'ferramenta.sobre' class="menu-list__anchor"}}
+          <img class="menu-list__icon" src="/assets/img/icons/icon-question.svg" alt=""/><span class="menu-list__icon-text">Sobre a ferramenta</span>
+        {{/link-to}}
+      </li>
+    </ul>
+  </div>
+  <!-- END MENU -->
+</div>
+
