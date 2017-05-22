@@ -5,7 +5,7 @@
 <header class="navigation-wrapper">
   <div class="content">
     <div class="navigation-content">
-      {{#link-to "landing-page.index" class="navigation__logo"}}
+      {{#link-to "landing-page" class="navigation__logo"}}
         <img src="/assets/img/logo/logo.jpg" alt="Lemonade">
       {{/link-to}}
       <nav class="navigation" id="js-navigation">
@@ -14,7 +14,7 @@
             {{link-to "explore filtros" "landing-page.filtros" class="navigation-list__anchor"}}
           </li>
           <li class="navigation-list__item">
-            <a href="../home/bases" class="navigation-list__anchor">explore bases</a>
+            {{link-to "explore bases" "ferramenta.bases" class="navigation-list__anchor"}}
           </li>
           <li class="navigation-list__item">
             {{link-to "sobre" "landing-page.sobre" class="navigation-list__anchor"}}
@@ -30,7 +30,7 @@
         </ul>
       </nav>
       {{#if isAuthenticated }}
-        {{link-to "Ferramenta" "ferramenta.index" class="anchor-button"}}
+        {{link-to "Ferramenta" "ferramenta" class="anchor-button"}}
       {{else}}
         {{link-to "Entrar" "landing-page.login" class="anchor-button"}}
       {{/if}}

@@ -1,0 +1,41 @@
+<main class="tool-content-wrapper" id="main">
+<!-- TOOL HOME CONTENT -->
+<section>
+  <h1 class="title">Seu perfil, {{model.firstname}}</h1>
+  {{#link-to 'ferramenta.perfil.senha'  class="anchor-button anchor-button--type-2 anchor-button--color-3 u-flow-opposite"}} Mudar a senha
+  {{/link-to}}
+  <form onsubmit={{route-action 'save'}}>
+    <div class="profile-wrapper inner-wrapper inner-wrapper--type-2">
+      <div class="profile__media-container">
+        <label for="inputfile" class="label">
+          <img class="media-thumb__thumb media-thumb--big" src="/assets/img/examples/user-thumb-big--example.jpg" alt="" />
+          <span class="profile__file-text"><img class="anchor-button__icon" src="/assets/img/icons/icon-edit.svg" alt="" />Alterar foto</span>
+        </label>
+        <!-- not working
+          <input type="file" class="input--file" id="inputfile">
+        -->
+      </div>
+      <div class="profile__data-container">
+        <div class="input-wrapper">
+          <label class="label" for="name">Nome</label>
+          {{input type="text" class="input input--size-2" id="firstname" value=model.firstname}}
+        </div>
+        <div class="input-wrapper">
+          <label class="label" for="sobrenome">Sobrenome</label>
+          {{input type="text" class="input input--size-2" id="lastname" value=model.lastname}}
+        </div>
+        <div class="input-wrapper">
+          <label class="label" for="email">E-mail</label>
+          {{input type="text" class="input input--size-2" id="email" value=model.email}}
+        </div>
+      </div>
+    </div>
+    <div class="input-wrapper">
+      <div class="u-center-elements">
+        <input type="submit" class="anchor-button anchor-button--size-2" value="Salvar" />
+      </div>
+    </div>
+  </form>
+</section>
+<!-- END TOOL HOME CONTENT -->
+</main>

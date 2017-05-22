@@ -8,7 +8,8 @@ class User
   has_many :datasources
   has_many :jobs
 
-  validates_presence_of :firstname, :lastname, :password_confirmation
+  validates_presence_of :firstname, :lastname
+  validates :password_confirmation, presence: true, length: { minimum: 6 }, on: [:create, :change_password]
   ## Database authenticatable
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""

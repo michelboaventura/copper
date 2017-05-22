@@ -1,0 +1,34 @@
+<main class="tool-content-wrapper" id="main">
+<!-- EDIT PASSWORD -->
+<form>
+  <div class="row">
+    <a href="#" class="anchor-button anchor-button--type-2 anchor-button--size-3 anchor-button--color-4 u-margin-3">&lt; voltar</a>
+  </div>
+  <h1 class="title">Mudar senha</h1>
+  <div class="inner-wrapper inner-wrapper--type-2 perfil">
+    <div class="input-media__data">
+      <div class="input-wrapper">
+        <label class="label" for="repassword">Senha anntiga</label>
+        {{input class="input input--size-2" type="password" id="oldPassword" value=oldPassword}}
+        <span class="label has-error">{{validationError}}</span>
+      </div>
+      <div class="input-wrapper">
+        <label class="label" for="password">Nova senha</label>
+        {{input class="input input--size-2" type="password" id="password" value=newPassword }}
+        <span class="label has-error">{{validationError}}</span>
+      </div>
+      <div class="input-wrapper">
+        <label class="label" for="rerepassword">Repita a nova senha</label>
+        {{input class="input input--size-2" type="password" id="rerepassword" value=newPasswordConfirmation}}
+        <span class="label has-error">{{validationError}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="input-wrapper">
+    <div class="u-center-elements">
+      <input onclick={{route-action 'changePassword'}} class="anchor-button anchor-button--size-2" value="Alterar Senha" />
+    </div>
+  </div>
+</form>
+<!-- END EDIT PASSWORD -->
+</main>

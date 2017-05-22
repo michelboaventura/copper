@@ -6,14 +6,14 @@
           <h2 class="title title--type-2">Inscreva-se para ganhar acesso instantâneo</h2>
         </div>
         <div class="input-wrapper">
-          <label class="label" for="name">Primeiro Nome</label>
+          <label class="label" for="name">Nome</label>
           {{input type="text" class="input" name="firstname" id="firstname" placeholder="Primeiro Nome" value=model.firstname}}
           {{#each model.errors.firstname as |error|}}
             <span class="label has-error">{{error.message}}</span>
           {{/each}}
         </div>
         <div class="input-wrapper">
-          <label class="label" for="name">Último Nome</label>
+          <label class="label" for="name">Sobrenome</label>
           {{input type="text" class="input" name="lastname" id="lastname" placeholder="Último Nome"  value=model.lastname}}
           {{#each model.errors.lastname as |error|}}
             <span class="label has-error">{{error.message}}</span>
