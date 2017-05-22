@@ -5,6 +5,8 @@ const { inject: { service }, $: { ajax } } = Ember;
 
 export default Ember.Component.extend({
   session: service(),
+  sessionAccount: service(),
+
   serverTokenEndpoint: `${config.mj_data_explorer}/users/sign_out`,
 
   didInsertElement(){

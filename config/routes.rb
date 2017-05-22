@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :jobs
   resources :users
 
+  post '/users/change_password', to: 'users#change_password'
+
   devise_for :users, controllers: {
     sessions: 'sessions',
     passwords: 'passwords'
