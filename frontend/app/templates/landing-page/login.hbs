@@ -1,16 +1,16 @@
 <div class="section-wrapper">
   <div class="content">
     <div class="inner-wrapper">
-      <form class="form-wrapper" action="">
+      <form class="form-wrapper" {{action 'authenticate' on='submit'}}>
         <div class="input-wrapper">
           <label class="label" for="email">E-mail</label>
           {{input type='email' class='input' name='email' id='email' value=email}}
-          {{#if invalidEmailErrorMessage}}<span id="email-error" class="has-error">{{invalidEmailErrorMessage}}</span>{{/if}}
+          <span id="email-error" class="label has-error">{{emailErrorMessage}}</span>
         </div>
         <div class="input-wrapper">
-          <label class="label" for="name">Nome</label>
+          <label class="label" for="name">Senha</label>
           {{input type='password' class='input' name='password' id='password' value=password}}
-          {{#if invalidPasswordErrorMessage}}<span id="email-error" class="has-error">{{invalidPasswordErrorMessage}}</span>{{/if}}
+          <span id="email-error" class="label has-error">{{passwordErrorMessage}}</span>
         </div>
         <div class="row u-margin-3">
           <div class="col-3-12">
