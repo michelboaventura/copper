@@ -77,6 +77,11 @@ Router.map(function() {
   this.route('datasources');
   this.route('databases');
   this.route('consults');
+
+  this.route('ferramenta', function() {
+    this.route('index');
+    this.route('perfil');
+  });
 });
 
 export default Router;
