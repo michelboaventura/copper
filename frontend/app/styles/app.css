@@ -2431,6 +2431,9 @@ input[readonly] {
           flex: none;
   display: block; }
 
+.tool-menu {
+    height: 100%; }
+
 .tool-content-wrapper {
   padding: 40px 24px;
   padding: 2.5rem 1.5rem;

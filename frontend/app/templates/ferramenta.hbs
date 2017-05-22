@@ -5,32 +5,8 @@
     <div class="tool-content">
       <!-- HEADER -->
       {{ferramenta/profile-header}}
-
-      <script type="text/javascript">
-var linkListContainer = document.querySelector('.link-list-wrapper'),
-  linkListActionButton = document.querySelector('.link-list__action');
-
-linkListActionButton.addEventListener('click', function () {
-
-  if (linkListContainer.classList.contains('is-open')) {
-
-    linkListContainer.classList.remove('is-open');
-
-  } else {
-
-    linkListContainer.classList.add('is-open');
-
-  }
-
-});
-      </script>
-
       <!-- END HEADER -->
-      <main class="tool-content-wrapper" id="main">
-      <!-- TOOL HOME CONTENT -->
-
-      <!-- END TOOL HOME CONTENT -->
-      </main>
+      {{outlet}}
     </div>
   </div>
 </div>
