@@ -5,7 +5,7 @@
 <header class="navigation-wrapper">
   <div class="content">
     <div class="navigation-content">
-      {{#link-to "landing-page.index" class="navigation__logo"}}
+      {{#link-to "landing-page" class="navigation__logo"}}
         <img src="/assets/img/logo/logo.jpg" alt="Lemonade">
       {{/link-to}}
       <nav class="navigation" id="js-navigation">
@@ -14,7 +14,7 @@
             {{link-to "explore filtros" "landing-page.filtros" class="navigation-list__anchor"}}
           </li>
           <li class="navigation-list__item">
-            <a href="../home/bases" class="navigation-list__anchor">explore bases</a>
+            {{link-to "explore bases" "ferramenta.bases" class="navigation-list__anchor"}}
           </li>
           <li class="navigation-list__item">
             {{link-to "sobre" "landing-page.sobre" class="navigation-list__anchor"}}
@@ -22,27 +22,21 @@
           <li class="navigation-list__item">
             {{link-to "contato" "landing-page.contato" class="navigation-list__anchor"}}
           </li>
-          <li class="navigation-list__item">
-            {{link-to "inscreva-se" "landing-page.cadastro" class="navigation-list__anchor"}}
-          </li>
+          {{#unless isAuthenticated }}
+            <li class="navigation-list__item">
+              {{link-to "inscreva-se" "landing-page.cadastro" class="navigation-list__anchor"}}
+            </li>
+          {{/unless}}
         </ul>
       </nav>
-      {{link-to "Entrar" "landing-page.login" class="anchor-button"}}
+      {{#if isAuthenticated }}
+        {{link-to "Ferramenta" "ferramenta" class="anchor-button"}}
+      {{else}}
+        {{link-to "Entrar" "landing-page.login" class="anchor-button"}}
+      {{/if}}
     </div>
   </div>
 </header>
 <main id="main">
 {{outlet}}
 </main>
-<footer class="wrapper-footer">
-  <div class="content">
-    <img class="footer-logo" src="/assets/img/logo/logo--reverso.jpg" alt="Lemonade" />
-    <p class="paragraph u-color--white col-6-12">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-    <ul class="sponsors-list u-flow-opposite">
-      <li class="sponsors-list__item"><a class="sponsors-list__anchor" href="#"><img class="sponsors-list__image" src="/assets/img/logo/logo-ufmg.jpg" alt="UFMG"></a></li>
-      <li class="sponsors-list__item"><a class="sponsors-list__anchor" href="#"><img class="sponsors-list__image" src="/assets/img/logo/logo-ceweb.svg" alt="CEWEB"></a></li>
-      <li class="sponsors-list__item"><a class="sponsors-list__anchor" href="#"><img class="sponsors-list__image" src="/assets/img/logo/logo-nic.svg" alt="NIC"></a></li>
-      <li class="sponsors-list__item"><a class="sponsors-list__anchor" href="#"><img class="sponsors-list__image" src="/assets/img/logo/logo-cgi.svg" alt="CGI"></a></li>
-    </ul>
-  </div>
-</footer>
