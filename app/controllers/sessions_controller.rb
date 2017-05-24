@@ -11,7 +11,7 @@ class SessionsController < Devise::SessionsController
       @user.update_attributes(auth_params)
       render json: { data: @user.as_json.except('access_token'), access_token: @user.access_token }
     else
-      render json: {message: 'Invalid credentials'}, status: :unprocessable_entity
+      render json: {errors: [{detail: "email e/ou senha inválidos", source: "data/attributes/email"}, {detail: "email e/ou senha inválidos", source: "data/attributes/password"} ]}, status: :unprocessable_entity
     end
   end
 
