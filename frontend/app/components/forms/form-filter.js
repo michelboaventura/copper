@@ -9,18 +9,17 @@ var qbJson = {
     operators: ['contains', 'equal', 'not_equal']
   }],
   default_filter: 'text',
-  lang_code: 'en',
+  lang_code: 'pt-BR',
   icons:{
-    add_group: 'fa fa-plus',
-    add_rule: 'fa fa-plus',
-    remove_group: 'fa fa-minus',
-    remove_rule: 'fa fa-minus',
-    error: 'fa fa-exclamation-triangle'
+    add_group: 'anchor-button__icon fa fa-plus',
+    add_rule: 'anchor-button__icon fa fa-plus',
+    remove_group: 'anchor-button__icon fa fa-minus',
+    remove_rule: 'anchor-button__icon fa fa-minus',
+    error: 'anchor-button__icon fa fa-exclamation-triangle'
   }
 };
 
 export default Ember.Component.extend({
-  classNames: ['filter', 'queryBuilder'],
   routing: Ember.inject.service('-routing'),
   sessionAccount: Ember.inject.service(),
   store: Ember.inject.service(),
