@@ -27,15 +27,12 @@
 		<p class="description">Lorem ipsum dolor sit amet</p>
 		<textarea class="input input--textarea" id="description" placeholder="Descrição do projeto"></textarea>
 	</div>
-   <div class="">
-        <label class="item-check" class="title">Public:
-          {{input type="checkbox" name="publicSearch" checked=model.job.public class="checkbox"}}
-          <span></span>
-        </label>
-      </div>
-	<div class="u-center-elements">
-    {{forms/form-filter job=model.job datasource=datasource}}
-		<button class="anchor-button anchor-button--size-2" type="submit">filtrar</button>
-	</div>
+  {{forms/form-filter job=model.job datasource=datasource}}
+  <div class="">
+    <label class="item-check" class="title">Public:
+      {{input type="checkbox" name="publicSearch" checked=model.job.public class="checkbox"}}
+      <span></span>
+    </label>
+  </div>
 </main>
 <!-- END ADD FILTERS CONTENT -->

@@ -18,8 +18,16 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
     //
-  app.import('vendor/bootstrap/bootstrap.min.css');
-  app.import('vendor/bootstrap/bootstrap-theme.min.css');
+//  app.import('vendor/bootstrap/bootstrap.min.css');
+//  app.import('vendor/bootstrap/bootstrap-theme.min.css');
+  app.import('vendor/font-awesome/FontAwesome.otf', {destDir: 'fonts'});
+  app.import('vendor/font-awesome/fontawesome-webfont.eot', {destDir: 'fonts'});
+  app.import('vendor/font-awesome/fontawesome-webfont.svg', {destDir: 'fonts'});
+  app.import('vendor/font-awesome/fontawesome-webfont.ttf', {destDir: 'fonts'});
+  app.import('vendor/font-awesome/fontawesome-webfont.woff', {destDir: 'fonts'});
+  app.import('vendor/font-awesome/fontawesome-webfont.woff2', {destDir: 'fonts'});
+  app.import('vendor/font-awesome/font-awesome.min.css');
+
   app.import('vendor/bootstrap/bootstrap.min.js');
   app.import('vendor/doT/doT.min.js');
   app.import('vendor/jquery-extendext/jQuery.extendext.min.js');
