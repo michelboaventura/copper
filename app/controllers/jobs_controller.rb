@@ -11,7 +11,7 @@ class JobsController < ApplicationController
     elsif params[:running]
       @jobs = Job.where(user: @current_user, status: 'RUNNING').order_by(:created_at.desc)
     elsif params[:completed]
-      @jobs = Job.where(user: @current_user, status: 'COMPLETED').order_by(:created_at.desc)
+      @jobs = Job.where(user: @current_user, :status.ne => 'RUNNING').order_by(:created_at.desc)
     end
 
     render json: @jobs
@@ -36,7 +36,7 @@ class JobsController < ApplicationController
 
   # PATCH/PUT /jobs/1
   def update
-    if @job.update({public: params[:public]})
+    if @job.update(job_params.except(:status, :started, :finished))
       render json: @job
     else
       render json: @job.errors, status: :unprocessable_entity
@@ -63,19 +63,23 @@ class JobsController < ApplicationController
   end
 
   def filter_stringify query
-      expression = "";
-      groupElems = [];
-      operationsHash = {not_equal: " NOT EQUAL ", equal: " EQUAL ", contains: " CONTAINS ", AND: " AND ", OR: " OR "};
+    expression = "";
+    groupElems = [];
+    operationsHash = {not_equal: " NOT EQUAL ", equal: " EQUAL ", contains: " CONTAINS ", AND: " AND ", OR: " OR "};
 
+    begin
       query[:rules].each do |elem|
         if(elem[:condition])
-           groupElems << filter_stringify(elem)
+          groupElems << filter_stringify(elem)
         else
           groupElems << operationsHash[elem[:operator].to_sym] + elem[:value]
         end
       end
       expression = groupElems.join operationsHash[query[:condition].to_sym]
-      return expression;
+      return expression
+    ensure
+      return query
+    end
   end
 
 end
