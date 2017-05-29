@@ -46,7 +46,6 @@ Router.map(function() {
 
     this.route('sobre');
   });
-
 });
 
 export default Router;

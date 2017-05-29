@@ -1,1 +1,63 @@
-{{outlet}}
+<!-- TOOL CONTENT -->
+<main class="tool-content-wrapper" id="main">
+<section>
+	<h2 class="title">Base de dados</h2>
+	<a href="/ferramenta/bases/adicionar" class="anchor-button">Enviar nova base</a>
+	<form class="u-flow-opposite">
+		<input type="search" class="input input--search" placeholder="busca">
+		<button class="input--search--button"></button>
+	</form>
+	<section class="row">
+		<h3 class="title title--type-2">Base de dados enviada</h3>
+		<div class="link-list-wrapper u-flow-opposite">
+			<button class="anchor-button anchor-button--type-2 anchor-button--size-3 anchor-button--color-4"><img class="anchor-button__icon" src="/assets/img/icons/icon-arrow.svg" alt="">Mais ações</button>
+			<ul class="link-list link-list--menu col-2-12">
+				<li class="link-list__item">
+					<a href="#" class="link-list__anchor">
+						<img class="link-list__icon" src="/assets/img/icons/icon-profile.svg" alt="" />
+						Profile
+					</a>
+				</li>
+				<li class="link-list__item">
+					<a href="#" class="link-list__anchor">
+						<img class="link-list__icon" src="/assets/img/icons/icon-logout.svg" alt="" />
+						Logout
+					</a>
+				</li>
+			</ul>
+		</div>
+		<table class="table">
+			<thead class="table__head">
+				<tr>
+					<th><input type="checkbox"></th>
+					<th>Nome da base</th>
+					<th class="u-row-width--10">Ações</th>
+					<th>Status</th>
+					<th>Filtrar nesta base</th>
+					<th>Grupo</th>
+					<th>Autor</th>
+					<th class="u-row-width--10">Criada em</th>
+				</tr>
+			</thead>
+			<tbody class="table__body">
+        {{#each model.datasources as |datasource| }}
+          <tr>
+					  <td><input type="checkbox"></td>
+            <td>{{datasource.name}}</td>
+            <td>
+						  <button class="anchor-button__icon"><img src="/assets/img/icons/icon-delete.svg" alt=""></button>
+						  <a href="ferramenta/bases/editar"><img src="/assets/img/icons/icon-edit.svg" alt=""></a>
+            </td>
+					  <td><img src="/assets/img/icons/icon-status--success.svg" alt=""></td>
+					  <td>{{#link-to 'ferramenta.filtros.adicionar' }}<a class="anchor-button">Filtrar</a>{{/link-to}}</td>
+            <td>UFMG</td>
+            <td>{{datasource.user.fullname}}</td>
+            <td>{{datasource.created-at}}</td>
+          </tr>
+        {{/each}}
+			</tbody>
+		</table>
+	</section>
+</section>
+</main>
+<!-- END TOOL CONTENT -->
