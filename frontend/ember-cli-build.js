@@ -28,9 +28,9 @@ module.exports = function(defaults) {
   app.import('vendor/font-awesome/fontawesome-webfont.woff2', {destDir: 'fonts'});
   app.import('vendor/font-awesome/font-awesome.min.css');
 
-  app.import('vendor/bootstrap/bootstrap.min.js');
-  app.import('vendor/doT/doT.min.js');
-  app.import('vendor/jquery-extendext/jQuery.extendext.min.js');
+  app.import('vendor/bootstrap/bootstrap.min.js'); //dependencia query-builder
+  app.import('vendor/doT/doT.min.js');//dependencia query-builder
+  app.import('vendor/jquery-extendext/jQuery.extendext.min.js');//dependencia query-builder
   app.import('vendor/jQuery-QueryBuilder/query-builder.min.js');
   app.import('vendor/jQuery-QueryBuilder/query-builder.default.min.css');
   app.import('vendor/jQuery-QueryBuilder/query-builder.pt-BR.js');

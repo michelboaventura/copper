@@ -15,6 +15,9 @@
   background-color: white;
   border-color: #cccccc; }
 
+.query-builder .rule-container {
+  background-color: #f0f0f0; }
+
 .query-builder .rules-group-header {
   margin-bottom: 16px;
   margin-bottom: 1rem; }
@@ -47,7 +50,7 @@
 }
 
 .query-builder .btn.focus, .query-builder .btn:focus, .query-builder .btn:hover {
-  color: #333;
+  color: white;
   text-decoration: none;
 }
 
@@ -122,32 +125,39 @@
 }
 
 .query-builder .btn-danger {
-  color: #FFF;
-  background-color: #D9534F;
-  border-color: #D43F3A;
+  color: #323232;
+  background-color: white;
+  border-color: #dddddd;
 }
+
+
+.query-builder .btn-danger .anchor-button__icon {
+  color: #666666; }
 
 .query-builder .btn-success.active, .query-builder .btn-success.focus,
 .query-builder .btn-success:active, .query-builder .btn-success:focus,
 .query-builder .btn-success:hover {
-  color: #FFF;
-  background-color: #449D44;
-  border-color: #398439;
+  color: white;
+  background-color: #323232;
+  border-color: #323232;
 }
 
 .query-builder .btn-primary.active, .query-builder .btn-primary.focus,
-.query-builder .btn-primary:active, .query-builder .btn-primary:focus,
-.query-builder .btn-primary:hover {
+.query-builder .btn-primary:active, .query-builder .btn-primary:focus {
   color: white;
   background-color: #162938;
 }
 
+.query-builder .btn-primary:hover {
+  color: white;
+  background-color: #323232; }
+
 .query-builder .btn-danger.active, .query-builder .btn-danger.focus,
 .query-builder .btn-danger:active, .query-builder .btn-danger:focus,
 .query-builder .btn-danger:hover {
-  color: #FFF;
-  background-color: #C9302C;
-  border-color: #AC2925;
+  color: #323232;
+  background-color: #dddddd;
+  border-color: #dddddd;
 }
 
 .query-builder .btn-group {
@@ -158,21 +168,15 @@
 
 .query-builder .btn-group > .btn {
   position: relative;
-  float: left;
-}
+  float: left; }
+
+.query-builder .btn-group.group-actions > .btn {
+  margin: 0 0.3rem; }
 
 .query-builder .btn-group > .btn:first-child {
   margin-left: 0px;
 }
 
-.query-builder .btn-group > .btn:first-child:not(:last-child) {
-  border-bottom-right-radius: 0px;
-}
-
-.query-builder .btn-group > .btn:last-child:not(:first-child) {
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-}
 
 .query-builder .btn-group .btn + .btn, .query-builder .btn-group .btn + .btn-group,
 .query-builder .btn-group .btn-group + .btn, .query-builder .btn-group .btn-group + .btn-group {
@@ -184,6 +188,163 @@
   font-size: 12px;
   line-height: 1.5;
 }
+
+.query-builder .error-container {
+  background-color: #f0f0f0; }
+
+.query-builder .rule-filter-container {
+  background-color: #f0f0f0; }
+
+.query-builder .rule-operator-container {
+  background-color: #f0f0f0; }
+
+.query-builder .rule-value-container {
+  background-color: #f0f0f0; }
+
+.query-builder .form-control {
+  position: relative;
+  display: block;
+  padding: 0;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-size: 1rem;
+color: #323232; }
+
+.query-builder .form-control {
+  position: relative;
+  width: 100%;
+  border: 1px solid #bbbbbb;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  color: #666666;
+  font-weight: normal;
+  text-align: left;
+background-color: white; }
+.query-builder .form-control:before {
+  content: '';
+  position: absolute;
+  top: -webkit-calc(50% - (5px / 2));
+  top: calc(50% - (5px / 2));
+  right: 10px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+border-color: #323232 transparent transparent transparent; }
+
+
+.query-builder .form-control select {
+  margin: 0;
+  padding: 0 0 0 16px;
+  width: 100%;
+  height: 48px;
+  height: 3rem;
+  /* Font size must be 16px to prevent iOS page zoom on focus */
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  color: #323232;
+cursor: pointer; padding-top: 4px;
+  height: 22px;
+  height: 1.375rem;
+font-size: 13px; }
+
+.query-builder .form-control select::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  z-index: 2;
+  /* These hacks make the select behind the arrow clickable in some browsers */
+  pointer-events: none;
+display: none; }
+
+@supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) or ((-moz-appearance: none) and (mask-type: alpha)) { {
+    /* Show custom arrow */
+  /* Remove select styling */ }
+    .query-builder .form-control::after {
+    display: block; }
+    .query-builder .form-control select {
+      padding-right: 2em;
+      /* Match-01 */
+      /* inside @supports so that iOS <= 8 display the native arrow */
+      background: none;
+      /* Match-04 */
+      /* inside @supports so that Android <= 4.3 display the native arrow */
+      border: 1px solid transparent;
+      /* Match-05 */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+  appearance: none; } }
+
+  /* Adds Firefox < 35 support */
+  /* FIREFOX won't let us hide the native select arrow, so we have to make it wider than needed and clip it via overflow on the parent container. The percentage width is a fallback since FF 4+ supports calc() so we can just add a fixed amount of extra width to push the native arrow out of view. We're applying this hack across all FF versions because all the previous hacks were too fragile and complex. You might want to consider not using this hack and using the native select arrow in FF. Note this makes the menus wider than the select button because they display at the specified width and aren't clipped. Targeting hack via http://browserhacks.com/#hack-758bff81c5c32351b02e10480b5ed48e */
+  /* Show only the native arrow */
+  @-moz-document url-prefix() {
+    /* Warning: this kills the focus outline style */
+    /* Make the native select extra wide so the arrow is clipped. 1.5em seems to be enough to safely clip it */
+    /* Firefox 35+ that supports hiding the native select can have a proper 100% width, no need for the overflow clip trick */
+    .query-builder .form-control {
+    overflow: hidden; }
+    .query-builder .form-control::after {
+    display: block; }
+    .query-builder .form-control select {
+      overflow: -moz-hidden-unscrollable;
+      padding-right: .4em;
+      background: none;
+      /* Match-04 */
+      border: 1px solid transparent;
+      /* Match-05 */
+      /* Firefox < 4 */
+      min-width: 6em;
+      width: 130%;
+      /* Firefox 4-15 */
+      min-width: -moz-calc(0em);
+      width: -moz-calc(100% + 2.4em);
+      /* Firefox 16+ */
+      min-width: calc(0em);
+      width: calc(100% + 2.4em);
+    padding: 11px; }
+    @supports (mask-type: alpha) {
+      .query-builder .form-control {
+      overflow: visible; }
+      .query-builder .form-control select {
+        -moz-appearance: none;
+        width: 100%;
+        padding-right: 2em;
+  /* Match-01 padding-right */ } } }
+
+        /* Firefox focus has odd artifacts around the text, this kills that. See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-focusring */
+        .query-builder .form-control select:-moz-focusring {
+          color: transparent;
+        text-shadow: 0 0 0 #000; }
+
+        /* IE 10/11+ - This hides native dropdown button arrow so it will have the custom appearance. Targeting media query hack via http://browserhacks.com/#hack-28f493d247a12ab654f6c3637f6978d5 - looking for better ways to achieve this targeting */
+        /* The second rule removes the odd blue bg color behind the text in the select button in IE 10/11 and sets the text color to match the focus style's - fix via http://stackoverflow.com/questions/17553300/change-ie-background-color-on-unopened-focused-select-box */
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+          .query-builder .form-control select::-ms-expand {
+          display: none; }
+          .query-builder .form-control select:focus {
+            border-color: #aaa;
+          /* Match-03 */ }
+            .query-builder .form-control select:focus::-ms-value {
+              background: transparent;
+              color: #222;
+            /* Match-02*/ }
+              ..query-builder .form-control select {
+                padding-right: 2em;
+                /* Match-01 */
+                background: none;
+                /* Match-04 */
+                border: 1px solid transparent;
+              /* Match-05 */ }
+                .query-builder .form-control::after {
+              display: block; } }
+
+.label.label--checkbox.public {
+  font-size: 1.2rem; }
 
 
 /**

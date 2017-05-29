@@ -4,5 +4,11 @@
   <div class='filter'></div>
 </div>
 <div class="u-center-elements">
+  <label class="label label--checkbox public">Filtro público?
+    {{input type="checkbox" name="publicSearch" checked=job.public class="input--checkbox"}}
+    <span></span>
+  </label>
+</div>
+<div class="u-center-elements">
   <button class="anchor-button anchor-button--size-2" {{action 'onSearch'}}>filtrar</button>
 </div>
