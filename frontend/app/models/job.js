@@ -8,8 +8,7 @@ export default DS.Model.extend({
   datasource: DS.belongsTo('datasource'),
 
   name: attr('string'),
-  filter: attr('string'),
-  types: attr(),
+  filter: attr(),
   mongo_query: attr(),
   public: attr(),
 

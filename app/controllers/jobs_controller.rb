@@ -8,8 +8,10 @@ class JobsController < ApplicationController
   def index
     if params[:public]
       @jobs = Job.where(public: params[:public], status: 'COMPLETED')
-    else
-      @jobs = Job.where(user: @current_user).order_by(:created_at.desc)
+    elsif params[:running]
+      @jobs = Job.where(user: @current_user, status: 'RUNNING').order_by(:created_at.desc)
+    elsif params[:completed]
+      @jobs = Job.where(user: @current_user, status: 'COMPLETED').order_by(:created_at.desc)
     end
 
     render json: @jobs
@@ -55,11 +57,25 @@ class JobsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def job_params
     res = ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+    res[:filter] = filter_stringify(res[:filter]).squish
     res[:mongo_query] = res[:mongo_query].to_json
     res
   end
 
-  def parse_types types
-    types.join("|")
+  def filter_stringify query
+      expression = "";
+      groupElems = [];
+      operationsHash = {not_equal: " NOT EQUAL ", equal: " EQUAL ", contains: " CONTAINS ", AND: " AND ", OR: " OR "};
+
+      query[:rules].each do |elem|
+        if(elem[:condition])
+           groupElems << filter_stringify(elem)
+        else
+          groupElems << operationsHash[elem[:operator].to_sym] + elem[:value]
+        end
+      end
+      expression = groupElems.join operationsHash[query[:condition].to_sym]
+      return expression;
   end
+
 end

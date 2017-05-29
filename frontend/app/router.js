@@ -82,7 +82,9 @@ Router.map(function() {
     this.route('perfil', function() {
       this.route('senha');
     });
-    this.route('bases');
+    this.route('bases', function() {
+      this.route('adicionar');
+    });
 
     this.route('filtros', function() {
       this.route('index');
