@@ -89,6 +89,7 @@ Router.map(function() {
     this.route('filtros', function() {
       this.route('index');
       this.route('adicionar');
+      this.route('resultado', {path: ':id/resultado'});
     });
     this.route('sobre');
   });
