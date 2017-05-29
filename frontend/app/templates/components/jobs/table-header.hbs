@@ -1,14 +1,20 @@
-<th>
-  <label class="item-check" id="select-all-items">
-    <input type="checkbox" class="checkbox" onchange={{action "selectAll"}}>
-    <span></span>
-  </label>
-</th>
-<th>Job Name</th>
-<th>Author</th>
-<th>Query</th>
+{{#unless tableRunning}}
+  <th>
+    <label for="checkall" id="select-all-items">
+      <input type="checkbox" class="checkbox" id="checkall" onchange={{action "selectAll"}}>
+      <span></span>
+    </label>
+  </th>
+{{/unless}}
+<th>ID</th>
+<th>Nome do filtro</th>
+<th>Autor</th>
 <th>Status</th>
-<th>Visualize</th>
-<th>Started</th>
-<th>Completed</th>
-<th>Public</th>
+<th>Visualizar</th>
+{{#unless tableRunning}}
+  <th>Começo</th>
+  <th>Fim</th>
+  <th>Público</th>
+{{else}}
+  <th>Criada em</th>
+{{/unless}}

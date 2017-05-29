@@ -2377,10 +2377,6 @@ ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-be
     clone "^2.0.0"
     ember-cli-version-checker "^1.2.0"
 
-ember-cli-bootstrap@^0.0.15:
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/ember-cli-bootstrap/-/ember-cli-bootstrap-0.0.15.tgz#477fb4d04113c8fd645ef1fc7b8699d427fe71d2"
-
 ember-cli-broccoli-sane-watcher@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/ember-cli-broccoli-sane-watcher/-/ember-cli-broccoli-sane-watcher-2.0.4.tgz#f43f42f75b7509c212fb926cd9aea86ae19264c6"
@@ -2741,6 +2737,12 @@ ember-load-initializers@^1.0.0:
   resolved "https://registry.yarnpkg.com/ember-load-initializers/-/ember-load-initializers-1.0.0.tgz#4919eaf06f6dfeca7e134633d8c05a6c9921e6e7"
   dependencies:
     ember-cli-babel "^6.0.0-beta.7"
+
+ember-pollboy@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/ember-pollboy/-/ember-pollboy-0.6.2.tgz#7ad8c3cb6a87cd949ca15e6cd4bffbe0d1bc2b6f"
+  dependencies:
+    ember-cli-babel "^5.1.5"
 
 ember-qunit@^2.1.3:
   version "2.1.3"

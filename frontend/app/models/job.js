@@ -18,8 +18,16 @@ export default DS.Model.extend({
   created_at: attr('dates'),
   updated_at: attr('dates'),
 
+  idTruncated: Ember.computed('id', function() {
+    return this.get('id').slice(-6);
+  }),
   hasCompleted: Ember.computed('status', function() {
     return this.get('status').message === 'COMPLETED';
+  }),
+  isRunning: Ember.computed('status', function() {
+    return this.get('status').message === 'RUNNING';
+  }),
+  noResult: Ember.computed('status', function() {
+    return this.get('status').message === 'EMPTY';
   })
-
 });
