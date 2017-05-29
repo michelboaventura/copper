@@ -1,19 +1,19 @@
 <!-- ADD FILTERS CONTENT -->
 <main class="tool-content-wrapper" id="main">
-  <div class="col-8-12">
-    <h2 class="title">Escolha a base de dados a ser filtrada</h2>
-    <p class="description">A base de dados é o compilado de comentários a respeito de um anteprojeto de lei</p>
-  </div>
+	<div class="col-8-12">
+		<h2 class="title">Escolha a base de dados a ser filtrada</h2>
+		<p class="description">A base de dados é o compilado de comentários a respeito de um anteprojeto de lei</p>
+	</div>
   <div class="u-flow-opposite">
     {{#link-to 'ferramenta.bases.adicionar' class="anchor-button anchor-button--color-3 anchor-button--type-2"}}
       <img class="anchor-button__icon" src="/assets/img/icons/icon-plus.svg" alt="">adicionar nova base
     {{/link-to}}
-  </div>
-  <div class="input-wrapper row">
-    <div class="custom-select" id="type">
-      <select id="sel1" onchange={{action 'selectDatasource' value="target.value" }}>
-        <option value="">Selecione a base</option>
-        {{#each model.datasources as |datasource| }}
+	</div>
+	<div class="input-wrapper row">
+		<div class="custom-select" id="type">
+			<select id="sel1" onchange={{action 'selectDatasource' value="target.value" }}>
+				<option value="">Selecione a base</option>
+			  {{#each model.datasources as |datasource| }}
           <option value="{{datasource.id}}">{{datasource.name}}</option>
         {{/each}}
       </select>
@@ -29,6 +29,12 @@
     <p class="description">Lorem ipsum dolor sit amet</p>
     <textarea class="input input--textarea" id="description" placeholder="Descrição do projeto"></textarea>
   </div>
+	</div>
+	<div class="input-wrapper">
+		<label class="title" for="description">Descrição</label>
+		<p class="description">Lorem ipsum dolor sit amet</p>
+		<textarea class="input input--textarea" id="description" placeholder="Descrição do projeto"></textarea>
+	</div>
   {{forms/form-filter job=model.job datasource=datasource}}
 </main>
 <!-- END ADD FILTERS CONTENT -->
