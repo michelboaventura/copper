@@ -48,7 +48,6 @@
     "loader.js": "^4.2.3"
   },
   "dependencies": {
-    "jQuery-QueryBuilder": "^2.4.3",
     "moment": "^2.18.1"
   }
 }

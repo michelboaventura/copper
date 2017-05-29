@@ -13,8 +13,8 @@ var qbJson = {
   icons:{
     add_group: 'anchor-button__icon fa fa-plus',
     add_rule: 'anchor-button__icon fa fa-plus',
-    remove_group: 'anchor-button__icon fa fa-minus',
-    remove_rule: 'anchor-button__icon fa fa-minus',
+    remove_group: 'anchor-button__icon fa fa-trash-o',
+    remove_rule: 'anchor-button__icon fa fa-trash-o',
     error: 'anchor-button__icon fa fa-exclamation-triangle'
   }
 };
@@ -52,7 +52,7 @@ export default Ember.Component.extend({
         job.datasource = db;
         job.user = user;
         component.get('store').createRecord('job', job).save().then(function(){
-          component.get("routing").transitionTo('consults');
+          component.get("routing").transitionTo('ferramenta.filtros.index');
         });
       });
     }
