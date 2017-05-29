@@ -11,5 +11,5 @@ export default Ember.Route.extend(ApplicationRouteMixin,{
         this.get('sessionAccount').loadCurrentUser();
       }
     },
-  }
+  },
 });
