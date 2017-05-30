@@ -261,9 +261,10 @@ font-size: 13px; }
   pointer-events: none;
 display: none; }
 
-@supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) or ((-moz-appearance: none) and (mask-type: alpha)) { {
+@supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) or ((-moz-appearance: none) and (mask-type: alpha)) {
+
     /* Show custom arrow */
-  /* Remove select styling */ }
+  /* Remove select styling */
     .query-builder .form-control::after {
     display: block; }
     .query-builder .form-control select {
@@ -277,7 +278,8 @@ display: none; }
       /* Match-05 */
       -webkit-appearance: none;
       -moz-appearance: none;
-  appearance: none; } }
+  appearance: none; }
+}
 
   /* Adds Firefox < 35 support */
   /* FIREFOX won't let us hide the native select arrow, so we have to make it wider than needed and clip it via overflow on the parent container. The percentage width is a fallback since FF 4+ supports calc() so we can just add a fixed amount of extra width to push the native arrow out of view. We're applying this hack across all FF versions because all the previous hacks were too fragile and complex. You might want to consider not using this hack and using the native select arrow in FF. Note this makes the menus wider than the select button because they display at the specified width and aren't clipped. Targeting hack via http://browserhacks.com/#hack-758bff81c5c32351b02e10480b5ed48e */
@@ -314,7 +316,9 @@ display: none; }
         -moz-appearance: none;
         width: 100%;
         padding-right: 2em;
-  /* Match-01 padding-right */ } } }
+  /* Match-01 padding-right */ }
+    }
+  }
 
         /* Firefox focus has odd artifacts around the text, this kills that. See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-focusring */
         .query-builder .form-control select:-moz-focusring {
@@ -333,7 +337,7 @@ display: none; }
               background: transparent;
               color: #222;
             /* Match-02*/ }
-              ..query-builder .form-control select {
+              .query-builder .form-control select {
                 padding-right: 2em;
                 /* Match-01 */
                 background: none;
@@ -341,7 +345,8 @@ display: none; }
                 border: 1px solid transparent;
               /* Match-05 */ }
                 .query-builder .form-control::after {
-              display: block; } }
+              display: block; }
+            }
 
 .label.label--checkbox.public {
   font-size: 1.2rem; }
@@ -1762,9 +1767,9 @@ font-size: 13px; }
   pointer-events: none;
 display: none; }
 
-@supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) or ((-moz-appearance: none) and (mask-type: alpha)) { {
+@supports ((-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none)) or ((-moz-appearance: none) and (mask-type: alpha))  {
     /* Show custom arrow */
-  /* Remove select styling */ }
+  /* Remove select styling */
     .custom-select::after {
     display: block; }
     .custom-select select {
@@ -1778,7 +1783,8 @@ display: none; }
       /* Match-05 */
       -webkit-appearance: none;
       -moz-appearance: none;
-  appearance: none; } }
+  appearance: none; }
+}
 
   /* Adds Firefox < 35 support */
   /* FIREFOX won't let us hide the native select arrow, so we have to make it wider than needed and clip it via overflow on the parent container. The percentage width is a fallback since FF 4+ supports calc() so we can just add a fixed amount of extra width to push the native arrow out of view. We're applying this hack across all FF versions because all the previous hacks were too fragile and complex. You might want to consider not using this hack and using the native select arrow in FF. Note this makes the menus wider than the select button because they display at the specified width and aren't clipped. Targeting hack via http://browserhacks.com/#hack-758bff81c5c32351b02e10480b5ed48e */
@@ -3125,3 +3131,9 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.title-block {
+  width: 100%; }
+
+.card-list__item--link {
+  width: 100%; }

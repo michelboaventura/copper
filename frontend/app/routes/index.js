@@ -4,9 +4,9 @@ export default Ember.Route.extend({
   session: Ember.inject.service('session'),
 
   beforeModel(){
-    var currentUser = this.get('session.isAuthenticated');
-    if(currentUser){
-      this.replaceWith('home');
+    var isAuthenticated = this.get('session.isAuthenticated');
+    if(isAuthenticated){
+      this.replaceWith('ferramenta');
     } else {
       this.replaceWith('landing-page');
     }

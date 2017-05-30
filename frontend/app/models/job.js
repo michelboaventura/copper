@@ -11,6 +11,7 @@ export default DS.Model.extend({
   filter: attr(),
   mongo_query: attr(),
   public: attr(),
+  description: attr(),
 
   started: attr('dates'),
   finished: attr('dates'),
