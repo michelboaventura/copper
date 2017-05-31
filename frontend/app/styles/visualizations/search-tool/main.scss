@@ -1,6 +1,6 @@
 @include placeholder {
   font-style:italic;
-  color: $light-white;
+  color: $light-gray;
   font-weight:100;
   font-size: 14px;
 }
@@ -43,9 +43,9 @@
     overflow: auto;
     width: 100%;
     margin: 0 auto;
+    min-height: 100px;
     .search-tool-result-card {
       text-align: left;
-      width: 100%;
       margin: 5px 0px 0px;
       border: 1px solid $dark-white;
       background-color: $full-white;
@@ -83,15 +83,15 @@
         margin: 0px 0px 0px;
         padding: 0px;
         font-weight: normal;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        //overflow: hidden;
+        //text-overflow: ellipsis;
+        //white-space: nowrap;
       }
     }
   }
   .search-tool-info {
-    text-align: left;
-    width: 50%;
+    text-align: center;
+    width: 100%;
     margin: 10px auto 0px;
     padding: 0px 0px 5px;
     font-size: 12px;

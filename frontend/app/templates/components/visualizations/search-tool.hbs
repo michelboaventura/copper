@@ -1,7 +1,8 @@
-<div class='gViz-wrapper gViz-search-tool' data-id={{_id}} style='width: 100%; height: {{cHeight}}px;' >
+
+<div class='gViz-wrapper gViz-search-tool' data-id={{_id}} style='height: {{cHeight}}px;' >
 
   <div class="u-flow-opposite">
-    <input type="search" class="input input--search search-tool-input" placeholder="Digite sua busca" onkeyup={{action 'updateSearch'}} value='{{search}}'>
+    <input type="search" class="input input--search search-tool-input" placeholder="Digite sua busca..." onkeyup={{action 'updateSearch'}} value='{{search}}'>
     <button class="input--search--button" {{action 'submitSearch'}}></button>
   </div>
 
@@ -26,5 +27,5 @@
     <p>Showing <b>{{filteredData.length}}</b> results.</p>
   </div>
 
-
 </div>
+
