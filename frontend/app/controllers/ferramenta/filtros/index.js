@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
     this.addObserver('filterText', this, 'filterDidChange');
   },
 
-  filterDidChange(sender, key) {
+  filterDidChange() {
     var filter = this.get('filterText').toString().toLowerCase();
     var jobsCompleted = this.get('model.jobsCompleted');
     var jobsRunning = this.get('model.jobsRunning');

@@ -10,6 +10,6 @@
   <div class="card__content">
     <time class="card__time">{{format-date job.finished}}</time>
     <p class="card__info">em: {{link-to job.datasource.name "landing-page.bases.aberta" job.datasource.id }}</p>
-    <p class="card__info">por: {{job.user.fullname}}</p>
+    <p class="card__info">por: <a>{{job.user.fullname}}</a></p>
   </div>
 </article>
