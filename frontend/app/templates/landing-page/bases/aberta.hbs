@@ -1,1 +1,31 @@
-{{outlet}}
+<main id="main">
+<!-- HOME CONTENT -->
+<div class="section-wrapper">
+  <div class="content">
+    {{link-to '< voltar' 'landing-page.bases' class="anchor-button anchor-button--type-2 anchor-button--size-3 anchor-button--color-4 u-margin-3 no-active"}}
+    <div class="u-center-col">
+      <article class="col-9-12">
+        <header class="u-center-elements u-margin-5">
+          <h1 class="title">{{model.name}}</h1>
+          <p class="description description--size-2">{{format-date model.created_at}} por:
+          <a href="#"><strong>{{model.user.fullname}}</strong></a>
+          </p>
+        </header>
+        <div>
+          <p class="paragraph">{{model.description}}</p>
+        </div>
+      </article>
+    </div>
+    <hr class="separator" />
+    <h2 class="title">{{model.jobs.length}} filtros realizados</h2>
+    <!-- CARDS LIST -->
+    <ul class="cards-list content--list">
+      {{#each model.jobs as |job|}}
+        {{landing-page/card-filter job=job}}
+      {{/each}}
+    </ul>
+    <!-- END CARDS LIST -->
+  </div>
+</div>
+<!-- END HOME CONTENT -->
+</main>

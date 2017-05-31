@@ -1,0 +1,22 @@
+<article class="card">
+  <header class="card__header">
+    <h2 class="card__title">
+      {{link-to datasource.name 'landing-page.bases.aberta' datasource.id}}
+    </h2>
+    <div class="card__thumb card__thumb--filter">
+      <div class="card__message">
+        {{#link-to 'landing-page.bases.aberta' datasource.id}}
+          {{jobsCount}} filtros
+        {{/link-to}}
+      </div>
+    </div>
+  </header>
+  <div class="card__content">
+    <p class="card__info">
+      {{link-to '» ver todos os filtros realizados' 'landing-page.filtros'}}
+    </p>
+    <p class="card__info">
+      {{link-to '» criar novo filtro nesta base de dados' 'landing-page.login'}}
+    </p>
+  </div>
+</article>
