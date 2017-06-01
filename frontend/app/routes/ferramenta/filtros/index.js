@@ -1,9 +1,11 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
+import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 
 export const pollInterval = 5000 // time in milliseconds
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(RouteMixin,{
+  perPage: 8,
   toDelete: [],
 
   beforeModel(){
@@ -11,8 +13,12 @@ export default Ember.Route.extend({
   },
 
   getJobs() {
+    if(this.controller){
+      var page = this.controller.get("jobs.jobsCompleted.page");
+    }
+
     return RSVP.hash({
-      jobsCompleted: this.store.query('job', { completed: true }),
+      jobsCompleted: this.findPaged('job', { completed: true, page: page }),
       jobsRunning: this.store.query('job', { running: true })
     });
   },
@@ -24,11 +30,14 @@ export default Ember.Route.extend({
   setupController(controller, model) {
     this._super(controller, model);
     controller.set('jobs', model);
+    controller.set('page', Ember.computed.alias("model.jobsCompleted.page"));
+    controller.set('perPage', Ember.computed.alias("model.jobsCompleted.perPage"));
+    controller.set('totalPages', Ember.computed.alias("model.jobsCompleted.totalPages"));
   },
 
   onPoll() {
     return this.getJobs().then((jobs) => {
-      this.get('currentModel', jobs)
+      this.controller.set('jobs', jobs);
     })
   },
 
