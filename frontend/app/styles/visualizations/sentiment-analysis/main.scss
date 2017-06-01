@@ -18,8 +18,9 @@ svg.sentiment-analysis-chart {
 
 .gViz-wrapper {
 
-  &.sentiment-analysis-chart {
-    overflow: auto;
+  &.sentiment-analysis-wrapper {
+    width: 100% !important;
+    overflow: hidden;
   }
 
   &.table-chart {
