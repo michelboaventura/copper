@@ -2,7 +2,6 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
-    var self = this;
     return this.store.query('job', { public: true }).then((jobs) => {
       var datasources = {};
       var array = [];

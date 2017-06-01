@@ -1,7 +1,4 @@
 import Ember from 'ember';
-import config from '../../config/environment';
-
-const {$: { ajax }} = Ember;
 
 export default Ember.Route.extend({
   model(params) {
