@@ -1,0 +1,28 @@
+<div class="section-wrapper">
+  <div class="content">
+    <h1 class="title title--type-3">Explore filtros</h1>
+    <ul class="cards-list content--list">
+      {{#each model as |job|}}
+        {{landing-page/card-filter job=job}}
+      {{/each}}
+    </ul>
+    {{!-- Implement pagination
+    <div class="row u-center-elements">
+      <ul class="pagination-list">
+        <li class="pagination-list__item">
+          <a href="#" class="pagination-list__anchor">1</a>
+        </li>
+        <li class="pagination-list__item">
+          <a href="#" class="pagination-list__anchor current">2</a>
+        </li>
+        <li class="pagination-list__item">
+          <a href="#" class="pagination-list__anchor">3</a>
+        </li>
+        <li class="pagination-list__item">
+          <a href="#" class="pagination-list__anchor">4</a>
+        </li>
+      </ul>
+    </div>
+    --}}
+  </div>
+</div>

@@ -7,7 +7,7 @@ class JobsController < ApplicationController
   # GET /jobs
   def index
     if params[:public]
-      @jobs = Job.where(public: params[:public], status: 'COMPLETED')
+      @jobs = Job.where(public: params[:public], status: 'COMPLETED').order_by(:finished.desc)
     elsif params[:running]
       @jobs = Job.where(user: @current_user, status: 'RUNNING').order_by(:created_at.desc)
     elsif params[:completed]
@@ -65,7 +65,7 @@ class JobsController < ApplicationController
   def filter_stringify query
     expression = "";
     groupElems = [];
-    operationsHash = {not_equal: " NOT EQUAL ", equal: " EQUAL ", contains: " CONTAINS ", AND: " AND ", OR: " OR "};
+    operationsHash = {not_equal: " Não Igual ", equal: " Igual ", contains: " Contém ", AND: " E ", OR: " OU "};
 
     begin
       query[:rules].each do |elem|
@@ -77,7 +77,7 @@ class JobsController < ApplicationController
       end
       expression = groupElems.join operationsHash[query[:condition].to_sym]
       return expression
-    ensure
+    rescue
       return query
     end
   end
