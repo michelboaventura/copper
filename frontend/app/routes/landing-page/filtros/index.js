@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model() {
-     return this.store.query('job', { public: true })
-    },
+    return this.store.query('job', { public: true })
+  },
 
 });
