@@ -3721,3 +3721,14 @@ input {
 .title-block, .card-list__item--link {
   width: 100%;
 }
+
+.pagination-list__item.disabled {
+  color: #919191;
+  a {
+    border-color: #a4a4a4;
+    background-color: #c5c5c5; }
+
+  a:hover {
+    transition: none;
+    opacity: 1; }
+}
