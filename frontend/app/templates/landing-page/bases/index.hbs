@@ -5,10 +5,13 @@
       <h1 class="title title--type-3">Explore bases</h1>
       <!-- CARDS LIST -->
       <ul class="cards-list content--list">
-        {{#each model as |elem|}}
+        {{#each pagedContent as |elem|}}
           {{landing-page/card-base datasource=elem.datasource jobsCount=elem.jobsCount}}
         {{/each}}
       </ul>
+      <div class="row u-center-elements">
+        {{card-pagination content=pagedContent}}
+      </div>
       <!-- END CARDS LIST -->
     </div>
   </div>

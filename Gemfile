@@ -5,6 +5,8 @@ gem 'rails-i18n', '~> 5.0.0' # For 5.0.x and 5.1.x
 gem 'active_model_serializers', '~> 0.10.2'
 gem 'puma'
 gem 'mongoid', '~> 6.1.0'
+gem 'kaminari'
+gem 'kaminari-mongoid'
 gem 'rack-cors', require: 'rack/cors'
 gem 'brstring'
 gem 'ember-cli-rails'
