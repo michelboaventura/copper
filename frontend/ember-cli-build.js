@@ -36,6 +36,8 @@ module.exports = function(defaults) {
   app.import('vendor/jQuery-QueryBuilder/query-builder.pt-BR.js');
   app.import('vendor/jquery-ui/jquery-ui.css');
   app.import('vendor/jquery-ui/jquery-ui.js');
+  app.import('vendor/bootstrap-custom/js/bootstrap.min.js'); // Customize bootstrap
+  app.import('vendor/bootstrap-custom/css/bootstrap.min.css'); // Customize bootstrap
 
   return app.toTree();
 };
