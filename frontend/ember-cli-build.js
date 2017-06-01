@@ -34,6 +34,8 @@ module.exports = function(defaults) {
   app.import('vendor/jQuery-QueryBuilder/query-builder.min.js');
   app.import('vendor/jQuery-QueryBuilder/query-builder.default.min.css');
   app.import('vendor/jQuery-QueryBuilder/query-builder.pt-BR.js');
+  app.import('vendor/jquery-ui/jquery-ui.css');
+  app.import('vendor/jquery-ui/jquery-ui.js');
 
   return app.toTree();
 };
