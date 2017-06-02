@@ -10,8 +10,8 @@ export default Ember.Route.extend(RouteMixin,{
 
   setupController(controller, model){
     this._super(controller, model);
-    controller.set('page', Ember.computed.alias("model.page"));
-    controller.set('perPage', Ember.computed.alias("model.perPage"));
-    controller.set('totalPages', Ember.computed.alias("model.totalPages"));
+    controller.set('page', controller.get("model.page"));
+    controller.set('perPage', controller.get("model.perPage"));
+    controller.set('totalPages', controller.get("model.totalPages"));
   }
 });
