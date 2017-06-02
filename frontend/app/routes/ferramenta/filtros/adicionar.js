@@ -2,11 +2,11 @@ import Ember from 'ember';
 import RSVP from 'rsvp';
 
 export default Ember.Route.extend({
-  model(){
+  model(params){
     this._super(...arguments);
     return RSVP.hash({
-      job: {},
-      datasources: this.store.findAll('datasource'),
+      job: {datasource: params.base},
+      datasources: this.store.query('datasource', {per_page: 100}),
     });
   },
 });

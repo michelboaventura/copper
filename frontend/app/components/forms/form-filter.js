@@ -33,7 +33,7 @@ export default Ember.Component.extend({
       if(!this.get('job.name')) {
         alert("Por favor preencha um nome para a Busca");
         return;
-      } else if(!this.get('datasource')){
+      } else if(!this.get('job.datasource')){
         alert("Por favor selecione uma base de dados");
         return;
       }
@@ -45,9 +45,8 @@ export default Ember.Component.extend({
 
       job.filter = expression;
       job.mongo_query = mongo_query;
-      var db = component.get('store').findRecord('datasource', component.get('datasource'));
+      var db = component.get('store').findRecord('datasource', component.get('job.datasource'));
       var user = component.get('store').findRecord('user', component.get('sessionAccount.id'));
-
       RSVP.all([db, user]).then(function() {
         job.datasource = db;
         job.user = user;
