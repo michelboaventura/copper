@@ -1,17 +1,22 @@
 import Ember from 'ember';
-import RSVP from 'rsvp';
 
 export default Ember.Route.extend({
-model(params){
-  return RSVP.hash({
-    datasource: this.store.findRecord('datasource', params.id),
-  });
-},
-actions: {
-  salvar(){
-    var datasource = this.currentModel.datasource;
-    datasource.save();
-    console.log();
+  model(params){
+    return this.store.findRecord('datasource', params.id);
+  },
+
+  setupController(controller, model){
+    this._super(controller, model);
+    controller.set('dataTypes', ['database']);
+    controller.set('dataFormats',  ['json', 'csv'])
+  },
+
+  actions: {
+    salvar(){
+      var datasource = this.currentModel;
+      datasource.save().then(() => {
+        this.transitionTo('ferramenta.bases');
+      });
+    }
   }
-}
 });

@@ -30,9 +30,9 @@ export default Ember.Route.extend(RouteMixin,{
   setupController(controller, model) {
     this._super(controller, model);
     controller.set('jobs', model);
-    controller.set('page', Ember.computed.alias("model.jobsCompleted.page"));
-    controller.set('perPage', Ember.computed.alias("model.jobsCompleted.perPage"));
-    controller.set('totalPages', Ember.computed.alias("model.jobsCompleted.totalPages"));
+    controller.set('page', controller.get("jobs.jobsCompleted.page"));
+    controller.set('perPage', controller.get("jobs.jobsCompleted.perPage"));
+    controller.set('totalPages', controller.get("jobs.jobsCompleted.totalPages"));
   },
 
   onPoll() {
@@ -60,28 +60,27 @@ export default Ember.Route.extend(RouteMixin,{
   },
 
   actions: {
-    willTransition() {
-      this.get('deactivate')();
-    },
-
     deleteCheckeds(){
       var jobs = this.get('toDelete');
       var store = this.store;
-      jobs.forEach( function(id){
-        store.findRecord('job', id, { backgroundReload: false })
-          .then(function(job){ job.destroyRecord(); });
-      });
+      var confirmText = `Deseja apagar todos os ${jobs.length} filtros?`
+      if(confirm(confirmText)){
+        jobs.forEach( function(id){
+          store.findRecord('job', id, { backgroundReload: false })
+            .then(function(job){ job.destroyRecord(); });
+        });
+      }
     },
 
     selectAll(state){
       var jobs = this.get('toDelete');
       if(state){
-        this.currentModel.jobsCompleted.forEach( function(element) {
+        this.controller.get('jobs.jobsCompleted').forEach( function(element) {
           Ember.$(`#checkbox-${element.id}`).prop('checked', true);
           jobs.push(element.id);
         });
       } else {
-        this.currentModel.jobsCompleted.forEach( function(element) {
+        this.controller.get('jobs.jobsCompleted').forEach( function(element) {
           Ember.$(`#checkbox-${element.id}`).prop('checked', false);
         });
         this.set('toDelete', []);

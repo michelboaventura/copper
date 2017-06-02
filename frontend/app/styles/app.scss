@@ -1824,6 +1824,8 @@ a {
 
 .label {
   display: block;
+  text-align: left;
+  padding: 0;
   margin-bottom: 8px;
   margin-bottom: 0.5rem;
   font-size: 13px;
@@ -2252,7 +2254,7 @@ input[readonly] {
 .inner-wrapper--type-2 {
   padding: 24px;
   padding: 1.5rem;
-  width: 100%;
+  max-width: 100%;
 }
 
 .inner-wrapper--type-3 {
