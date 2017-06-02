@@ -11,8 +11,12 @@
   </div>
   <div class="input-wrapper row">
     <div class="custom-select" id="type">
-      <select id="sel1" onchange={{action 'selectDatasource' value="target.value" }}>
-        <option value="">Selecione a base</option>
+			<select id="sel1" onchange={{action 'selectDatasource' value="target.value" }}>
+				{{#if base}}
+          <option value="{{datasource.id}}">{{base}}</option>
+        {{else}}
+          <option value="">Selecione a base</option>
+			  {{/if}}
         {{#each model.datasources as |datasource| }}
           <option value="{{datasource.id}}">{{datasource.name}}</option>
         {{/each}}
