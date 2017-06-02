@@ -45,11 +45,13 @@
 					  <td><input type="checkbox"></td>
             <td>{{datasource.name}}</td>
             <td>
-						  <button class="anchor-button__icon"><img src="/assets/img/icons/icon-delete.svg" alt=""></button>
-						  <a href="ferramenta/bases/editar"><img src="/assets/img/icons/icon-edit.svg" alt=""></a>
+						  <button class="anchor-button__icon" {{action 'deletar' datasource}}><img src="/assets/img/icons/icon-delete.svg" alt=""></button>
+              {{#link-to 'ferramenta.bases.editar' datasource.id}}
+						  <img src="/assets/img/icons/icon-edit.svg" alt="">
+              {{/link-to}}
             </td>
 					  <td><img src="/assets/img/icons/icon-status--success.svg" alt=""></td>
-					  <td>{{#link-to 'ferramenta.filtros.adicionar' }}<a class="anchor-button">Filtrar</a>{{/link-to}}</td>
+					  <td><a class="anchor-button"{{action 'filtrar' datasource.name}}>Filtrar</a></td>
             <td>UFMG</td>
             <td>{{datasource.user.fullname}}</td>
             <td>{{datasource.created-at}}</td>

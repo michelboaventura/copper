@@ -36,6 +36,7 @@ Router.map(function() {
 
     this.route('bases', function() {
       this.route('adicionar');
+      this.route('editar', {path: ':id/editar'});
     });
 
     this.route('filtros', function() {

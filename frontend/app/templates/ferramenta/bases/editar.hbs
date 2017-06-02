@@ -1,0 +1,44 @@
+<main id="main" class="tool-content-wrapper">
+	<div class="row">
+		<a href="#" class="anchor-button anchor-button--type-2 anchor-button--size-3 anchor-button--color-4 u-margin-3">&lt; voltar</a>
+	</div>
+	<h2 class="title">Editar base de dados</h2>
+	<form {{action 'salvar' on='submit'}}>
+		<div class="wrapper-content">
+			<div class="inner-wrapper inner-wrapper--type-2">
+				<div class="input-wrapper">
+					<label class="label" for="name">Nome:</label>
+					<input class="input input--size-2" type="text" name="model.datasource[name]" value="{{model.datasource.name}}">
+				</div>
+				<div class="input-wrapper">
+					<label class="label" for="description">Descrição:</label>
+					<textarea class="input input--textarea" id="description" name="datasource[description]">{{model.datasource.description}}</textarea>
+				</div>
+				<div class="input-wrapper">
+					<label class="label" for="type">Tipo:</label>
+					<div class="custom-select custom-select--size-2" id="type">
+						<select name="datasource[data_type]">
+							<option value="">{{model.datasource.data_type}}</option>
+							<option value="">Valor B</option>
+							<option value="">Valor C</option>
+						</select>
+					</div>
+				</div>
+				<div class="input-wrapper">
+					<label class="label" for="format">Formato:</label>
+					<div class="custom-select custom-select--size-2" id="format">
+						<select name="datasource[data_format]">
+							<option value="">{{model.datasource.data_format}}</option>
+							<option value="">Valor B</option>
+							<option value="">Valor C</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="u-center-elements">
+			<button class="anchor-button anchor-button--size-2" type="submit">Salvar alterações</button>
+		</div>
+	</form>
+
+</main>
