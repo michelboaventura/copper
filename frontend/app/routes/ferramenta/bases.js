@@ -21,11 +21,9 @@ export default Ember.Route.extend({
     },
 
     editar(data){
-    console.log(data.get('data_type'));
-      this.get('controller').transitionToRoute('ferramenta.bases.editar', 
-      {queryParams: 
-        { 
-          base: data.get('id'), 
+      this.get('controller').transitionToRoute('ferramenta.bases.editar', {
+        queryParams: {
+          base: data.get('id'),
         }
       });
     },
@@ -35,5 +33,4 @@ export default Ember.Route.extend({
       $("#flash span").text("The workflow was deleted.").show().parent().fadeIn().delay(2000).fadeOut('slow', function() { $("#flash span").text('') });
     }
   },
-
 });
