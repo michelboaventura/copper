@@ -1,7 +1,7 @@
 <div class='row'>
   {{visualizations/sentiment-analysis/sentiment-matrix
     width=width
-    height=height
+    height="600px"
     _id=_id
     title=title
     dataUrl=dataUrl
@@ -11,14 +11,12 @@
 <div class='row'>
   <div class='gViz-col-6'>
 
-    {{!-- Time chart --}}
     {{visualizations/sentiment-analysis/table-chart
-    width="100%"
     height="auto"
     _id="table-1"
     title="Average Score"
     type="users"
-    columns='["Participante", "(%)", "Positividade"]'
+    headers='["Participante", "(%)", "Positividade"]'
     dataUrl=dataUrl
     }}
 
@@ -26,14 +24,12 @@
 
   <div class='gViz-col-6'>
 
-    {{!-- Time chart --}}
     {{visualizations/sentiment-analysis/table-chart
-      width="100%"
       height="auto"
       _id="table-2"
       title="Average Score"
       type="papers"
-      columns='["Item Comentável", "(%)", "Positividade"]'
+      headers='["Item Comentável", "(%)", "Positividade"]'
       dataUrl=dataUrl
     }}
 

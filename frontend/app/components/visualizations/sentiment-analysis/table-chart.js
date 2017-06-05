@@ -5,14 +5,8 @@ export default Ember.Component.extend({
     this._super(...arguments);
   },
 
-  // Attributes bingins
-  dataUrl:  function(){ return this.get('dataUrl'); }.property('dataUrl'),
-  width:    function(){ return this.get('width'); }.property('width'),
-  height:   function(){ return this.get('height'); }.property('height'),
+ // Attributes bingins
   _id:      function(){ return this.get('_id'); }.property('_id'),
-  style:    function(){ return "width:"+this.get('width')+"; height:"+this.get('height')+";"; }.property('style'),
-  columns:  function(){ return this.get("columns"); }.property('columns'),
-  type:     function(){ return this.get("type"); }.property('type'),
 
   // Chart var
   _var: null,
@@ -20,69 +14,100 @@ export default Ember.Component.extend({
   _sort_state: {name: "asc", value: "desc"},
 
   actions: {
+    sortTable(header_index) {
+      let self = this;
 
-    sortTable(type) {
-      let component = this;
-      let sort_state = component.get("_sort_state");
+      let table = document.getElementById(self.get("_id"));
+      let switching = true;
+      let shouldSwitch = null;
+      let i = null;
 
-      let table = document.getElementById(component.get("_id"));
-      let rows = table.getElementsByClassName("row");
+      let sort_state = self.get("_sort_state");
 
-      let sorted_rows = $(rows).sort(function(a, b) {
+      while (switching) {
+        //start by saying: no switching is done:
+        let rows = table.getElementsByTagName("TR");
+        switching = false;
+        /*Loop through all table rows (except the
+          first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++) {
+          //start by saying there should be no switching:
+          shouldSwitch = false;
+          /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+          let x = rows[i].getElementsByTagName("TD")[header_index];
+          let y = rows[i + 1].getElementsByTagName("TD")[header_index];
 
-        let val_a = $(a).attr(`sort-by-${type}`);
-        let val_b = $(b).attr(`sort-by-${type}`);
+          if(header_index == 0) { // sort by name
+            if(sort_state["name"] == "asc") {
+              if ($(x).attr("data-value").toLowerCase() > $(y).attr("data-value").toLowerCase()) {
+                shouldSwitch= true;
+                break;
+              }
+            }
+            else {
+              if ($(x).attr("data-value").toLowerCase() < $(y).attr("data-value").toLowerCase()) {
+                shouldSwitch= true;
+                break;
+              }
+            }
+          }
 
-        switch(type) {
-          case "name":
-            val_a = val_a.toLowerCase();
-            val_b = val_b.toLowerCase();
-            break;
-          case "value":
-            val_a = parseFloat(val_a);
-            val_b = parseFloat(val_b);
-            break;
+          else { // sort by value
+            if(sort_state["value"] == "asc") {
+              if (parseFloat($(x).attr("data-value")) > parseFloat($(y).attr("data-value"))) {
+                shouldSwitch= true;
+                break;
+              }
+            }
+            else {
+              if (parseFloat($(x).attr("data-value")) < parseFloat($(y).attr("data-value"))) {
+                shouldSwitch= true;
+                break;
+              }
+            }
+          }
         }
 
-        // Returns sort in ascending or descending order
-        // according to the current sort state.
-        // The first sort by name is alphabetically,
-        // while the first sort by value is descending, and therefore,
-        // the biggest values are shown on top
-        switch(sort_state[type]) {
-          case "asc":
-            return (val_a < val_b) ? -1 : (val_a > val_b) ? 1 : 0;
-          case "desc":
-            return (val_a < val_b) ? 1 : (val_a > val_b) ? -1 : 0;
+        if (shouldSwitch) {
+          /*If a switch has been marked, make the switch
+            and mark that a switch has been done:*/
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
         }
-      });
-
-      // After the sorting is done, changes the sort type
-      // Therefore, sorting type alternates between ascending and
-      // descending everytime the user clicks on the button
-      switch(sort_state[type]) {
-        case "asc":
-          sort_state[type] = "desc";
-          component.set("_sort_state", sort_state);
-          break;
-        case "desc":
-          sort_state[type] = "asc";
-          component.set("_sort_state", sort_state);
-          break;
       }
 
-      $(table).html(sorted_rows);
-    }
+      let type = null;
+
+      switch(header_index) {
+        case 0:
+          type = "name";
+          break;
+        default:
+          type = "value";
+      }
+
+      if(sort_state[type] == "asc") {
+        sort_state[type] = "desc";
+        self.set("_sort_state", sort_state);
+      }
+      else {
+        sort_state[type] = "asc";
+        self.set("_sort_state", sort_state);
+      }
+
+    },
   },
 
   // Draw Chart
   didInsertElement: function(){
 
-    let component = this;
-    let dataUrl = this.get('dataUrl');
+    let self = this;
+    let dataUrl = self.get('dataUrl');
 
-    let columns = JSON.parse(this.get("columns"));
-    let type = this.get("type");
+    let headers = JSON.parse(self.get("headers"));
+    this.set("headers", headers);
+    let type = self.get("type");
 
     // Get data from API
     $.ajax({
@@ -129,11 +154,17 @@ export default Ember.Component.extend({
 
               // Adds opacity to RGB colour
               var colourString = `rgba(${coloursOnly[0]},${coloursOnly[1]},${coloursOnly[2]}, 0.6)`;
+              /*
+              d["width"] = d["avg"];
+              d["height"] = "10px";
+              d["bg-colour"] = colourString;
+              */
 
               // Sets width and colour of progress bar
               d["style"] = `
-              width:${d["avg"]}%;
-              background-color:${colourString};
+                width:${d["avg"]}%;
+                background-color:${colourString};
+                height: 10px
               `;
             });
 
@@ -142,23 +173,20 @@ export default Ember.Component.extend({
           };
 
           switch(type.toLowerCase()) {
-
             case "users":
               parse("rows");
-            component.set('_data', data.rows);
-            break;
+              self.set('_data', data.rows);
+              break;
             case "papers":
               parse("columns");
-            component.set('_data', data.columns);
-            break;
+              self.set('_data', data.columns);
+              break;
 
             default: console.log("Unkown Data Type");
           }
-
-          component.set('_columns', columns);
         }
 
-        else { component.set("empty", true); }
+        else { self.set("empty", true); }
       },
 
       // Hide loading div and render error
