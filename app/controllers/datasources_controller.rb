@@ -7,8 +7,9 @@ class DatasourcesController < ApplicationController
   def index
     page = (params[:page] || 1).to_i
     per_page = (params[:per_page] || 5).to_i
+    search = /#{params[:search]}/i
 
-    @datasources = Datasource.where(user: @current_user).order_by(:created_at.desc).page(page).per(per_page)
+    @datasources = Datasource.where(user: @current_user, name: search).order_by(:created_at.desc).page(page).per(per_page)
 
     render json: @datasources, meta: {total_pages: @datasources.total_pages}
   end

@@ -16,7 +16,7 @@ export default Ember.Route.extend(RouteMixin,{
       var page = this.controller.get("datasources.page");
     }
 
-    return this.findPaged('datasource', { page: page })
+    return this.findPaged('datasource', { page: page, search: this.get('controller.filterText') })
   },
 
   model(){
@@ -56,9 +56,12 @@ export default Ember.Route.extend(RouteMixin,{
   },
 
   actions: {
-    didTransition(){
-
+    search(){
+      return this.getDatasources().then((datasources) => {
+        this.controller.set('datasources', datasources);
+      });
     },
+
     deleteCheckeds(){
       var datasources = this.get('toDelete');
       var store = this.store;

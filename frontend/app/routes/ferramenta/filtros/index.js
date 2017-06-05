@@ -18,7 +18,7 @@ export default Ember.Route.extend(RouteMixin,{
     }
 
     return RSVP.hash({
-      jobsCompleted: this.findPaged('job', { completed: true, page: page }),
+      jobsCompleted: this.findPaged('job', { completed: true, page: page, search: this.get('controller.filterText') }),
       jobsRunning: this.store.query('job', { running: true })
     });
   },
@@ -60,6 +60,12 @@ export default Ember.Route.extend(RouteMixin,{
   },
 
   actions: {
+    search(){
+      return this.getJobs().then((jobs) => {
+        this.controller.set('jobs', jobs);
+      });
+    },
+
     deleteCheckeds(){
       var jobs = this.get('toDelete');
       var store = this.store;

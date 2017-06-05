@@ -8,13 +8,14 @@ class JobsController < ApplicationController
   def index
     page = (params[:page] || 1).to_i
     per_page = (params[:per_page] || 100).to_i
+    search = /#{params[:search]}/i
 
     if params[:public]
       @jobs = Job.where(public: params[:public], status: 'COMPLETED').order_by(:finished.desc).page(page).per(per_page)
     elsif params[:running]
       @jobs = Job.where(user: @current_user, status: 'RUNNING').order_by(:created_at.desc).page(page).per(per_page)
     elsif params[:completed]
-      @jobs = Job.where(user: @current_user, :status.ne => 'RUNNING').order_by(:finished.desc).page(page).per(per_page)
+      @jobs = Job.where(user: @current_user, :status.ne => 'RUNNING', name: search).order_by(:finished.desc).page(page).per(per_page)
     end
 
     render json: @jobs, meta: {total_pages: @jobs.total_pages}
