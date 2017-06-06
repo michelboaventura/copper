@@ -3,6 +3,11 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
+    'ember-font-awesome': {
+      useScss: true,
+      useLess: false
+    },
+
     // Add options here
   });
   // Use `app.import` to add additional libraries to the generated
@@ -17,13 +22,6 @@ module.exports = function(defaults) {
   // modules that you would like to import into your application
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
-  app.import('vendor/font-awesome/FontAwesome.otf', {destDir: 'fonts'});
-  app.import('vendor/font-awesome/fontawesome-webfont.eot', {destDir: 'fonts'});
-  app.import('vendor/font-awesome/fontawesome-webfont.svg', {destDir: 'fonts'});
-  app.import('vendor/font-awesome/fontawesome-webfont.ttf', {destDir: 'fonts'});
-  app.import('vendor/font-awesome/fontawesome-webfont.woff', {destDir: 'fonts'});
-  app.import('vendor/font-awesome/fontawesome-webfont.woff2', {destDir: 'fonts'});
-  app.import('vendor/font-awesome/font-awesome.min.css');
 
   app.import('vendor/bootstrap/bootstrap.min.js'); //dependencia query-builder
   app.import('vendor/doT/doT.min.js');//dependencia query-builder

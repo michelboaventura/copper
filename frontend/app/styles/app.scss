@@ -1,3 +1,4 @@
+@import "font-awesome";
 /*------------------------------------*    #PROJECT NAME
 \*------------------------------------*/
 // Gfranciscani Styles
@@ -3652,6 +3653,10 @@ input[readonly] {
 
 .has-error {
   color: #E8393C;
+  .icon {
+    margin: 0 5px 0 0;
+  }
+  i { @extend .fa-exclamation-triangle; }
 }
 
 .running {
@@ -3736,4 +3741,49 @@ input {
   a:hover {
     transition: none;
     opacity: 1; }
+}
+
+.inputfile-info {
+  margin: 10px 0 0 5px;
+  display: inline-block;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #b5303c;
+    border-bottom: 16px solid #b5303c;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.modal-content {
+  background: none;
+  border: none;
+  box-shadow: none;
 }

@@ -8,8 +8,22 @@ export default Ember.Route.extend({
   sessionAccount: service(),
 
   actions: {
+    clearErrors(){
+      var file = $('#inputfile');
+      var span = $('#inputfile-error');
+      if(file.val()){
+        span.removeClass('has-error');
+        span.text(file.val().split("\\")[2]);
+      }
+    },
+
     create(){
       $('input#user').val(this.get('sessionAccount.id'));
+      if(!($('#inputfile').val())){
+        $('#inputfile-error').addClass('has-error');
+        return;
+      }
+      $('#myModal').modal('toggle');
       var form = $('#newDb')[0];
       var formData = new FormData(form);
       var me = this;
@@ -23,10 +37,13 @@ export default Ember.Route.extend({
         contentType: false,
         processData: false,
         success() {
+          $('#myModal').modal('toggle');
           me.transitionTo('ferramenta.bases');
         },
-        error() {
-          alert("Erro ao importar database");
+        error(error) {
+          $('#myModal').modal('toggle');
+          var apiErrors = error.responseJSON.errors;
+          alert(`${apiErrors[0].title} \n\n ${apiErrors[0].detail}`);
         }
       });
     },
