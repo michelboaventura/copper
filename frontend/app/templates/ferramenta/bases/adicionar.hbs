@@ -9,22 +9,23 @@
       <div class="inner-wrapper inner-wrapper--type-2">
         <div class="input-wrapper">
           <label class="label" for="name">Nome:</label>
-          {{input type="text" class="input input--size-2" name="datasource[name]" placeholder="Nova base de dados"}}
+          {{input type="text" class="input input--size-2" name="datasource[name]" placeholder="Nova base de dados" required=true}}
         </div>
         <div class="input-wrapper">
           <label class="label" for="description">Descrição:</label>
-          {{textarea class="input input--textarea" id="description" name="datasource[description]" placeholder="Descrição da sua base de dados"}}
+          {{textarea class="input input--textarea" id="description" name="datasource[description]" placeholder="Descrição da sua base de dados" required=true}}
         </div>
         <div class="input-wrapper">
           <span class="label">Arquivo:</span>
-          <label for="inputfile" class="anchor-button anchor-button--type-2 anchor-button--color-3">Procurar</label>
-          <input type="file" class="input--file" name="datasource[file]" id="inputfile">
+          <label for="inputfile" class="anchor-button anchor-button--type-2 anchor-button--color-3" >Procurar</label>
+          <input type="file" class="input--file" name="datasource[file]" id="inputfile" onchange={{route-action 'clearErrors'}}>
+          <span id='inputfile-error' class="inputfile-info"><i class="icon fa"/>Selecione um arquivo</span>
         </div>
         <div class="input-wrapper">
           <label class="label" for="type">Tipo:</label>
           <div class="custom-select custom-select--size-2" id="type">
             <select name="datasource[data_type]">
-              <option value="database">Datasource</option>
+              <option value="database" selected>Datasource</option>
             </select>
           </div>
         </div>
@@ -32,9 +33,7 @@
           <label class="label" for="format">Formato:</label>
           <div class="custom-select custom-select--size-2" id="format">
             <select name="datasource[data_format]">
-              <option value="">----</option>
-              <option value="json">JSON</option>
-              <option value="">CSV</option>
+              <option value="json" selected>JSON</option>
             </select>
           </div>
         </div>
@@ -44,4 +43,15 @@
       <button class="anchor-button anchor-button--size-2" type="submit">Enviar base de dados</button>
     </div>
   </form>
+
+
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="loader"></div>
+      </div>
+    </div>
+  </div>
 </main>

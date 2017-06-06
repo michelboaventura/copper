@@ -27,8 +27,18 @@ class DatasourcesController < ApplicationController
     @datasource = Datasource.new(my_params)
 
     if @datasource.save
-      ImportDatasourceJob.new(file.read, @datasource.id).perform_now
-      render json: @datasource, status: :created, location: @datasource
+      begin
+        ImportDatasourceJob.new(file.read, @datasource.id).perform_now
+        render json: @datasource, status: :created, location: @datasource
+      rescue StandardError => e
+        @datasource.destroy
+        render json: { errors: [{
+          status: "422",
+          source: { pointer: "/data/attributes/file" },
+          title:  "O arquivo #{file.original_filename} é um arquivo inválido.",
+          detail: e.message[0..100]
+        } ]}, status: :unprocessable_entity
+      end
     else
       render json: @datasource.errors, status: :unprocessable_entity
     end
