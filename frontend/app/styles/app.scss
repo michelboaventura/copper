@@ -207,6 +207,9 @@
   }
   .error-container, .rule-filter-container, .rule-operator-container, .rule-value-container {
     background-color: #f0f0f0;
+    input[type=text] {
+      padding: 0 0.7rem;
+    }
   }
   .form-control {
     position: relative;
