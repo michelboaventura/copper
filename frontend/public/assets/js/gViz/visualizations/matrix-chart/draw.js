@@ -95,7 +95,7 @@ gViz.vis.matrix_chart.draw = function () {
                 var self = d3.select(this),
                   textLength = self.node().getComputedTextLength(),
                   text = self.text();
-                while (textLength > (_var.margin.left - 15) && text.length > 0) {
+                while (textLength > (150) && text.length > 0) {
                   text = text.slice(0, -1);
                   self.text(text + '...');
                   textLength = self.node().getComputedTextLength();
@@ -106,7 +106,7 @@ gViz.vis.matrix_chart.draw = function () {
               _var.row
                 .append("text")
                 .attr("class", _var._class + ' row text')
-                .attr("x", -6)
+                .attr("x", -10)
                 .attr("transform", function (d, i) {
                   return 'translate(0, ' + (_var.yScale(i) + _var.yScale.bandwidth() / 2) + ')';
                 })
