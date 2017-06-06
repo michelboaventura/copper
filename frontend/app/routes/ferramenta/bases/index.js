@@ -7,10 +7,6 @@ export default Ember.Route.extend(RouteMixin,{
   perPage: 8,
   toDelete: [],
 
-  beforeModel(){
-    this.store.unloadAll('datasource')
-  },
-
   getDatasources() {
     if(this.controller){
       var page = this.controller.get("datasources.page");

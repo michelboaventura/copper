@@ -1,6 +1,6 @@
 <main class="tool-content-wrapper" id="main">
   <div class="row">
-    <a href="#" class="anchor-button anchor-button--type-2 anchor-button--size-3 anchor-button--color-4 u-margin-3">&lt; voltar</a>
+    {{link-to '< voltar' 'ferramenta.bases' class="anchor-button anchor-button--type-2 anchor-button--size-3 anchor-button--color-4 u-margin-3 no-active"}}
   </div>
   <h2 class="title">Adicionar base de dados</h2>
   <form name="item" id="newDb" enctype="multipart/form-data" {{action 'create' on='submit'}}>
