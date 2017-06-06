@@ -1,0 +1,24 @@
+<!-- MENU -->
+<div class="menu-wrapper">
+	<div class="u-center-elements">
+		<img class="menu__logo" src="{{ "img/logo/logo.jpg" | prepend: page.baseurl }}" alt="Lemonade" />
+	</div>
+	<ul class="menu-list">
+		<li class="menu-list__item">
+			<a href="{{ "home" | prepend: page.baseurl }}" class="menu-list__anchor"><img class="menu-list__icon" src="{{ "img/icons/icon-home.svg" | prepend: page.baseurl }}" alt=""/><span class="menu-list__icon-text">Home</span></a>
+		</li>
+		<li class="menu-list__item is-selected">
+			<a href="{{ "ferramenta/bases" | prepend: page.baseurl }}" class="menu-list__anchor"><img class="menu-list__icon" src="{{ "img/icons/icon-database.svg" | prepend: page.baseurl }}" alt=""/><span class="menu-list__icon-text">Base de dados</span></a>
+		</li>
+		<li class="menu-list__item">
+			<a href="{{ "ferramenta/filtros/adicionar" | prepend: page.baseurl }}" class="menu-list__anchor"><img class="menu-list__icon" src="{{ "img/icons/icon-filter.svg" | prepend: page.baseurl }}" alt=""/><span class="menu-list__icon-text">Filtrar</span></a>
+		</li>
+		<li class="menu-list__item">
+			<a href="{{ "ferramenta/filtros" | prepend: page.baseurl }}" class="menu-list__anchor"><img class="menu-list__icon" src="{{ "img/icons/icon-results.svg" | prepend: page.baseurl }}" alt=""/><span class="menu-list__icon-text">Resultado dos filtros</span></a>
+		</li>
+		<li class="menu-list__item">
+			<a href="{{ "ferramenta/sobre" | prepend: page.baseurl }}" class="menu-list__anchor"><img class="menu-list__icon" src="{{ "img/icons/icon-question.svg" | prepend: page.baseurl }}" alt=""/><span class="menu-list__icon-text">Sobre a ferramenta</span></a>
+		</li>
+	</ul>
+</div>
+<!-- END MENU -->

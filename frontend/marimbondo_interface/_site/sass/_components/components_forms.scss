@@ -1,0 +1,82 @@
+///*------------------------------------*\
+//    #FORMS
+//\*------------------------------------*/
+
+
+/* VARIABLES
+========================================================================== */
+$input-border-color: $color-gray-silver;
+
+/* SEARCH
+========================================================================== */
+.form-search {
+	position: relative;
+	float: right;
+	@include rem(margin-top, spaces(1.5)); @include rem(padding-left, spaces(2));
+	@include rem(width, spaces(40));
+
+	&:before {
+		content: "";
+		position: absolute; left: 0; top: 4px;
+		width: 1px; height: 16px;
+		background-color: $color-white;
+	}
+
+	@include breakpoint(desktop-and-up) {
+		display: inline-block;
+	}
+
+	&.form-search--mobile {
+		margin-top: -2px;
+		width: auto;
+
+		&:before {
+			content: none;
+		}
+
+		@include breakpoint(tablet-and-up) {
+			float: left;
+			@include rem(margin, spaces(2.5) spaces(4) 0 0);
+		}
+
+	}
+
+}
+
+.form-search__input {
+	border: none;
+	@include pageBackgroundDark();
+	width: 200px; height: 25px;
+	color: $color-white;
+	font-family: $font-primary; @include rem(font-size, 12px); font-weight: bold;
+
+	@include placeholder {
+		color: $color-white;
+		font-family: $font-primary; @include rem(font-size, 12px); font-weight: bold;
+	}
+
+	&:hover, &:focus {
+		// opacity: .7;
+	}
+
+	.form-search--mobile & {
+		@include rem(width, spaces(6));
+		background-color: transparent;
+	}
+
+}
+
+.form-search__submit {
+	// border-left: 1px solid red;
+	position: relative; top: 4px;
+	height: 16px; width: 50px;
+	background: url('../img/icons/icon-search.svg') no-repeat right bottom;
+	border: 0;
+	cursor: pointer;
+
+	.form-search--mobile & {
+		width: 20px;
+		background-color: transparent;
+	}
+
+}

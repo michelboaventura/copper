@@ -1,0 +1,19 @@
+<main id="main">
+<!-- FILTER PAGE -->
+  <div class="section-wrapper">
+    <div class="content">
+      <h1 class="title title--type-3">Explore bases</h1>
+      <!-- CARDS LIST -->
+      <ul class="cards-list content--list">
+        {{#each pagedContent as |elem|}}
+          {{landing-page/card-base datasource=elem.datasource jobsCount=elem.jobsCount}}
+        {{/each}}
+      </ul>
+      <div class="row u-center-elements">
+        {{card-pagination content=pagedContent}}
+      </div>
+      <!-- END CARDS LIST -->
+    </div>
+  </div>
+<!-- END FILTER PAGE -->
+</main>

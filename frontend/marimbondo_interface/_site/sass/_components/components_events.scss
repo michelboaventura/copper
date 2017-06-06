@@ -1,0 +1,269 @@
+///*------------------------------------*\
+//    #EVENTS
+//\*------------------------------------*/
+
+/* VARIABLES
+========================================================================== */
+
+
+/* EVENT WRAPPER
+========================================================================== */
+.section-wrapper--no-event {
+	@include rem(padding-bottom, spaces(24));
+}
+
+/* EVENT CONTAINER
+========================================================================== */
+.event-container {
+	display: flex;
+	border: 1px solid $color-gray-alto;
+	@include rem(margin-bottom, spaces(2));
+	// width: 100%;
+	background-color: $color-white;
+
+	@include breakpoint(desktop-and-up) {
+		@include rem(margin-bottom, spaces(3));
+	}
+
+}
+
+.event {
+	width: 100%;
+}
+
+/* EVENT LIST
+========================================================================== */
+.events-list {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.events-list__item {
+
+}
+
+/* EVENT THUMB
+========================================================================== */
+.event__thumb-wrapper {
+	display: block;
+}
+
+.event__thumb {
+	width: 100%
+}
+/* HEADER
+========================================================================== */
+.event-header {
+	position: relative;
+}
+
+.event__tag {
+	position: absolute; @include rem(top, spaces(2)); @include rem(left, spaces(2));
+}
+
+.event-content {
+	display: flex;
+	@include rem(padding, spaces(4) spaces(2));
+
+	@include breakpoint(tablet-and-up) {
+		@include rem(padding, spaces(3) spaces(2));
+	}
+
+	@include breakpoint(desktop-and-up) {
+		@include rem(padding, spaces(4) spaces(2));
+	}
+
+	//EVENT TYPE 2
+	.event--type-2 & {
+		@media (min-width: $content-size--tablet) and (max-width: $content-size--desktop) {
+			flex-wrap: wrap;
+			@include rem(padding, spaces(1) spaces(2) spaces(2));
+		}
+
+		@include breakpoint(desktop-and-up) {
+			@include rem(padding, spaces(3) spaces(2) spaces(3));
+		}
+
+	}
+
+}
+
+/* DATE
+========================================================================== */
+.event-date__wrapper {
+
+	.event--type-2 & {
+		@include breakpoint(tablet-and-up) {
+			display: flex;
+		}
+
+		@include breakpoint(desktop-and-up) {
+			display: inherit;
+		}
+
+	}
+
+}
+
+.event-date {
+	position: relative;
+	@include rem(margin-right, spaces(2));
+	text-align: center;
+
+	//EVENT TYPE 2
+	.event--type-2 & {
+		@include breakpoint(tablet-and-up) {
+			@include rem(margin-bottom, spaces(2));
+			width: 100%;
+		}
+
+		@include breakpoint(desktop-and-up) {
+			width: auto;
+		}
+
+	}
+
+}
+
+.event-date--type-2 {
+	float: left;
+
+	.event-date--day {
+		@include rem(font-size, 45px);
+	}
+
+	.event-date--month {
+		@include rem(font-size, 22px);
+	}
+
+}
+
+.event-date--title {
+	@include rem(margin-bottom, spaces(.5)); @include rem(padding, spaces(.5) spaces(1));
+	background-color: $color-black-mine-shaft;
+	@include rem(font-size, 14px); color: $color-white; text-transform: lowercase;
+
+	//EVENT TYPE 2
+	.event--type-2 & {
+		@media (min-width: $content-size--tablet) and (max-width: $content-size--desktop) {
+			position: absolute; @include rem(top, spaces(1)); @include rem(right, spaces(-4));
+		}
+	}
+
+}
+
+.event-date--day {
+	@include rem(margin-bottom, spaces(.5));
+	@include rem(font-size, 36px); color: $color-gray-dove; font-weight: normal;
+
+	//EVENT TYPE 2
+	.event--type-2 & {
+		@include rem(font-size, 30px);
+
+		@media (min-width: $content-size--tablet) and (max-width: $content-size--desktop) {
+			text-align: left;
+		}
+	}
+
+}
+
+.event-date--day-end {
+	color: $color-gray-dust;
+}
+
+.event-date--month {
+	@include rem(font-size, 13px); color: $color-gray-dove;	 text-transform: uppercase; font-weight: normal;
+}
+
+.event-date--month-end {
+	color: $color-gray-dust;
+}
+
+.event-date--separator {
+	@include rem(margin, spaces(1) 0 spaces(.5));
+	@include rem(font-size, 12px); line-height: 120%; font-weight: bold; color: $color-gray-dust;
+
+	@media (min-width: $content-size--tablet) and (max-width: $content-size--desktop) {
+		@include rem(margin, spaces(1) spaces(.5) spaces(.5));
+	}
+
+}
+
+
+/* INFO
+========================================================================== */
+.event-info-list__item {
+	@include rem(font-size, 12px); line-height: 120%; color: $color-gray-emperor; font-weight: bold; text-transform: lowercase;
+
+	+ .event-info-list__item {
+		@include rem(margin-top, spaces(.5));
+	}
+
+}
+
+.event-info-list__item-icon {
+	@include rem(margin-right, spaces(1));
+}
+
+.event-info-list--open-event {
+	.event-info-list__item {
+		@include rem(font-size, 16px);
+
+		+ .event-info-list__item {
+			@include rem(margin-top, spaces(1));
+		}
+
+	}
+
+	.event-info-list__item-icon {
+		@include rem(margin-right, spaces(2));
+	}
+}
+
+/* EVENT TYPE 2
+========================================================================== */
+.event--type-2 {
+	.media-description {
+		@include breakpoint(tablet-and-up) {
+			@include rem(margin-bottom, spaces(3));
+			@include rem(font-size, 16px);
+		}
+	}
+}
+
+
+/* EVENT LIST
+========================================================================== */
+.section-wrapper--event-agenda-list {
+	@include rem(margin-top, spaces(-15));
+}
+
+.anchor-button--event-agenda {
+	@include rem(margin-top, -30px);
+}
+
+.event-agenda-list {
+	display: inline-block;
+}
+
+.event-agenda-list--separator {
+
+	@include breakpoint(desktop-large) {
+		position: relative;
+		@include rem(margin-left, spaces(2));
+
+		&:before {
+			content: '';
+			position: absolute; @include rem(top, spaces(.5)); @include rem(left, spaces(-1.4));
+			width: 2px; @include rem(height, spaces(3));
+			background-color: rgba($color-black-mine-shaft, .2);
+		}
+
+	}
+
+}
+
+.event-agenda-list__item {
+	display: inline-block;
+	@include rem(margin-bottom, spaces(1.5));
+}

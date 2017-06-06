@@ -1,0 +1,52 @@
+///*------------------------------------*\
+//    #GRID
+//\*------------------------------------*/
+
+//Loop through the number of columns in the current layout and creates the specific classes
+@for $i from 1 through 12 {
+
+    .col-#{$i}-12 {
+    	float: left;
+    	min-width: 1px;
+
+    	//If we only use one column, don't count the gutter in the width
+    	@if $i == 1 {
+
+			width: 100%;
+
+			@include breakpoint(tablet-and-up) {
+				width: $grid-column--tablet;
+			}
+
+			@include breakpoint(desktop-and-up) {
+				width: $grid-column--desktop;
+			}
+
+			@include breakpoint(desktop-large) {
+				width: $grid-column--desktop-large;
+			}
+
+		} @else {
+
+			width: 100%;
+
+			@include breakpoint(tablet-and-up) {
+				width: $grid-column--tablet * $i + $grid-gutter--tablet * $i - $grid-gutter--tablet;
+				margin-right: $grid-gutter--tablet;
+			}
+
+			@include breakpoint(desktop-and-up) {
+				width: $grid-column--desktop * $i + $grid-gutter--desktop * $i - $grid-gutter--desktop;
+				margin-right: $grid-gutter--desktop;
+			}
+
+			@include breakpoint(desktop-large) {
+				width: $grid-column--desktop-large * $i + $grid-gutter--desktop-large * $i - $grid-gutter--desktop-large;
+				margin-right: $grid-gutter--desktop-large;
+			}
+
+		}
+
+    }
+
+}

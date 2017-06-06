@@ -1,0 +1,36 @@
+///*------------------------------------*\
+//    #PAGINATION
+//\*------------------------------------*/
+
+/* VARIABLES
+========================================================================== */
+
+/* WRAPPER
+========================================================================== */
+.pagination-list {
+	@include rem(margin-bottom, spaces(3));
+	@include rem(font-size, 13px); line-height: 100%; font-weight: 600; color: $color-gray-mine-shaft;
+
+	li {
+		display: inline-block;
+	}
+
+	a {
+		@include rem(padding, spaces(1.5) spaces(3) spaces(1));
+		border: 1px solid $color-gray-mine-shaft;
+		border-radius: 17px;
+	}
+
+	.current {
+		background-color: $color-gray-mine-shaft;
+		color: $color-white;
+		cursor: default;
+
+		&:hover, &:focus {
+			opacity: 1;
+		}
+
+	}
+
+}
+

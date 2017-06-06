@@ -1,35 +1,11 @@
-<div class="item-row">
-  <div class="item-col fixed item-col-check">
-    <label class="item-check" id="select-all-items">
-      <input type="checkbox" class="checkbox">
-      <span></span>
-    </label>
-  </div>
-  <div class="item-col item-col-header item-col-title">
-    <div>
-      <span>Name</span>
-    </div>
-  </div>
-  <div class="item-col item-col-header item-col-size">
-    <div class="no-overflow">
-      <span>Size</span>
-    </div>
-  </div>
-  <div class="item-col item-col-header item-col-type">
-    <div class="no-overflow">
-      <span>Type</span>
-    </div>
-  </div>
-  <div class="item-col item-col-header item-col-author">
-    <div class="no-overflow">
-      <span>Author</span>
-    </div>
-  </div>
-  <div class="item-col item-col-header item-col-date">
-    <div>
-      <span>Created</span>
-    </div>
-  </div>
-  <div class="item-col item-col-header fixed item-col-actions-dropdown">
-  </div>
-</div>
+<th>
+  <label for="checkall" id="select-all-items">
+    <input type="checkbox" class="checkbox" id="checkall" onchange={{action "selectAll"}}>
+    <span></span>
+  </label>
+</th>
+<th>Nome da base</th>
+<th class="u-row-width--10">Ações</th>
+<th>Filtrar nesta base</th>
+<th>Autor</th>
+<th class="u-row-width--10">Criada em</th>

@@ -1,0 +1,64 @@
+<div class="section-wrapper">
+  <div class="content">
+    <div class="inner-wrapper">
+      <form class="form-wrapper" {{action 'signup' on='submit'}}>
+        <div class="u-center-elements u-margin-2">
+          <h2 class="title title--type-2">Inscreva-se para ganhar acesso instantâneo</h2>
+        </div>
+        <div class="input-wrapper">
+          <label class="label" for="name">Nome</label>
+          {{input type="text" class="input" name="firstname" id="firstname" placeholder="Primeiro Nome" value=model.firstname}}
+          {{#each model.errors.firstname as |error|}}
+            <span class="label has-error">{{error.message}}</span>
+          {{/each}}
+        </div>
+        <div class="input-wrapper">
+          <label class="label" for="name">Sobrenome</label>
+          {{input type="text" class="input" name="lastname" id="lastname" placeholder="Último Nome"  value=model.lastname}}
+          {{#each model.errors.lastname as |error|}}
+            <span class="label has-error">{{error.message}}</span>
+          {{/each}}
+        </div>
+        <div class="input-wrapper">
+          <label class="label" for="email">E-mail</label>
+          {{input type="email" class="input" name="email" id="email" placeholder="Endereço de email"  value=model.email}}
+          {{#each model.errors.email as |error|}}
+            <span id="email" class="label has-error">{{error.message}}</span>
+          {{/each}}
+        </div>
+        <div class="input-wrapper">
+          <label class="label" for="password">Senha</label>
+          {{input type="password" class="input" name="password" id="password" placeholder="Minimo 6 digítos"  value=model.password}}
+          {{#each model.errors.password as |error|}}
+            <span class="label has-error">{{error.message}}</span>
+          {{/each}}
+        </div>
+        <div class="input-wrapper">
+          <label class="label" for="repassword">Repetir Senha</label>
+          {{input type="password" class="input" name="password_confirmation" id="password_confirmation" placeholder="Confirme sua senha" value=model.passwordConfirmation}}
+          {{#each model.errors.password_confirmation as |error|}}
+            <span class="label has-error">{{error.message}}</span>
+          {{/each}}
+        </div>
+        <div class="input-wrapper u-margin-4">
+          <label class="label label--checkbox" for="remember">
+            {{input class='input--checkbox' name='agree' id='agree' type='checkbox' checked=agreed}} Eu concordo com os <a href="#" class="u-color--red-well">termos e políticas</a>
+          </label>
+          <span class="label has-error">{{notAgreed}}</span>
+
+
+        </div>
+        <div class="input-wrapper">
+          <div class="u-center-elements">
+            <input type="submit" class="anchor-button anchor-button--size-2" value="Inscreva-se" />
+          </div>
+        </div>
+      </form>
+      <div class="u-center-elements row">
+        <p class="description description--size-3 u-bottom">Já possui uma conta?
+        {{link-to "Entre" "landing-page.login" class="u-color--red-well"}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

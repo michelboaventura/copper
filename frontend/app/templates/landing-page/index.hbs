@@ -1,0 +1,28 @@
+<main id="main">
+  <div class="header-wrapper">
+    <div class="content">
+      <div class="u-center-elements">
+        <h1 class="title title--type-3 u-color--white">Pesquise entre centenas de projetos de lei </h1>
+        {{link-to "Crie seu filtro" "landing-page.login" class="anchor-button anchor-button--size-2"}}
+        {{link-to "Explore filtros" "landing-page.filtros" class="anchor-button anchor-button--size-2 anchor-button--transparent"}}
+      </div>
+    </div>
+  </div>
+  <!-- END HOME HEADER -->
+  <div class="section-wrapper">
+    <div class="content">
+      <h2 class="title title-block">Explore filtros</h2>
+      <!-- CARDS LIST -->
+      <ul class="cards-list content--list">
+        {{#each model as |job|}}
+          {{landing-page/card-filter job=job}}
+        {{/each}}
+      </ul>
+      <!-- END CARDS LIST -->
+      <div class="row u-center-elements">
+        {{link-to 'Ver todos os filtros' 'landing-page.filtros' class="anchor-button anchor-button--size-2"}}
+      </div>
+    </div>
+  </div>
+  <!-- END HOME CONTENT -->
+</main>

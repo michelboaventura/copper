@@ -24,5 +24,9 @@ module MjDataExplorer
     config.middleware.use Rack::ContentLength
     config.autoload_paths << Rails.root.join('lib')
     config.api_only = true
+    config.i18n.fallbacks = true
+    config.i18n.default_locale = :'pt-BR'
+    config.i18n.available_locales = :'pt-BR'
+    Mongoid.raise_not_found_error = false
   end
 end
