@@ -31,6 +31,7 @@ export default Ember.Component.extend({
       .container(".gViz-wrapper[data-id='"+component.get('_id')+"']")
       .margin(margin)
       .colors(colors)
+      .legend_title("Número de Comentários")
       .data(data)
       .build();
   },

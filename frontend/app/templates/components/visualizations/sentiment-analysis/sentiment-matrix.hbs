@@ -5,20 +5,21 @@
       <i class="fa fa-list fa-stack-1x fa-inverse"></i>
     </span>
   </div>
-  <span class='title'>{{title}}</span>
+  <span class='title'>Análise de Sentimentos</span>
 </div>
 
 {{#unless empty}}
 
   <div class='gViz-wrapper sentiment-analysis-wrapper' data-id={{_id}} style={{style}} >
     <div class="controls">
+      <div class="gViz-col-1" class="sort-by"> Ordena por: </div>
       <div class="gViz-col-2">
         <select id="order" class="form-control">
-          <option value="name">by Name</option>
-          <option value="count">by Frequency</option>
+          <option value="name">Nome</option>
+          <option value="count">Score</option>
         </select>
       </div>
-      <div class="gViz-col-10" id="data-buttons"></div>
+      <div class="gViz-col-9" id="data-buttons"></div>
     </div>
   </div>
 
