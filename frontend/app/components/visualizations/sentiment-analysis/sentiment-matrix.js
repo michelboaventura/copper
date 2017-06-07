@@ -35,7 +35,7 @@ export default Ember.Component.extend({
       .data(data)
       .colors(colors)
       .legend_units("continuous")
-      .legend_title("Sentiment Score")
+      .legend_title("Score de Sentimento")
       .legend_domain([0,1])
       .build();
   },
