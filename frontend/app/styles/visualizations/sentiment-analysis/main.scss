@@ -21,6 +21,11 @@ svg.sentiment-analysis-chart {
   padding-right: 5px;
   padding-left: 5px;
 
+  .sort-by {
+    transform: translate(0px, 5px);
+    font-weight: bold;
+  }
+
   &.sentiment-analysis-wrapper {
     overflow: auto;
   }
