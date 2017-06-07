@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]>    <html class="ie ie9 ie-lt10" lang="pt-BR"> <![endif]-->
+<!--[if gt IE 9]><!--><html lang="pt-BR"><!--<![endif]-->
+
+  {% include head.html %}
+
+  <body data-language="pt-br">
+	{% include home/navigation.html %}
+	{% include home/home-header.html %}
+	<div class="section-wrapper">
+		<div class="content">
+			<h2 class="title">Explore filtros</h2>
+			{% include home/cards-list.html %}
+			<div class="row u-center-elements">
+				{% include home/pagination.html %}
+			</div>
+		</div>
+	</div>
+	{% include home/footer.html %}
+    {% include footer-includes.html %}
+  </body>
+
+</html>

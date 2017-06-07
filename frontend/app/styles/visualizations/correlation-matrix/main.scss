@@ -18,4 +18,13 @@ svg.correlation-matrix-chart {
 
 .gViz-wrapper.correlation-matrix-chart {
   overflow: auto;
+
+  .sort-by {
+    transform: translate(0px, 5px);
+    font-weight: bold;
+  }
+
+  #data-buttons {
+    text-align: right;
+  }
 }

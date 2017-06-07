@@ -12,7 +12,7 @@ set :application, 'mj_data_explorer'
 set :repo_url, 'git@github.com:michelboaventura/mj_data_explorer.git'
 
 # Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/ceweb/mj_data_explorer'

@@ -1,0 +1,47 @@
+<!-- HEADER -->
+<header class="navigation-wrapper row">
+	<div class="navigation-content">
+		<div class="config-menu link-list-wrapper">
+			<button class="config-menu__action link-list__action">
+				<img class="config-menu__thumb" src="{{ "img/examples/user-thumb-example.jpg" | prepend: page.baseurl }}" alt="" />
+				<span class="config-menu__title">NIC CEWEB</span>
+				<img class="" src="{{ "img/icons/icon-arrow.svg" | prepend: page.baseurl }}" alt="" />
+			</button>
+			<ul class="link-list link-list--menu col-2-12">
+				<li class="link-list__item">
+					<a href="{{ "ferramenta/perfil" | prepend: page.baseurl }}" class="link-list__anchor">
+						<img class="link-list__icon" src="{{ "img/icons/icon-profile.svg" | prepend: page.baseurl }}" alt="" />
+						Profile
+					</a>
+				</li>
+				<li class="link-list__item">
+					<a href="#" class="link-list__anchor">
+						<img class="link-list__icon" src="{{ "img/icons/icon-logout.svg" | prepend: page.baseurl }}" alt="" />
+						Logout
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</header>
+
+<script type="text/javascript">
+	var linkListContainer = document.querySelector('.link-list-wrapper'),
+		linkListActionButton = document.querySelector('.link-list__action');
+
+    linkListActionButton.addEventListener('click', function () {
+
+		if (linkListContainer.classList.contains('is-open')) {
+
+			linkListContainer.classList.remove('is-open');
+
+		} else {
+
+			linkListContainer.classList.add('is-open');
+
+		}
+
+    });
+</script>
+
+<!-- END HEADER -->

@@ -1,0 +1,38 @@
+ <ul class="pagination-list">
+    {{#if canStepBackward}}
+      <li class="pagination-list__item arrow prev enabled-arrow">
+        <a class="pagination-list__anchor" href="#" {{action "incrementPage" -1}}><i class='fa fa-arrow-left'/></a>
+      </li>
+    {{else}}
+      <li class="pagination-list__item arrow prev disabled">
+        <a class="pagination-list__anchor" {{action "incrementPage" -1}}><i class='fa fa-arrow-left'/></a>
+      </li>
+    {{/if}}
+
+    {{#each pageItems as |item|}}
+      {{#if item.dots}}
+        <li class="dots disabled">
+          <span>...</span>
+        </li>
+      {{/if}}
+      {{#if item.current}}
+        <li class="pagination-list__item">
+          <a class="pagination-list__anchor current" >{{item.page}}</a>
+        </li>
+      {{else}}
+        <li class="pagination-list__item">
+          <a class="pagination-list__anchor" href="#" {{action "pageClicked" item.page}}>{{item.page}}</a>
+        </li>
+      {{/if}}
+    {{/each}}
+
+    {{#if canStepForward}}
+      <li class="pagination-list__item arrow next enabled-arrow">
+        <a class="pagination-list__anchor" href="#" {{action "incrementPage" 1}}><i class='fa fa-arrow-right'/></a>
+      </li>
+    {{else}}
+      <li class="pagination-list__item  arrow next disabled">
+        <a class="pagination-list__anchor" href="#" {{action "incrementPage" 1}}><i class='fa fa-arrow-right'/></a>
+      </li>
+    {{/if}}
+  </ul>

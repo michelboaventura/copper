@@ -1,0 +1,83 @@
+///*------------------------------------*\
+//    #OPTIONS MENU
+//\*------------------------------------*/
+
+/* VARIABLES
+========================================================================== */
+$options-border-color: $color-gray-silver;
+$options-backgroound-color: $color-white;
+
+/* CONTAINER
+========================================================================== */
+.link-list-wrapper {
+	position: relative;
+}
+
+.link-list {}
+
+.link-list--menu {
+	position: absolute; top: 0;
+	display: none;
+	border: 1px solid $options-border-color;
+
+	&:before, &:after {
+		content: '';
+		position: absolute; right: 10px; top: -8px;
+	    width: 0; height: 0;
+	    border-style: solid;
+	    border-width: 0 6px 7px 6px;
+	    border-color: transparent transparent $options-border-color transparent;
+	}
+
+	&:after {
+		content: '';
+		top: -6px; right: 11px;
+		border-width: 0 5px 6px 5px;
+		border-color: transparent transparent $options-backgroound-color transparent;
+	}
+
+
+	.is-open & {
+		top: 150%; right: -30%;
+		z-index: $z-index-above;
+		display: block;
+	}
+
+}
+
+/* ITEMS
+========================================================================== */
+.link-list__item {
+	display: block;
+	background-color: $options-backgroound-color;
+	vertical-align: top;
+	border-bottom: 1px solid $color-gray-gallery;
+
+	+ .link-list__item {
+		border-top: 1px solid $color-gray-gallery;
+		border-bottom: none;
+	}
+
+}
+
+.link-list__icon {
+	@include rem(margin-right, spaces(1));
+}
+
+.link-list__anchor {
+	display: flex; align-items: center;
+	@include rem(padding, spaces(3) spaces(2));
+	@include rem(font-size, 13px); color: $color-gray-mine-shaft;
+	transition: background-color ease $basic-transition;
+
+	&:hover, &:focus {
+		opacity: 1;
+		background-color: $options-border-color;
+		transition: background-color ease $basic-transition;
+	}
+
+	.link-list--menu & {
+		@include rem(height, spaces(6));
+	}
+
+}

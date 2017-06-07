@@ -1,0 +1,49 @@
+<main class="tool-content-wrapper" id="main">
+
+  {{!-- Voltar btn --}}
+  <div class="row">
+    {{link-to '< voltar' 'ferramenta.filtros.aberto' model.job.id class="anchor-button anchor-button--type-2 anchor-button--size-3 anchor-button--color-4 u-margin-3 no-active"}}
+  </div>
+  {{!-- /Voltar btn --}}
+
+  {{!-- Header --}}
+  <h1 class="title full-title">
+    {{model.job.name}}
+    <small class="description description--size-2 u-color--gray-mine-shaft">em
+      {{#link-to 'landing-page.bases.aberta' model.datasource.id}}
+        <strong>{{model.job.datasource.name}}</strong>
+      {{/link-to}}
+    </small>
+    <span class="description description--size-2 pull-right">
+      <i>{{format-date model.job.finished}} por</i>
+      <a href="#"><strong>{{model.job.user.fullname}}</strong></a>
+    </span>
+
+  </h1>
+  <p class="title"><small>Termos buscados:</small>{{model.job.filter}}</p>
+  <hr class='gViz-hr'>
+  {{!-- /Header --}}
+
+  <div class="row">
+
+    {{!-- Visualization --}}
+    {{component model.component
+      width="100%"
+      height="600px"
+      _id="uniq-visu"
+      jobId=model.job.id
+      title="This is the visualization title"
+      dataUrl=model.url
+      search=model.search
+    }}
+    {{!-- /Visualization --}}
+
+    {{!-- /Empty Visualization --}}
+    {{#unless (eq model.component "visualizations/search-tool")}}
+      {{visualizations/about-vis vis=model.component }}
+    {{/unless}}
+    {{!-- /Empty Visualization --}}
+
+  </div>
+
+</main>

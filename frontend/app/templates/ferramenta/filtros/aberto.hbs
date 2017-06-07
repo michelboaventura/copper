@@ -1,0 +1,28 @@
+<main class="tool-content-wrapper" id="main">
+  <main>
+    <div class="row">
+      {{link-to '< voltar' 'ferramenta.filtros' class="anchor-button anchor-button--type-2 anchor-button--size-3 anchor-button--color-4 u-margin-3 no-active"}}
+    </div>
+    <h2 class="title">Resultados para <span class="title--type-2">Nome do filtro</span></h2>
+    <!-- VISUALIZATION LIST -->
+    <ul class="cards-list content--list">
+    {{#each resultsTypes as |resultType|}}
+      <li class="cards-list__item col-3-12">
+      {{#link-to 'ferramenta.filtros.resultado' model.id resultType.id class="card-list__item--link"}}
+        <div class="card card--type-2">
+          <a href="#" class="card__header">
+            <img src="/assets/img/icons/icon-results--{{resultType.image}}.svg" alt={{resultType.text}} />
+          </a>
+          <div class="card__content">
+            <h3 class="card__info"><a href="#">{{resultType.text}}</a></h3>
+          </div>
+        </div>
+      {{/link-to}}
+      </li>
+    {{/each}}
+    </ul>
+    <!-- END VISUALIZATION LIST -->
+  </main>
+</main>
+<!-- END FILTER PAGE -->
+

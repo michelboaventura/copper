@@ -1,0 +1,143 @@
+///*------------------------------------*\
+//    #WRAPPERS
+//\*------------------------------------*/
+
+/* VARIABLES
+========================================================================== */
+
+/* WRAPPER
+========================================================================== */
+.full-wrapper {
+	overflow: hidden;
+}
+
+/* SECTIONS
+========================================================================== */
+.section {
+	width: 100%;
+    // clear at the end of container
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+
+}
+
+/* ROWS
+========================================================================== */
+.row {
+
+    // clear at the end of container
+    clear: both;
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+
+}
+
+/* CONTENT
+========================================================================== */
+.content {
+	@include rem(padding, 0 $grid-gutter--mobile);
+	max-width: 100%;
+
+    @include breakpoint(tablet-and-up) {
+    	margin: auto;
+    	@include rem(padding, 0 $grid-gutter--tablet);
+    	max-width: $content-size--tablet;
+    }
+
+	@include breakpoint(desktop-and-up) {
+		@include rem(padding, 0 $grid-gutter--desktop);
+		max-width: $content-size--desktop;
+	}
+
+    @include breakpoint(desktop-large) {
+        @include rem(padding, 0 $grid-gutter--desktop-large);
+        max-width: $content-size--desktop-large;
+    }
+
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+
+}
+
+//When you need a wrapper for an unknow number of elements
+.content--list {
+    float: left;
+
+    @include breakpoint(tablet-and-up) {
+        margin-right: -$grid-gutter--tablet;
+    }
+
+    @include breakpoint(desktop-and-up) {
+        margin-right: -$grid-gutter--desktop;
+    }
+
+    @include breakpoint(desktop-large) {
+        margin-right: -$grid-gutter--desktop-large;
+    }
+
+}
+
+//When you need a bottom border in your container
+.content--border {
+    // border-bottom: 1px solid $color-gray-silver;
+}
+
+/* INNER CONTENT
+========================================================================== */
+.inner-wrapper {
+    margin: auto; @include rem(margin-bottom, spaces(3)); @include rem(padding, spaces(6));
+    @include rem(max-width, 680px);
+    background-color: $color-white;
+    border: 1px solid $color-gray-alto;
+}
+
+.inner-wrapper--type-2 {
+    @include rem(padding, spaces(3));
+    width: 100%;
+}
+
+.inner-wrapper--type-3 {
+    @include rem(padding, spaces(1));
+    width: 100%;
+}
+
+/* SECTION WRAPPERS
+========================================================================== */
+.section-wrapper {
+	@include rem(padding, spaces(6) 0);
+	background-color: $color-gray-gallery;
+
+	@include breakpoint(tablet-and-up) {
+		@include rem(padding, spaces(8) 0 spaces(10));
+	}
+
+}
+
+.section-wrapper--content {
+    @include rem(max-width, 840px);
+}
+
+/* BACKGROUND VARIATIONS
+========================================================================== */
+
+
+/* COLOR VARIATIONS
+========================================================================== */

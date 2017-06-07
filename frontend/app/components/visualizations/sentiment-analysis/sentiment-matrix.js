@@ -23,7 +23,7 @@ export default Ember.Component.extend({
     // Initialize variables
     let component = this;
 
-    let margin = {top: 100, left: 200, right: 50, bottom: 10};
+    let margin = {top: 100, left: 0, right: 10, bottom: 50};
 
     let colors = { scale: gViz.helpers.colors.linear([0, 1], ["red", "lightgray", "blue"]) };
 
@@ -35,7 +35,7 @@ export default Ember.Component.extend({
       .data(data)
       .colors(colors)
       .legend_units("continuous")
-      .legend_title("Sentiment Score")
+      .legend_title("Score de Sentimento")
       .legend_domain([0,1])
       .build();
   },

@@ -32,16 +32,15 @@ class PerformJob < ApplicationJob
       gsub(/{"\$ne":"([^\"]*)"}/, '{"$not": /\1/i}')
 
     filter = eval(query)
-    types = /#{job.types.remover_acentos}/i
     datasource = job.datasource
 
-    part_ids = datasource.parts.where(type: types).pluck(:id)
+    part_ids = datasource.parts.pluck(:id)
     comments = datasource.comments.in(part_id: part_ids).where(filter)
     full_comments = datasource.comments.in(part_id: part_ids)
     terms = query.scan(/\/([^\/]*)\//).flatten.map{|s| s.gsub(/\[[^\]\[]*\]/, '')}
 
     if comments.empty?
-      job.update_attribute(:status, "EMPTY")
+      job.update_attributes(status: "EMPTY", finished: Time.now)
       return
     end
 

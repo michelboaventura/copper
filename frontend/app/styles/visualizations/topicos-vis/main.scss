@@ -1,3 +1,20 @@
+
+.topicos-vis-wrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+  .topicos-vis-left {
+    width: calc(100% - 215px);
+    float: left;
+  }
+
+  .topicos-vis-right {
+    width: 215px;
+    float: right;
+    padding: 16px 0px 0px 20px;
+  }
+}
+
 .topicos-vis {
   table {
     thead {

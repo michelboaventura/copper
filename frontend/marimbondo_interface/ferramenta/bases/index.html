@@ -1,0 +1,101 @@
+---
+layout: ferramenta
+title: Home Ferramenta
+baseurl: ../../
+---
+<!-- TOOL CONTENT -->
+<section>
+	<h2 class="title">Base de dados</h2>
+	<a href="{{ "ferramenta/bases/adicionar" | prepend: page.baseurl }}" class="anchor-button">Enviar nova base</a>
+	<form class="u-flow-opposite">
+		<input type="search" class="input input--search" placeholder="busca">
+		<button class="input--search--button"></button>
+	</form>
+	<section class="row">
+		<h3 class="title title--type-2">Base de dados em andamento</h3>
+		<table class="table">
+			<thead class="table__head">
+				<tr>
+					<th>Nome do filtro</th>
+					<th>Status</th>
+					<th>Grupo</th>
+					<th>Autor</th>
+					<th>Criada em</th>
+				</tr>
+			</thead>
+			<tbody class="table__body">
+				<tr>
+					<td>Anteprojeto de Lei para Proteção de Dados Pessoais Anteprojeto de Lei para Proteção de Dados Pessoais</td>
+					<td><img class="icon--running" src="{{ "img/icons/icon-status--running.svg" | prepend: page.baseurl }}" alt="Runnning" /></td>
+					<td>UFMG</td>
+					<td>NIC CEWEB</td>
+					<td>15 de Fev de 2017 17:09</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	<section class="row">
+		<h3 class="title title--type-2">Base de dados enviada</h3>
+		<div class="link-list-wrapper u-flow-opposite">
+			<button class="anchor-button anchor-button--type-2 anchor-button--size-3 anchor-button--color-4"><img class="anchor-button__icon" src="{{ "img/icons/icon-arrow.svg" | prepend: page.baseurl }}" alt="">Mais ações</button>
+			<ul class="link-list link-list--menu col-2-12">
+				<li class="link-list__item">
+					<a href="#" class="link-list__anchor">
+						<img class="link-list__icon" src="../img/icons/icon-profile.svg" alt="" />
+						Profile
+					</a>
+				</li>
+				<li class="link-list__item">
+					<a href="#" class="link-list__anchor">
+						<img class="link-list__icon" src="../img/icons/icon-logout.svg" alt="" />
+						Logout
+					</a>
+				</li>
+			</ul>
+		</div>
+		<table class="table">
+			<thead class="table__head">
+				<tr>
+					<th><input type="checkbox"></th>
+					<th>Nome da base</th>
+					<th class="u-row-width--10">Ações</th>
+					<th>Status</th>
+					<th>Filtrar nesta base</th>
+					<th>Grupo</th>
+					<th>Autor</th>
+					<th class="u-row-width--10">Criada em</th>
+				</tr>
+			</thead>
+			<tbody class="table__body">
+				<tr>
+					<td><input type="checkbox"></td>
+					<td>Anteprojeto de Lei para Proteção de Dados Pessoais Anteprojeto de Lei para Proteção de Dados Pessoais</td>
+					<td>
+						<button class="anchor-button__icon"><img src="{{ "img/icons/icon-delete.svg" | prepend: page.baseurl }}" alt=""></button>
+						<a href="{{ "ferramenta/bases/editar" | prepend: page.baseurl }}"><img src="{{ "img/icons/icon-edit.svg" | prepend: page.baseurl }}" alt=""></a>
+					</td>
+					<td><img src="{{ "img/icons/icon-status--success.svg" | prepend: page.baseurl }}" alt=""></td>
+					<td><a href="{{ "ferramenta/filtros/adicionar" | prepend: page.baseurl }}" class="anchor-button">Filtrar</a></td>
+					<td>UFMG</td>
+					<td>NIC CEWEB</td>
+					<td>15 de Fev de 2017 17:09</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td>Adriano - privacidade AND dados</td>
+					<td>
+						<button class="anchor-button__icon"><img src="{{ "img/icons/icon-delete.svg" | prepend: page.baseurl }}" alt=""></button>
+						<a href="{{ "ferramenta/bases/editar" | prepend: page.baseurl }}"><img src="{{ "img/icons/icon-edit.svg" | prepend: page.baseurl }}" alt=""></a>
+					</td>
+					<td><img src="{{ "img/icons/icon-status--success.svg" | prepend: page.baseurl }}" alt=""></td>
+					<td><a href="{{ "ferramenta/filtros/adicionar" | prepend: page.baseurl }}" class="anchor-button">Filtrar</a></td>
+					<td>UFMG</td>
+					<td>NIC CEWEB</td>
+					<td>2 de Mar de 2017 16:14</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+</section>
+
+<!-- END TOOL CONTENT -->

@@ -1,13 +1,40 @@
-<header id="header-wrap">
-  {{landing-page.landing-page-header}}
+<ul class="skip-links" id="js-skip-links">
+  <li class="skip-links__item"><a class="visuallyhidden skip-links__anchor" href="#js-navigation">Ir para o menu do site</a></li>
+  <li class="skip-links__item"><a class="visuallyhidden skip-links__anchor" href="#main">Ir para o conteúdo do site</a></li>
+</ul>
+<header class="navigation-wrapper">
+  <div class="content">
+    <div class="navigation-content">
+      {{#link-to "landing-page" class="navigation__logo"}}
+        <img src="/assets/img/logo/logo.jpg" alt="Lemonade">
+      {{/link-to}}
+      <nav class="navigation" id="js-navigation">
+        <ul class="navigation-list">
+          <li class="navigation-list__item">
+            {{link-to "explore filtros" "landing-page.filtros" class="navigation-list__anchor"}}
+          </li>
+          <li class="navigation-list__item">
+            {{link-to "explore bases" "landing-page.bases" class="navigation-list__anchor"}}
+          </li>
+          <li class="navigation-list__item">
+            {{link-to "sobre" "landing-page.sobre" class="navigation-list__anchor"}}
+          </li>
+          <li class="navigation-list__item">
+            {{link-to "contato" "landing-page.contato" class="navigation-list__anchor"}}
+          </li>
+          {{#unless isAuthenticated }}
+            <li class="navigation-list__item">
+              {{link-to "inscreva-se" "landing-page.cadastro" class="navigation-list__anchor"}}
+            </li>
+          {{/unless}}
+        </ul>
+      </nav>
+      {{#if isAuthenticated }}
+        {{link-to "Ferramenta" "ferramenta" class="anchor-button"}}
+      {{else}}
+        {{link-to "Entrar" "landing-page.login" class="anchor-button"}}
+      {{/if}}
+    </div>
+  </div>
 </header>
-{{landing-page.landing-page-menu-image}}
-{{landing-page.landing-page-aboutus}}
-{{landing-page.landing-page-ourservices}}
-{{landing-page.landing-page-team}}
-{{landing-page.landing-page-footer}}
-
-<a href="#" class="back-to-top">
-  <i class="fa fa-angle-up">
-  </i>
-</a>
+{{outlet}}

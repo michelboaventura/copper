@@ -21,7 +21,7 @@ export default Ember.Component.extend({
     // Initialize variables
     let component = this;
 
-    let margin = {top: 100, left: 150, right: 100, bottom: 10};
+    let margin = {top: 50, left: 0, right: 10, bottom: 10};
 
     let colors = { scale: gViz.helpers.colors.linear(data.links, ["orange", "green"], "value") };
 
@@ -31,6 +31,7 @@ export default Ember.Component.extend({
       .container(".gViz-wrapper[data-id='"+component.get('_id')+"']")
       .margin(margin)
       .colors(colors)
+      .legend_title("Número de Comentários")
       .data(data)
       .build();
   },

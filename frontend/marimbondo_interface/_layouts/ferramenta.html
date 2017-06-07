@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]>    <html class="ie ie9 ie-lt10" lang="pt-BR"> <![endif]-->
+<!--[if gt IE 9]><!--><html lang="pt-BR"><!--<![endif]-->
+
+  {% include head.html %}
+
+    <body>
+        <div class="tool-wrapper">
+            <div class="tool-container">
+                <div class="tool-menu">
+                    {% include ferramenta/menu.html %}
+                </div>
+                <div class="tool-content">
+                    {% include ferramenta/navigation.html %}
+                    <main class="tool-content-wrapper" id="main">
+                        {{ content }}
+                    </main>
+                </div>
+            </div>
+            <div class="tool-footer">
+                {% include home/footer.html %}
+            </div>
+        </div>
+    </body>
+
+</html>

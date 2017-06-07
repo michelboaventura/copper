@@ -5,14 +5,12 @@
       <i class="fa fa-tree fa-stack-1x fa-inverse"></i>
     </span>
   </div>
-  <span class='title'>{{title}}</span>
+  <span class='title'>Diagrama Wordtree</span>
 </div>
 
 {{#unless empty}}
   <div class='row'>
-    <div class='col-xs-12'>
-      <div class='gViz-wrapper wordtree-diagram' data-id={{_id}} style="overflow: auto;" ></div>
-    </div>
+    <div class='gViz-wrapper wordtree-diagram' data-id={{_id}} style="overflow: auto;" ></div>
   </div>
 {{else}}
   {{visualizations/empty-vis}}
