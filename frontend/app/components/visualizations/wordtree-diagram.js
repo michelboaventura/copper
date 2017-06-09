@@ -10,7 +10,7 @@ export default Ember.Component.extend({
   _id:      function(){ return this.get('_id'); }.property('_id'),
 
   cWidth: Ember.computed("width", function() {
-    return `${this.$(".wordtree-diagram").parent().outerWidth() - 50}px`;
+    return `${this.$(".wordtree-diagram").parent().outerWidth() - 15}px`;
   }),
   cHeight: Ember.computed("height", function() {
     var offsetTop = this.$(".wordtree-diagram").length > 0 ? this.$(".wordtree-diagram").offset().top : 0;
