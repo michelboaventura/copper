@@ -151,7 +151,7 @@ gViz.vis.wordtree.helpers = function () {
             _var.container.jq.doubleScroll({resetOnWindowResize: true});
 
             // Set wrappers height
-            _var.container.jq.css("height", parseInt(_var.height + _var.margin.top + _var.margin.bottom + 50) + 'px')
+            _var.container.jq.css("height", parseInt(_var.height + _var.margin.top + _var.margin.bottom + 50) + 'px');
 
 
           };
