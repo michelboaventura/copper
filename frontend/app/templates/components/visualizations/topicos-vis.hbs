@@ -27,13 +27,13 @@
                 <td>{{tr.element.nome}}</td>
                 <td>
                   {{#each tr.eixos as |e|}}
-                    <a class='bar' href='/job/{{jobId}}/visualization/search-tool?search=Eixo {{e.id}}' target='_blank' style='height: {{e.height}}px; margin-top: {{e.mTop}}px; background-color: {{e.bg_color}};' title='Eixo: {{e.id}}'></a>
+                    <a class='bar' href={{e.url}} target='_blank' style='height: {{e.height}}px; margin-top: {{e.mTop}}px; background-color: {{e.bg_color}};' title='Eixo: {{e.id}}'></a>
                   {{/each}}
                 </td>
                 <td>{{tr.element.contagem_comentarios}}</td>
                 <td>
                   {{#each tr.top_palavras as |p|}}
-                    <a href='/job/{{jobId}}/visualization/search-tool?search={{p.name}}' target='_blank' class='word' style='font-size:{{p.value}}px;'>{{p.name}}</a>
+                    <a href={{p.url}} target='_blank' class='word' style='font-size:{{p.value}}px;'>{{p.name}}</a>
                   {{/each}}
                 </td>
               </tr>

@@ -1,10 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  init() {
-    this._super(...arguments);
-  },
   classNames: ["topicos-vis"],
+  sessionAccount: Ember.inject.service(),
 
   // Attributes bingins
   json: Ember.A(),
@@ -51,8 +49,23 @@ export default Ember.Component.extend({
             // Add topics
             topicos.push({
               element: d,
-              eixos: d.frequencia_eixos.map(function(f) { return { id: f[0], height: scaleFrequenciaEixos(f[1]), mTop: scaleFrequenciaEixos.domain()[1] - scaleFrequenciaEixos(f[1]), bg_color: component.get('colorsEixos')(f[0]) }; }),
-              top_palavras: d.top_palavras.map(function(p) { return { id: d.topico_id, name: p[0], value: scaleTopPalavras(p[1]) }; })
+              eixos: d.frequencia_eixos.map(function(f) {
+                return {
+                  id: f[0],
+                  height: scaleFrequenciaEixos(f[1]),
+                  mTop: scaleFrequenciaEixos.domain()[1] - scaleFrequenciaEixos(f[1]),
+                  bg_color: component.get('colorsEixos')(f[0]),
+                  url: component.get('generateUrl')(`Eixo ${f[0]}`),
+                };
+              }),
+              top_palavras: d.top_palavras.map(function(p) {
+                return {
+                  id: d.topico_id,
+                  name: p[0],
+                  value: scaleTopPalavras(p[1]),
+                  url: component.get('generateUrl')(p[0]),
+                };
+              }),
             });
           });
 
@@ -62,7 +75,6 @@ export default Ember.Component.extend({
         }
 
         else{ component.set("empty", true); }
-
       },
 
       // Hide loading div and render error
@@ -71,19 +83,17 @@ export default Ember.Component.extend({
       // Hide loading div and render complete
       complete() { gViz.helpers.loading.hide(); }
     });
-
   },
-
-  //willRender: function(){
-  //  this.drawTable();
-  //}
 
   didInsertElement: function(){
+    let logged = this.get('sessionAccount.session.isAuthenticated');
+    let jobId = this.get('jobId');
+
+    this.set('generateUrl', function(query) {
+      let where = logged ? 'ferramenta' : 'landing-page';
+      return `/${where}/filtros/${jobId}/resultado/search-tool?search=${query}`;
+    });
+
     this.drawTable();
-  },
-
-  actions: {
-
   }
-
 });
