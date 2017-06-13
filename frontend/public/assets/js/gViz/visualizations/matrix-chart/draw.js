@@ -65,9 +65,9 @@ gViz.vis.matrix_chart.draw = function () {
               var bg_rect = _var.g.selectAll('.' + _var._class + '.background').data(["bg-rect"], function (d) {
                 return d;
               });
-                bg_rect.exit().remove();
-                bg_rect = bg_rect.enter().insert("rect", ":first-child").attr("class", _var._class + ' background').merge(bg_rect);
-                bg_rect.attr("x", 0).attr("y", 0).attr("width", _var.matrix_width).attr("height", _var.matrix_height);
+              bg_rect.exit().remove();
+              bg_rect = bg_rect.enter().insert("rect", ":first-child").attr("class", _var._class + ' background').merge(bg_rect);
+              bg_rect.attr("x", 0).attr("y", 0).attr("width", _var.matrix_width).attr("height", _var.matrix_height);
 
               // Creates or Update Rows
               _var.row = _var.g.selectAll('.' + _var._class + '.row').data(["matrix-rows"], function (d) { return d; });
