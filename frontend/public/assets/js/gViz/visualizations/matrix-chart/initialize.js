@@ -16,6 +16,7 @@ gViz.vis.matrix_chart.initialize = function () {
   var height = 100;
   var margin = { top: 50, right: 50, bottom: 50, left: 50 };
   var width = 100;
+  var legend_width = 170;
 
   // Validate attributes
   var validate = function validate(step) {
@@ -56,32 +57,22 @@ gViz.vis.matrix_chart.initialize = function () {
 
           _var.margin = margin;
 
-          _var.max_cell_size = 17;
+          _var.max_cell_size = 15;
+
+          _var.legend_width = legend_width;
 
           _var.matrix_height = _var.max_cell_size * _var._data.rows.length;
           _var.matrix_width = _var.max_cell_size * _var._data.columns.length;
 
-          var overflow = { "width": false, "height": false };
-          if (_var.matrix_width > _var.container.jq.outerWidth()) {
-            width = _var.matrix_width;
-            overflow["width"] = true;
-          }
-
-          if (_var.matrix_height > _var.container.jq.outerHeight()) {
-            height = _var.matrix_height;
-            overflow["height"] = true;
-          }
-
           // Define height and width
           _var.height = height != null ? height : _var.container.jq.outerHeight();
-          _var.width = width != null ? width : _var.container.jq.outerWidth();
+          _var.width = width != null ? width : _var.container.jq.outerWidth() - 15;
 
-          _var.height = overflow["height"] ? _var.height : _var.height - (_var.margin.top + _var.margin.bottom);
-          _var.width = overflow["width"] ? _var.width : _var.width - (_var.margin.left + _var.margin.right);
+          _var.min_width = _var.margin.left + _var.matrix_width + _var.legend_width + _var.margin.right + 40;
+          _var.min_height = _var.margin.top + _var.matrix_height + _var.margin.bottom;
 
-          var min_width = _var.matrix_width + _var.margin.left + 1.5 * _var.margin.right;
-
-          _var.width = _var.width < min_width? min_width : _var.width;
+          _var.width = _var.min_width > _var.width ? _var.min_width : _var.width;
+          _var.height = _var.min_height > _var.height ? _var.min_height : _var.height;
 
           // Set attribute _id to container
           _var.container.jq.attr('data-vis-id', _var._id);
@@ -94,7 +85,7 @@ gViz.vis.matrix_chart.initialize = function () {
   };
 
   // Expose global variables
-  ['_id', '_class', '_var', 'animation', 'colors', 'container', 'data', 'height', 'margin', 'width'].forEach(function (key) {
+  ['_id', '_class', '_var', 'animation', 'colors', 'container', 'data', 'height', 'margin', 'width', 'legend_width'].forEach(function (key) {
 
     // Attach variables to validation function
     validate[key] = function (_) {

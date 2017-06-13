@@ -16,9 +16,7 @@ svg.correlation-matrix-chart {
   }
 }
 
-.gViz-wrapper.correlation-matrix-chart {
-  overflow: auto;
-
+.correlation-controls {
   .sort-by {
     transform: translate(0px, 5px);
     font-weight: bold;
@@ -26,5 +24,19 @@ svg.correlation-matrix-chart {
 
   #data-buttons {
     text-align: right;
+
+    .data-button {
+      margin-left: 0;
+      margin-right: 0.5em;
+    }
   }
+}
+
+
+.gViz-wrapper.correlation-matrix-chart {
+  padding: 0;
+  overflow: auto;
+
+  margin-right: -15px;
+
 }

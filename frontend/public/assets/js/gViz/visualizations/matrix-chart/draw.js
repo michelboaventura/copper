@@ -65,9 +65,9 @@ gViz.vis.matrix_chart.draw = function () {
               var bg_rect = _var.g.selectAll('.' + _var._class + '.background').data(["bg-rect"], function (d) {
                 return d;
               });
-              bg_rect.exit().remove();
-              bg_rect = bg_rect.enter().insert("rect", ":first-child").attr("class", _var._class + ' background').merge(bg_rect);
-              bg_rect.attr("x", 0).attr("y", 0).attr("width", _var.matrix_width).attr("height", _var.matrix_height);
+                bg_rect.exit().remove();
+                bg_rect = bg_rect.enter().insert("rect", ":first-child").attr("class", _var._class + ' background').merge(bg_rect);
+                bg_rect.attr("x", 0).attr("y", 0).attr("width", _var.matrix_width).attr("height", _var.matrix_height);
 
               // Creates or Update Rows
               _var.row = _var.g.selectAll('.' + _var._class + '.row').data(["matrix-rows"], function (d) { return d; });
@@ -95,7 +95,7 @@ gViz.vis.matrix_chart.draw = function () {
                 var self = d3.select(this),
                   textLength = self.node().getComputedTextLength(),
                   text = self.text();
-                while (textLength > (150) && text.length > 0) {
+                while (textLength > (_var.margin.left - 15) && text.length > 0) {
                   text = text.slice(0, -1);
                   self.text(text + '...');
                   textLength = self.node().getComputedTextLength();
@@ -158,24 +158,25 @@ gViz.vis.matrix_chart.draw = function () {
                 .append("svg:title")
                 .text(function(d, i) { return _var._data.columns[i].name; });
 
+
               // If matrix is smaller than the screen, centers it
-              var center_horizontally = _var.matrix_width < $(_var.container.el).width();
-              var center_vertically   = _var.matrix_height < $(_var.container.el).height();
+              var center_horizontally = _var.min_width < _var.container.jq.outerWidth();
+              var center_vertically   = _var.min_height < _var.container.jq.outerHeight();
 
               if (center_vertically && center_horizontally) {
                 _var.g.attr("transform", 'translate('
-                + ($(_var.container.el).width() / 2 - _var.matrix_width / 2 + _var.margin.left/2) + ', '
-                + ($(_var.container.el).height() / 2 - _var.matrix_height / 2 + _var.margin.top/2) + ')');
+                + (_var.container.jq.outerWidth() / 2 - _var.min_width/2 + _var.margin.left) + ","
+                + (_var.container.jq.outerHeight() / 2 - _var.min_height / 2 + _var.margin.top) + ')');
               }
               else if (center_horizontally) {
                 _var.g.attr("transform", 'translate('
-                + ($(_var.container.el).width() / 2 - _var.matrix_width / 2 + _var.margin.left/2) + ","
+                + (_var.container.jq.outerWidth() / 2 - _var.min_width/2 + _var.margin.left) + ","
                 + _var.margin.top + ")");
               }
               else if (center_vertically) {
                 _var.g.attr("transform", 'translate('
                 + _var.margin.left + ","
-                + ($(_var.container.el).height() / 2 - _var.matrix_height / 2 + _var.margin.top/2) + ')');
+                + (_var.container.jq.outerHeight() / 2 - _var.min_height / 2 + _var.margin.top) + ')');
               }
               else {
                 _var.g.attr("transform", 'translate(' + _var.margin.left + "," + _var.margin.top + ')');

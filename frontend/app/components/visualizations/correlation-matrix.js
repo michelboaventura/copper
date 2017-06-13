@@ -21,7 +21,7 @@ export default Ember.Component.extend({
     // Initialize variables
     let component = this;
 
-    let margin = {top: 50, left: 0, right: 10, bottom: 10};
+    let margin = {top: 100, left: 150, right: 20, bottom: 10};
 
     let colors = { scale: gViz.helpers.colors.linear(data.links, ["orange", "green"], "value") };
 
@@ -41,6 +41,10 @@ export default Ember.Component.extend({
     let component = this;
     let dataUrl = component.get('dataUrl');
 
+    // Fixes max width to prevent svg-overflow
+    let container = $(".gViz-wrapper[data-id='"+component.get('_id')+"']");
+    container.css("max-width", container.outerWidth());
+
     // Get data from API
     gViz.helpers.loading.show();
     $.get(dataUrl, function(data) {
@@ -53,9 +57,8 @@ export default Ember.Component.extend({
         data.forEach((d, i) => {
           $("<button>")
           .attr("value", i + 1)
-          .attr("class", "btn btn-primary btn-xs")
+          .attr("class", "btn btn-primary btn-xs data-button")
           .text(i + 1)
-          .css("margin-left", "0.5em")
           .appendTo("#data-buttons")
           .on("click", function() {
             $("#order").val("name");
