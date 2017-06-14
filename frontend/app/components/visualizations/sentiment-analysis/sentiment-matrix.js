@@ -23,7 +23,7 @@ export default Ember.Component.extend({
     // Initialize variables
     let component = this;
 
-    let margin = {top: 100, left: 0, right: 10, bottom: 50};
+    let margin = {top: 100, left: 150, right: 20, bottom: 10};
 
     let colors = { scale: gViz.helpers.colors.linear([0, 1], ["red", "lightgray", "blue"]) };
 
@@ -41,9 +41,12 @@ export default Ember.Component.extend({
   },
 
   didInsertElement: function(){
-
     let component = this;
     let dataUrl = component.get('dataUrl');
+
+    // Fixes max width to prevent svg-overflow
+    let container = $(".gViz-wrapper[data-id='"+component.get('_id')+"']");
+    container.css("max-width", container.outerWidth());
 
     // Get data from API
     gViz.helpers.loading.show();

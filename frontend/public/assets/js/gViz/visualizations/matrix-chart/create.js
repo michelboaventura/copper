@@ -39,16 +39,12 @@ gViz.vis.matrix_chart.create = function () {
           _var.wrap = _var.wrap.enter().append("svg").attr('class', _var._class + ' chart-' + _var._id).merge(_var.wrap); // svg
 
           // Update outer dimensions
-          _var.wrap.attr("width", _var.width + _var.margin.left + _var.margin.right).attr("height", _var.height + _var.margin.top + _var.margin.bottom);
+          _var.wrap.attr("width", _var.width).attr("height", _var.height);
 
           // Draw g
           _var.g = _var.wrap.selectAll("g.chart-wrap").data(["chart-wrap"]); // svg:g
           _var.g.exit().remove();
           _var.g = _var.g.enter().append('g').attr('class', "chart-wrap").merge(_var.g);
-
-          var translate = {};
-          translate["vertical"]   = _var.container.jq.outerHeight() - _var.matrix_height/2;
-          translate["horizontal"] = _var.container.jq.outerWidth() - _var.matrix_width/2;
 
           // Update inner dimensions
           _var.g.attr("transform", 'translate(' + _var.margin.left + ',' + _var.margin.top + ')');

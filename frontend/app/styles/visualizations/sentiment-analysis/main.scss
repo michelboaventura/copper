@@ -16,20 +16,19 @@ svg.sentiment-analysis-chart {
   }
 }
 
-.gViz-wrapper {
-
-  padding-right: 5px;
-  padding-left: 5px;
-
+.sentiment-controls {
   .sort-by {
     transform: translate(0px, 5px);
     font-weight: bold;
   }
+}
+.gViz-wrapper {
 
   &.sentiment-analysis-wrapper {
+    padding: 0;
     overflow: auto;
+    margin-right: -15px;
   }
-
 
   table.table-chart {
     thead {
