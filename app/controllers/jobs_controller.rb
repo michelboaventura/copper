@@ -69,7 +69,7 @@ class JobsController < ApplicationController
   def filter_stringify query
     expression = "";
     groupElems = [];
-    operationsHash = {not_equal: " Não Igual ", equal: " Igual ", contains: " Contém ", AND: " E ", OR: " OU "};
+    operationsHash = {not_equal: " Diferente ", equal: " Igual ", contains: " Contém ", AND: " E ", OR: " OU "};
 
     begin
       query[:rules].each do |elem|

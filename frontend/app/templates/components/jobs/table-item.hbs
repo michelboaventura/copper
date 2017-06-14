@@ -18,6 +18,9 @@
     {{link-to 'ver' 'ferramenta.filtros.aberto' job.id class='anchor-button anchor-button--color-2'}}
   </td>
 {{/if}}
+{{#if job.hasError}}
+  <td><strong>Erro no processamento</strong></td>
+{{/if}}
 {{#if job.noResult}}
   <td><strong>Não retornou nenhum resultado</strong></td>
 {{/if}}
