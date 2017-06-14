@@ -30,5 +30,8 @@ export default DS.Model.extend({
   }),
   noResult: Ember.computed('status', function() {
     return this.get('status').message === 'EMPTY';
-  })
+  }),
+  hasError: Ember.computed('status', function() {
+    return this.get('status').message === 'ERROR';
+  }),
 });
