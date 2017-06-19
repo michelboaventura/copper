@@ -6,7 +6,7 @@ export default Ember.Route.extend({
   beforeModel(){
     var isAuthenticated = this.get('session.isAuthenticated');
     if(isAuthenticated){
-      this.replaceWith('ferramenta');
+      this.replaceWith('ferramenta.filtros');
     } else {
       this.replaceWith('landing-page');
     }

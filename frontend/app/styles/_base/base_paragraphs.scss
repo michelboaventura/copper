@@ -1,0 +1,46 @@
+///*------------------------------------*\
+//    #PARAGRAPHS
+//\*------------------------------------*/
+
+/* VARIABLES
+========================================================================== */
+
+/* PARAGRAPHS
+========================================================================== */
+.paragraph, p {
+	@include rem(margin-bottom, spaces(2));
+	font-family: $font-special; @include rem(font-size, 16px); color: rgb(17,17,17); line-height: 150%;
+
+
+	+ .paragraph, + p {
+		@include rem(margin-top, spaces(3));
+	}
+
+}
+
+/* COLOR VARIATIONS
+========================================================================== */
+.paragraph--font-2 {
+	font-family: $font-primary;
+}
+
+/* COLOR VARIATIONS
+========================================================================== */
+.paragraph--color-2 {
+	color: $color-white;
+}
+
+/* DESCRIPTION
+========================================================================== */
+.description {
+	@include rem(margin-bottom, spaces(.25));
+	font-family: $font-primary; @include rem(font-size, 11px); color: $color-gray-emperor;
+}
+
+.description--size-2 {
+	@include rem(font-size, 13px);
+}
+
+.description--size-3 {
+	@include rem(font-size, 14px);
+}
