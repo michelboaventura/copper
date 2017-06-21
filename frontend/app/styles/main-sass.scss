@@ -1,0 +1,146 @@
+/*------------------------------------*\
+    #PROJECT NAME
+\*------------------------------------*/
+
+/**
+ * CONTENTS
+ *
+ * SETTINGS
+ * Colors.................Colors the project will use
+ * Fonts..................Fonts used in the projects.
+ * Variables..............Global project variables.
+ *
+ * TOOLS
+ * REM....................PX to REM mixin.
+ * Breakpoint.............Breakpoint mixin.
+ * Placeholder............Placeholder style mixin.
+ * Spacing................Spacing function.
+ *
+ * GENERIC
+ * Box-sizing.............Puts border-box in every DOM element.
+ * Normalize.css..........A level playing field.
+ * HTML5-Boilerplate......A pared back reset to remove margins.
+ * Grid...................Our grid measures.
+ *
+ * BASE
+ * Page...................Page-level styles (HTML element).
+ * Headings...............Heading styles
+ * Paragraphs.............Paragraphs styles
+ * Type...................Misc type styles
+ * Anchor.................Hyperlink styles
+ * Buttons................Buttons reset styles
+ * Tables.................Table styles
+ *
+ * OBJECTS
+ * Media..................Media for thumbs and videos.
+ * Anchor-Buttons.........Anchor buttons styles.
+ * Forms..................Form inputs and elements.
+ * Wrappers...............Wrappers and page constraints.
+ * Separators.............Content dividers and separators.
+ * Icons..................Icons settings.
+ *
+
+ * COMPONENTS
+ * Skip-Links.............Accessible skip to content links.
+ * Navigation.............Header navigation styles.
+ * Menu...................Logged tool menu component.
+ * Button-list............Button list component.
+ * Tabs...................Content Tabs component.
+ * Link-list..............Link list for documents and options.
+ * Cards..................Cards and list component.
+ * Table..................General table component.
+ * Pagination.............Posts Pagination component.
+ * Filters................Filter options component.
+ * Footer.................Page footer component.
+
+ * LAYOUT
+ * Home...................Home Page Layout.
+ * Page...................Generic page Layout.
+ * Tool...................Tool Page Layout.
+
+ * HELPERS
+ * Show/hide..............Helpers to show and side stuff.
+ * Elements-Positions.....Position and clear elements and columns.
+ * Spacing................General Page Spacing
+ * Text...................Text General Settings
+ * Swatches...............Custom swatches colors
+
+ * PLUGINS
+ */
+
+/**
+ * #SETTINGS
+ */
+@import "_settings/settings_colors.scss";
+@import "_settings/settings_fonts.scss";
+@import "_settings/settings_variables.scss";
+
+/**
+ * #TOOLS
+ */
+@import "_tools/tools_rem.scss";
+@import "_tools/tools_breakpoint.scss";
+@import "_tools/tools_placeholder.scss";
+@import "_tools/tools_spacer.scss";
+
+/**
+ * #GENERIC
+ */
+@import "_generic/generic_box-sizing.scss";
+@import "_generic/generic_normalize.scss";
+@import "_generic/generic_html5boilerplate.scss";
+@import "_generic/generic_grid.scss";
+
+/**
+ * #BASE
+ */
+@import "_base/base_page.scss";
+@import "_base/base_headings.scss";
+@import "_base/base_paragraphs.scss";
+@import "_base/base_list.scss";
+@import "_base/base_anchor.scss";
+
+/**
+ * #OBJECTS
+ */
+@import "_objects/objects_media.scss";
+@import "_objects/objects_anchor-buttons.scss";
+@import "_objects/objects_forms.scss";
+@import "_objects/objects_wrappers.scss";
+@import "_objects/objects_separator.scss";
+@import "_objects/objects_icons.scss";
+
+/**
+ * #COMPONENTS
+ */
+ @import "_components/components_skip-links.scss";
+ @import "_components/components_navigation.scss";
+ @import "_components/components_menu.scss";
+ @import "_components/components_buttons-list.scss";
+ @import "_components/components_tabs.scss";
+ @import "_components/components_link-list.scss";
+ @import "_components/components_cards.scss";
+ @import "_components/components_table.scss";
+ @import "_components/components_pagination.scss";
+ @import "_components/components_filters.scss";
+ @import "_components/components_footer.scss";
+
+/**
+ * #LAYOUTS
+ */
+ @import "_layout/layout_home.scss";
+ @import "_layout/layout_page.scss";
+ @import "_layout/layout_tool.scss";
+
+/**
+ * #HELPERS
+ */
+@import "_helpers/helpers_hide-show.scss";
+@import "_helpers/helpers_element-positions.scss";
+@import "_helpers/helpers_text.scss";
+@import "_helpers/helpers_spacing.scss";
+@import "_helpers/helpers_swatches.scss";
+
+/**
+ * #PLUGINS
+*/

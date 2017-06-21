@@ -29,6 +29,9 @@ export default Ember.Route.extend(RouteMixin,{
 
   setupController(controller, model) {
     this._super(controller, model);
+    if( model.jobsCompleted.getProperties('length').length === 0 && model.jobsRunning.getProperties('length').length == 0 ) {
+      return this.transitionTo('ferramenta.index');
+    }
     controller.set('jobs', model);
     controller.set('page', controller.get("jobs.jobsCompleted.page"));
     controller.set('perPage', controller.get("jobs.jobsCompleted.perPage"));

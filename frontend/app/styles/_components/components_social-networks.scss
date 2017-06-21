@@ -1,0 +1,34 @@
+///*------------------------------------*\
+//    #SOCIAL NETWORKS
+//\*------------------------------------*/
+
+/* VARIABLES
+========================================================================== */
+$social-icon-background: $color-black-mine-shaft;
+
+/* LIST
+========================================================================== */
+.social-networks {}
+
+.social-networks__item {
+	display: inline-block; vertical-align: top;
+}
+
+.social-networks__anchor {
+	display: flex; align-items: center; justify-content: center;
+	width: 30px; height: 30px;
+	border-radius: 50%;
+	background-color: $social-icon-background;
+}
+
+.social-networks__anchor--tranparent {
+	background-color: transparent;
+}
+
+.social-networks__anchor--facebook {
+	background-color: rgb(59,89,152);
+}
+
+.social-networks__anchor--twitter {
+	background-color: rgb(85,172,238);
+}

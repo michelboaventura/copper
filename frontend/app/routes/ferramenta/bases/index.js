@@ -21,6 +21,10 @@ export default Ember.Route.extend(RouteMixin,{
 
   setupController(controller, model) {
     this._super(controller, model);
+    if( model.getProperties('length').length === 0 ) {
+      return this.transitionTo('ferramenta.index');
+    }
+
     controller.set('datasources', model);
     controller.set('page', controller.get("datasources.page"));
     controller.set('perPage', controller.get("datasources.perPage"));
