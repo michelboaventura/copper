@@ -9,4 +9,11 @@ export default Ember.Route.extend({
       datasources: this.store.query('datasource', {per_page: 100}),
     });
   },
+  setupController(controller, model){
+    this._super(controller, model);
+    var base = controller.get('base');
+    if(!base){
+      model.job.datasource = model.datasources.get('firstObject.id');
+    }
+  },
 });
