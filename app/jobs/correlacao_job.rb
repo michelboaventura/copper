@@ -23,6 +23,7 @@ class CorrelacaoJob < ApplicationJob
 
       part_ids = Part.in(member: members).pluck(:id)
       comments = Comment.in(author_id: author_ids, part_id: part_ids)
+      datasource = comments.last.datasource
 
       next if comments.empty?
 
@@ -30,7 +31,7 @@ class CorrelacaoJob < ApplicationJob
 
       comments.each do |comment|
         part = comment.part
-        parts = Part.where(member: part.member)
+        parts = Part.where(member: part.member, datasource: datasource)
         part = parts.sort{|a,b| a.name.size <=> b.name.size}.first
         part_id = part.id.to_s
 

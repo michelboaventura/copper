@@ -23,8 +23,9 @@ class SentimentoJob < ApplicationJob
       comment_id, value = line.split(' ')
 
       comment = Comment.find(comment_id)
+      datasource = comment.datasource
       part = comment.part
-      parts = Part.where(member: comment.part.member)
+      parts = Part.where(member: comment.part.member, datasource: datasource)
       part = parts.sort{|a,b| a.name.size <=> b.name.size}.first
       part_id = part.id.to_s
 
