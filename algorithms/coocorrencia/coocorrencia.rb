@@ -22,6 +22,8 @@ uniq.each_with_index do |w, i|
   inverse_hash[i] = w
 end
 
+min_sup = words.count <= 200 ? 2 : min_sup
+
 out = Array.new(count) { Array.new(count, 0) }
 
 words.each do |line|
