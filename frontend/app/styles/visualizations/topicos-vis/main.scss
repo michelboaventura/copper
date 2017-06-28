@@ -6,6 +6,7 @@
   .topicos-vis-left {
     width: calc(100% - 215px);
     float: left;
+    overflow: auto;
   }
 
   .topicos-vis-right {
