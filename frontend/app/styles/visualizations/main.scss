@@ -61,11 +61,14 @@ hr.gViz-hr { margin-bottom: 10px; }
   }
 }
 
-.empty-vis {
-  font-size: 4em;
-  text-align: center;
-  position: fixed;
+.empty-vis-wrapper {
+  min-height: 600px;
 
-  top: 50%;
-  transform: translate(-5%, -50%);
+  .empty-vis {
+    font-size: 1.5em;
+    text-align: center;
+    position: relative;
+
+    top: 200px;
+  }
 }
