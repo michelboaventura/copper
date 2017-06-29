@@ -520,7 +520,13 @@ input {
   box-shadow: none;
 }
 
-a:hover, a:active, a:focus {
-  color: white;
-  text-decoration: none !important;
+a {
+  display: inline-block;
+  color: inherit; text-decoration: none;
+  transition: opacity ease $basic-transition;
+  &:focus, &:hover {
+    opacity: .7;
+    transition: opacity ease $basic-transition;
+  }
 }
+

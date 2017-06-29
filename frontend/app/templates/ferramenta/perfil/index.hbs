@@ -4,7 +4,7 @@
   <h1 class="title">Seu perfil, {{model.firstname}}</h1>
   {{#link-to 'ferramenta.perfil.senha'  class="anchor-button anchor-button--type-2 anchor-button--color-3 u-flow-opposite"}} Mudar a senha
   {{/link-to}}
-  <form onsubmit={{route-action 'save'}}>
+  <form>
     <div class="profile-wrapper inner-wrapper inner-wrapper--type-2">
       <div class="profile__media-container">
         <label for="inputfile" class="label">
@@ -32,7 +32,7 @@
     </div>
     <div class="input-wrapper">
       <div class="u-center-elements">
-        <input type="submit" class="anchor-button anchor-button--size-2" value="Salvar" />
+        <input type="button" class="anchor-button anchor-button--size-2" value="Salvar" onclick={{route-action 'save'}}/>
       </div>
     </div>
   </form>
