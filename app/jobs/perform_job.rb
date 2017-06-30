@@ -65,7 +65,7 @@ class PerformJob < ApplicationJob
       ExtractCommentsJob.new(full_comments, fullcomfilef, STOPWORDS).perform_now
       SearchJob.new(path).perform_now
       SentimentoJob.new(path).perform_now
-      CorrelacaoJob.new(path).perform_now
+      CorrelacaoJob.new(path, datasource).perform_now
       CoocorrenciaJob.new(path).perform_now
       WordtreeJob.new(path).perform_now
       PartItemJob.new(path).perform_now
