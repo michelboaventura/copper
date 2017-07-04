@@ -1,4 +1,5 @@
 class CoocorrenciaJob < ApplicationJob
+  MAX_NODES = 350
   queue_as :default
 
   def perform(path)
@@ -72,6 +73,14 @@ class CoocorrenciaJob < ApplicationJob
 
     nodes.each_pair do |el, value|
       out[:nodes] << json_coocorrencia(el, value[:acc], value[:neigh], terms)
+    end
+
+    if out[:nodes].size > MAX_NODES
+      out = {
+        nodes: [],
+        links: [],
+        msg: "Sua consulta retornou um número muito grande de nós e não pôde ser exibida. Realize uma consulta mais restritiva para usar esta visualização."
+      }
     end
 
     File.open(output, 'w') do |f|
