@@ -39,7 +39,10 @@ export default Ember.Component.extend({
             .build();
         }
 
-        else { component.set("empty", true); }
+        else {
+          if(data["msg"]) { component.set("msg", data["msg"]); }
+          component.set("empty", true);
+        }
       },
 
       // Hide loading div and render error

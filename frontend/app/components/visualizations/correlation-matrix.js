@@ -51,6 +51,7 @@ export default Ember.Component.extend({
 
       if (data.length === 0) {
         component.set("empty", true);
+        if(data["msg"]) { component.set("msg", data["msg"]); }
       }
 
       else if (data.length > 1) {
