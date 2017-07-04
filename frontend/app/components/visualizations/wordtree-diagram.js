@@ -47,7 +47,10 @@ export default Ember.Component.extend({
             .build();
         }
 
-        else { component.set("empty", true); }
+        else {
+          component.set("empty", true);
+          if(data["msg"]) { component.set("msg", data["msg"]); }
+        }
 
       },
 
