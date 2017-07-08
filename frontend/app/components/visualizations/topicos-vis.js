@@ -53,11 +53,11 @@ export default Ember.Component.extend({
                 return {
                   id: f[0],
                   height: scaleFrequenciaEixos(f[1]),
-                  mTop: scaleFrequenciaEixos.domain()[1] - scaleFrequenciaEixos(f[1]),
+                  mTop: 35 - scaleFrequenciaEixos(f[1]),
                   bg_color: component.get('colorsEixos')(f[0]),
                   url: component.get('generateUrl')(`Eixo ${f[0]}`),
                 };
-              }),
+              }).sort(function(a,b) { return d3.descending(a.height, b.height); }),
               top_palavras: d.top_palavras.map(function(p) {
                 return {
                   id: d.topico_id,
@@ -65,7 +65,7 @@ export default Ember.Component.extend({
                   value: scaleTopPalavras(p[1]),
                   url: component.get('generateUrl')(p[0]),
                 };
-              }),
+              }).sort(function(a,b) { return d3.descending(a.value, b.value); }),
             });
           });
 
