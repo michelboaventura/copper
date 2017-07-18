@@ -75,6 +75,7 @@ export default Ember.Route.extend(RouteMixin,{
     },
 
     selectAll(state){
+      this.set('toDelete', []);
       var datasources = this.get('toDelete');
       if(state){
         this.controller.get('datasources').forEach( function(element) {
