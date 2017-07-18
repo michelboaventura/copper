@@ -12,6 +12,7 @@ export default Ember.Route.extend({
   setupController(controller, model){
     this._super(controller, model);
     var base = controller.get('base');
+    model.job.public = true;
     if(!base){
       model.job.datasource = model.datasources.get('firstObject.id');
     }
