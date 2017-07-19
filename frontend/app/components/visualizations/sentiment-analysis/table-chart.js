@@ -4,38 +4,12 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
   },
-
  // Attributes bingins
   _id:      function(){ return this.get('_id'); }.property('_id'),
 
   // Chart var
   _var: null,
   _data:null,
-  _sort_state: {name: "asc", value: "desc"},
-
-  actions: {
-    sortTable(header_index) {
-      let self = this;
-      let type = null;
-
-      switch(header_index) {
-        case 0:
-          type = "name";
-          break;
-        default:
-          type = "value";
-      }
-
-      if(sort_state[type] == "asc") {
-        sort_state[type] = "desc";
-        self.set("_sort_state", sort_state);
-      }
-      else {
-        sort_state[type] = "asc";
-        self.set("_sort_state", sort_state);
-      }
-    },
-  },
 
   // Draw Chart
   didInsertElement: function(){
@@ -51,15 +25,15 @@ export default Ember.Component.extend({
       contentType: "application/json",
       //data: JSON.stringify({}),
       success(data) {
-
         if (data.length > 0) {
+          // Conta as ocorrencias de cada participante/artigo nos comentarios,
+          // e calcula a media do score de cada comentario
           let count = function(data, attr) {
             data[attr].forEach(function(d) {
               d["sum"] = 0;
               d["total_num"] = 0;
             });
 
-            // Calculates avg sentiment score for each paper and user
             data.links.forEach(function(link){
               var element = $.grep(data[attr], function(d) {
                 return d.id === link[attr.slice(0, -1)];
@@ -72,7 +46,7 @@ export default Ember.Component.extend({
             });
 
             data[attr].forEach(function(d) {
-              d["avg"] = parseFloat(((d["sum"]/d["total_num"]) * 100).toFixed(2));
+              d["avg"] = parseFloat(((d["sum"]/d["total_num"]) * 100)).toFixed(2);
             });
 
             // First ordenation is by alphabetically order
@@ -81,6 +55,7 @@ export default Ember.Component.extend({
             return data;
           };
 
+          // Renderiza tabela
           let draw = function(data, attr) {
             let colors = gViz.helpers.colors.linear([0, 1], ["red", "lightgray", "blue"]);
 
@@ -90,17 +65,36 @@ export default Ember.Component.extend({
             let thead = table.append("thead").append("tr");
             let tbody = table.append("tbody");
 
+            // Armezena o estado do sort para cada item da tabela. Como os itens
+            // 2 e 3 são os mesmos, esse vetor tem apenas tamanho 2
+            // 0 = nome, 1 = media
+            let sortState = ["descending", "ascending"];
+
+            // Linha ou Coluna
             data = data[attr];
 
-            thead.selectAll("td")
+            // Adiciona Headers
+            thead.selectAll("th")
               .data(headers).enter()
-              .append("td")
-              .text((d) => { return d; });
+              .append("th")
+              .attr("title", (d) => { return d; })
+              .attr("data-index", (d, i) => { return i; })
+              .text((d) => { return d; })
+              .on("click", function(d, i) {
+                let attr = i == 0 ? "name" : "avg";
+                let idx = i == 0 ? 0 : 1;
 
+                sortTable(attr, sortState[idx]);
+                sortState[idx] = sortState[idx] == "ascending"? "descending" : "ascending";
+              });
+
+            // Adiciona Linhas
             let rows = tbody.selectAll("tr")
               .data(data).enter()
-              .append("tr");
+              .append("tr")
+              .on("click", (d) => { console.log(d); });
 
+            // Adiciona Celulas
             let cells = rows.selectAll("td")
               .data((row) => { return [row["name"], row["avg"], row["avg"]]; })
               .enter()
@@ -116,7 +110,9 @@ export default Ember.Component.extend({
                 }
               })
               .each(function(d, i) {
+                // Append Texto
                 if(i != 2) { $(this).append(d); }
+                // Append barra de progresso
                 else {
                   let rgb = colors(d/100);
                   let style = `
@@ -128,6 +124,10 @@ export default Ember.Component.extend({
                   $(this).append(progress);
                 }
               });
+
+            let sortTable = function(attr, type) {
+              rows.sort(function(a, b) { return d3[type](a[attr], b[attr]); });
+            };
           };
 
           data = data[0];
