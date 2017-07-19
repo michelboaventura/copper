@@ -36,40 +36,12 @@ gViz.vis.graph.setup = function () {
                     case 'circle':
                       _var.context.moveTo(d.x + d.radius / _var.transform.k, d.y);
                       return _var.context.arc(d.x, d.y, d.radius / _var.transform.k, 0, 2 * Math.PI);
-                    //case 'rect':
-                    //  _var.context.moveTo(d.x - d.radius / _var.transform.k, d.y - d.radius / _var.transform.k);
-                    //  _var.context.lineTo(d.x + d.radius / _var.transform.k, d.y - d.radius / _var.transform.k);
-                    //  _var.context.lineTo(d.x + d.radius / _var.transform.k, d.y + d.radius / _var.transform.k);
-                    //  _var.context.lineTo(d.x - d.radius / _var.transform.k, d.y + d.radius / _var.transform.k);
-                    //  return _var.context.lineTo(d.x - d.radius / _var.transform.k, d.y - d.radius / _var.transform.k);
-                    //case 'triangle-down':
-                    //  _var.context.moveTo(d.x - d.radius / _var.transform.k, d.y - d.radius / _var.transform.k);
-                    //  _var.context.lineTo(d.x + d.radius / _var.transform.k, d.y - d.radius / _var.transform.k);
-                    //  _var.context.lineTo(d.x, d.y + d.radius / _var.transform.k);
-                    //  return _var.context.lineTo(d.x - d.radius / _var.transform.k, d.y - d.radius / _var.transform.k);
-                    //case 'triangle-up':
-                    //  _var.context.moveTo(d.x, d.y - d.radius / _var.transform.k);
-                    //  _var.context.lineTo(d.x + d.radius / _var.transform.k, d.y + d.radius / _var.transform.k);
-                    //  _var.context.lineTo(d.x - d.radius / _var.transform.k, d.y + d.radius / _var.transform.k);
-                    //  return _var.context.lineTo(d.x, d.y - d.radius / _var.transform.k);
-                    //case 'diamond':
-                    //  _var.context.moveTo(d.x, d.y - d.radius / _var.transform.k);
-                    //  _var.context.lineTo(d.x + d.radius / _var.transform.k, d.y);
-                    //  _var.context.lineTo(d.x, d.y + d.radius / _var.transform.k);
-                    //  _var.context.lineTo(d.x - d.radius / _var.transform.k, d.y);
-                    //  return _var.context.lineTo(d.x, d.y - d.radius / _var.transform.k);
                     default:
                       _var.context.moveTo(d.x + d.radius / _var.transform.k, d.y);
                       return _var.context.arc(d.x, d.y, d.radius / _var.transform.k, 0, 2 * Math.PI);
                   }
                 };
                 _var.drawNode = function (d) {
-
-                  // // If node is centered
-                  // if(d.centered) {
-                  //   d.x = _var.width/2  + _var.centered.radius * Math.cos(2 * Math.PI * d.center_index / _var.centered.count);
-                  //   d.y = _var.height/2 + _var.centered.radius * Math.sin(2 * Math.PI * d.center_index / _var.centered.count);
-                  // }
 
                   _var.context.beginPath();
                   _var.drawSymbol(d);
