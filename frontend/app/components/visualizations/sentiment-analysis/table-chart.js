@@ -4,110 +4,120 @@ export default Ember.Component.extend({
   init() {
     this._super(...arguments);
   },
-
  // Attributes bingins
   _id:      function(){ return this.get('_id'); }.property('_id'),
 
   // Chart var
   _var: null,
   _data:null,
-  _sort_state: {name: "asc", value: "desc"},
 
-  actions: {
-    sortTable(header_index) {
-      let self = this;
+  // Conta as ocorrencias de cada participante/artigo nos comentarios,
+  // e calcula a media do score de cada comentario
+  parse(data, attr) {
+    data[attr].forEach(function(d) {
+      d["sum"] = 0;
+      d["total_num"] = 0;
+    });
 
-      let table = document.getElementById(self.get("_id"));
-      let switching = true;
-      let shouldSwitch = null;
-      let i = null;
+    data.links.forEach(function(link){
+      var element = $.grep(data[attr], function(d) {
+        return d.id === link[attr.slice(0, -1)];
+      });
 
-      let sort_state = self.get("_sort_state");
+      element = element[0];
 
-      while (switching) {
-        //start by saying: no switching is done:
-        let rows = table.getElementsByTagName("TR");
-        switching = false;
-        /*Loop through all table rows (except the
-          first, which contains table headers):*/
-        for (i = 1; i < (rows.length - 1); i++) {
-          //start by saying there should be no switching:
-          shouldSwitch = false;
-          /*Get the two elements you want to compare,
-            one from current row and one from the next:*/
-          let x = rows[i].getElementsByTagName("TD")[header_index];
-          let y = rows[i + 1].getElementsByTagName("TD")[header_index];
+      element["sum"] += link["value"];
+      element["total_num"] += 1;
+    });
 
-          if(header_index == 0) { // sort by name
-            if(sort_state["name"] == "asc") {
-              if ($(x).attr("data-value").toLowerCase() > $(y).attr("data-value").toLowerCase()) {
-                shouldSwitch= true;
-                break;
-              }
-            }
-            else {
-              if ($(x).attr("data-value").toLowerCase() < $(y).attr("data-value").toLowerCase()) {
-                shouldSwitch= true;
-                break;
-              }
-            }
-          }
+    data[attr].forEach(function(d) {
+      d["avg"] = parseFloat(((d["sum"]/d["total_num"]) * 100)).toFixed(2);
+    });
 
-          else { // sort by value
-            if(sort_state["value"] == "asc") {
-              if (parseFloat($(x).attr("data-value")) > parseFloat($(y).attr("data-value"))) {
-                shouldSwitch= true;
-                break;
-              }
-            }
-            else {
-              if (parseFloat($(x).attr("data-value")) < parseFloat($(y).attr("data-value"))) {
-                shouldSwitch= true;
-                break;
-              }
-            }
-          }
+    // First ordenation is by alphabetically order
+    data[attr].sort(function(a, b) { return d3.ascending(a.name, b.name); });
+
+    return data;
+  },
+
+  sortTable(rows, attr, type) {
+    rows.sort(function(a, b) { return d3[type](a[attr], b[attr]); });
+  },
+
+  draw(self, data, attr) {
+    let colors = gViz.helpers.colors.linear([0, 1], ["red", "lightgray", "blue"]);
+
+    let headers = JSON.parse(self.get("headers"));
+
+    let table = d3.select(`#${self.get("_id")}`);
+    let thead = table.append("thead").append("tr");
+    let tbody = table.append("tbody");
+
+    // Armezena o estado do sort para cada item da tabela. Como os itens
+    // 2 e 3 são os mesmos, esse vetor tem apenas tamanho 2
+    // 0 = nome, 1 = media
+    let sortState = ["descending", "ascending"];
+
+    // Linha ou Coluna
+    data = data[attr];
+
+    // Adiciona Headers
+    thead.selectAll("th")
+      .data(headers).enter()
+      .append("th")
+      .attr("title", (d) => { return d; })
+      .attr("data-index", (d, i) => { return i; })
+      .text((d) => { return d; })
+      .on("click", function(d, i) {
+        let attr = i == 0 ? "name" : "avg";
+        let idx = i == 0 ? 0 : 1;
+
+        self.get("sortTable")(rows, attr, sortState[idx]);
+        sortState[idx] = sortState[idx] == "ascending"? "descending" : "ascending";
+      });
+
+    // Adiciona Linhas
+    let rows = tbody.selectAll("tr")
+      .data(data).enter()
+      .append("tr");
+
+    // Adiciona Celulas
+    let cells = rows.selectAll("td")
+      .data((row) => { return [row["name"], row["avg"], row["avg"]]; })
+      .enter()
+      .append("td")
+      .attr("width", (d,i) => {
+        switch(i) {
+          case 0:
+            return "50%";
+          case 1:
+            return "10%";
+          case 2:
+            return "40%";
         }
-
-        if (shouldSwitch) {
-          /*If a switch has been marked, make the switch
-            and mark that a switch has been done:*/
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
+      })
+      .each(function(d, i) {
+        // Append Texto
+        if(i != 2) { $(this).append(d); }
+        // Append barra de progresso
+        else {
+          let rgb = colors(d/100);
+          let style = `
+          width:${d}%;
+          background-color:${rgb};
+          height: 10px
+          `
+          let progress = `<div class="progress-bar"><div style='${style}'></div></div>`;
+          $(this).append(progress);
         }
-      }
-
-      let type = null;
-
-      switch(header_index) {
-        case 0:
-          type = "name";
-          break;
-        default:
-          type = "value";
-      }
-
-      if(sort_state[type] == "asc") {
-        sort_state[type] = "desc";
-        self.set("_sort_state", sort_state);
-      }
-      else {
-        sort_state[type] = "asc";
-        self.set("_sort_state", sort_state);
-      }
-
-    },
+      });
   },
 
   // Draw Chart
   didInsertElement: function(){
-
     let self = this;
-    let dataUrl = self.get('dataUrl');
-
-    let headers = JSON.parse(self.get("headers"));
-    this.set("headers", headers);
     let type = self.get("type");
+    let dataUrl = self.get('dataUrl');
 
     // Get data from API
     $.ajax({
@@ -117,75 +127,22 @@ export default Ember.Component.extend({
       contentType: "application/json",
       //data: JSON.stringify({}),
       success(data) {
-
         if (data.length > 0) {
           data = data[0];
 
-          // color scale
-          let colors = { scale: gViz.helpers.colors.linear([0, 1], ["red", "lightgray", "blue"]) };
-
-          let parse = function(attr) {
-
-            data[attr].forEach(function(d) {
-              d["sum"] = 0;
-              d["total_num"] = 0;
-            });
-
-            // Calculates avg sentiment score for each paper and user
-            data.links.forEach(function(link){
-
-              var element = $.grep(data[attr], function(d) {
-                return d.id === link[attr.slice(0, -1)];
-              });
-
-              element = element[0];
-
-              element["sum"] += link["value"];
-              element["total_num"] += 1;
-            });
-
-            data[attr].forEach(function(d) {
-
-              d["avg"] = ((d["sum"]/d["total_num"]) * 100).toFixed(2);
-
-              // Gets only numerical values of RGB colours
-              var colours = colors.scale(d["avg"]/100);
-              var coloursOnly = colours.substring(colours.indexOf('(') + 1, colours.lastIndexOf(')')).split(",");
-
-              // Adds opacity to RGB colour
-              var colourString = `rgba(${coloursOnly[0]},${coloursOnly[1]},${coloursOnly[2]}, 0.6)`;
-              /*
-              d["width"] = d["avg"];
-              d["height"] = "10px";
-              d["bg-colour"] = colourString;
-              */
-
-              // Sets width and colour of progress bar
-              d["style"] = `
-                width:${d["avg"]}%;
-                background-color:${colourString};
-                height: 10px
-              `;
-            });
-
-            // First ordenation is by alphabetically order
-            data[attr].sort(function(a, b) { return d3.ascending(a.name, b.name); });
-          };
-
           switch(type.toLowerCase()) {
             case "users":
-              parse("rows");
-              self.set('_data', data.rows);
+              data = self.get("parse")(data, "rows");
+              self.get("draw")(self, data, "rows");
               break;
             case "papers":
-              parse("columns");
-              self.set('_data', data.columns);
+              data = self.get("parse")(data, "columns");
+              self.get("draw")(self, data, "columns");
               break;
 
             default: console.log("Unkown Data Type");
           }
         }
-
         else { self.set("empty", true); }
       },
 
