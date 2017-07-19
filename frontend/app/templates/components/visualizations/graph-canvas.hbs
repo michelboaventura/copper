@@ -2,27 +2,28 @@
   <div class='symbol'>
     <span class="fa-stack fa-lg">
       <i class="fa fa-circle fa-stack-2x"></i>
-      <i class="fa fa-tree fa-stack-1x fa-inverse"></i>
+      <i class="fa fa-comments fa-stack-1x fa-inverse"></i>
     </span>
   </div>
   <span class='title'>Grafo de Co-ocorrência</span>
 </div>
+
 {{#unless empty}}
   <div class="canvas-wrapper">
     <div class="label-wrapper"></div>
     <div class="controls">
-      <span class='btn btn-dark btn-md' id='zoom-in' title='Click to zoom in.'><i class='fa fa-search-plus'></i></span>
-      <span class='btn btn-dark btn-md' id='zoom-out' title='Click to zoom out.'><i class='fa fa-search-minus'></i></span>
-      <span class='btn btn-dark btn-md' id='zoom-reset'  title='Click to reset zoom to initial state.'>RESET Zoom</span>
-      <span class='btn btn-dark btn-md active' id='label-graph' title='Click to show/hide labels.'><i class='fa fa-list'></i></span>
+      <span class='btn btn-dark btn-md' id='zoom-in' title='Clique para ampliar.'><i class='fa fa-search-plus'></i></span>
+      <span class='btn btn-dark btn-md' id='zoom-out' title='Clique para diminuir o zoom.'><i class='fa fa-search-minus'></i></span>
+      <span class='btn btn-dark btn-md' id='zoom-reset'  title='Clique para reiniciar o zoom no estado inicial.'>Reverter Zoom</span>
+      <span class='btn btn-dark btn-md active' id='label-graph' title='Clique para mostrar/esconder legendas.'><i class='fa fa-list'></i></span>
       <div class="btn-group pull-right action-switch" role="group" aria-label="">
-        <span class='btn btn-dark btn-md active' id='drag' title='Click to select drag mode.'><i class='fa fa-hand-pointer-o'></i></span>
-        <span class='btn btn-dark btn-md' id='zoom' title='Click to select zoom mode.'><i class='fa fa-search'></i></span>
-        <span class='btn btn-dark btn-md' id='pan' title='Click to select pan mode.'><i  class='fa fa-arrows'></i></span>
+        <span class='btn btn-dark btn-md active' id='drag' title='Clique para ativar o modo de arraste.'><i class='fa fa-hand-pointer-o'></i></span>
+        <span class='btn btn-dark btn-md' id='zoom' title='Clique para ativar o modo de zoom.'><i class='fa fa-search'></i></span>
+        <span class='btn btn-dark btn-md' id='pan' title='Clique para ativar o modo de panning.'><i  class='fa fa-arrows'></i></span>
       </div>
-      <span class='btn btn-dark btn-md' id='highlight-reset' title='Click to reset highlight mode to initial state.'>RESET Highlight</span>
+      <span class='btn btn-dark btn-md' id='highlight-reset' title='Clique para reverter o destaque de nós para a forma inicial.'>Reverter Destaque</span>
       <div class="input-group">
-        <input class='input-search' id='search-graph' placeholder="Type to search nodes..." />
+        <input class='input-search' id='search-graph' placeholder="Digite para buscar nós..." />
         <span class="input-group-addon" {{action 'submitSearch'}}><i class='fa fa-search'></i></span>
       </div>
     </div>

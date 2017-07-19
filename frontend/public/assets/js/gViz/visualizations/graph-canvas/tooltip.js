@@ -37,15 +37,20 @@ gViz.vis.graph.tooltip = function () {
             case 'show':
               if (!_var.selection.dragging) {
                 bbox = {
-                  left: _var.container.jq.offset().left + node.x * _var.transform.k + _var.transform.x,
-                  top: _var.container.jq.offset().top + (node.y * _var.transform.k) + _var.transform.y,
-                  width: 15,
+                  left: _var.container.jq.offset().left + _var.transform.x + (node.x * _var.transform.k) - 0.5,
+                  top:  _var.container.jq.offset().top  + _var.transform.y + (node.y * _var.transform.k) - node.radius + 13,
+                  width: 14,
                   height: (node.centered != null && node.centered ? (15 - node.radius ) : (15 - (node.radius / _var.transform.k))) - 2 - (node.radius * .2)
                 };
 
+                if(node.centered != null && node.centered) {
+                  bbox.left += 0.5;
+                  bbox.top  -= node.radius + 4 ;
+                }
+
                 // Set tooltip content title and subtitle
                 _var.tooltip.content = "<span class='title' style='color: " + node.color + " ;'>" + (node.attrs.name == null ? node.name : node.attrs.name) + "</span>";
-                _var.tooltip.content += "<span class='subtitle'># Neighbours: " + Object.keys(node.neighbours).length + "</span>";
+                _var.tooltip.content += "<span class='subtitle' style='text-align: left;'># de Arestas: " + Object.keys(node.neighbours).length + "</span>";
 
                 // Set tooltip aditional info
                 if (Object.keys(node.attrs).length > 0) {
@@ -57,12 +62,12 @@ gViz.vis.graph.tooltip = function () {
 
                 // If its centered, warn user
                 if(node.centered != null && node.centered) {
-                  _var.tooltip.content += "<hr><span class='info'>This node was <b>filtered</b> or is <b>part of the query</b>.</span>";
+                  _var.tooltip.content += "<hr><span class='info'>Este nó foi <b>filtrado</b> ou faz <b>parte da consulta</b>.</span>";
                 }
 
                 d3.select('.tooltipster-visualization .tooltipster-content').html(_var.tooltip.content);
                 offset = {
-                  top: bbox.top + bbox.height - $('.tooltipster-visualization').outerHeight() / 2,
+                  top: bbox.top - $('.tooltipster-visualization').outerHeight() / 2,
                   left: bbox.left + bbox.width - $('.tooltipster-visualization').outerWidth() / 2,
                   arrow: void 0
                 };
