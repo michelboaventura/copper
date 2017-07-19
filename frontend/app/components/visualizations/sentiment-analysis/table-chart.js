@@ -16,67 +16,6 @@ export default Ember.Component.extend({
   actions: {
     sortTable(header_index) {
       let self = this;
-
-      let table = document.getElementById(self.get("_id"));
-      let switching = true;
-      let shouldSwitch = null;
-      let i = null;
-
-      let sort_state = self.get("_sort_state");
-
-      while (switching) {
-        //start by saying: no switching is done:
-        let rows = table.getElementsByTagName("TR");
-        switching = false;
-        /*Loop through all table rows (except the
-          first, which contains table headers):*/
-        for (i = 1; i < (rows.length - 1); i++) {
-          //start by saying there should be no switching:
-          shouldSwitch = false;
-          /*Get the two elements you want to compare,
-            one from current row and one from the next:*/
-          let x = rows[i].getElementsByTagName("TD")[header_index];
-          let y = rows[i + 1].getElementsByTagName("TD")[header_index];
-
-          if(header_index == 0) { // sort by name
-            if(sort_state["name"] == "asc") {
-              if ($(x).attr("data-value").toLowerCase() > $(y).attr("data-value").toLowerCase()) {
-                shouldSwitch= true;
-                break;
-              }
-            }
-            else {
-              if ($(x).attr("data-value").toLowerCase() < $(y).attr("data-value").toLowerCase()) {
-                shouldSwitch= true;
-                break;
-              }
-            }
-          }
-
-          else { // sort by value
-            if(sort_state["value"] == "asc") {
-              if (parseFloat($(x).attr("data-value")) > parseFloat($(y).attr("data-value"))) {
-                shouldSwitch= true;
-                break;
-              }
-            }
-            else {
-              if (parseFloat($(x).attr("data-value")) < parseFloat($(y).attr("data-value"))) {
-                shouldSwitch= true;
-                break;
-              }
-            }
-          }
-        }
-
-        if (shouldSwitch) {
-          /*If a switch has been marked, make the switch
-            and mark that a switch has been done:*/
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-        }
-      }
-
       let type = null;
 
       switch(header_index) {
@@ -95,19 +34,14 @@ export default Ember.Component.extend({
         sort_state[type] = "asc";
         self.set("_sort_state", sort_state);
       }
-
     },
   },
 
   // Draw Chart
   didInsertElement: function(){
-
     let self = this;
-    let dataUrl = self.get('dataUrl');
-
-    let headers = JSON.parse(self.get("headers"));
-    this.set("headers", headers);
     let type = self.get("type");
+    let dataUrl = self.get('dataUrl');
 
     // Get data from API
     $.ajax({
@@ -119,13 +53,7 @@ export default Ember.Component.extend({
       success(data) {
 
         if (data.length > 0) {
-          data = data[0];
-
-          // color scale
-          let colors = { scale: gViz.helpers.colors.linear([0, 1], ["red", "lightgray", "blue"]) };
-
-          let parse = function(attr) {
-
+          let count = function(data, attr) {
             data[attr].forEach(function(d) {
               d["sum"] = 0;
               d["total_num"] = 0;
@@ -133,7 +61,6 @@ export default Ember.Component.extend({
 
             // Calculates avg sentiment score for each paper and user
             data.links.forEach(function(link){
-
               var element = $.grep(data[attr], function(d) {
                 return d.id === link[attr.slice(0, -1)];
               });
@@ -145,47 +72,79 @@ export default Ember.Component.extend({
             });
 
             data[attr].forEach(function(d) {
-
-              d["avg"] = ((d["sum"]/d["total_num"]) * 100).toFixed(2);
-
-              // Gets only numerical values of RGB colours
-              var colours = colors.scale(d["avg"]/100);
-              var coloursOnly = colours.substring(colours.indexOf('(') + 1, colours.lastIndexOf(')')).split(",");
-
-              // Adds opacity to RGB colour
-              var colourString = `rgba(${coloursOnly[0]},${coloursOnly[1]},${coloursOnly[2]}, 0.6)`;
-              /*
-              d["width"] = d["avg"];
-              d["height"] = "10px";
-              d["bg-colour"] = colourString;
-              */
-
-              // Sets width and colour of progress bar
-              d["style"] = `
-                width:${d["avg"]}%;
-                background-color:${colourString};
-                height: 10px
-              `;
+              d["avg"] = parseFloat(((d["sum"]/d["total_num"]) * 100).toFixed(2));
             });
 
             // First ordenation is by alphabetically order
             data[attr].sort(function(a, b) { return d3.ascending(a.name, b.name); });
+
+            return data;
           };
+
+          let draw = function(data, attr) {
+            let colors = gViz.helpers.colors.linear([0, 1], ["red", "lightgray", "blue"]);
+
+            let headers = JSON.parse(self.get("headers"));
+
+            let table = d3.select(`#${self.get("_id")}`);
+            let thead = table.append("thead").append("tr");
+            let tbody = table.append("tbody");
+
+            data = data[attr];
+
+            thead.selectAll("td")
+              .data(headers).enter()
+              .append("td")
+              .text((d) => { return d; });
+
+            let rows = tbody.selectAll("tr")
+              .data(data).enter()
+              .append("tr");
+
+            let cells = rows.selectAll("td")
+              .data((row) => { return [row["name"], row["avg"], row["avg"]]; })
+              .enter()
+              .append("td")
+              .attr("width", (d,i) => {
+                switch(i) {
+                  case 0:
+                    return "50%";
+                  case 1:
+                    return "10%";
+                  case 2:
+                    return "40%";
+                }
+              })
+              .each(function(d, i) {
+                if(i != 2) { $(this).append(d); }
+                else {
+                  let rgb = colors(d/100);
+                  let style = `
+                    width:${d}%;
+                    background-color:${rgb};
+                    height: 10px
+						      `
+                  let progress = `<div class="progress-bar"><div style='${style}'></div></div>`;
+                  $(this).append(progress);
+                }
+              });
+          };
+
+          data = data[0];
 
           switch(type.toLowerCase()) {
             case "users":
-              parse("rows");
-              self.set('_data', data.rows);
+              data = count(data, "rows");
+              draw(data, "rows");
               break;
             case "papers":
-              parse("columns");
-              self.set('_data', data.columns);
+              data = count(data, "columns");
+              draw(data, "columns");
               break;
 
             default: console.log("Unkown Data Type");
           }
         }
-
         else { self.set("empty", true); }
       },
 

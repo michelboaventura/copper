@@ -16,6 +16,7 @@
 
     <table class="table-chart table table-striped table-hover gViz-table
     table-bordered" id={{_id}}>
+      {{!--
       <thead>
         <tr>
           {{#each headers as |h i|}}
@@ -29,11 +30,10 @@
             <td width="50%" data-value={{tr.name}}>{{tr.name}}</td>
             <td width="10%" data-value={{tr.avg}}>{{tr.avg}}</td>
             <td width="40%" data-value={{tr.avg}}><div class="progress-bar"><div style='{{tr.style}}'></div></div></td>
-            {{!-- <td><progress value='{{tr.avg}}' max="100"></progress></td>
-            --}}
           </tr>
         {{/each}}
       </tbody>
+      --}}
     </table>
 
   </div>
