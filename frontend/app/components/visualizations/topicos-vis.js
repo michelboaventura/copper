@@ -28,7 +28,7 @@ export default Ember.Component.extend({
       contentType: "application/json",
       success(data) {
 
-        if(data.length > 0) {
+        if(data.length > 0 && data.filter(function(d) { return d.contagem_comentarios; }).length > 0) {
           // Set json
           component.set('json', data);
 
@@ -38,7 +38,6 @@ export default Ember.Component.extend({
 
           // Parse data
           data.filter(function(d) { return d.contagem_comentarios; }).forEach( d => {
-
             // Set scales
             let scaleTopPalavras = d3.scaleLinear().domain(d3.extent(d.top_palavras, t => t[1])).range([12,25]);
             let scaleFrequenciaEixos = d3.scaleLinear().domain(d3.extent(d.frequencia_eixos, t => t[1])).range([12,30]);
