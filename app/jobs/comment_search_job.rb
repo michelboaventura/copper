@@ -1,4 +1,4 @@
-class SearchJob < ApplicationJob
+class CommentSearchJob < ApplicationJob
   queue_as :default
 
   def perform(path)
