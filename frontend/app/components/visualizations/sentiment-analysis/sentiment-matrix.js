@@ -23,7 +23,7 @@ export default Ember.Component.extend({
     // Initialize variables
     let component = this;
 
-    let margin = {top: 100, left: 200, right: 50, bottom: 10};
+    let margin = {top: 100, left: 150, right: 20, bottom: 10};
 
     let colors = { scale: gViz.helpers.colors.linear([0, 1], ["red", "lightgray", "blue"]) };
 
@@ -35,15 +35,18 @@ export default Ember.Component.extend({
       .data(data)
       .colors(colors)
       .legend_units("continuous")
-      .legend_title("Sentiment Score")
+      .legend_title("Score de Sentimento")
       .legend_domain([0,1])
       .build();
   },
 
   didInsertElement: function(){
-
     let component = this;
     let dataUrl = component.get('dataUrl');
+
+    // Fixes max width to prevent svg-overflow
+    let container = $(".gViz-wrapper[data-id='"+component.get('_id')+"']");
+    container.css("max-width", container.outerWidth());
 
     // Get data from API
     gViz.helpers.loading.show();
@@ -51,6 +54,7 @@ export default Ember.Component.extend({
 
       if (data.length === 0) {
         component.set("empty", true);
+        if(data["msg"]) { component.set("msg", data["msg"]); }
       }
 
       else { component.draw(data[0]); }

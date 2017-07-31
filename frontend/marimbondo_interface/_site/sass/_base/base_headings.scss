@@ -1,0 +1,44 @@
+///*------------------------------------*\
+//    #HEADINGS
+//\*------------------------------------*/
+
+/* RESETS
+========================================================================== */
+h1, h2, h3, h4, h5 {
+	font-weight: normal;
+}
+
+/* VARIABLES
+========================================================================== */
+
+
+/* TITLES
+========================================================================== */
+.title {
+	position: relative;
+	display: inline-block;
+	@include rem(margin-top, spaces(1)); @include rem(margin-bottom, spaces(1)); @include rem(margin-right, spaces(1));
+	@include rem(font-size, 20px); line-height: 110%; font-weight: 600; color: $color-gray-mine-shaft;
+}
+
+.title--type-2 {
+	@include rem(font-size, 16px); font-weight: normal;
+}
+
+.title--type-3 {
+	display: block;
+	@include rem(margin-bottom, spaces(4));
+	@include rem(font-size, 40px); color: $color-red-well; text-align: center;
+}
+
+
+.subtitle {
+	@include rem(margin-bottom, spaces(5));
+	@include rem(font-size, 16px); text-align: center;
+}
+
+/* COLOR
+========================================================================== */
+.title--color-2 {
+	color: $color-white;
+}

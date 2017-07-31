@@ -109,16 +109,16 @@ gViz.vis.wordtree.helpers = function () {
               d.bbox._width = d.bbox.width > width ? d.bbox.width + 6 * _var.offset.y : width;
               d.bbox._height = d.bbox.height > height ? d.bbox.height + _var.offset.x : height;
 
-            // Recursive iteration
-            } else if (d._children != null) {
+            //// Recursive iteration
+            //} else if (d._children != null) {
 
-              var bbox_array = d._children.map(function (c) { return _var.getFontSizes(c); });
-              var width = d.bbox.width + d3.max(bbox_array.map(function (a) { return a._width; }));
-              var height = d3.sum(bbox_array.map(function (a) { return a._height; }));
+            //  var bbox_array = d._children.map(function (c) { return _var.getFontSizes(c); });
+            //  var width = d.bbox.width + d3.max(bbox_array.map(function (a) { return a._width; }));
+            //  var height = d3.sum(bbox_array.map(function (a) { return a._height; }));
 
-              // Set sizes
-              d.bbox._width = d.bbox.width > width ? d.bbox.width + 6 * _var.offset.y : width;
-              d.bbox._height = d.bbox.height > height ? d.bbox.height + _var.offset.x : height;
+            //  // Set sizes
+            //  d.bbox._width = d.bbox.width > width ? d.bbox.width + 6 * _var.offset.y : width;
+            //  d.bbox._height = d.bbox.height > height ? d.bbox.height + _var.offset.x : height;
 
             } else {
 
@@ -144,11 +144,16 @@ gViz.vis.wordtree.helpers = function () {
 
             // Update outer dimensions
             _var.wrap
-              .attr("width", _var.width + _var.margin.left + _var.margin.right)
+              .attr("width", _var.width + _var.margin.left + _var.margin.right + 50)
               .attr("height", _var.height + _var.margin.top + _var.margin.bottom);
 
+            // Set double scroll
+            _var.container.jq.doubleScroll({resetOnWindowResize: true});
+
             // Set wrappers height
-            //_var.container.jq.css("height", parseInt(_var.height + _var.margin.top + _var.margin.bottom) + 'px');
+            _var.container.jq.css("height", parseInt(_var.height + _var.margin.top + _var.margin.bottom + 50) + 'px');
+
+
           };
 
           break;

@@ -1,0 +1,15 @@
+<article class="card">
+  <header class="card__header">
+    <h2 class="card__title">
+      {{link-to job.name "landing-page.filtros.aberto" job.id}}
+    </h2>
+    <div class="card__thumb media-thumb">
+      <img class="media-thumb__thumb" src="/assets/img/examples/card-example.jpg" alt="" />
+    </div>
+  </header>
+  <div class="card__content">
+    <time class="card__time">{{format-date job.finished}}</time>
+    <p class="card__info">em: {{link-to job.datasource.name "landing-page.bases.aberta" job.datasource.id }}</p>
+    <p class="card__info">por: <a>{{job.user.fullname}}</a></p>
+  </div>
+</article>

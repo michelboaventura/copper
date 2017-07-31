@@ -1,4 +1,4 @@
-/* jshint node: true */
+/* eslint-env node */
 
 module.exports = function(environment) {
   var ENV = {
@@ -25,7 +25,8 @@ module.exports = function(environment) {
     'ember-simple-auth': {
       authorizer: 'authorizer:oauth2',
       authenticationRoute: '/landing-page',
-      routeAfterAuthentication: '/home'
+      routeAfterAuthentication: '/ferramenta/filtros',
+      routeIfAlreadyAuthenticated: '/ferramenta/filtros'
     },
   };
 

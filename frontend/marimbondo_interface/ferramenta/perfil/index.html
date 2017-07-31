@@ -1,0 +1,45 @@
+---
+layout: ferramenta
+title: Editar Perfil
+baseurl: ../../
+---
+<!-- TOOL HOME CONTENT -->
+<section>
+	<h1 class="title">Seu perfil, nome do perfil</h1>
+	<a href="{{ "ferramenta/perfil/senha" | prepend: page.baseurl }}" class="anchor-button anchor-button--type-2 anchor-button--color-3 u-flow-opposite">Mudar a senha</a>
+	<form action="" class="">
+		<div class="profile-wrapper inner-wrapper inner-wrapper--type-2">
+			<div class="profile__media-container">
+				<label for="inputfile" class="label">
+					<img class="media-thumb__thumb media-thumb--big" src="{{ "img/examples/user-thumb-big--example.jpg" | prepend: page.baseurl }}" alt="" />
+					<span class="profile__file-text"><img class="anchor-button__icon" src="{{ "img/icons/icon-edit.svg" | prepend: page.baseurl }}" alt="" />Alterar foto</span>
+				</label>
+				<input type="file" class="input--file" id="inputfile">
+			</div>
+			<div class="profile__data-container">
+				<div class="input-wrapper">
+					<label class="label" for="name">Nome</label>
+					<input class="input input--size-2" type="text" id="name" value="nome" />
+				</div>
+				<div class="input-wrapper">
+					<label class="label" for="sobrenome">Sobrenome</label>
+					<input class="input input--size-2" type="text" id="sobrenome" placeholder="sobrenome" value="sobrenome" />
+				</div>
+				<div class="input-wrapper">
+					<label class="label" for="email">E-mail</label>
+					<input class="input input--size-2" type="email" id="email" placeholder="email@email.com" readonly />
+				</div>
+				<div class="input-wrapper">
+					<label class="label" for="repassword">Senha</label>
+					<input class="input input--size-2" type="password" id="repassword" placeholder="*******" readonly />
+				</div>
+			</div>
+		</div>
+		<div class="input-wrapper">
+			<div class="u-center-elements">
+				<input type="submit" class="anchor-button anchor-button--size-2" value="Salvar" />
+			</div>
+		</div>
+	</form>
+</section>
+<!-- END TOOL HOME CONTENT -->

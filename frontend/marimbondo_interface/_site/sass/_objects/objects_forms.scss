@@ -1,0 +1,266 @@
+///*------------------------------------*\
+//    #FORMS
+//\*------------------------------------*/
+
+/* VARIABLES
+========================================================================== */
+$dropdown-triangle-width: 5px;
+$dropdown-background-color: $color-white;
+$color-alternative-border: $color-gray-silver;
+$input-size-1: 48px;
+$input-size-2: 32px;
+$input-size-3: 24px;
+
+/* WRAPPERS
+========================================================================== */
+.form-wrapper {
+	@include rem(margin-bottom, spaces(4));
+}
+
+.input-wrapper {
+	@include rem(margin-bottom, spaces(2));
+}
+
+/* LABEL
+========================================================================== */
+.label {
+	display: block;
+	@include rem(margin-bottom, spaces(1));
+	@include rem(font-size, 13px); color: $color-gray-mine-shaft;
+}
+
+.label--checkbox {
+	@include rem(font-size, 14px); color: $color-gray-dove;
+}
+
+/* INPUTS
+========================================================================== */
+.input {
+	@include rem(padding, 0 spaces(2));
+	width: 100%; @include rem(height, $input-size-1);
+	font-family: $font-primary; @include rem(font-size, 16px); color: $color-gray-mine-shaft;
+	background-color: $color-white;
+	border: 1px solid $color-gray-silver;
+	border-radius: 7px;
+}
+
+.input--size-2 {
+	@include rem(height, $input-size-2);
+	@include rem(font-size, 13px);
+}
+
+.input--size-3 {
+	@include rem(padding, 0 spaces(1));
+	@include rem(height, $input-size-3);
+	@include rem(font-size, 13px);
+}
+
+input[readonly] {
+	background-color: $color-gray-gallery;
+}
+
+/* TEXTAREA
+========================================================================== */
+.input--textarea {
+	@include rem(padding-top, spaces(2)); @include rem(padding-bottom, spaces(2));
+	@include rem(height, 160px);
+	@include rem(font-size, 13px);
+}
+
+/* CHECKBOX
+========================================================================== */
+.input--checkbox {
+	@include rem(margin-right, spaces(1));
+}
+
+
+/* INPUT SEARCH
+========================================================================== */
+.input--search {
+	float: left;
+	vertical-align: top;
+	width: calc(100% - 60px); @include rem(height, spaces(5));
+	@include rem(font-size, 13px);
+	border-right: 0;
+	border-radius: 0;
+}
+
+.input--search--button {
+	@include rem(height, spaces(5));
+	width: 50px;
+	border: 1px solid $color-gray-silver;
+	border-top-right-radius: 7px; border-bottom-right-radius: 7px;
+	background: url('../img/icons/icon-search.svg') center center $color-white no-repeat;
+}
+
+.input--file {
+    position: absolute;
+    z-index: -1;
+    overflow: hidden;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+}
+
+/* INPUT SELECT
+========================================================================== */
+/* Container used for styling the custom select, the buttom class below adds the
+ * bg gradient, corners, etc. */
+.custom-select {
+	position: relative;
+	display: block;
+	padding: 0;
+	cursor: pointer;
+	font-family: $font-primary; @include rem(font-size, 16px); color: $color-gray-mine-shaft;
+
+}
+
+.custom-select {
+	position: relative;
+	width: 100%;
+	border: 1px solid $color-alternative-border;
+	border-radius: 7px;
+	@include rem(font-size, 13px); color: $color-gray-dove; font-weight: normal; text-align: left;
+	background-color: $dropdown-background-color;
+
+	&:before {
+		content: '';
+		position: absolute; top: calc(50% - (#{$dropdown-triangle-width} / 2)); right: 10px;
+		width: 0; height: 0;
+		border-style: solid;
+		border-width: $dropdown-triangle-width $dropdown-triangle-width 0 $dropdown-triangle-width;
+		border-color: $color-gray-mine-shaft transparent transparent transparent;
+	}
+
+}
+
+/* This is the native select, we're making everything but the text invisible so
+ * we can see the button styles in the wrapper */
+.custom-select select {
+	margin: 0; padding: 0 0 0 16px;
+	width: 100%; @include rem(height, $input-size-1);
+
+	/* Font size must be 16px to prevent iOS page zoom on focus */
+	font-family: $font-primary; font-size: 16px; color: $color-gray-mine-shaft;
+	cursor: pointer;
+}
+
+.custom-select--size-2 select {
+	padding-top: 4px;
+	@include rem(height, $input-size-2);
+	font-size: 13px;
+}
+
+.custom-select--size-3 select {
+	padding-top: 4px;
+	@include rem(height, 22px);
+	font-size: 13px;
+}
+
+
+/* Custom arrow sits on top of the select - could be an image, SVG, icon font,
+ * etc. or the arrow could just baked into the bg image on the select. */
+.custom-select::after {
+	content: " ";
+	position: absolute;
+	top: 50%;
+	right: 1em;
+	z-index: 2;
+	/* These hacks make the select behind the arrow clickable in some browsers */
+	pointer-events: none;
+	display: none;
+}
+
+@supports ( -webkit-appearance: none ) or ( appearance: none ) or ( ( -moz-appearance: none ) and ( mask-type: alpha ) ) {
+
+	/* Show custom arrow */
+	.custom-select::after {
+		display: block;
+	}
+
+	/* Remove select styling */
+	.custom-select select {
+		padding-right: 2em; /* Match-01 */
+		/* inside @supports so that iOS <= 8 display the native arrow */
+		background: none; /* Match-04 */
+		/* inside @supports so that Android <= 4.3 display the native arrow */
+		border: 1px solid transparent; /* Match-05 */
+
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+	}
+
+}
+
+/* Adds Firefox < 35 support */
+/* FIREFOX won't let us hide the native select arrow, so we have to make it wider than needed and clip it via overflow on the parent container. The percentage width is a fallback since FF 4+ supports calc() so we can just add a fixed amount of extra width to push the native arrow out of view. We're applying this hack across all FF versions because all the previous hacks were too fragile and complex. You might want to consider not using this hack and using the native select arrow in FF. Note this makes the menus wider than the select button because they display at the specified width and aren't clipped. Targeting hack via http://browserhacks.com/#hack-758bff81c5c32351b02e10480b5ed48e */
+/* Show only the native arrow */
+@-moz-document url-prefix() {
+
+	/* Warning: this kills the focus outline style */
+	.custom-select {
+		overflow: hidden;
+	}
+	.custom-select::after {
+		display: block;
+	}
+	/* Make the native select extra wide so the arrow is clipped. 1.5em seems to be enough to safely clip it */
+	.custom-select select {
+		overflow: -moz-hidden-unscrollable;
+		padding-right: .4em;
+		background: none; /* Match-04 */
+		border: 1px solid transparent; /* Match-05 */
+		/* Firefox < 4 */
+		min-width: 6em;
+		width: 130%;
+		/* Firefox 4-15 */
+		min-width: -moz-calc(0em);
+		width: -moz-calc(100% + 2.4em);
+		/* Firefox 16+ */
+		min-width: calc(0em);
+		width: calc(100% + 2.4em);
+		padding: 11px;
+	}
+
+	/* Firefox 35+ that supports hiding the native select can have a proper 100% width, no need for the overflow clip trick */
+	@supports ( mask-type: alpha ) {
+		.custom-select {
+			overflow: visible;
+		}
+		.custom-select select {
+			-moz-appearance: none;
+			width: 100%;
+			padding-right: 2em; /* Match-01 padding-right */
+		}
+	}
+}
+
+/* Firefox focus has odd artifacts around the text, this kills that. See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-focusring */
+.custom-select select:-moz-focusring {
+	color: transparent;
+	text-shadow: 0 0 0 #000;
+}
+
+/* IE 10/11+ - This hides native dropdown button arrow so it will have the custom appearance. Targeting media query hack via http://browserhacks.com/#hack-28f493d247a12ab654f6c3637f6978d5 - looking for better ways to achieve this targeting */
+/* The second rule removes the odd blue bg color behind the text in the select button in IE 10/11 and sets the text color to match the focus style's - fix via http://stackoverflow.com/questions/17553300/change-ie-background-color-on-unopened-focused-select-box */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.custom-select select::-ms-expand {
+		display: none;
+	}
+	.custom-select select:focus {
+		border-color: #aaa; /* Match-03 */
+	}
+	.custom-select select:focus::-ms-value {
+		background: transparent;
+		color: #222; /* Match-02*/
+	}
+	.custom-select select {
+		padding-right: 2em; /* Match-01 */
+		background: none; /* Match-04 */
+		border: 1px solid transparent; /* Match-05 */
+	}
+	.custom-select::after {
+		display: block;
+	}
+}

@@ -1,7 +1,11 @@
-<div class="row">
+<div class="row empty-vis-wrapper">
   <div class="col-md-12 empty-vis">
     <i class="fa fa-eye-slash fa-5x"></i>
 
-    <h2> Esta consulta não retornou resultados </h2>
+    {{#if msg}}
+      <h2>{{msg}}</h2>
+    {{else}}
+      <h2> Esta consulta não retornou resultados </h2>
+    {{/if}}
   </div>
 </div>

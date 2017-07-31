@@ -1,43 +1,6 @@
-/*@import "alert.scss";*/
-@import "auth.scss";
-@import "btn.scss";
-@import "btn-primary.scss";
-@import "btn-secondary.scss";
-/*@import "btn-success.scss";
-@import "btn-info.scss";
-@import "btn-warning.scss";
-@import "btn-danger.scss";
-@import "btn-outline.scss";*/
-/*@import "card.scss";*/
-@import "card-header.scss";
-@import "card-misc.scss";
-@import "card-release-notes";
-@import "card-video-tutorial";
-@import "dashboard.scss";
-@import "dropdownmenu.scss";
-/*@import "errors.scss";*/
-@import "filter.scss";
-@import "footer.scss";
-@import "form.scss";
-@import "header.scss";
-@import "images.scss";
-@import "item.scss";
-@import "misc.scss";
-@import "nav.scss";
-@import "option-bar.scss";
-@import "sidebar.scss";
-@import "engage.scss";
-@import "engage-btn.scss";
-@import "engage-nav-bar.scss";
-@import "engage-main-menu.scss";
-@import "engage-slick-menu-responsive.scss";
-@import "engage-service.scss";
-@import "engage-team.scss";
-@import "engage-footer.scss";
-@import "theme-color.scss";
-@import "green.scss";
-/*@import "table.scss";*/
-
+@import "font-awesome";
+/*------------------------------------*    #PROJECT NAME
+\*------------------------------------*/
 // Gfranciscani Styles
 
 // Variables
@@ -52,284 +15,407 @@
 @import 'ui/ui.mouse-pointers.scss';
 @import 'ui/ui.tooltipster.scss';
 
-// Visualizations
-@import 'visualizations/main.scss';
-@import 'visualizations/bar-chart/main.scss';
-@import 'visualizations/line-chart/main.scss';
-@import 'visualizations/correlation-matrix/main.scss';
-@import 'visualizations/sentiment-analysis/main.scss';
-@import 'visualizations/graph-canvas/main.scss';
-@import 'visualizations/topicos-vis/main.scss';
-@import 'visualizations/wordtree-diagram/main.scss';
-@import 'visualizations/search-tool/main.scss';
-@import 'visualizations/table/main.scss';
+/* Visualizations*/
+@import "visualizations/columns.scss";
+@import "visualizations/main.scss";
+@import "visualizations/bar-chart/main.scss";
+@import "visualizations/line-chart/main.scss";
+@import "visualizations/correlation-matrix/main.scss";
+@import "visualizations/sentiment-analysis/main.scss";
+@import "visualizations/graph-canvas/main.scss";
+@import "visualizations/topicos-vis/main.scss";
+@import "visualizations/wordtree-diagram/main.scss";
+@import "visualizations/search-tool/main.scss";
+@import "visualizations/table/main.scss";
 
-// Visualizations Cards
-@import 'visualizations/vis-cards-container/main.scss';
-@import 'visualizations/vis-card/main.scss';
+@import 'main-sass.scss';
 
-// Visualizations Explanation Modal
-@import 'visualizations/about-vis/main.scss';
-
-// Gfranciscani Styles
-
-
-html,
-body {
-  padding: 0;
+.query-builder {
+  background-color: white;
   margin: 0;
-  height: 100%;
-  min-height: 100%;
-  font-family: 'Open Sans', sans-serif;
-  color: #4f5f6f;
-overflow-x: hidden; }
-
-.main-wrapper {
-  width: 100%;
-  position: absolute;
-  height: 100%;
-  overflow-y: auto;
-overflow-x: hidden; }
-
-.app {
-  position: relative;
-  width: 100%;
-  padding-left: 50px;
-  min-height: 100vh;
-  margin: 0 auto;
-  left: 0;
-  background-color: #f0f3f6;
-  box-shadow: 0 0 3px #ccc;
-  -webkit-transition: left 0.3s ease, padding-left 0.3s ease;
-  transition: left 0.3s ease, padding-left 0.3s ease;
-overflow: hidden; }
-
-.app .content {
-  padding: 110px 30px 90px 30px;
-min-height: 100vh; }
-@media (min-width: 1200px) {
-  .app .content {
-padding: 45px 20px 0px 20px; } }
-
-@media (min-width: 992px) and (max-width: 1199px) {
-  .app .content {
-padding: 45px 30px 90px 30px; } }
-@media (min-width: 768px) and (max-width: 991px) {
-  .app .content {
-padding: 45px 20px 75px 70px; } }
-@media (max-width: 767px) {
-  .app .content {
-padding: 45px 10px 65px 10px; } }
-@media (max-width: 991px) {
-  .app {
-padding-left: 0; } }
-@media (max-width: 991px) {
-  .app.sidebar-open {
-left: 0; } }
-.app.blank {
-background-color: #667380; }
-.app .drawer{
-  background-color: #fff;
-  padding: 110px 30px 90px 30px;
-min-height: 100vh; }
-@media (min-width: 1200px) {
-  .app .drawer {
-padding: 45px 20px 0px 45px; } }
-@media (min-width: 992px) and (max-width: 1199px) {
-  .app .drawer {
-padding: 45px 30px 90px 45px; } }
-@media (min-width: 768px) and (max-width: 991px) {
-  .app .drawer {
-padding: 45px 20px 75px 45px; } }
-@media (max-width: 767px) {
-  .app .drawer {
-padding: 45px 10px 65px 45px; } }
-@media (max-width: 991px) {
-  .app .drawer {
-padding: 45px 10px 65px 45px; } }
-
-.app .drawer{
-  padding: 110px 30px 90px 30px;
-min-height: 100vh; }
-@media (min-width: 1200px) {
-  .app .drawer {
-padding: 45px 20px 0px 45px; } }
-@media (min-width: 992px) and (max-width: 1199px) {
-  .app .drawer {
-padding: 45px 30px 90px 45px; } }
-@media (min-width: 768px) and (max-width: 991px) {
-  .app .drawer {
-padding: 45px 20px 75px 45px; } }
-@media (max-width: 767px) {
-  .app .drawer {
-padding: 45px 10px 65px 45px; } }
-@media (max-width: 991px) {
-  .app .drawer {
-padding: 45px 10px 65px 45px; } }
-
-.task {
-  font-family: Roboto;
-  font-size: 10px;
-  border-radius: 5px;
-  border: 2px solid #888;
-  padding: 0px 2px;
-  width: 180px;
-  height: 60px;
-  position: absolute;
-  background: #FFF;
-  cursor: move;
-  cursor: grab;
-  cursor: -moz-grab;
-  cursor: -webkit-grab;
-}
-
-.task p {
-  border-bottom: 1px solid #888;
-  font-size: 9pt;
-  font-weight: bold;
-  margin-bottom: 0;
-  text-align: center;
-}
-.task > span {
-  background: #fff;
-  display: block;
-  margin: 0px -2px 2px -2px;
-  padding: 2px;
-}
-#description {
-  height: 30vh;
-}
-
-#diagram {
-  background: #d7dde4;
-  background: url('images/grid.png');
-  border: 1px solid #ddd;
-  height: 85vh;
-  overflow: hidden;
-}
-
-#forms {
-  left: calc(100% - 230px);
-  display: none;
-  margin-top: 97px;
-  margin-bottom: 40px;
-  background: white;
-  border: 1px solid #ddd;
-  height: 85vh;
-  font-family: Verdana;
-  font-size: 10px;
-  overflow: hidden;
-  padding: 5px;
-}
-@media (max-width: 991px) {
-  #forms {
-  margin-top: 140px;} }
-
-#forms fieldset {
-  zoom: 75%;
-  margin: 0;
-}
-
-fieldset {
-  padding: 10px 5px 20px 5px;
-  border: 1px solid #ccc;
-  margin: 5px 0;
-}
-
-legend {
-  border: 0;
-  font-size: 12pt;
-  font-weight: bold;
-  margin: 5px 0 0 0;
-  width: inherit;
-}
-
-fieldset p {
   padding: 0;
-  margin: 5px 0 0 0;
-}
-
-#diagram .ui-selected {
-  -webkit-box-shadow: 5px 5px 5px 0px #444;
-  -moz-box-shadow: 5px 5px 5px 0px #444;
-  box-shadow: 5px 5px 5px 0px #444;
-}
-
-.color-item {
-  float: left;
-  height: 20px;
-  margin-right: 1px;
-  width: 20px;
-  border: 1px solid #CCC;
-}
-
-.color-item.active {
-  border-color: #555;
-}
-
-.sidebar-active {
-  background: $main-theme-green;
-}
-.sidebar-active .fa {
-  color: white;
-}
-.sidebar-active span{
-  color: white;
-}
-.pending {
-  color: yellow;
-}
-a .pending{
-  color: yellow;
-}
-
-.page-content-wrapper {
-  margin: 40px 0 0 0;
-
-  .job-name {
-    display: flex;
-    height: 60px;
+  box-sizing: border-box;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  font-family: sans-serif;
+  .rules-group-container {
     background-color: white;
-    font-size: 1.3em;
-    margin-top: 10px;
+    border-color: #cccccc;
+  }
+  .rule-container {
+    background-color: #f0f0f0;
+  }
+  .rules-group-header {
+    margin-bottom: 16px;
+    margin-bottom: 1rem;
+  }
+  .hide {
+    display: none;
+  }
+  .pull-right {
+    float: right !important;
+  }
+  .btn {
+    text-transform: none;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    &.focus, &:focus, &:hover {
+      color: white;
+      text-decoration: none;
+    }
+    &.active, &:active {
+      background-image: none;
+      outline: 0px none;
+      box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
+    }
+  }
+  .btn-success {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    vertical-align: top;
     padding: 0 20px;
-    label {
-      display: inline-table;
-      margin: 17px 0;
-    }
-    input {
-      height: 50px;
-      margin: 5px 0 5px 5px;
+    padding: 0 1.25rem;
+    height: 32px;
+    height: 2rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 100%;
+    color: white;
+    text-transform: uppercase;
+    border: 1px solid #b5303c;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    background-color: #b5303c;
+    cursor: pointer;
+    -webkit-transition: background-color ease 0.3s, color ease 0.3s;
+    transition: background-color ease 0.3s, color ease 0.3s;
+    color: white;
+    background-color: #162938;
+    border-color: #162938;
+    height: 32px;
+    height: 2rem;
+    padding: 0 16px;
+    padding: 0 1rem;
+    font-size: 13px;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    text-transform: none;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+  }
+  .btn-primary {
+    position: relative;
+    float: left;
+    width: 42px;
+    width: 2.625rem;
+    padding: 4px 0;
+    padding: 0.25rem 0;
+    font-size: 13px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #162938;
+    background-color: white;
+    border: 1px solid #162938;
+    cursor: pointer;
+    -webkit-transition: opacity ease 0.3s;
+    transition: opacity ease 0.3s;
+    border-radius: 0px;
+  }
+  .btn-danger {
+    color: #323232;
+    background-color: white;
+    border-color: #dddddd;
+    .anchor-button__icon {
+      color: #666666;
     }
   }
-
-  .job-filter {
-    padding: 20px;
-    background: white;
-
-    .title {
-      font-size: 1.3em;
+  .btn-success {
+    &.active, &.focus, &:active, &:focus, &:hover {
+      color: white;
+      background-color: #323232;
+      border-color: #323232;
     }
   }
-
+  .btn-primary {
+    &.active, &.focus, &:active, &:focus {
+      color: white;
+      background-color: #162938;
+    }
+    &:hover {
+      color: white;
+      background-color: #323232;
+    }
+  }
+  .btn-danger {
+    &.active, &.focus, &:active, &:focus, &:hover {
+      color: #323232;
+      background-color: #dddddd;
+      border-color: #dddddd;
+    }
+  }
+  .btn-group {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    > .btn {
+      position: relative;
+      float: left;
+    }
+    &.group-actions > .btn {
+      margin: 0 0.3rem;
+    }
+    > .btn:first-child {
+      margin-left: 0px;
+    }
+    .btn + {
+      .btn, .btn-group {
+        margin-left: -1px;
+      }
+    }
+    .btn-group + {
+      .btn, .btn-group {
+        margin-left: -1px;
+      }
+    }
+  }
+  .btn-xs, .btn-group-xs > .btn {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .error-container, .rule-filter-container, .rule-operator-container, .rule-value-container {
+    background-color: #f0f0f0;
+    input[type=text] {
+      padding: 0 0.7rem;
+    }
+  }
+  .form-control {
+    position: relative;
+    display: block;
+    padding: 0;
+    cursor: pointer;
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-size: 1rem;
+    color: #323232;
+    position: relative;
+    width: 100%;
+    border: 1px solid #bbbbbb;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-size: 0.8125rem;
+    color: #666666;
+    font-weight: normal;
+    text-align: left;
+    background-color: white;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -webkit-calc(50% - (5px / 2));
+      top: calc(50% - (5px / 2));
+      right: 10px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 5px 5px 0 5px;
+      border-color: #323232 transparent transparent transparent;
+    }
+    select {
+      margin: 0;
+      padding: 0 0 0 16px;
+      width: 100%;
+      height: 48px;
+      height: 3rem;
+      /* Font size must be 16px to prevent iOS page zoom on focus */
+      font-family: "Poppins", sans-serif;
+      font-size: 16px;
+      color: #323232;
+      cursor: pointer;
+      padding-top: 4px;
+      height: 22px;
+      height: 1.375rem;
+      font-size: 13px;
+      &::after {
+        content: " ";
+        position: absolute;
+        top: 50%;
+        right: 1em;
+        z-index: 2;
+        /* These hacks make the select behind the arrow clickable in some browsers */
+        pointer-events: none;
+        display: none;
+      }
+      &:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 #000;
+      }
+    }
+  }
 }
 
-.consultas {
-  padding: 50px;
+@supports (-webkit-appearance: none) or (-moz-appearance: none) or (appearance: none) or ((-moz-appearance: none) and (mask-type: alpha)) {
+  /* Show custom arrow */
+  /* Remove select styling */
+  .query-builder .form-control {
+    &::after {
+      display: block;
+    }
+    select {
+      padding-right: 2em;
+      /* Match-01 */
+      /* inside @supports so that iOS <= 8 display the native arrow */
+      background: none;
+      /* Match-04 */
+      /* inside @supports so that Android <= 4.3 display the native arrow */
+      border: 1px solid transparent;
+      /* Match-05 */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+  }
+}
+
+/* Adds Firefox < 35 support */
+/* FIREFOX won't let us hide the native select arrow, so we have to make it wider than needed and clip it via overflow on the parent container. The percentage width is a fallback since FF 4+ supports calc() so we can just add a fixed amount of extra width to push the native arrow out of view. We're applying this hack across all FF versions because all the previous hacks were too fragile and complex. You might want to consider not using this hack and using the native select arrow in FF. Note this makes the menus wider than the select button because they display at the specified width and aren't clipped. Targeting hack via http://browserhacks.com/#hack-758bff81c5c32351b02e10480b5ed48e */
+/* Show only the native arrow */
+@-moz-document url-prefix() {
+  /* Warning: this kills the focus outline style */
+  /* Make the native select extra wide so the arrow is clipped. 1.5em seems to be enough to safely clip it */
+  /* Firefox 35+ that supports hiding the native select can have a proper 100% width, no need for the overflow clip trick */
+  .query-builder .form-control {
+    overflow: hidden;
+    &::after {
+      display: block;
+    }
+    select {
+      overflow: -moz-hidden-unscrollable;
+      padding-right: .4em;
+      background: none;
+      /* Match-04 */
+      border: 1px solid transparent;
+      /* Match-05 */
+      /* Firefox < 4 */
+      min-width: 6em;
+      width: 130%;
+      /* Firefox 4-15 */
+      min-width: -moz-calc(0em);
+      width: -moz-calc(100% + 2.4em);
+      /* Firefox 16+ */
+      min-width: calc(0em);
+      width: calc(100% + 2.4em);
+      padding: 11px;
+    }
+  }
+  @supports (mask-type: alpha) {
+    .query-builder .form-control {
+      overflow: visible;
+      select {
+        -moz-appearance: none;
+        width: 100%;
+        padding-right: 2em;
+        /* Match-01 padding-right */
+      }
+    }
+  }
+}
+
+
+/* Firefox focus has odd artifacts around the text, this kills that. See https://developer.mozilla.org/en-US/docs/Web/CSS/:-moz-focusring */
+
+/* IE 10/11+ - This hides native dropdown button arrow so it will have the custom appearance. Targeting media query hack via http://browserhacks.com/#hack-28f493d247a12ab654f6c3637f6978d5 - looking for better ways to achieve this targeting */
+/* The second rule removes the odd blue bg color behind the text in the select button in IE 10/11 and sets the text color to match the focus style's - fix via http://stackoverflow.com/questions/17553300/change-ie-background-color-on-unopened-focused-select-box */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .query-builder .form-control {
+    select {
+      &::-ms-expand {
+        display: none;
+      }
+      &:focus {
+        border-color: #aaa;
+        /* Match-03 */
+        &::-ms-value {
+          background: transparent;
+          color: #222;
+          /* Match-02*/
+        }
+      }
+      padding-right: 2em;
+      /* Match-01 */
+      background: none;
+      /* Match-04 */
+      border: 1px solid transparent;
+      /* Match-05 */
+    }
+    &::after {
+      display: block;
+    }
+  }
+}
+
+.label.label--checkbox.public {
+  font-size: 1.2rem;
+}
+
+
+.has-error {
+  color: #E8393C;
+  .icon {
+    margin: 0 5px 0 0;
+  }
+  i { @extend .fa-exclamation-triangle; }
+}
+
+.running {
+  color: #0585b2;
+}
+
+.anchor-button.anchor-button--type-2.anchor-button--size-3.anchor-button--color-4 .icon {
+  margin: 0 6px 0 0;
+  font-size: 0.9rem;
 }
 
 /* The switch - the box around the slider */
+
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 40px;
+  height: 24px;
+  input {
+    display: none;
+  }
 }
 
 /* Hide default HTML checkbox */
-.switch input {display:none;}
 
 /* The slider */
+
 .slider {
   position: absolute;
   cursor: pointer;
@@ -337,45 +423,109 @@ a .pending{
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #f0f0f0;
   -webkit-transition: .4s;
   transition: .4s;
+  &:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+input {
+  &:checked + .slider {
+    background-color: #b5303c;
+  }
+  &:focus + .slider {
+    box-shadow: 0 0 1px #b5303c;
+  }
+  &:checked + .slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+  }
 }
 
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 24px;
+  &:before {
+    border-radius: 50%;
+  }
 }
 
-.slider.round:before {
+.title-block, .card-list__item--link {
+  width: 100%;
+}
+
+.pagination-list__item.disabled {
+  color: #919191;
+  a {
+    border-color: #a4a4a4;
+  background-color: #c5c5c5; }
+
+  a:hover {
+    transition: none;
+  opacity: 1; }
+}
+
+.inputfile-info {
+  margin: 10px 0 0 5px;
+  display: inline-block;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #b5303c;
+  border-bottom: 16px solid #b5303c;
   border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
 }
-span.has-error {
-  color: #FF4444;
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
+
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;  vertical-align: middle;
+}
+
+.modal-content {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+a {
+  display: inline-block;
+  color: inherit; text-decoration: none;
+  transition: opacity ease $basic-transition;
+  &:focus, &:hover {
+    opacity: .7;
+    transition: opacity ease $basic-transition;
+  }
+}
+

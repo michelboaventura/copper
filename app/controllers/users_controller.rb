@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_current_user
-  before_action :authenticate_request, except: [:create]
+  before_action :authenticate_request, except: [:create, :show]
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
@@ -41,10 +41,22 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
+  def change_password
+    if @current_user && @current_user.valid_password?(password_params[:current_password]) && @current_user.update(password_params.except(:current_password))
+      render json: @current_user
+    else
+      render json: ErrorSerializer.serialize(@current_user.errors), status: :unprocessable_entity
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def password_params
+    params.require(:password).permit(:current_password, :password, :password_confirmation)
   end
 
   # Only allow a trusted parameter "white list" through.

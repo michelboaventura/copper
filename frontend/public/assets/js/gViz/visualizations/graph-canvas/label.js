@@ -36,7 +36,7 @@ gViz.vis.graph.label = function () {
             if(isActive) {
 
               // Initialize labels
-              var labels = ["<span class='label-title'>Group Labels</span>"]
+              var labels = ["<span class='label-title'>Grupos</span>"]
 
               // Get group labels
               Object.keys(_var.label.values).forEach(function(k) {
@@ -45,13 +45,11 @@ gViz.vis.graph.label = function () {
               });
 
               // Get centered labels
-              if(Object.keys(_var.label.centered).length > 0) { labels.push("<span class='label-title' style='margin-top: 20px;'>Fixed Nodes</span>"); }
+              if(Object.keys(_var.label.centered).length > 0) { labels.push("<span class='label-title' style='margin-top: 20px;'>Nós em Destaque</span>"); }
               Object.keys(_var.label.centered).forEach(function(k) {
                 var color = _var.label.centered[k];
                 labels.push("<div class='label-group'><span class='label-color' style='border: 2px solid "+color+";'></span><span class='label-name'>"+k+"</span></div>");
               });
-
-
 
               _var.container.jq.parent().find('.label-wrapper').html(labels.join('')).css('display', 'block');
 

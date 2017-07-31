@@ -69,6 +69,7 @@ gViz.vis.matrix_chart = function () {
           main('draw');
           main('legend');
           main('sort');
+
           break;
 
         // Initialize visualization variable
@@ -90,6 +91,7 @@ gViz.vis.matrix_chart = function () {
             .height(height)
             .margin(margin)
             .width(width)
+            .legend_width(legend_width)
             .run();
 
           break;

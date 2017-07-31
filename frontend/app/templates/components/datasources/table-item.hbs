@@ -1,56 +1,19 @@
-<li class="item">
-  <div class="item-row">
-    <div class="item-col fixed item-col-check">
-      <label class="item-check" id="select-all-items">
-        <input type="checkbox" class="checkbox">
-        <span></span>
-      </label>
-    </div>
-    <div class="item-col fixed pull-left item-col-title">
-      <div class="item-heading">Name</div>
-      <div>
-        {{#link-to 'datasource.edit' datasource.id}}
-          <h4 class="item-title">
-            {{datasource.name}}
-          </h4>
-        {{/link-to}}
-      </div>
-    </div>
-    <div class="item-col item-col-size no-overflow">
-      <div class="item-heading">Size</div>
-      <div class="no-overflow">
-        {{#link-to 'datasource.edit' datasource.id class='datasource'}}
-          {{datasource.size}}
-        {{/link-to}}
-      </div>
-    </div>
-    <div class="item-col item-col-type no-overflow">
-      <div class="item-heading">Type</div>
-      <div class="no-overflow">
-        {{#link-to 'datasource.edit' datasource.id class='datasource'}}
-          {{datasource.data_type}}
-        {{/link-to}}
-      </div>
-    </div>
-    <div class="item-col item-col-author">
-      <div class="item-heading">Author</div>
-      <div class="no-overflow">
-        {{#link-to 'user' datasource.user.id}}
-          <h4 class="item-title"> {{datasource.user.fullname}} </h4>
-        {{/link-to}}
-      </div>
-    </div>
-    <div class="item-col item-col-date">
-      <div class="item-heading">Created</div>
-      <div class="no-overflow"> {{datasource.created_at}} </div>
-    </div>
-    <div class="item-col fixed item-col-actions-dropdown">
-      <div class="item-actions-dropdown">
-        <a class="remove" {{action 'deleteDatasource' datasource}} href="#" > <i class="fa fa-trash-o "></i></a>
-        {{#link-to 'datasource.edit' datasource.id }}
-          <i class="fa fa-pencil"></i>
-        {{/link-to}}
-      </div>
-    </div>
-  </div>
-</li>
+<td>
+  <label class="item-check" id="select-all-items">
+    <input id="checkbox-{{datasource.id}}" type="checkbox" class="checkbox" onchange={{action "checked" datasource.id}} >
+    <span></span>
+  </label>
+</td>
+<td>{{datasource.name}}</td>
+<td>
+  <button class="anchor-button__icon" {{action 'deleteDatasource' datasource}}>
+    <img src="/assets/img/icons/icon-delete.svg" alt="">
+  </button>
+  {{#link-to 'ferramenta.bases.editar' datasource.id}}
+    <img src="/assets/img/icons/icon-edit.svg" alt="">
+  {{/link-to}}
+</td>
+<td>{{link-to 'Filtrar' 'ferramenta.filtros.adicionar' (query-params base=datasource.id) class="anchor-button"}}</td>
+<td>{{datasource.user.fullname}}</td>
+<td>{{format-date datasource.created_at}}</td>
+

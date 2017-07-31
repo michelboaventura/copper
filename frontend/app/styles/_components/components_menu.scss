@@ -1,0 +1,61 @@
+///*------------------------------------*\
+//    #MENU
+//\*------------------------------------*/
+
+/* VARIABLES
+========================================================================== */
+
+/* WRAPPER
+========================================================================== */
+.menu-wrapper {
+  // position: absolute; top: 0; left: 0;
+  @include rem(padding-bottom, spaces(6));
+  @include rem(width, $menu-width); height: 100%;
+  background-color: $color-gray-mine-shaft;
+}
+
+.menu__logo {
+  @include rem(margin-bottom, spaces(4));
+}
+
+/* LIST
+========================================================================== */
+.menu-list__item {
+  display: block;
+
+  a:hover, a:active, a:focus {
+    color: white;
+    text-decoration: none !important;
+  }
+
+}
+
+.menu-list__anchor {
+  display: flex; align-items: center;
+  margin-bottom: 2px; @include rem(padding, spaces(2) spaces(2));
+  @include rem(font-size, 13px); line-height: 120%; font-weight: 600; color: $color-gray-silver; text-transform: uppercase;
+  &.active {
+    background-color: black;
+    color: white;
+  }
+  &:hover, &:focus {
+    opacity: 1;
+    background-color: $color-black;
+  }
+
+  .active .menu-list__anchor, .is-selected & {
+    background-color: $color-black;
+    color: $color-white;
+  }
+
+}
+
+.menu-list__icon {
+  @include rem(margin-right, spaces(1.5));
+  opacity: .5;
+
+  .menu-list__anchor:hover &, .menu-list__anchor:focus & {
+    opacity: 1;
+  }
+
+}

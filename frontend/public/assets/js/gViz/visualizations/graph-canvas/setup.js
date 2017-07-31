@@ -36,40 +36,12 @@ gViz.vis.graph.setup = function () {
                     case 'circle':
                       _var.context.moveTo(d.x + d.radius / _var.transform.k, d.y);
                       return _var.context.arc(d.x, d.y, d.radius / _var.transform.k, 0, 2 * Math.PI);
-                    case 'rect':
-                      _var.context.moveTo(d.x - d.radius / _var.transform.k, d.y - d.radius / _var.transform.k);
-                      _var.context.lineTo(d.x + d.radius / _var.transform.k, d.y - d.radius / _var.transform.k);
-                      _var.context.lineTo(d.x + d.radius / _var.transform.k, d.y + d.radius / _var.transform.k);
-                      _var.context.lineTo(d.x - d.radius / _var.transform.k, d.y + d.radius / _var.transform.k);
-                      return _var.context.lineTo(d.x - d.radius / _var.transform.k, d.y - d.radius / _var.transform.k);
-                    case 'triangle-down':
-                      _var.context.moveTo(d.x - d.radius / _var.transform.k, d.y - d.radius / _var.transform.k);
-                      _var.context.lineTo(d.x + d.radius / _var.transform.k, d.y - d.radius / _var.transform.k);
-                      _var.context.lineTo(d.x, d.y + d.radius / _var.transform.k);
-                      return _var.context.lineTo(d.x - d.radius / _var.transform.k, d.y - d.radius / _var.transform.k);
-                    case 'triangle-up':
-                      _var.context.moveTo(d.x, d.y - d.radius / _var.transform.k);
-                      _var.context.lineTo(d.x + d.radius / _var.transform.k, d.y + d.radius / _var.transform.k);
-                      _var.context.lineTo(d.x - d.radius / _var.transform.k, d.y + d.radius / _var.transform.k);
-                      return _var.context.lineTo(d.x, d.y - d.radius / _var.transform.k);
-                    case 'diamond':
-                      _var.context.moveTo(d.x, d.y - d.radius / _var.transform.k);
-                      _var.context.lineTo(d.x + d.radius / _var.transform.k, d.y);
-                      _var.context.lineTo(d.x, d.y + d.radius / _var.transform.k);
-                      _var.context.lineTo(d.x - d.radius / _var.transform.k, d.y);
-                      return _var.context.lineTo(d.x, d.y - d.radius / _var.transform.k);
                     default:
                       _var.context.moveTo(d.x + d.radius / _var.transform.k, d.y);
                       return _var.context.arc(d.x, d.y, d.radius / _var.transform.k, 0, 2 * Math.PI);
                   }
                 };
                 _var.drawNode = function (d) {
-
-                  // If node is centered
-                  if(d.centered) {
-                    d.x = _var.width/2  + _var.centered.radius * Math.cos(2 * Math.PI * d.center_index / _var.centered.count);
-                    d.y = _var.height/2 + _var.centered.radius * Math.sin(2 * Math.PI * d.center_index / _var.centered.count);
-                  }
 
                   _var.context.beginPath();
                   _var.drawSymbol(d);
@@ -145,7 +117,8 @@ gViz.vis.graph.setup = function () {
                 // Filtered nodes
                 _var.centered = { radius: 0, count: 0 };
                 _var.data.nodes.forEach(function (d, i) {
-                  d.radius = d.centered ? 20 : _var.scales.size[d.group](+d.metric);
+                  d.radius = d.centered ? 10 : _var.scales.size[d.group](+d.metric);
+                  //d.radius = _var.scales.size[d.group](+d.metric);
                   if(d.centered) {
                     d.center_index = _var.centered.count;
                     _var.centered.radius += d.radius;
@@ -158,7 +131,7 @@ gViz.vis.graph.setup = function () {
                   .force("link", d3.forceLink().id(function (d) { return d.id; }))
                   .force("charge", d3.forceManyBody().distanceMax(_var.width * 0.3).strength(function (d) {return -20; }))
                   .force("center", d3.forceCenter(_var.width / 2, _var.height / 2))
-                  .force("collision", d3.forceCollide(function(d) { return d.radius*1.1 ; }));
+                  .force("collision", d3.forceCollide(function(d) { return d.radius*1.3 ; }));
 
                 // Force actions
                 _var.simulation.nodes(_var.data.nodes).on("tick", _var.ticked);

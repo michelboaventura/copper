@@ -211,10 +211,6 @@ export default Ember.Component.extend({
   didReceiveAttrs: function() {
     this._super(...arguments);
 
-    let capitalizeFirstLetter = function(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
-    };
-
     var descriptions = this.get("descriptions");
     var vis = this.get("vis");
 

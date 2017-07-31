@@ -1,7 +1,7 @@
 class CorrelacaoJob < ApplicationJob
   queue_as :default
 
-  def perform(path)
+  def perform(path, datasource)
     IO.popen([
       Rails.root.join('algorithms', 'correlacoes', 'run_correlacao.sh').to_s,
       path.join('comments_filtered.json').to_s
@@ -10,19 +10,19 @@ class CorrelacaoJob < ApplicationJob
         f << io.read
       end
     end
-    build_correlacao_json(path)
+    build_correlacao_json(path, datasource)
   end
 
   private
 
-  def build_correlacao_json(path)
+  def build_correlacao_json(path, datasource)
     out = []
 
     File.open(File.join(path, 'correlacao')).each_line do |line|
       author_ids, members = line.chomp.split(' ').map{|l| l.split(',')}
 
-      part_ids = Part.in(member: members).pluck(:id)
-      comments = Comment.in(author_id: author_ids, part_id: part_ids)
+      part_ids = Part.in(member: members, datasource: datasource).pluck(:id)
+      comments = Comment.in(author_id: author_ids, part_id: part_ids, datasource: datasource)
 
       next if comments.empty?
 
@@ -30,7 +30,7 @@ class CorrelacaoJob < ApplicationJob
 
       comments.each do |comment|
         part = comment.part
-        parts = Part.where(member: part.member)
+        parts = Part.where(member: part.member, datasource: datasource)
         part = parts.sort{|a,b| a.name.size <=> b.name.size}.first
         part_id = part.id.to_s
 

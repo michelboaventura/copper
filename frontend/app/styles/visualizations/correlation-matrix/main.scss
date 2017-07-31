@@ -16,6 +16,27 @@ svg.correlation-matrix-chart {
   }
 }
 
+.correlation-controls {
+  .sort-by {
+    transform: translate(0px, 5px);
+    font-weight: bold;
+  }
+
+  #data-buttons {
+    text-align: right;
+
+    .data-button {
+      margin-left: 0;
+      margin-right: 0.5em;
+    }
+  }
+}
+
+
 .gViz-wrapper.correlation-matrix-chart {
+  padding: 0;
   overflow: auto;
+
+  margin-right: -15px;
+
 }

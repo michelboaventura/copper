@@ -1,16 +1,18 @@
-<div class='gViz-wrapper gViz-search-tool' data-id={{_id}} style='width: 100%; height: {{cHeight}}px;' >
-  <p class='title'>
+<div class="gViz-header">
+  <div class='symbol'>
     <span class="fa-stack fa-lg">
       <i class="fa fa-circle fa-stack-2x"></i>
       <i class="fa fa-search fa-stack-1x fa-inverse"></i>
     </span>
-  </p>
-  <p class='title'>Search Tool</p>
-  <p class='subtitle'>Example of search tool based on Calaca.</p>
+  </div>
+  <span class='title'>Busca</span>
+</div>
 
-  <div class="input-group">
-    <input class='search-tool-input form-control' placeholder='Type your search here...' onkeyup={{action 'updateSearch'}} value='{{search}}'>
-    <span class="input-group-addon" {{action 'submitSearch'}}><i class='fa fa-search'></i></span>
+<div class='gViz-wrapper gViz-search-tool' data-id={{_id}} style='height: {{cHeight}}px;' >
+
+  <div class="u-flow-opposite">
+    <input type="search" class="input input--search search-tool-input" placeholder="Digite sua busca..." onkeyup={{action 'updateSearch'}} value='{{search}}'>
+    <button class="input--search--button" {{action 'submitSearch'}}></button>
   </div>
 
   <div class='search-tool-results' style='max-height: {{cResultsHeight}}px;'>
@@ -34,5 +36,5 @@
     <p>Showing <b>{{filteredData.length}}</b> results.</p>
   </div>
 
-
 </div>
+

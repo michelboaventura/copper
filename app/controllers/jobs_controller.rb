@@ -6,13 +6,19 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
+    page = (params[:page] || 1).to_i
+    per_page = (params[:per_page] || 100).to_i
+    search = /#{params[:search]}/i
+
     if params[:public]
-      @jobs = Job.where(public: params[:public], status: 'COMPLETED')
-    else
-      @jobs = Job.where(user: @current_user).order_by(:created_at.desc)
+      @jobs = Job.where(public: params[:public], status: 'COMPLETED').order_by(:finished.desc).page(page).per(per_page)
+    elsif params[:running]
+      @jobs = Job.where(user: @current_user, status: 'RUNNING').order_by(:created_at.desc).page(page).per(per_page)
+    elsif params[:completed]
+      @jobs = Job.where(user: @current_user, :status.ne => 'RUNNING', name: search).order_by(:finished.desc).page(page).per(per_page)
     end
 
-    render json: @jobs
+    render json: @jobs, meta: {total_pages: @jobs.total_pages}
   end
 
   # GET /jobs/1
@@ -34,7 +40,7 @@ class JobsController < ApplicationController
 
   # PATCH/PUT /jobs/1
   def update
-    if @job.update({public: params[:public]})
+    if @job.update(job_params.except(:status, :started, :finished))
       render json: @job
     else
       render json: @job.errors, status: :unprocessable_entity
@@ -55,11 +61,29 @@ class JobsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def job_params
     res = ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+    res[:filter] = filter_stringify(res[:filter]).squish
     res[:mongo_query] = res[:mongo_query].to_json
     res
   end
 
-  def parse_types types
-    types.join("|")
+  def filter_stringify query
+    expression = "";
+    groupElems = [];
+    operationsHash = {not_equal: " Diferente ", equal: " Igual ", contains: " Contém ", AND: " E ", OR: " OU "};
+
+    begin
+      query[:rules].each do |elem|
+        if(elem[:condition])
+          groupElems << filter_stringify(elem)
+        else
+          groupElems << operationsHash[elem[:operator].to_sym] + elem[:value]
+        end
+      end
+      expression = groupElems.join operationsHash[query[:condition].to_sym]
+      return expression
+    rescue
+      return query
+    end
   end
+
 end
