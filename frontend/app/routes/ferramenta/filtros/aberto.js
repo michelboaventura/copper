@@ -6,7 +6,8 @@ export default Ember.Route.extend({
   },
   setupController(controller, model) {
     var resultsTypes = [
-      { id: 'search-tool', text: 'Busca', image: 'search' },
+      { id: 'search-tool', text: 'Busca de Comentários', image: 'search' },
+      { id: 'text-search-tool', text: 'Busca de Texto', image: 'search' },
       { id: 'wordtree-diagram', text: 'Árvore de Palavras', image: 'tree' },
       { id: 'graph-canvas', text: 'Grafo de Co-ocorrência', image: 'occurence' },
       { id: 'graph-canvas-full', text: 'Grafo de Co-ocorrência Completo', image: 'occurence' },

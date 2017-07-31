@@ -1,0 +1,38 @@
+<div class="gViz-header">
+  <div class='symbol'>
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-search fa-stack-1x fa-inverse"></i>
+    </span>
+  </div>
+  <span class='title'>Busca</span>
+</div>
+
+<div class='gViz-wrapper gViz-search-tool' data-id={{_id}} style='height: {{cHeight}}px;' >
+
+  <div class="u-flow-opposite">
+    <input type="search" class="input input--search search-tool-input" placeholder="Digite sua busca..." onkeyup={{action 'updateSearch'}} value='{{search}}'>
+    <button class="input--search--button" {{action 'submitSearch'}}></button>
+  </div>
+
+  <div class='search-tool-results' style='max-height: {{cResultsHeight}}px;'>
+    {{#if isEmpty}}
+      <h5 class="no-data" style="padding-top: 20px; text-align: center;">
+        NO RESULTS FOUND
+        <small>There is no match for the desired search. Please update and search again!</small>
+      </h5>
+    {{else}}
+      {{#each filteredData as |d|}}
+        <div class='search-tool-result-card'>
+          <p class='text_' title='{{d.category}}'>{{d.category}}</p>
+          <p class='category_' title='{{d.text}}'>{{d.text}}</p>
+        </div>
+      {{/each}}
+    {{/if}}
+  </div>
+  <div class='search-tool-info'>
+    <p>Showing <b>{{filteredData.length}}</b> results.</p>
+  </div>
+
+</div>
+
