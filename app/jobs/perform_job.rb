@@ -34,7 +34,8 @@ class PerformJob < ApplicationJob
     filter = eval(query)
     datasource = job.datasource
 
-    part_ids = datasource.parts.pluck(:id)
+    parts = datasource.parts
+    part_ids = parts.pluck(:id)
     comments = datasource.comments.in(part_id: part_ids).where(filter)
     full_comments = datasource.comments.in(part_id: part_ids)
     terms = query.scan(/\/([^\/]*)\//).flatten.map{|s| s.gsub(/\[[^\]\[]*\]/, '')}
@@ -63,7 +64,8 @@ class PerformJob < ApplicationJob
       ExtractCommentsJob.new(comments, comfilef, STOPWORDS).perform_now
       ExtractCommentsJob.new(full_comments, fullcomfile).perform_now
       ExtractCommentsJob.new(full_comments, fullcomfilef, STOPWORDS).perform_now
-      SearchJob.new(path).perform_now
+      CommentSearchJob.new(path).perform_now
+      TextSearchJob.new(path, parts).perform_now
       SentimentoJob.new(path).perform_now
       CorrelacaoJob.new(path, datasource).perform_now
       CoocorrenciaJob.new(path).perform_now

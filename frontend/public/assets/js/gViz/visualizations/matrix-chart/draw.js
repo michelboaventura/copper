@@ -117,6 +117,11 @@ gViz.vis.matrix_chart.draw = function () {
                   return _var._data.rows[i].name;
                 })
                 .each(wrap)
+                .on("click", function(d, i) {
+                  var url = "search-tool?search=";
+                  url += _var._data.rows[i].name;
+                  $(location).attr('href', url);
+                })
                 .append("svg:title")
                 .text(function(d, i) { return _var._data.rows[i].name; });
 
@@ -154,6 +159,11 @@ gViz.vis.matrix_chart.draw = function () {
                 .attr("dy", ".32em")
                 .attr("text-anchor", "middle")
                 .style("cursor", "pointer")
+                .on("click", function(d, i) {
+                  var url = "text-search-tool?search=";
+                  url += _var._data.columns[i].name;
+                  $(location).attr('href', url);
+                })
                 .text(function (d, i) { return _var._data.columns[i].name; })
                 .append("svg:title")
                 .text(function(d, i) { return _var._data.columns[i].name; });

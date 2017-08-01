@@ -39,7 +39,7 @@
     {{!-- /Visualization --}}
 
     {{!-- /Empty Visualization --}}
-    {{#unless (eq model.component "visualizations/search-tool")}}
+    {{#unless (or (eq model.component "visualizations/search-tool") (eq model.component "visualizations/text-search-tool"))}}
       {{visualizations/about-vis vis=model.component }}
     {{/unless}}
     {{!-- /Empty Visualization --}}
