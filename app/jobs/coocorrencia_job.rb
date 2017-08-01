@@ -75,13 +75,13 @@ class CoocorrenciaJob < ApplicationJob
       out[:nodes] << json_coocorrencia(el, value[:acc], value[:neigh], terms)
     end
 
-    #if out[:nodes].size > MAX_NODES
-    #  out = {
-    #    nodes: [],
-    #    links: [],
-    #    msg: "Sua consulta retornou um número muito grande de nós e não pôde ser exibida. Realize uma consulta mais restritiva para usar esta visualização."
-    #  }
-    #end
+    if out[:nodes].size > MAX_NODES
+      out = {
+        nodes: [],
+        links: [],
+        msg: "Sua consulta retornou um número muito grande de nós e não pôde ser exibida. Realize uma consulta mais restritiva para usar esta visualização."
+      }
+    end
 
     File.open(output, 'w') do |f|
       f << out.to_json
