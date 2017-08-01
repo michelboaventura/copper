@@ -32,3 +32,11 @@ staging:
         - localhost:27017
       options:
   options:
+docker:
+  clients:
+    default:
+      database: mj_data_explorer_docker
+      hosts:
+        - mongo:27017
+      options:
+  options:
