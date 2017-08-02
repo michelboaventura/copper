@@ -95,7 +95,7 @@ class CoocorrenciaJob < ApplicationJob
       name: el,
       attrs: {},
       metric: count,
-      group: "",
+      group: "Demais termos",
       community: 0,
       neighbours: neigh
     }
