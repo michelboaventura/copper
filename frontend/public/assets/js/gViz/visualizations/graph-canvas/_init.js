@@ -57,7 +57,7 @@ gViz.vis.graph = function () {
           _main('create');
           _main('setup');
           _main('zoom');
-          _main('drag');
+          // _main('drag');
           _main('brush');
           _main('tooltip');
           _main('bind');
@@ -91,7 +91,7 @@ gViz.vis.graph = function () {
           _var = gViz.vis.graph.bind()._var(_var).action('mouse').run();
           _var = gViz.vis.graph.bind()._var(_var).action('buttons').run();
           _var = gViz.vis.graph.bind()._var(_var).action('list-items').run();
-          _var = gViz.vis.graph.bind()._var(_var).action('resize').run();
+          //_var = gViz.vis.graph.bind()._var(_var).action('resize').run();
           break;
         case 'search':
           _var = gViz.vis.graph.search()._var(_var).run();

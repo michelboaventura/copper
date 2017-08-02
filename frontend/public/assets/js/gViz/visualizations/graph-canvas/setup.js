@@ -66,6 +66,7 @@ gViz.vis.graph.setup = function () {
                   _var.context.save();
                   _var.context.translate(_var.getP('x', _var.transform.x), _var.getP('y', _var.transform.y));
                   _var.context.scale(_var.transform.k, _var.transform.k);
+                  //_var.context.scale(0.5, 0.5);
                   _var.context.lineWidth = 1 / _var.transform.k;
                   _var.data.links.forEach(_var.drawLink);
                   _var.data.nodes.forEach(_var.drawNode);
@@ -126,16 +127,28 @@ gViz.vis.graph.setup = function () {
                   }
                 });
 
-                // Initialize simulation force layout
+                /*
                 _var.simulation = d3.forceSimulation()
                   .force("link", d3.forceLink().id(function (d) { return d.id; }))
                   .force("charge", d3.forceManyBody().distanceMax(_var.width * 0.3).strength(function (d) {return -20; }))
                   .force("center", d3.forceCenter(_var.width / 2, _var.height / 2))
                   .force("collision", d3.forceCollide(function(d) { return d.radius*1.3 ; }));
+                */
 
-                // Force actions
-                _var.simulation.nodes(_var.data.nodes).on("tick", _var.ticked);
-                _var.simulation.force("link").links(_var.data.links);
+                // Initialize simulation force layout
+                _var.simulation = d3.forceSimulation(_var.data.nodes)
+                  .force("link", d3.forceLink(_var.data.links).id(function (d) { return d.id; }))
+                  .force("charge", d3.forceManyBody().distanceMax(_var.width * 0.3).strength(function (d) {return -20; }))
+                  .force("center", d3.forceCenter(_var.width / 2, _var.height / 2))
+                  .force("collision", d3.forceCollide(function(d) { return d.radius*1.3 ; }))
+                  .stop()
+
+                  //debugger;
+
+                for (var i = 0, n = Math.ceil(Math.log(_var.simulation.alphaMin()) / Math.log(1 - _var.simulation.alphaDecay())); i < n; ++i) {
+                // for (var i = 0; i < 20; ++i) {
+                  _var.simulation.tick();
+                }
 
                 _var.data.links.forEach(function (d, i) {
                   var rgb, src, tgt, total;
@@ -148,6 +161,13 @@ gViz.vis.graph.setup = function () {
                   });
                   return d.color = '#ccc';
                 });
+
+                _var.ticked();
+
+                // Force actions
+                // _var.simulation.nodes(_var.data.nodes).on("tick", _var.ticked);
+                // _var.simulation.force("link").links(_var.data.links);
+
             }
           })();
 
