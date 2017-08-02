@@ -68,7 +68,7 @@ class PerformJob < ApplicationJob
       TextSearchJob.new(path, parts).perform_now
       SentimentoJob.new(path).perform_now
       CorrelacaoJob.new(path, datasource).perform_now
-      CoocorrenciaJob.new(path).perform_now
+      CoocorrenciaJob.new(path, datasource.coocorrencia_min_support).perform_now
       WordtreeJob.new(path).perform_now
       PartItemJob.new(path).perform_now
       TopicoJob.new(path).perform_now

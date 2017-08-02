@@ -2,14 +2,15 @@ class CoocorrenciaJob < ApplicationJob
   MAX_NODES = 350
   queue_as :default
 
-  def perform(path)
+  def perform(path, min_support = 20)
 
     #Full data
     run_algorithm(
       path.join('full_comments_filtered.json').to_s,
       path.join('coocorrencia_full').to_s,
       path.join('terms').to_s,
-      path.join('graph-canvas-full.json').to_s
+      path.join('graph-canvas-full.json').to_s,
+      min_support
     )
 
     #Filtered data
@@ -17,14 +18,14 @@ class CoocorrenciaJob < ApplicationJob
       path.join('comments_filtered.json').to_s,
       path.join('coocorrencia').to_s,
       path.join('terms').to_s,
-      path.join('graph-canvas.json').to_s
+      path.join('graph-canvas.json').to_s,
+      min_support
     )
   end
 
   private
 
-  def run_algorithm(input, output, terms, final_result)
-    min_support = 20
+  def run_algorithm(input, output, terms, final_result, min_support)
     IO.popen([
       Rails.root.join('algorithms', 'coocorrencia', 'run_coocorrencia.sh').to_s,
       input,

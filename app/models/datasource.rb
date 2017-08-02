@@ -13,4 +13,5 @@ class Datasource
   field :description, type: String
   field :data_type, type: String
   field :data_format, type: String
+  field :coocorrencia_min_support, type: Integer
 end
