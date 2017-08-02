@@ -1,5 +1,5 @@
 class CoocorrenciaJob < ApplicationJob
-  MAX_NODES = 350
+  MAX_NODES = 2000
   queue_as :default
 
   def perform(path, min_support = 20)
