@@ -5,8 +5,6 @@ services:
   web:
     build: .
     command: bundle exec rails s -e docker -p 8000 -b '0.0.0.0'
-    volumes:
-      - .:/usr/src/app
     ports:
       - "8000:8000"
     depends_on:
