@@ -16,3 +16,5 @@ RUN bundle install --without development:test
 
 WORKDIR /usr/src/app/frontend
 RUN npm install
+
+WORKDIR /usr/src/app
