@@ -14,8 +14,7 @@ threads threads_count, threads_count
 #
 environment ENV.fetch("RAILS_ENV") { "development" }
 
-bind 'tcp://127.0.0.1:8000'
-bind 'tcp://[::1]:8000'
+bind 'tcp://[::]:8000'
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together

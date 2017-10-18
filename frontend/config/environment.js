@@ -58,5 +58,9 @@ module.exports = function(environment) {
     ENV.mj_data_explorer = 'http://staging-ceweb.speed.dcc.ufmg.br';
   }
 
+  if (environment === 'docker') {
+    ENV.mj_data_explorer = '/';
+  }
+
   return ENV;
 };

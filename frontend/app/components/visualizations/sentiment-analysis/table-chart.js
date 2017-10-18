@@ -82,7 +82,7 @@ export default Ember.Component.extend({
       .append("tr");
 
     // Adiciona Celulas
-    let cells = rows.selectAll("td")
+    rows.selectAll("td")
       .data((row) => { return [row["name"], row["avg"], row["avg"]]; })
       .enter()
       .append("td")
