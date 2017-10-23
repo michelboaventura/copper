@@ -1,0 +1,53 @@
+.gViz-wrapper[data-id='sentiment-analysis-v2'] {
+  border: 1px solid lightgray;
+  min-height: 600px;
+  background-color: white;
+
+  .header {
+
+    height: 100px;
+    background-color: #323232;
+
+    img.brasao-da-republica {
+      position: relative;
+      margin-left: 15px;
+      transform: scale(0.60, 0.60) translate(0px, -10px);
+    }
+
+    .title {
+      position: relative;
+      margin-top: 30px;
+      margin-left: 30px;
+
+      color: white;
+      font-family: "Heuvetica Neue", Helvetica, Arial, sans-serif;
+
+      .project-title {
+        font-size: 25px;
+        margin-bottom: 0px;
+      }
+
+      .project-description {
+        margin-top: 5px;
+        font-size: 13px;
+      }
+    }
+
+    .statistics {
+      float: right;
+      color: white;
+      font-family: "Heuvetica Neue", Helvetica, Arial, sans-serif;
+      text-align: center;
+      margin-top: 20px;
+
+      .count {
+        font-size: 25px;
+      }
+
+      .text {
+        font-size: 15px;
+        margin-left: -5px;
+      }
+    }
+  }
+}
