@@ -27,11 +27,29 @@
   <div class="one-row filters">
     <div class="col col-3">
       <span class="title">Filtros</span>
-      <div class="one-row">
-        <i class="icon-emo-happy"></i>
+
+      <div class="one-row sentiment">
+        <div class="one-row"><span class="title">Sentimentos</span></div>
+        <div class="col col-3 col-offset-1">
+        <i class="emoticon negative icon-emo-unhappy"></i>
+        </div>
+        <div class="col col-3">
+        <i class="emoticon neutral icon-emo-sleep"></i>
+        </div>
+        <div class="col col-3">
+        <i class="emoticon positive icon-emo-happy"></i>
+        </div>
       </div>
-      <div class="one-row"></div>
+
+      <div class="one-row sentiment-slider">
+        <span class="title">Número de Participações</span>
+        <span class="slider-left">{{min_participations}}</span>
+        <input type="range" min="1" max="100" value="50" id="myRange">
+        <span class="slider-right">{{max_participations}}</span>
+      </div>
+
     </div>
+
     <div class="col col-9">
       <div class="input-group">
         <input class='input-search' id='search-graph' placeholder="Digite para buscar artigos..." />
@@ -39,4 +57,5 @@
       </div>
     </div>
   </div>
+
 </div>

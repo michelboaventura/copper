@@ -20,11 +20,13 @@ export default Ember.Component.extend({
     let description = "Medida Provisória n 746 de 2016."
     let articles = "197";
     let participations = "21.763";
+    let min_participations = "150";
 
     self.set("title", title);
     self.set("description", description);
     self.set("articles", articles);
     self.set("participations", participations);
+    self.set("min_participations", min_participations);
 
   }
 });

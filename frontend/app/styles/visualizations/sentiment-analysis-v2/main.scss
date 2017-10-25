@@ -51,21 +51,55 @@
   }
 
   .filters {
-    height: 80px;
+    height: 175px;
     background-color: #F0EEEF;
     border-bottom: solid 1px lightgray;
     text-align: center;
+    padding: 5px;
 
     .title {
-      font-size: 12px;
-      margin-top: 15px;
+      font-size: 20px;
     }
 
     .sentiment {
+      .title {
+        font-size: 12px;
+      }
 
+      .emoticon {
+        border: solid 2px;
+        border-radius: 30px;
+        padding: 3px;
+        font-size: 20px;
+        margin-left: 20px;
+        margin-top: 10px;
+
+        &.negative {
+          border-color: #f09f9f;
+          color: #f09f9f;
+        }
+
+        &.neutral  {
+          border-color: #e4bb3e;
+          color: #e4bb3e;
+        }
+
+        &.positive {
+          border-color: #8fb3a9;
+          color: #8fb3a9;
+        }
+      }
     }
 
-    .slider {
+    .sentiment-slider {
+      margin-top: 40px;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+
+      .title {
+        font-size: 12px;
+      }
 
     }
 
