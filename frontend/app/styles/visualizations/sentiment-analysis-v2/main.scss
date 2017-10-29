@@ -57,6 +57,10 @@
     text-align: center;
     padding: 5px;
 
+    .border-right {
+      border-right: solid 1px lightgray;
+    }
+
     .title {
       font-size: 20px;
     }
@@ -88,12 +92,16 @@
           border-color: #8fb3a9;
           color: #8fb3a9;
         }
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
 
     .sentiment-slider {
-      margin-top: 40px;
-      width: 80%;
+      // margin-top: 40px;
+      width: 70%;
       margin-left: auto;
       margin-right: auto;
 
@@ -104,7 +112,7 @@
     }
 
     .input-group {
-      width: 100%;
+      width: 95%;
       float: right;
       margin-right: 10px;
       input {
