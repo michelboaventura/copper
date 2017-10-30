@@ -23,17 +23,6 @@ export default Ember.Component.extend({
       else { $(this).addClass("active") }
     });
 
-    $(".expand-article").on("click", function() {
-      if($(this).hasClass("active")) {
-        $(".article-text").addClass("has-max-height");
-        $(this).removeClass("active")
-      }
-      else {
-        $(".article-text").removeClass("has-max-height");
-        $(this).addClass("active")
-      }
-    });
-
     $.ajax({
       url: "/assets/data/sentiment-analysis-v2.json",
       type: "GET",
@@ -52,17 +41,33 @@ export default Ember.Component.extend({
     });
   },
 
-  /*
+
   didRender() {
-    let self = this;
-    let i = 0;
 
-    let articles_texts = document.getElementsByClassName("article-text");
+    // Expands article when arrow is clicked
+    $(".expand-article").on("click", function() {
+      let idx = $(this).attr("data-id");
 
-    for(i = 0; i < articles_texts.length; i++) {
-      let article = articles_texts[i];
-      $clamp(article, { clamp: 'auto' });
-    }
+      if($(this).hasClass("active")) {
+        $(`.article-text[data-id='${idx}']`).addClass("has-max-height");
+        $(this).removeClass("active")
+      }
+      else {
+        $(`.article-text[data-id='${idx}']`).removeClass("has-max-height");
+        $(this).addClass("active")
+      }
+    });
+
+    /*
+       let self = this;
+       let i = 0;
+
+       let articles_texts = document.getElementsByClassName("article-text");
+
+       for(i = 0; i < articles_texts.length; i++) {
+       let article = articles_texts[i];
+       $clamp(article, { clamp: 'auto' });
+       }
+       */
   }
-  */
 });
