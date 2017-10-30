@@ -14,11 +14,11 @@
 
     <div class="col col-offset-3 col-3 statistics">
       <div class="col col-6">
-        <span class="count"> {{articles}} </span><br>
+        <span class="count"> {{articles-total}} </span><br>
         <span class="text"> Artigos </span>
       </div>
       <div class="col col-6">
-        <span class="count"> {{participations}} </span><br>
+        <span class="count"> {{participations-total}} </span><br>
         <span class="text"> Participações </span>
       </div>
     </div>
@@ -29,29 +29,32 @@
       <span class="title">Filtros</span>
 
       <div class="one-row sentiment">
-        <div class="one-row"><span class="title">Sentimentos</span></div>
-        <div class="col col-3 col-offset-1">
+        <div class="one-row filter-title">Sentimentos</div>
+        <div class="col col-3 col-offset-1 limit-height">
         <i class="emoticon negative icon-emo-unhappy"></i>
         </div>
-        <div class="col col-3">
+        <div class="col col-3 limit-height">
         <i class="emoticon neutral icon-emo-sleep"></i>
         </div>
-        <div class="col col-3">
+        <div class="col col-3 limit-height">
         <i class="emoticon positive icon-emo-happy"></i>
         </div>
       </div>
 
-      <div class="one-row sentiment-slider">
-        <span class="title">Número de Participações</span>
-        <div class="col col-2">
-        <span class="slider-left">{{min_participations}}</span>
-        </div>
-        <div class="col col-8">
-        <input type="range" min="1" max="100" value="50" id="myRange">
-        </div>
-        <div class="col col-2">
-        <span class="slider-right">{{participations}}</span>
-        </div>
+      <div class="one-row filter-slider">
+        <div class="one-row filter-title">Número de Participações</div>
+        <!-- div class="one-row sentiment-slider">
+          <div class="col col-2">
+            <span class="slider-left">{{participations-min}}</span>
+          </div>
+          <div class="col col-8">
+            <input type="range" min="1" max="100" value="50" id="myRange"
+                                                             class="slider" data-id="sentiment-analysis">
+          </div>
+          <div class="col col-2">
+            <span class="slider-right">{{participations-max}}</span>
+          </div>
+        </div-->
       </div>
 
     </div>
@@ -60,6 +63,26 @@
       <div class="input-group">
         <input class='input-search' id='search-graph' placeholder="Digite para buscar artigos..." />
         <span class="input-group-addon" {{action 'submitSearch'}}><i class='fa fa-search'></i></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="one-row content">
+    <div class="one-row article">
+      <div class="col col-3 bar-chart">toba</div>
+      <div class="col col-9 article-content">
+        <div class="col col-2 article-title">
+          Art. {{articles.0.number}}
+          <i class="fa fa-arrow-right expand-article"></i>
+        </div>
+        <div class="col col-10 article-text has-max-height" id="toba">
+          {{#each articles.0.paragraphs as |paragraph|}}
+            <div>
+              {{paragraph.text}}
+            </div>
+            <br>
+          {{/each}}
+        </div>
       </div>
     </div>
   </div>
