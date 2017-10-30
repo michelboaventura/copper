@@ -28,5 +28,9 @@ export default Ember.Component.extend({
     self.set("participations", participations);
     self.set("min_participations", min_participations);
 
+    $(".emoticon").on("click", function() {
+      if($(this).hasClass("active")) { $(this).removeClass("active") }
+      else { $(this).addClass("active") }
+    });
   }
 });

@@ -77,24 +77,28 @@
         font-size: 20px;
         margin-left: 20px;
         margin-top: 10px;
+        color: #ccc;
+        transition: box-shadow 0.1s, font-size 0.1s;
 
-        &.negative {
-          border-color: #f09f9f;
-          color: #f09f9f;
-        }
-
-        &.neutral  {
-          border-color: #e4bb3e;
-          color: #e4bb3e;
-        }
-
-        &.positive {
-          border-color: #8fb3a9;
-          color: #8fb3a9;
-        }
-
-        &:hover {
+        &:hover, &.active{
           cursor: pointer;
+          box-shadow: -4px 4px 6px #ccc;
+          font-size: 22px;
+
+          &.negative {
+            border-color: #f09f9f;
+            color: #f09f9f;
+          }
+
+          &.neutral  {
+            border-color: #e4bb3e;
+            color: #e4bb3e;
+          }
+
+          &.positive {
+            border-color: #8fb3a9;
+            color: #8fb3a9;
+          }
         }
       }
     }
