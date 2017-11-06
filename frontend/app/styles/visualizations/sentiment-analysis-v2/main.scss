@@ -4,7 +4,7 @@
   background-color: white;
 
   .header {
-    height: 7em;
+    height: 8em;
     background-color: #323232;
 
     img.brasao-da-republica {
@@ -89,7 +89,11 @@
         color: #ccc;
         transition: box-shadow 0.1s, font-size 0.1s;
 
-        &:hover, &.active{
+        &:hover {
+          cursor: pointer;
+        }
+
+        &.active{
           cursor: pointer;
           box-shadow: -4px 4px 6px #ccc;
           font-size: 22px;

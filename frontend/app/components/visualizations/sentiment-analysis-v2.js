@@ -56,6 +56,7 @@ export default Ember.Component.extend({
       let self = this;
 
       // Binds enter key to text box
+      $("input[name='participations-filter']").unbind();
       $("input[name='participations-filter']").keypress(function(e) {
         if(e.which === 13) {
           let max = self.get("participations-max");
@@ -125,6 +126,7 @@ export default Ember.Component.extend({
     });
   },
 
+  /*
   resetFilters(self) {
     $("#search-articles").val("");
     $(".filter-emoticons").each(function() {
@@ -133,6 +135,7 @@ export default Ember.Component.extend({
 
     self.set("filtered-articles", self.get("articles"));
   },
+  */
 
   runFilters(self) {
     let articles = self.get("articles");
@@ -172,19 +175,19 @@ export default Ember.Component.extend({
 
     filterSentiment() {
       let self = this;
-      let filters = this.get("filters");
 
       // Emoticons
-      $(".filter-emoticon").on("click", function() {
+      $(".filter-emoticon").unbind();
+      $(".filter-emoticon").on("click", function(event) {
         if($(this).hasClass("active")) { $(this).removeClass("active") }
         else { $(this).addClass("active") }
 
         let actives = $(".filter-emoticon")
-          .filter(function() { return $(this).hasClass("active"); })
-          .map(function() { return $(this).attr("data-value"); });
+        .filter(function() { return $(this).hasClass("active"); })
+        .map(function() { return $(this).attr("data-value"); });
 
         actives = $.makeArray(actives);
-        filters.sentiments = actives;
+        self.set("filters.sentiments", actives);
       });
 
       this.get("runFilters")(this);
