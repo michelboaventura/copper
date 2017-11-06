@@ -14,7 +14,7 @@ export default Ember.Component.extend({
   // Chart var
   _var: null,
 
-  didInsertElement: function(){
+  didInsertElement() {
     let self = this;
 
     // Activate icon when clicked
@@ -39,11 +39,11 @@ export default Ember.Component.extend({
       error() { gViz.helpers.loading.hide(); },
       complete() {  gViz.helpers.loading.hide(); }
     });
+
+    self.get("draw")();
   },
 
-
   didRender() {
-
     // Expands article when arrow is clicked
     $(".expand-article").on("click", function() {
       let idx = $(this).attr("data-id");
@@ -69,5 +69,17 @@ export default Ember.Component.extend({
        $clamp(article, { clamp: 'auto' });
        }
        */
-  }
+  },
+
+  draw() {
+    let self = this;
+    let margin = {top: 100, left: 150, right: 20, bottom: 10};
+
+    self._var = gViz.sentiment_bars()
+      ._class("sentiment-bars")
+      .container(".gViz-wrapper[data-id='"+component.get('_id')+"']")
+      .margin(margin)
+      .data(self.get("articles"))
+      .build();
+  },
 });
