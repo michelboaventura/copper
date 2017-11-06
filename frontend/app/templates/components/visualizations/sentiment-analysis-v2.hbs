@@ -43,16 +43,24 @@
 
       <div class="one-row filter-slider">
         <div class="one-row filter-title">Número de Participações</div>
-        <div class="one-row sentiment-slider">
-          <div class="col col-2">
-            <span class="slider-left">{{participations-min}}</span>
-          </div>
-          <div class="col col-8">
-            <input type="range" min="1" max="100" value="50" id="myRange"
+        <div class="one-row">
+          <div class="col col-1 slider-left">{{participations-min}}</div>
+          <div class="col col-5">
+            <input type="range"
+              min={{participations-min}}
+              max={{participations-max}}
+              {{action 'filterParticipation'}}
+              value={{filters.participations}}
+              id="myRange"
               data-id="sentiment-analysis">
           </div>
-          <div class="col col-2">
-            <span class="slider-right">{{participations-max}}</span>
+          <div class="col col-1 slider-right">{{participations-max}}</div>
+          <div class="col col-3 participations-input">
+            <input type="number" name="participations-filter"
+              id="participations-input"
+              min={{participations-min}}
+              max={{participations-max}}
+              value={{filters.participations}}>
           </div>
         </div>
       </div>

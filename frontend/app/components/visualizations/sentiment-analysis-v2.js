@@ -15,7 +15,8 @@ export default Ember.Component.extend({
 
   filters: {
     sentiments: ["negative", "positive", "neutral"],
-    text: ""
+    text: "",
+    participations: null,
   },
 
   // Chart var
@@ -40,6 +41,7 @@ export default Ember.Component.extend({
 
         // In the first pass there are no filtered articles
         self.set("filtered-articles", response["articles"]);
+        self.set("filters.participations", response["participations-minmax"][1]);
       },
       error() { gViz.helpers.loading.hide(); },
       complete() {  gViz.helpers.loading.hide(); }
@@ -51,6 +53,32 @@ export default Ember.Component.extend({
     if(this.get("first")) { this.toggleProperty("first"); }
 
     else {
+      let self = this;
+
+      // Binds enter key to text box
+      $("input[name='participations-filter']").keypress(function(e) {
+        if(e.which === 13) {
+          let max = self.get("participations-max");
+          let min = self.get("participations-min");
+          let val = parseInt($(this).val());
+
+          if(val > max) {
+            $(this).val(max);
+            val = max;
+          }
+
+          else if(val < min) {
+            $(this).val(min);
+            val = min;
+          }
+
+          $("#myRange").val(val);
+
+          self.set("filters.participations", val);
+          self.get("runFilters")(self);
+        }
+      });
+
       this.get("updateBindings")(this);
       this.get("draw")(this);
     }
@@ -125,7 +153,11 @@ export default Ember.Component.extend({
 
       return found;
     })
-    .filter(function(d) { return filters.sentiments.indexOf(d["score"]) !== -1;  });
+    .filter(function(d) { return filters.sentiments.indexOf(d["score"]) !== -1;  })
+    .filter(function(d) {
+      let min = self.get("participations-min");
+      return d["participations-total"] >= min && d["participations-total"] <= filters.participations;
+    });
 
     d3.selectAll("svg").remove();
     self.get("updateBindings")(self);
@@ -156,6 +188,11 @@ export default Ember.Component.extend({
       });
 
       this.get("runFilters")(this);
-    }
+    },
+
+    filterParticipation() {
+      this.set("filters.participations", $("#myRange").val());
+      this.get("runFilters")(this);
+    },
   }
 });
