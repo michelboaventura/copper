@@ -45,7 +45,7 @@ gViz.vis.sentimentBars.draw = function () {
                 .attr("height", function (d) {
                   return _var.height - _var.yScale(d["participation"]);
                 })
-                .style("fill", function (d, i) { return _var.colors.scale(i); });
+                .style("fill", function (d, i) { return _var.colors(d["score"]); });
 
               break;
           }

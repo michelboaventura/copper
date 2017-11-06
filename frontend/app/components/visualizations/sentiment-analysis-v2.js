@@ -99,12 +99,14 @@ export default Ember.Component.extend({
 
   draw(self) {
     let margin = {top: 10, left: 10, right: 10, bottom: 10};
+    let colours = d3.scaleOrdinal(["#f09f9f", "#e4bb3e", "#8fb3a9"]);
 
     self.get("filtered-articles").forEach((article, idx) => {
       gViz.vis.sentimentBars()
         ._class("sentiment-bars")
         .container(".gViz-wrapper-outer[data-id='wrapper-"+idx+"']")
         .margin(margin)
+        .colors(colours)
         ._id(`vis-sentiment-bars-${idx}`)
         .data(article)
         .build();
