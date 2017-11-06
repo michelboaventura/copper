@@ -13,17 +13,16 @@ export default Ember.Component.extend({
 
   first: true,
 
+  filters: {
+    sentiments: ["negative", "positive", "neutral"],
+    text: ""
+  },
+
   // Chart var
-  _var: null,
+  _var: [],
 
   didInsertElement() {
     let self = this;
-
-    // Activate icon when clicked
-    $(".filter-emoticon").on("click", function() {
-      if($(this).hasClass("active")) { $(this).removeClass("active") }
-      else { $(this).addClass("active") }
-    });
 
     $.ajax({
       url: "/assets/data/sentiment-analysis-v2.json",
@@ -47,54 +46,14 @@ export default Ember.Component.extend({
     });
   },
 
-  filters() {
-
-  },
-
   didRender() {
-    // Avoids hook being called twice
+    // Avoids hook from being called twice
     if(this.get("first")) { this.toggleProperty("first"); }
 
     else {
-      // Expands article when arrow is clicked
-      $(".expand-article").on("click", function() {
-        let idx = $(this).attr("data-id");
-
-        if($(this).hasClass("active")) {
-          // Sets max height for div
-          $(`.article[data-id='${idx}']`).addClass("has-max-height");
-          // Returns svg to the right position
-          let height = $(`svg.chart-vis-sentiment-bars-${idx}`).height();
-          d3.select(`svg.chart-vis-sentiment-bars-${idx}`).attr("transform", `translate(0, -${height})`);
-          // Deactivates class
-          $(this).removeClass("active")
-        }
-        else {
-          $(`.article[data-id='${idx}']`).removeClass("has-max-height");
-
-          let newHeight = $(`.article-content[data-id='${idx}']`).height();
-          // $(`.gViz-wrapper-outer[data-id='wrapper-${idx}']`).height(newHeight);
-
-          // Returns svg to the right position
-          d3.select(`svg.chart-vis-sentiment-bars-${idx}`).attr("transform", `translate(0, 0)`);
-
-          $(this).addClass("active")
-        }
-      });
-
+      this.get("updateBindings")(this);
       this.get("draw")(this);
     }
-    /*
-       let self = this;
-       let i = 0;
-
-       let articles_texts = document.getElementsByClassName("article-text");
-
-       for(i = 0; i < articles_texts.length; i++) {
-       let article = articles_texts[i];
-       $clamp(article, { clamp: 'auto' });
-       }
-       */
   },
 
   draw(self) {
@@ -112,4 +71,91 @@ export default Ember.Component.extend({
         .build();
     });
   },
+
+  updateBindings(self) {
+    $(".expand-article").unbind();
+
+    // Expands article when arrow is clicked
+    $(".expand-article").on("click", function() {
+      let idx = $(this).attr("data-id");
+
+      if($(this).hasClass("active")) {
+        // Sets max height for div
+        // Returns svg to the right position
+        // Deactivates arrow
+        $(`.article[data-id='${idx}']`).addClass("has-max-height");
+        let height = $(`svg.chart-vis-sentiment-bars-${idx}`).height();
+        d3.select(`svg.chart-vis-sentiment-bars-${idx}`).attr("transform", `translate(0, -${height})`);
+        $(this).removeClass("active")
+      }
+      else {
+        $(`.article[data-id='${idx}']`).removeClass("has-max-height");
+        d3.select(`svg.chart-vis-sentiment-bars-${idx}`).attr("transform", `translate(0, 0)`);
+
+        $(this).addClass("active")
+      }
+    });
+  },
+
+  resetFilters(self) {
+    $("#search-articles").val("");
+    $(".filter-emoticons").each(function() {
+      if(!$(this).hasClass("active")) { $(this).addClass("active"); }
+    });
+
+    self.set("filtered-articles", self.get("articles"));
+  },
+
+  runFilters(self) {
+    let articles = self.get("articles");
+    let filters = self.get("filters");
+
+    let filteredArticles = articles.filter(function(d) {
+      let found = false;
+
+      for(let count = 0; count < d["paragraphs"].length; count++) {
+        let paragraph = d["paragraphs"][count];
+        let regex = new RegExp(filters.text, "i");
+
+        if(paragraph["text"].search(regex) !== -1) {
+          found = true;
+          break;
+        }
+      }
+
+      return found;
+    })
+    .filter(function(d) { return filters.sentiments.indexOf(d["score"]) !== -1;  });
+
+    d3.selectAll("svg").remove();
+    self.get("updateBindings")(self);
+    self.set("filtered-articles", filteredArticles);
+  },
+
+  actions: {
+    filterText() {
+      this.get("filters").text = $("#search-articles").val();
+      this.get("runFilters")(this);
+    },
+
+    filterSentiment() {
+      let self = this;
+      let filters = this.get("filters");
+
+      // Emoticons
+      $(".filter-emoticon").on("click", function() {
+        if($(this).hasClass("active")) { $(this).removeClass("active") }
+        else { $(this).addClass("active") }
+
+        let actives = $(".filter-emoticon")
+          .filter(function() { return $(this).hasClass("active"); })
+          .map(function() { return $(this).attr("data-value"); });
+
+        actives = $.makeArray(actives);
+        filters.sentiments = actives;
+      });
+
+      this.get("runFilters")(this);
+    }
+  }
 });
