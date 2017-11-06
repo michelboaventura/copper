@@ -4,7 +4,7 @@
   background-color: white;
 
   .header {
-    height: 100px;
+    height: 7em;
     background-color: #323232;
 
     img.brasao-da-republica {
@@ -51,11 +51,11 @@
   }
 
   .filters {
-    height: 175px;
+    height: 15em;
     background-color: #F0EEEF;
     border-bottom: solid 1px lightgray;
     text-align: center;
-    padding: 5px;
+    padding: 0.5em 0.5em 1.5em 2em;
 
     .limit-height {
       height: 30px;
@@ -119,42 +119,42 @@
       // margin-right: auto;
 
       .sentiment-slider {
-        .slider[data-id="sentiment-analysis"] {
-          -webkit-appearance: none;  /* Override default CSS styles */
-          appearance: none;
-          width: 100%; /* Full-width */
-          height: 25px; /* Specified height */
-          background: #d3d3d3; /* Grey background */
-          outline: none; /* Remove outline */
-          opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-          -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-          transition: opacity .2s;
+        // .slider[data-id="sentiment-analysis"] {
+        //   -webkit-appearance: none;  /* Override default CSS styles */
+        //   appearance: none;
+        //   width: 100%; /* Full-width */
+        //   height: 25px; /* Specified height */
+        //   background: #d3d3d3; /* Grey background */
+        //   outline: none; /* Remove outline */
+        //   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+        //   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+        //   transition: opacity .2s;
 
-          /* Mouse-over effects */
-          &:hover {
-            opacity: 1; /* Fully shown on mouse-over */
-          }
+        //   /* Mouse-over effects */
+        //   &:hover {
+        //     opacity: 1; /* Fully shown on mouse-over */
+        //   }
 
-          // &::-webkit-slider-thumb {
-          //   -webkit-appearance: none; /* Override default look */
-          //   appearance: none;
-          //   width: 25px; /* Set a specific slider handle width */
-          //   height: 25px; /* Slider handle height */
-          //   background: #4CAF50; /* Green background */
-          //   cursor: pointer; /* Cursor on hover */
-          // }
+        //   // &::-webkit-slider-thumb {
+        //   //   -webkit-appearance: none; /* Override default look */
+        //   //   appearance: none;
+        //   //   width: 25px; /* Set a specific slider handle width */
+        //   //   height: 25px; /* Slider handle height */
+        //   //   background: #4CAF50; /* Green background */
+        //   //   cursor: pointer; /* Cursor on hover */
+        //   // }
 
-          // &::-moz-range-thumb {
-          //   width: 25px; /* Set a specific slider handle width */
-          //   height: 25px; /* Slider handle height */
-          //   background: #4CAF50; /* Green background */
-          //   cursor: pointer; /* Cursor on hover */
-          // }
-        }
+        //   // &::-moz-range-thumb {
+        //   //   width: 25px; /* Set a specific slider handle width */
+        //   //   height: 25px; /* Slider handle height */
+        //   //   background: #4CAF50; /* Green background */
+        //   //   cursor: pointer; /* Cursor on hover */
+        //   // }
+        // }
 
-        .filter-title-part {
-          font-size: 12px;
-        }
+        // .filter-title-part {
+        //   font-size: 12px;
+        // }
       }
     }
   }
@@ -191,6 +191,11 @@
 
   .article-chart {
     border-right: solid 1px lightgray;
+  }
+
+  .gViz-wrapper {
+    padding-right: 1em;
+    border-right: solid 1px #ccc;
   }
 
   .article {

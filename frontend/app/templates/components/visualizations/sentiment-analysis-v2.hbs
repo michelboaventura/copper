@@ -43,18 +43,18 @@
 
       <div class="one-row filter-slider">
         <div class="one-row filter-title">Número de Participações</div>
-        <!-- div class="one-row sentiment-slider">
+        <div class="one-row sentiment-slider">
           <div class="col col-2">
             <span class="slider-left">{{participations-min}}</span>
           </div>
           <div class="col col-8">
             <input type="range" min="1" max="100" value="50" id="myRange"
-                                                             class="slider" data-id="sentiment-analysis">
+              data-id="sentiment-analysis">
           </div>
           <div class="col col-2">
             <span class="slider-right">{{participations-max}}</span>
           </div>
-        </div-->
+        </div>
       </div>
 
     </div>
@@ -70,17 +70,19 @@
   <div class="one-row content">
     {{#each filtered-articles as |article idx|}}
       <div class="one-row article has-max-height" data-id={{idx}}>
-        <div class="col col-2 gViz-wrapper-outer" data-id='wrapper-{{idx}}'>
-          <div class="gViz-wrapper-inner"></div>
-        </div>
-        <div class="col col-1 article-score limit-height">
-          {{#if (eq article.score "negative")}}
-            <i class="article-emoticon negative icon-emo-unhappy"></i>
-          {{else if (eq article.score "neutral")}}
-            <i class="article-emoticon neutral icon-emo-sleep"></i>
-          {{else}}
-            <i class="article-emoticon positive icon-emo-happy"></i>
-          {{/if}}
+        <div class="col col-3 gViz-wrapper" data-id='wrapper-{{idx}}'>
+          <div class="col col-10 gViz-wrapper-outer" data-id='wrapper-{{idx}}'>
+            <div class="gViz-wrapper-inner"></div>
+          </div>
+          <div class="col col-2 article-score limit-height">
+            {{#if (eq article.score "negative")}}
+              <i class="article-emoticon negative icon-emo-unhappy"></i>
+            {{else if (eq article.score "neutral")}}
+              <i class="article-emoticon neutral icon-emo-sleep"></i>
+            {{else}}
+              <i class="article-emoticon positive icon-emo-happy"></i>
+            {{/if}}
+          </div>
         </div>
         <div class="col col-9 article-content" data-id={{idx}}>
           <div class="col col-2 article-title">
