@@ -69,16 +69,16 @@
 
   <div class="one-row content">
     {{#each articles as |article idx|}}
-      <div class="one-row article">
-        <div class="col col-3 gViz-wrapper-outer">
+      <div class="one-row article has-max-height" data-id={{idx}}>
+        <div class="col col-3 gViz-wrapper-outer" data-id='wrapper-{{idx}}'>
           <div class="gViz-wrapper-inner"></div>
         </div>
-        <div class="col col-9 article-content">
+        <div class="col col-9 article-content" data-id={{idx}}>
           <div class="col col-2 article-title">
             Art. {{article.number}}
             <i class="fa fa-arrow-right expand-article" data-id={{idx}}></i>
           </div>
-          <div class="col col-10 article-text has-max-height" data-id={{idx}}>
+          <div class="col col-10 article-text">
             {{#each article.paragraphs as |paragraph|}}
               <div>
                 {{paragraph.text}}

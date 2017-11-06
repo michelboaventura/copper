@@ -11,6 +11,8 @@ export default Ember.Component.extend({
   _id:    function(){ return this.get('_id'); }.property('_id'),
   style:  function(){ return "width:"+this.get('width')+"; height:"+this.get('height')+";"; }.property('style'),
 
+  first: true,
+
   // Chart var
   _var: null,
 
@@ -28,6 +30,7 @@ export default Ember.Component.extend({
       type: "GET",
       beforeSend() { gViz.helpers.loading.show(); },
       success(response) {
+        // Assigns variables and draw chart
         self.set("title", response["title"]);
         self.set("description", response["description"]);
         self.set("participations-total", response["participations-total"]);
@@ -35,29 +38,44 @@ export default Ember.Component.extend({
         self.set("participations-max", response["participations-minmax"][1]);
         self.set("articles-total", response["articles-total"]);
         self.set("articles", response["articles"]);
+
+        // In the first pass there are no filtered articles
+        self.set("filtered-articles", response["articles"]);
       },
       error() { gViz.helpers.loading.hide(); },
       complete() {  gViz.helpers.loading.hide(); }
     });
+  },
 
-    self.get("draw")();
+  filters() {
+
   },
 
   didRender() {
-    // Expands article when arrow is clicked
-    $(".expand-article").on("click", function() {
-      let idx = $(this).attr("data-id");
+    // Avoids hook being called twice
+    if(this.get("first")) { this.toggleProperty("first"); }
 
-      if($(this).hasClass("active")) {
-        $(`.article-text[data-id='${idx}']`).addClass("has-max-height");
-        $(this).removeClass("active")
-      }
-      else {
-        $(`.article-text[data-id='${idx}']`).removeClass("has-max-height");
-        $(this).addClass("active")
-      }
-    });
+    else {
+      // Expands article when arrow is clicked
+      $(".expand-article").on("click", function() {
+        let idx = $(this).attr("data-id");
 
+        if($(this).hasClass("active")) {
+          $(`.article[data-id='${idx}']`).addClass("has-max-height");
+          $(this).removeClass("active")
+        }
+        else {
+          $(`.article[data-id='${idx}']`).removeClass("has-max-height");
+
+          let newHeight = $(`.article-content[data-id='${idx}']`).height();
+          // $(`.gViz-wrapper-outer[data-id='wrapper-${idx}']`).height(newHeight);
+
+          $(this).addClass("active")
+        }
+      });
+
+      this.get("draw")(this);
+    }
     /*
        let self = this;
        let i = 0;
@@ -71,15 +89,16 @@ export default Ember.Component.extend({
        */
   },
 
-  draw() {
-    let self = this;
+  draw(self) {
     let margin = {top: 100, left: 150, right: 20, bottom: 10};
 
-    self._var = gViz.sentiment_bars()
-      ._class("sentiment-bars")
-      .container(".gViz-wrapper[data-id='"+component.get('_id')+"']")
-      .margin(margin)
-      .data(self.get("articles"))
-      .build();
+    self.get("filtered-articles").forEach((article, idx) => {
+      gViz.vis.sentimentBars()
+        ._class("sentiment-bars")
+        .container(".gViz-wrapper-outer[data-id='wrapper-"+idx+"']")
+        .margin(margin)
+        .data(article)
+        .build();
+    });
   },
 });

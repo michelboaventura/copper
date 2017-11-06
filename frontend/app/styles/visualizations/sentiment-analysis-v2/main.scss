@@ -193,24 +193,31 @@
     border-right: solid 1px lightgray;
   }
 
-  $height: 6em;
-  .article-content {
+  .article {
     margin-top: 1.5em;
-    margin-bottom: 1.5em;
+    line-height: 1.5em;
     overflow: hidden;
+    // height: 9em;
 
+    transition: height 0.5s;
+    max-height: 1000em;
+    &.has-max-height { height: 9em; }
+
+    .gViz-wrapper-outer {
+      height: 100%;
+
+      .gViz-wrapper-inner {
+        height: 100%;
+      }
+    }
+
+  }
+
+  .article-content {
     .article-title {
       text-align: center;
       vertical-align: middle;
-      min-height: $height;
-    }
-
-    .article-text {
-      line-height: 1.5em;
-      transition: max-height 0.5s;
-      max-height: 100em;
-
-      &.has-max-height { max-height: $height; }
+      // min-height: $height;
     }
 
     i.expand-article {
