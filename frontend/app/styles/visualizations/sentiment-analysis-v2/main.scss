@@ -231,6 +231,11 @@
     }
   }
 
+  svg.sentiment-bars {
+    .axis { display: none; }
+    .axis text { display: none; }
+  }
+
   /* mixin for multiline */
   // @mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white){
   //   overflow: hidden;

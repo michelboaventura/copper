@@ -90,7 +90,7 @@ export default Ember.Component.extend({
   },
 
   draw(self) {
-    let margin = {top: 100, left: 150, right: 20, bottom: 10};
+    let margin = {top: 10, left: 10, right: 10, bottom: 10};
 
     self.get("filtered-articles").forEach((article, idx) => {
       gViz.vis.sentimentBars()
