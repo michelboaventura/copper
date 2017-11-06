@@ -194,6 +194,8 @@ export default Ember.Component.extend({
     },
 
     filterParticipation() {
+      console.log("toba");
+      console.log($("#myRange").val());
       this.set("filters.participations", $("#myRange").val());
       this.get("runFilters")(this);
     },
