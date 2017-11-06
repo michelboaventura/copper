@@ -70,8 +70,17 @@
   <div class="one-row content">
     {{#each articles as |article idx|}}
       <div class="one-row article has-max-height" data-id={{idx}}>
-        <div class="col col-3 gViz-wrapper-outer" data-id='wrapper-{{idx}}'>
+        <div class="col col-2 gViz-wrapper-outer" data-id='wrapper-{{idx}}'>
           <div class="gViz-wrapper-inner"></div>
+        </div>
+        <div class="col col-1 article-score limit-height">
+          {{#if (eq article.score "negative")}}
+            <i class="emoticon negative icon-emo-unhappy"></i>
+          {{else if (eq article.score "neutral")}}
+            <i class="emoticon neutral icon-emo-sleep"></i>
+          {{else}}
+            <i class="emoticon positive icon-emo-happy"></i>
+          {{/if}}
         </div>
         <div class="col col-9 article-content" data-id={{idx}}>
           <div class="col col-2 article-title">
