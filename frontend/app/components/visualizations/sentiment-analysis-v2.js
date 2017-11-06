@@ -61,7 +61,12 @@ export default Ember.Component.extend({
         let idx = $(this).attr("data-id");
 
         if($(this).hasClass("active")) {
+          // Sets max height for div
           $(`.article[data-id='${idx}']`).addClass("has-max-height");
+          // Returns svg to the right position
+          let height = $(`svg.chart-vis-sentiment-bars-${idx}`).height();
+          d3.select(`svg.chart-vis-sentiment-bars-${idx}`).attr("transform", `translate(0, -${height})`);
+          // Deactivates class
           $(this).removeClass("active")
         }
         else {
@@ -69,6 +74,9 @@ export default Ember.Component.extend({
 
           let newHeight = $(`.article-content[data-id='${idx}']`).height();
           // $(`.gViz-wrapper-outer[data-id='wrapper-${idx}']`).height(newHeight);
+
+          // Returns svg to the right position
+          d3.select(`svg.chart-vis-sentiment-bars-${idx}`).attr("transform", `translate(0, 0)`);
 
           $(this).addClass("active")
         }
@@ -97,6 +105,7 @@ export default Ember.Component.extend({
         ._class("sentiment-bars")
         .container(".gViz-wrapper-outer[data-id='wrapper-"+idx+"']")
         .margin(margin)
+        ._id(`vis-sentiment-bars-${idx}`)
         .data(article)
         .build();
     });

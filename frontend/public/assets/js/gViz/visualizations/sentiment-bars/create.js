@@ -43,8 +43,7 @@ gViz.vis.sentimentBars.create = function () {
           _var.wrap
             .attr("width", _var.width + _var.margin.left + _var.margin.right)
             .attr("height", _var.height + _var.margin.top + _var.margin.bottom)
-            .attr("left", _var.offset.left)
-            .attr("top", _var.offset.top);
+            .attr("transform", "translate(0, " + (-_var.height - _var.margin.top - _var.margin.bottom) + ")");
 
           // Draw g
           _var.g = _var.wrap.selectAll("g.chart-wrap").data(["chart-wrap"]); // svg:g
