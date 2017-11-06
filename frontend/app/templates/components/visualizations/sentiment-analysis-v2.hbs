@@ -31,13 +31,13 @@
       <div class="one-row sentiment">
         <div class="one-row filter-title">Sentimentos</div>
         <div class="col col-3 col-offset-1 limit-height">
-        <i class="emoticon negative icon-emo-unhappy"></i>
+        <i class="filter-emoticon negative icon-emo-unhappy active"></i>
         </div>
         <div class="col col-3 limit-height">
-        <i class="emoticon neutral icon-emo-sleep"></i>
+        <i class="filter-emoticon neutral icon-emo-sleep active"></i>
         </div>
         <div class="col col-3 limit-height">
-        <i class="emoticon positive icon-emo-happy"></i>
+        <i class="filter-emoticon positive icon-emo-happy active"></i>
         </div>
       </div>
 
@@ -75,11 +75,11 @@
         </div>
         <div class="col col-1 article-score limit-height">
           {{#if (eq article.score "negative")}}
-            <i class="emoticon negative icon-emo-unhappy"></i>
+            <i class="article-emoticon negative icon-emo-unhappy"></i>
           {{else if (eq article.score "neutral")}}
-            <i class="emoticon neutral icon-emo-sleep"></i>
+            <i class="article-emoticon neutral icon-emo-sleep"></i>
           {{else}}
-            <i class="emoticon positive icon-emo-happy"></i>
+            <i class="article-emoticon positive icon-emo-happy"></i>
           {{/if}}
         </div>
         <div class="col col-9 article-content" data-id={{idx}}>
