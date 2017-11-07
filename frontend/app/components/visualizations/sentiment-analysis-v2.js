@@ -55,7 +55,15 @@ export default Ember.Component.extend({
     else {
       let self = this;
 
-      // Binds enter key to text box
+      // Filters
+      // Participations Slider
+      $("input[data-id='sentiment-analysis']").unbind();
+      $("input[data-id='sentiment-analysis']").on("change", function() {
+        self.set("filters.participations", $(this).val());
+        self.get("runFilters")(self);
+      });
+
+      // Participations Text-box
       $("input[name='participations-filter']").unbind();
       $("input[name='participations-filter']").keypress(function(e) {
         if(e.which === 13) {
@@ -80,6 +88,21 @@ export default Ember.Component.extend({
         }
       });
 
+      // Emoticons
+      $(".filter-emoticon").unbind();
+      $(".filter-emoticon").on("click", function() {
+        if($(this).hasClass("active")) { $(this).removeClass("active") }
+        else { $(this).addClass("active") }
+
+        let actives = $(".filter-emoticon")
+        .filter(function() { return $(this).hasClass("active"); })
+        .map(function() { return $(this).attr("data-value"); });
+
+        actives = $.makeArray(actives);
+        self.set("filters.sentiments", actives);
+        self.get("runFilters")(self);
+      });
+
       this.get("updateBindings")(this);
       this.get("draw")(this);
     }
@@ -101,7 +124,7 @@ export default Ember.Component.extend({
     });
   },
 
-  updateBindings(self) {
+  updateBindings() {
     $(".expand-article").unbind();
 
     // Expands article when arrow is clicked
@@ -173,31 +196,7 @@ export default Ember.Component.extend({
       this.get("runFilters")(this);
     },
 
-    filterSentiment() {
-      let self = this;
-
-      // Emoticons
-      $(".filter-emoticon").unbind();
-      $(".filter-emoticon").on("click", function(event) {
-        if($(this).hasClass("active")) { $(this).removeClass("active") }
-        else { $(this).addClass("active") }
-
-        let actives = $(".filter-emoticon")
-        .filter(function() { return $(this).hasClass("active"); })
-        .map(function() { return $(this).attr("data-value"); });
-
-        actives = $.makeArray(actives);
-        self.set("filters.sentiments", actives);
-      });
-
-      this.get("runFilters")(this);
-    },
-
     filterParticipation() {
-      console.log("toba");
-      console.log($("#myRange").val());
-      this.set("filters.participations", $("#myRange").val());
-      this.get("runFilters")(this);
     },
   }
 });
