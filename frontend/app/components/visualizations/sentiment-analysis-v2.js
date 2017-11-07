@@ -63,7 +63,7 @@ export default Ember.Component.extend({
         self.get("runFilters")(self);
       });
 
-      // Participations Text-box
+      // binds enter key to participations text-box
       $("input[name='participations-filter']").unbind();
       $("input[name='participations-filter']").keypress(function(e) {
         if(e.which === 13) {
@@ -101,6 +101,15 @@ export default Ember.Component.extend({
         actives = $.makeArray(actives);
         self.set("filters.sentiments", actives);
         self.get("runFilters")(self);
+      });
+
+      // binds enter key to text search
+      $("#search-articles").unbind();
+      $("#search-articles").keypress(function(e) {
+        if(e.which === 13) {
+          self.set("filters.text", $(this).val());
+          self.get("runFilters")(self);
+        }
       });
 
       this.get("updateBindings")(this);
@@ -149,17 +158,6 @@ export default Ember.Component.extend({
     });
   },
 
-  /*
-  resetFilters(self) {
-    $("#search-articles").val("");
-    $(".filter-emoticons").each(function() {
-      if(!$(this).hasClass("active")) { $(this).addClass("active"); }
-    });
-
-    self.set("filtered-articles", self.get("articles"));
-  },
-  */
-
   runFilters(self) {
     let articles = self.get("articles");
     let filters = self.get("filters");
@@ -188,11 +186,15 @@ export default Ember.Component.extend({
     d3.selectAll("svg").remove();
     self.get("updateBindings")(self);
     self.set("filtered-articles", filteredArticles);
+
+    // Checks for empty results
+    if(filteredArticles.length === 0) { self.set("empty", true); }
+    else { self.set("empty", false); }
   },
 
   actions: {
     filterText() {
-      this.get("filters").text = $("#search-articles").val();
+      this.set("filters.text", $("#search-articles").val());
       this.get("runFilters")(this);
     },
 

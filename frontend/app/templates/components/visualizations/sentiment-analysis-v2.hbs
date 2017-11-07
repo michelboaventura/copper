@@ -30,13 +30,13 @@
 
       <div class="one-row sentiment">
         <div class="one-row filter-title">Sentimentos</div>
-        <div class="col col-3 col-offset-1 limit-height" {{action 'filterSentiment'}}>
+        <div class="col col-3 col-offset-1 limit-height">
         <i class="filter-emoticon negative icon-emo-unhappy active" data-value="negative"></i>
         </div>
-        <div class="col col-3 limit-height" {{action 'filterSentiment'}}>
+        <div class="col col-3 limit-height">
         <i class="filter-emoticon neutral icon-emo-sleep active" data-value="neutral"></i>
         </div>
-        <div class="col col-3 limit-height" {{action 'filterSentiment'}}>
+        <div class="col col-3 limit-height">
         <i class="filter-emoticon positive icon-emo-happy active" data-value="positive"></i>
         </div>
       </div>
@@ -75,38 +75,42 @@
   </div>
 
   <div class="one-row content">
-    {{#each filtered-articles as |article idx|}}
-      <div class="one-row article has-max-height" data-id={{idx}}>
-        <div class="col col-3 gViz-wrapper" data-id='wrapper-{{idx}}'>
-          <div class="col col-10 gViz-wrapper-outer" data-id='wrapper-{{idx}}'>
-            <div class="gViz-wrapper-inner"></div>
+    {{#unless empty}}
+      {{#each filtered-articles as |article idx|}}
+        <div class="one-row article has-max-height" data-id={{idx}}>
+          <div class="col col-3 gViz-wrapper" data-id='wrapper-{{idx}}'>
+            <div class="col col-10 gViz-wrapper-outer" data-id='wrapper-{{idx}}'>
+              <div class="gViz-wrapper-inner"></div>
+            </div>
+            <div class="col col-2 article-score limit-height">
+              {{#if (eq article.score "negative")}}
+                <i class="article-emoticon negative icon-emo-unhappy"></i>
+              {{else if (eq article.score "neutral")}}
+                <i class="article-emoticon neutral icon-emo-sleep"></i>
+              {{else}}
+                <i class="article-emoticon positive icon-emo-happy"></i>
+              {{/if}}
+            </div>
           </div>
-          <div class="col col-2 article-score limit-height">
-            {{#if (eq article.score "negative")}}
-              <i class="article-emoticon negative icon-emo-unhappy"></i>
-            {{else if (eq article.score "neutral")}}
-              <i class="article-emoticon neutral icon-emo-sleep"></i>
-            {{else}}
-              <i class="article-emoticon positive icon-emo-happy"></i>
-            {{/if}}
+          <div class="col col-9 article-content" data-id={{idx}}>
+            <div class="col col-2 article-title">
+              Art. {{article.number}}
+              <i class="fa fa-arrow-right expand-article" data-id={{idx}}></i>
+            </div>
+            <div class="col col-10 article-text">
+              {{#each article.paragraphs as |paragraph|}}
+                <div>
+                  {{paragraph.text}}
+                </div>
+                <br>
+              {{/each}}
+            </div>
           </div>
         </div>
-        <div class="col col-9 article-content" data-id={{idx}}>
-          <div class="col col-2 article-title">
-            Art. {{article.number}}
-            <i class="fa fa-arrow-right expand-article" data-id={{idx}}></i>
-          </div>
-          <div class="col col-10 article-text">
-            {{#each article.paragraphs as |paragraph|}}
-              <div>
-                {{paragraph.text}}
-              </div>
-              <br>
-            {{/each}}
-          </div>
-        </div>
-      </div>
-    {{/each}}
+      {{/each}}
+    {{else}}
+      {{visualizations/empty-vis}}
+    {{/unless}}
   </div>
 
 </div>
