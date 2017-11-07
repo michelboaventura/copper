@@ -183,6 +183,7 @@ export default Ember.Component.extend({
       return d["participations-total"] >= min && d["participations-total"] <= filters.participations;
     });
 
+    $(".gViz-wrapper-inner").height($("svg.sentiment-bars").height());
     d3.selectAll("svg").remove();
     self.get("updateBindings")(self);
     self.set("filtered-articles", filteredArticles);
