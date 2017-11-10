@@ -1,4 +1,7 @@
+// Fonts
 @import "font-awesome";
+@import "fonts/fontello";
+
 /*------------------------------------*    #PROJECT NAME
 \*------------------------------------*/
 // Gfranciscani Styles
@@ -8,6 +11,9 @@
 
 // Mixins
 @import 'mixins.scss';
+
+// Custom grid
+@import 'custom-grid.scss';
 
 // Ui elements
 @import 'ui/ui.loader.scss';
@@ -22,6 +28,7 @@
 @import "visualizations/line-chart/main.scss";
 @import "visualizations/correlation-matrix/main.scss";
 @import "visualizations/sentiment-analysis/main.scss";
+@import "visualizations/sentiment-analysis-v2/main.scss";
 @import "visualizations/graph-canvas/main.scss";
 @import "visualizations/topicos-vis/main.scss";
 @import "visualizations/wordtree-diagram/main.scss";

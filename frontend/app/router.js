@@ -36,6 +36,8 @@ Router.map(function() {
     });
     this.route('sobre');
   });
+
+  this.route('visualizations');
 });
 
 export default Router;
