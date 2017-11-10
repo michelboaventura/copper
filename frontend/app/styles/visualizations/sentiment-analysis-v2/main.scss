@@ -223,7 +223,7 @@
 
       transition: height 0.5s;
       max-height: 1000em;
-      &.has-max-height { height: 9em; }
+      &.has-max-height { height: 10em; }
 
       .gViz-wrapper-outer {
         height: 100%;
@@ -236,7 +236,7 @@
 
       .article-score {
         text-align: center;
-        padding-top: 1em;
+        padding-top: 2.3em;
 
         .article-emoticon {
           border: solid 2px;
