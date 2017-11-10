@@ -77,10 +77,10 @@
       {{#each filtered-articles as |article idx|}}
         <div class="one-row article has-max-height" data-id={{idx}}>
           <div class="col col-3 has-border-right" data-id='wrapper-{{idx}}'>
-            <div class="col col-9 gViz-wrapper-outer" data-id='wrapper-{{idx}}'>
+            <div class="col col-8 gViz-wrapper-outer" data-id='wrapper-{{idx}}'>
               <div class="gViz-wrapper-inner"></div>
             </div>
-            <div class="col col-3 article-score limit-height">
+            <div class="col col-4 article-score limit-height">
               {{#if (eq article.score "negative")}}
                 <i class="article-emoticon negative icon-emo-unhappy"></i>
               {{else if (eq article.score "neutral")}}
@@ -88,6 +88,7 @@
               {{else}}
                 <i class="article-emoticon positive icon-emo-happy"></i>
               {{/if}}
+              <div class="participations">{{article.participations-total}}</div>
             </div>
           </div>
           <div class="col col-9 article-content" data-id={{idx}}>
