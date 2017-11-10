@@ -58,7 +58,7 @@
     padding: 0.5em 0.5em 1.5em 2em;
 
     .limit-height {
-      height: 30px;
+      height: 2em;
     }
 
     .border-right {
@@ -66,18 +66,14 @@
     }
 
     .filter-title {
-      font-size: 12px;
+      font-size: 0.9em;
       font-weight: bold;
-      margin-top: 15px;
-      margin-bottom: 15px;
+      margin-top: 1em;
+      margin-bottom: 1em;
     }
 
     .sentiment {
-      height: 70px;
-
-      .title {
-        font-size: 12px;
-      }
+      height: 5em;
 
       .filter-emoticon {
         border: solid 2px;
@@ -117,6 +113,8 @@
     }
 
     .filter-slider {
+      height: 5em;
+
       .slider-left {
         margin-right: 0.5em;
       }
