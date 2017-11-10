@@ -188,10 +188,12 @@
   .input-group {
     width: 95%;
     float: right;
-    margin-right: 10px;
+    margin-right: 1em;
+    margin-top: 5.5em;
+
     input {
       width: 100%;
-      padding: 5px 10px 6px;
+      padding: 0.5em 1em 0.5em;
       background-color: $full-white;
       border: 1px solid $border-light-gray;
       color: $dark-gray;
