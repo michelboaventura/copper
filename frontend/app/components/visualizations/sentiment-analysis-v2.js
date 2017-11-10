@@ -53,7 +53,16 @@ export default Ember.Component.extend({
     if(this.get("first")) { this.toggleProperty("first"); }
 
     else {
+
       let self = this;
+
+      // Redraw binding
+      self.set("redraw", function() {
+        d3.selectAll("svg").remove();
+        self.get("draw")(self);
+      });
+
+      $(window).on("resize", self.get("redraw"))
 
       // Filters
       // Participations Slider
@@ -115,6 +124,10 @@ export default Ember.Component.extend({
       this.get("updateBindings")(this);
       this.get("draw")(this);
     }
+  },
+
+  willDestroyElement() {
+    $(".gViz-wrapper-outer").on("resize", self.get("redraw"))
   },
 
   draw(self) {
@@ -197,9 +210,6 @@ export default Ember.Component.extend({
     filterText() {
       this.set("filters.text", $("#search-articles").val());
       this.get("runFilters")(this);
-    },
-
-    filterParticipation() {
     },
   }
 });
