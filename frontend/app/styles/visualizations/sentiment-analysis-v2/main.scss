@@ -269,9 +269,10 @@
 
     .article-content {
       .article-title {
+        padding-top: 1.7em;
+        font-weight: bold;
+        font-size: 1.3em;
         text-align: center;
-        vertical-align: middle;
-        // min-height: $height;
       }
 
       i.expand-article {
@@ -283,11 +284,20 @@
           transform: rotate(90deg);
         }
       }
+
+      .article-text {
+        padding-right: 2.5em;
+        text-align: justify;
+      }
     }
 
     svg.sentiment-bars {
       .axis { display: none; }
       .axis text { display: none; }
+    }
+
+    &:last-of-type {
+      margin-bottom: 1.5em;
     }
   }
 
