@@ -67,44 +67,45 @@
         font-size: 0.9em;
         font-weight: bold;
         margin-top: 1em;
-        margin-bottom: 1em;
+        margin-bottom: 1.2em;
       }
 
       .sentiment {
         height: 5em;
 
-        .filter-emoticon {
-          border: solid 2px;
-          border-radius: 30px;
-          padding: 3px;
-          font-size: 20px;
-          margin-left: 20px;
-          margin-top: 10px;
-          color: #ccc;
-          transition: box-shadow 0.1s, font-size 0.1s;
+        .emoticons-wrapper {
+          height: 2em;
 
-          &:hover {
-            cursor: pointer;
-          }
+          .filter-emoticon {
+            border: solid 2px;
+            border-radius: 30px;
+            padding: 3px;
+            font-size: 1em;
+            color: #ccc;
+            transition: font-size 0.1s;
 
-          &.active{
-            cursor: pointer;
-            box-shadow: -4px 4px 6px #ccc;
-            font-size: 22px;
-
-            &.negative {
-              border-color: #f09f9f;
-              color: #f09f9f;
+            &:hover {
+              cursor: pointer;
             }
 
-            &.neutral  {
-              border-color: #e4bb3e;
-              color: #e4bb3e;
-            }
+            &.active{
+              cursor: pointer;
+              font-size: 1.1em;
 
-            &.positive {
-              border-color: #8fb3a9;
-              color: #8fb3a9;
+              &.negative {
+                border-color: #f09f9f;
+                color: #f09f9f;
+              }
+
+              &.neutral  {
+                border-color: #e4bb3e;
+                color: #e4bb3e;
+              }
+
+              &.positive {
+                border-color: #8fb3a9;
+                color: #8fb3a9;
+              }
             }
           }
         }
