@@ -7,10 +7,15 @@
     height: 8em;
     background-color: #323232;
 
-    img.brasao-da-republica {
-      position: relative;
-      margin-left: 15px;
-      transform: scale(0.60, 0.60) translate(0px, -10px);
+    .brasao-wrapper {
+      text-align: center;
+
+      img.brasao-da-republica {
+        position: relative;
+        margin-left: 1em;
+        margin-top: 0.75em;
+        height: 6.5em;
+      }
     }
 
     .title {
