@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
+import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 
-export default Ember.Route.extend(RouteMixin,{
+export default Route.extend(RouteMixin,{
   perPage: 5,
 
   model(){
@@ -13,8 +14,8 @@ export default Ember.Route.extend(RouteMixin,{
   },
   setupController(controller, model){
      this._super(controller, model);
-     controller.set('page', Ember.computed.alias("model.page"));
-     controller.set('perPage', Ember.computed.alias("model.perPage"));
-     controller.set('totalPages', Ember.computed.alias("model.totalPages"));
+     controller.set('page', alias("model.page"));
+     controller.set('perPage', alias("model.perPage"));
+     controller.set('totalPages', alias("model.totalPages"));
    }
 });

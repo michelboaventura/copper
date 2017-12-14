@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import RSVP from 'rsvp';
 
 var qbJson = {
@@ -19,13 +21,13 @@ var qbJson = {
   }
 };
 
-export default Ember.Component.extend({
-  routing: Ember.inject.service('-routing'),
-  sessionAccount: Ember.inject.service(),
-  store: Ember.inject.service(),
+export default Component.extend({
+  routing: service('-routing'),
+  sessionAccount: service(),
+  store: service(),
 
   didInsertElement() {
-    Ember.$(`#${this.elementId} .filter`).queryBuilder(qbJson);
+    $(`#${this.elementId} .filter`).queryBuilder(qbJson);
   },
 
   actions: {
@@ -39,8 +41,8 @@ export default Ember.Component.extend({
       }
 
       var component = this;
-      var expression = Ember.$(`#${this.elementId} .filter`).queryBuilder('getRules');
-      var mongo_query = Ember.$(`#${this.elementId} .filter`).queryBuilder('getMongo');
+      var expression = $(`#${this.elementId} .filter`).queryBuilder('getRules');
+      var mongo_query = $(`#${this.elementId} .filter`).queryBuilder('getMongo');
       let job = this.get('job');
 
       job.filter = expression;

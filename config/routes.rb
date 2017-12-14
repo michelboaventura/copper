@@ -12,7 +12,5 @@ Rails.application.routes.draw do
 
   get '/json/:job_id/:visualization', to: 'json#index'
 
-  Rails.application.routes.draw do
-    mount_ember_app :frontend, to: "/"
-  end
+  mount_ember_app :frontend, to: "/"
 end

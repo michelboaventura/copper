@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
-export default Ember.Route.extend(ApplicationRouteMixin,{
-  session: Ember.inject.service(),
-  sessionAccount: Ember.inject.service(),
+export default Route.extend(ApplicationRouteMixin,{
+  session: service(),
+  sessionAccount: service(),
 
   actions: {
     willTransition() {

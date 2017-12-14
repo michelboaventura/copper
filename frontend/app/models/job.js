@@ -1,5 +1,5 @@
+import { computed } from '@ember/object';
 import DS from 'ember-data';
-import Ember from 'ember';
 
 const { attr } = DS;
 
@@ -19,19 +19,19 @@ export default DS.Model.extend({
   created_at: attr('dates'),
   updated_at: attr('dates'),
 
-  idTruncated: Ember.computed('id', function() {
+  idTruncated: computed('id', function() {
     return this.get('id').slice(-6);
   }),
-  hasCompleted: Ember.computed('status', function() {
+  hasCompleted: computed('status', function() {
     return this.get('status').message === 'COMPLETED';
   }),
-  isRunning: Ember.computed('status', function() {
+  isRunning: computed('status', function() {
     return this.get('status').message === 'RUNNING';
   }),
-  noResult: Ember.computed('status', function() {
+  noResult: computed('status', function() {
     return this.get('status').message === 'EMPTY';
   }),
-  hasError: Ember.computed('status', function() {
+  hasError: computed('status', function() {
     return this.get('status').message === 'ERROR';
   }),
 });

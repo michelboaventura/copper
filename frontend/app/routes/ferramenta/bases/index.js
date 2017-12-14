@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import Route from '@ember/routing/route';
 import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 
 export const pollInterval = 15000
 
-export default Ember.Route.extend(RouteMixin,{
+export default Route.extend(RouteMixin,{
   perPage: 8,
   toDelete: [],
 
@@ -79,12 +80,12 @@ export default Ember.Route.extend(RouteMixin,{
       var datasources = this.get('toDelete');
       if(state){
         this.controller.get('datasources').forEach( function(element) {
-          Ember.$(`#checkbox-${element.id}`).prop('checked', true);
+          $(`#checkbox-${element.id}`).prop('checked', true);
           datasources.push(element.id);
         });
       } else {
         this.controller.get('datasources').forEach( function(element) {
-          Ember.$(`#checkbox-${element.id}`).prop('checked', false);
+          $(`#checkbox-${element.id}`).prop('checked', false);
         });
         this.set('toDelete', []);
       }

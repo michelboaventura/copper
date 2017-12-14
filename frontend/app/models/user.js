@@ -1,3 +1,4 @@
+import { computed } from '@ember/object';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -7,7 +8,7 @@ export default DS.Model.extend({
   firstname: DS.attr(),
   lastname: DS.attr(),
   email: DS.attr(),
-  fullname: Ember.computed('firstname', 'lastname', function() {
+  fullname: computed('firstname', 'lastname', function() {
     return `${this.get('firstname')} ${this.get('lastname')}`;
   }),
 

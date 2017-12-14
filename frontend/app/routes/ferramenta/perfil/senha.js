@@ -1,9 +1,13 @@
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import Ember from 'ember';
 import config from '../../../config/environment';
 
-const {$: { ajax }, inject: { service } } = Ember;
+const {
+  $: { ajax }
+} = Ember;
 
-export default Ember.Route.extend({
+export default Route.extend({
 
   session: service(),
 
