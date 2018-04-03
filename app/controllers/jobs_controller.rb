@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :validates_current_user, except: [:index]
-  before_action :authenticate_request, except: [:index]
+  before_action :authenticate_request, except: [:index, :show]
   before_action :set_current_user
   before_action :set_job, only: [:show, :update, :destroy]
 
@@ -56,6 +56,14 @@ class JobsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_job
     @job = Job.find(params[:id])
+    unless can_have(@job)
+      render json: { errors: "Not Authorized" }, status: :unauthorized
+      return
+    end
+  end
+
+  def can_have(model)
+    model.public || (@current_user && model.user == @current_user)
   end
 
   # Only allow a trusted parameter "white list" through.
