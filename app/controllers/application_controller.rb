@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
     if decoded_auth_token
       @current_user = User.find(decoded_auth_token[:id])
     else
-      head :forbidden
+      @current_user = nil
     end
   end
 
