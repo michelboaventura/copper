@@ -1,12 +1,14 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ["topicos-vis"],
-  sessionAccount: Ember.inject.service(),
+  sessionAccount: service(),
 
   // Attributes bingins
-  json: Ember.A(),
-  tableData: Ember.A(),
+  json: A(),
+  tableData: A(),
   header: ["Tópicos","Eixos","# Comentários","Termos Mais Descritivos"],
   colorsEixos:  d3.scaleOrdinal(d3.schemeCategory20),
 

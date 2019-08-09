@@ -1,10 +1,14 @@
+import Service, { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
 import Ember from 'ember';
 import RSVP from 'rsvp';
 import config from '../config/environment';
 
-const { inject: { service }, isEmpty, $: {ajax} } = Ember;
+const {
+  $: {ajax}
+} = Ember;
 
-export default Ember.Service.extend({
+export default Service.extend({
   session: service(),
   store: service(),
 

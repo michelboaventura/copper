@@ -13,7 +13,6 @@ module.exports = {
   },
   "globals": {
     "$": true,
-    "Ember": true,
     "d3": true,
     "gViz": true
   }
