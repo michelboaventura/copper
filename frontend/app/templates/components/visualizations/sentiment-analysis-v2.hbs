@@ -1,0 +1,116 @@
+<div class="gViz-wrapper" data-id='sentiment-analysis-v2'>
+  <div class="one-row header">
+    <div class="col col-1 brasao-wrapper">
+      <img src="/assets/img/brasao-da-republica-do-brasil.png"
+           class="brasao-da-republica">
+    </div>
+
+    <div class="col col-5 title-wrapper">
+      <span class="project-title"> {{title}} </span><br>
+      <span class="project-description"> {{description}} </span>
+    </div>
+
+    <div class="col col-offset-3 col-3 statistics-wrapper">
+      <div class="col col-6 statistics">
+        <span class="count"> {{articles-total}} </span><br>
+        <span class="text"> Artigos </span>
+      </div>
+      <div class="col col-6 statistics">
+        <span class="count"> {{participations-total}} </span><br>
+        <span class="text"> Participações </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="one-row filters">
+    <div class="col col-3 sentiment-filters">
+      <span class="title">Filtros</span>
+
+      <div class="one-row sentiment">
+        <div class="one-row filter-title">Sentimentos</div>
+        <div class="one-row emoticons-wrapper">
+          <div class="col col-2 col-offset-3 limit-height">
+            <i class="filter-emoticon negative icon-emo-unhappy active" data-value="negative"></i>
+          </div>
+          <div class="col col-2 limit-height">
+            <i class="filter-emoticon neutral icon-emo-sleep active" data-value="neutral"></i>
+          </div>
+          <div class="col col-2 limit-height">
+            <i class="filter-emoticon positive icon-emo-happy active" data-value="positive"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="one-row filter-slider">
+        <div class="one-row filter-title">Número de Participações</div>
+        <div class="one-row">
+          <div class="col col-1 slider-left">{{participations-min}}</div>
+          <div class="col col-5">
+            <input type="range"
+              min={{participations-min}}
+              max={{participations-max}}
+              value={{filters.participations}}
+              id="myRange"
+              data-id="sentiment-analysis">
+          </div>
+          <div class="col col-1 slider-right">{{participations-max}}</div>
+          <div class="col col-3 participations-input">
+            <input type="number" name="participations-filter"
+              id="participations-input"
+              min={{participations-min}}
+              max={{participations-max}}
+              value={{filters.participations}}>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col col-9">
+      <div class="input-group">
+        <input class='input-search' id='search-articles' placeholder="Digite para buscar artigos..." />
+        <span class="input-group-addon" {{action 'filterText'}}><i class='fa fa-search'></i></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="one-row visualization-wrapper">
+    {{#unless empty}}
+      {{#each filtered-articles as |article idx|}}
+        <div class="one-row article has-max-height" data-id={{idx}}>
+          <div class="col col-3 has-border-right" data-id='wrapper-{{idx}}'>
+            <div class="col col-8 gViz-wrapper-outer" data-id='wrapper-{{idx}}'>
+              <div class="gViz-wrapper-inner"></div>
+            </div>
+            <div class="col col-4 article-score limit-height">
+              {{#if (eq article.score "negative")}}
+                <i class="article-emoticon negative icon-emo-unhappy"></i>
+              {{else if (eq article.score "neutral")}}
+                <i class="article-emoticon neutral icon-emo-sleep"></i>
+              {{else}}
+                <i class="article-emoticon positive icon-emo-happy"></i>
+              {{/if}}
+              <div class="participations">{{article.participations-total}}</div>
+            </div>
+          </div>
+          <div class="col col-9 article-content" data-id={{idx}}>
+            <div class="col col-2 article-title">
+              Art. {{article.number}}
+              <i class="fa fa-arrow-right expand-article" data-id={{idx}}></i>
+            </div>
+            <div class="col col-10 article-text">
+              {{#each article.paragraphs as |paragraph|}}
+                <p>
+                  {{paragraph.text}}
+                </p>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    {{else}}
+      {{visualizations/empty-vis}}
+    {{/unless}}
+  </div>
+
+</div>

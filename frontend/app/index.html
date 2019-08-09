@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
     <link rel="stylesheet" href="{{rootURL}}assets/lemonade-ember.css">
 
+    {{content-for "head"}}
+
     {{content-for "head-footer"}}
   </head>
   <body data-language="pt-br">
@@ -64,6 +66,16 @@
     <script src="{{rootURL}}assets/js/gViz/visualizations/bar-chart/axis.js"></script>
     <script src="{{rootURL}}assets/js/gViz/visualizations/bar-chart/draw.js"></script>
     <script src="{{rootURL}}assets/js/gViz/visualizations/bar-chart/sort.js"></script>
+    <!-- /gViz Library - Bar Chart -->
+
+    <!-- gViz Library - Sentiment Analysis V2 -->
+    <script src="{{rootURL}}assets/js/gViz/visualizations/sentiment-bars/_init.js"></script>
+    <script src="{{rootURL}}assets/js/gViz/visualizations/sentiment-bars/initialize.js"></script>
+    <script src="{{rootURL}}assets/js/gViz/visualizations/sentiment-bars/create.js"></script>
+    <script src="{{rootURL}}assets/js/gViz/visualizations/sentiment-bars/scales.js"></script>
+    <script src="{{rootURL}}assets/js/gViz/visualizations/sentiment-bars/axis.js"></script>
+    <script src="{{rootURL}}assets/js/gViz/visualizations/sentiment-bars/draw.js"></script>
+    <script src="{{rootURL}}assets/js/gViz/visualizations/sentiment-bars/sort.js"></script>
     <!-- /gViz Library - Bar Chart -->
 
     <!-- gViz Library - Line Chart -->

@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   init() {
     this._super(...arguments);
   },
@@ -9,10 +10,10 @@ export default Ember.Component.extend({
   dataUrl: function(){ return this.get('dataUrl'); }.property('dataUrl'),
   _id:      function(){ return this.get('_id'); }.property('_id'),
 
-  cWidth: Ember.computed("width", function() {
+  cWidth: computed("width", function() {
     return `${this.$(".wordtree-diagram").parent().outerWidth() - 15}px`;
   }),
-  cHeight: Ember.computed("height", function() {
+  cHeight: computed("height", function() {
     var offsetTop = this.$(".wordtree-diagram").length > 0 ? this.$(".wordtree-diagram").offset().top : 0;
     var footer = $(".footer").length > 0 ? $(".footer").outerHeight() : 0;
     var wHeight = $(window).outerHeight();
